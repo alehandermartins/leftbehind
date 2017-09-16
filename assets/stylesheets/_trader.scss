@@ -1,0 +1,86 @@
+.trader {
+  .header {
+    display: flex;
+    align-items: center;
+    .personal {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .body {
+    .personal {
+      padding: 0;
+    }
+  }
+}
+
+.cell{
+  cursor: pointer;
+  box-shadow:0 1px 4px $main_lighter, 0 0 40px $main_light inset;
+  padding: 0;
+
+  &.active {
+    box-shadow: 0px 1px 4px red, 0px 0px 40px red inset;
+    top:1px;
+    bottom:1px;
+    left:0;
+    right:0;
+    border-radius:1px / 1px;
+  }
+
+  &.received {
+    box-shadow: 0px 1px 4px green, 0px 0px 40px green inset;
+    top:1px;
+    bottom:1px;
+    left:0;
+    right:0;
+    border-radius:1px / 1px;
+  }
+
+  &.location {
+    box-shadow: 0px 1px 4px yellow, 0px 0px 40px yellow inset;
+    top:1px;
+    bottom:1px;
+    left:0;
+    right:0;
+    border-radius:1px / 1px;
+  }
+
+  .icon, .value {
+    width: 100%;
+  }
+}
+
+.flipper {
+  transition: all 1.0s linear;
+  transform-style: preserve-3d;
+  position: relative;
+  padding: 0;
+
+  &.flipped {
+    transform: rotateY( 180deg );
+  }
+
+  .front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    padding: 0;
+    width: 100%;
+  }
+
+  .front {
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+
+  .back {
+    transform: rotateY(180deg);
+  }
+}
+
+
+
+.send-shares {
+  margin-top: 15px;
+}

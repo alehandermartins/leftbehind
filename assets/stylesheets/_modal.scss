@@ -1,0 +1,11 @@
+@import 'colors';
+
+.modal-content {
+  background-color: $dark_light;
+  .close {
+    color: $main;
+  }
+  .modal-header, .modal-footer {
+    border: none;
+  }
+}

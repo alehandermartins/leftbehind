@@ -1,0 +1,46 @@
+.navbar {
+  margin-bottom: 12px;
+  padding: 5px;
+  .food,
+  .parts,
+  .helmet,
+  .day,
+  .shuttle,
+  .food .col-xs-3,
+  .parts .col-xs-3 {
+    padding: 0;
+  }
+
+  .row.food, .row.parts {
+    margin-bottom: 10px;
+  }
+
+  .work .value:after {
+    content: '%';
+  }
+
+  .shuttle{
+    .value{
+      float: right;
+    }
+  }
+
+  ._label{
+    line-height: 1.5;
+  }
+
+  .player {
+    span._label {
+      width: 100%;
+      padding-bottom: 100%;
+      height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        transform: scale(2);
+      }
+    }
+  }
+}

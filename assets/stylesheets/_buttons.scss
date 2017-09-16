@@ -1,0 +1,38 @@
+%btn {
+  background-color: $main_light;
+  border-color: $contrast_light;
+  background-image: none;
+  color: $main;
+  text-shadow: 0 0 1px $contrast_lighter;
+  &:hover, &:focus{
+    color: $light_text;
+  }
+
+  &[disabled] {
+    background-color: $contrast_lighter;
+  }
+}
+
+.btn {
+  font-size: 16px;
+}
+
+.btn-default {
+  @extend %btn;
+  &:hover, &:focus {
+    background-color: $main_lighter;
+  }
+}
+
+.btn-primary {
+  @extend %btn;
+  background-color: $contrast_light;
+  &:hover, &:focus {
+    background-color: $contrast_lighter;
+  }
+}
+
+.spinning-button {
+  margin: 10px auto;
+}
+

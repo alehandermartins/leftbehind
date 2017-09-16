@@ -1,0 +1,128 @@
+.statusbar {
+  @extend %flex-column;
+  flex: 1 0 20%;
+  text-align: center;
+  // border: 1px solid $main_lighter;
+  border-radius: 15px;
+  border-top-right-radius: 0;
+  background-color: $main_lighter;
+  z-index: 1;
+  padding: 3px;
+
+  .player {
+    width: 100%;
+    @extend %flex-column;
+    flex: 1 0 24%;
+    align-items: center;
+    cursor: pointer;
+
+    .name {
+      filter: drop-shadow(0 0 3px black);
+      width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .contributions {
+      @extend %flex-row;
+      margin-top: -5px;
+
+      .resource {
+        @extend %flex-column;
+        background-color: $main_lighter;
+        padding-top: 6px;
+
+        &:first-child {
+          border-radius: 15px 0 0 10px;
+          margin: -10px 0 0;
+          padding-bottom: 5px;
+        }
+
+        &:nth-child(2){
+          padding-bottom: 1px;
+        }
+
+        &:last-child {
+          border-radius: 0 15px 10px 0;
+          margin: -10px 0 0;
+          padding-bottom: 5px;
+        }
+      }
+
+      .emojione {
+        height: 2.2ex;
+        min-width: 2.2ex;
+        min-height: 2.2ex;
+        filter: sepia(70%);
+      }
+    }
+
+    &:first-child {
+      flex: 1 0 28%;
+      .avatarWrapper {
+        width: 75%;
+      }
+    }
+
+    .avatarWrapper {
+      position: relative;
+      width: 55%;
+      margin: 0 auto;
+      cursor: pointer;
+
+      &:before{
+        content: '';
+        display: block;
+        padding-bottom: 100%
+      }
+
+      .avatar {
+        position: absolute;
+        border: 2px solid white;
+        border-radius: 50%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: url('//cdn.jsdelivr.net/emojione/assets/png/1f464.png?v=2.2.6');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #70b3c2;
+
+        &.wont-play {
+          border-color: brown;
+        }
+
+        &.lagging {
+          border-color: orange;
+        }
+
+        &.ahead {
+          border-color: limegreen;
+        }
+
+        &.captain {
+          background-image: asset-url('roles/captain.png');
+          // background-color: lighten(brown, 40%);
+        }
+
+        &.pilot {
+          background-image: asset-url('roles/pilot.png');
+          // background-color: lighten(lime, 40%);
+        }
+
+        &.mechanic {
+          background-image: asset-url('roles/mechanic.png');
+          // background-color: lighten(blue, 40%);
+        }
+
+        &.scientist {
+          background-image: asset-url('roles/scientist.png');
+          // background-color: lighten(yellow, 40%);
+        }
+      }
+    }
+  }
+}

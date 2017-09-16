@@ -1,0 +1,52 @@
+'use strict';
+
+(function(ns){
+
+  var images = {
+  }
+
+
+  ns.customImages = ns.customImages || {
+    food: {
+      path: "<%= asset_path 'custom/items/food.png' %>"
+    },
+    parts: {
+      path: "<%= asset_path 'custom/items/parts.png' %>"
+    },
+    helmet: {
+      path: "<%= asset_path 'custom/items/helmet.png' %>"
+    },
+    shuttle: {
+      path: "<%= asset_path 'custom/actions/escape.png' %>"
+    },
+    day: {
+      path: "<%= asset_path 'custom/time.png' %>"
+    },
+    locations: {
+      path: "<%= asset_path 'custom/items/location.png' %>"
+    },
+
+    search: {
+      path: "<%= asset_path 'custom/actions/search.png' %>"
+    },
+    spy: {
+      path: "<%= asset_path 'custom/actions/spy.png' %>"
+    },
+    steal:  {
+      path: "<%= asset_path 'custom/actions/steal.png' %>"
+    },
+    defend: {
+      path: "<%= asset_path 'custom/actions/defend.png' %>"
+    },
+    work: {
+      path: "<%= asset_path 'custom/actions/work.png' %>"
+    },
+    escape:{
+      path: "<%= asset_path 'custom/actions/escape.png' %>"
+    },
+
+    personal: ':bust_in_silhouette:',
+    team: ':busts_in_silhouette:',
+  }
+
+}(LB || {}));

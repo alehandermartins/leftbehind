@@ -1,0 +1,7 @@
+---
+development:
+  mongo_uri: mongodb://127.0.0.1:27017/lb_dev
+test:
+  mongo_uri: mongodb://127.0.0.1:27017/lb_test
+production:
+  mongo_uri: mongodb://heroku_h14smznl:trlavfo43mm1rl802s1cvi1upt@ds135514.mlab.com:35514/heroku_h14smznl

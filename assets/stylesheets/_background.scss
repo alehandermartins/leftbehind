@@ -1,0 +1,76 @@
+@import 'colors';
+
+%background {
+  .background {
+    position: absolute;
+    content: '';
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $dark_light;
+    opacity: 0.4;
+    z-index: -1;
+    overflow: hidden;
+
+    .planet {
+      background-color: $dark;
+      border-top-right-radius: 100%;
+      position: absolute;
+      height: 60vmin;
+      width: 60vmin;
+      left: 0;
+      bottom: 0;
+      border-bottom: none;
+      border-left: none;
+      filter: drop-shadow(0 0 400px white);
+      // box-shadow: 0 0 600px $contrast;
+    }
+
+    .darkness {
+      content: "";
+      position: absolute;
+      right: 0;
+      background: black;
+      width: 10px;
+      height: 100%;
+    }
+
+    .ship {
+      position: absolute;
+      height: 110px;
+      width: 50px;
+
+      bottom: 50vmin;
+      left: 60vmin;
+
+      transform: rotate(230deg);
+
+      @include triangle("body", 50px, 30px, 10px, $contrast_lighter, $main_lighter);
+
+      @include triangle("propeller", 20px, 10px, 5px, $contrast_lighter, $main_lighter);
+      .propeller {
+        position: absolute;
+
+        &.middle {
+          top: 81px;
+          left: 15px;
+          transform: rotate(180deg)
+        }
+
+        &.left {
+          top: 74px;
+          left: -10px;
+          transform: rotate(215deg);
+        }
+
+        &.right {
+          top: 74px;
+          right: -10px;
+          transform: rotate(145deg);
+        }
+      }
+    }
+  }
+}

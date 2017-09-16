@@ -1,0 +1,19 @@
+.wait {
+  background-image: image-url('wait.svg');
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  width: 100%;
+  padding-bottom: 100%;
+  &:before{
+    padding: 0;
+    width: 100%;
+    padding-bottom: 100%;
+    // background-image : radial-gradient(50% 50%, #00ffff 10px, #1e90ff 30px);
+    background-image : radial-gradient(50% 50%, $contrast, transparent 80%);
+    content: '';
+    position: absolute;
+    z-index: -1;
+  }
+}

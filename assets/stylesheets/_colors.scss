@@ -1,0 +1,14 @@
+$main: #eee;
+$main_light: transparentize($main, 0.6);
+$main_lighter: transparentize($main, 0.8);
+
+$contrast: grey;
+$contrast_light: transparentize($contrast, 0.6);
+$contrast_lighter: transparentize($contrast, 0.8);
+
+$dark: black;
+$dark_light: transparentize($dark, 0.05);
+$dark_lighter: transparentize($dark, 0.3);
+
+
+$light_text: white;

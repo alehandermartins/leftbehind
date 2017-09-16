@@ -1,0 +1,11 @@
+<script type="text/javascript">
+$(function(){
+  var cg = $('.game_container')
+  cg.empty()
+  cg.append(
+    $('<div>').addClass('content').append(
+      LB.Widgets.EnterGame().render()
+    )
+  )
+})
+</script>

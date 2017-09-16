@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160px" height="160px" viewBox="0 0 160 160">
+  <circle cx="80" cy="80" r="50" />
+  <g transform=" matrix(0.866, -0.5, 0.25, 0.433, 80, 80)">
+    <path d="M 0,70 A 65,70 0 0,0 65,0 5,5 0 0,1 75,0 75,70 0 0,1 0,70Z" fill="#AAA">
+      <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="1s" repeatCount="indefinite" />
+    </path>
+  </g>
+  <path d="M 50,0 A 50,50 0 0,0 -50,0Z" transform="matrix(0.866, -0.5, 0.5, 0.866, 80, 80)" />
+  <text
+     style="font-size:26.34501266px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+     x="45.123566"
+     y="90.935555"
+     id="text2999"
+     transform="scale(1.029233,0.97159731)"><tspan
+       id="tspan3001"
+       x="45.123566"
+       y="90.935555">WAIT</tspan></text>
+</svg>

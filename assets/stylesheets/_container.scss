@@ -1,0 +1,42 @@
+.container {
+  max-width: 570px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  @extend %background;
+
+  select {
+    overflow: hidden;
+    background-color: $main_lighter;
+    border: 1px solid $main_light;
+    color: $light_text;
+    border-radius: 4px;
+    padding: 5px 15px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    option {
+      color: $light_text;
+    }
+  }
+
+  .well {
+    background-image: none;
+    background-color: $dark_light;
+    border-color: $contrast_lighter;
+    box-shadow: none;
+    input {
+      background-color: $main_lighter;
+      border: 1px solid $main_light;
+      margin: 2px 0;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      color: $light_text;
+      border-radius: 4px;
+    }
+  }
+}

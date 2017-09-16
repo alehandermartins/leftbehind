@@ -1,0 +1,96 @@
+@mixin triangle($sel, $height, $width, $margin, $infill, $border){
+
+  %nosize {
+    width: 0;
+    height: 0;
+  }
+
+  %triangle {
+    position: absolute;
+    content: '';
+    @extend %nosize;
+    position: absolute;
+    border-style: solid;
+    transform: translateZ(1px);
+  }
+
+  .#{$sel} {
+    // margin: 300px;
+    // position: ;
+    width: $width + 2 * $margin;
+    height: $height + 2 * $margin;
+
+    &:after {
+      @extend %triangle;
+
+      top: $margin * sqrt(2);
+      left: $margin;
+
+      border-color: $infill transparent;
+      border-width: 0 $width/2 $height;
+    }
+
+    &:before {
+      @extend %triangle;
+
+      left: 0;
+      top: 0;
+
+      border-color: $border transparent;
+      border-width: 0 ($width/2 + $margin) ($height + $margin * 2);
+    }
+  }
+}
+
+
+// @mixin triangle2($side, $margin){
+
+//   %nosize {
+//     width: 0;
+//     height: 0;
+//   }
+
+//   %noborder {
+//     // -webkit-transform: rotate(360deg);
+//     border: 0px solid transparent;
+//     border-style: solid solid dotted;
+//   }
+
+//   position: relative;
+//   display: inline-block;
+//   transition: transform 0.5s forwards;
+//   transform-origin: 33.3% 50%;
+//   width: ($side + $margin) * sqrt(3);
+//   height: ($side + $margin) * 2;
+
+//   &:after {
+//     content: '';
+//     display: block;
+//     position: absolute;
+//     @extend %nosize;
+//     @extend %noborder;
+//     border-left-color: $infill;
+//     border-right-width: 0;
+//     border-top-width: $side;
+//     border-bottom-width: $side;
+//     border-left-width: $side * sqrt(3);
+//     top: ($margin);
+//     left: ($margin / sqrt(3));
+//     overflow: hidden;
+//   }
+
+//   &:before {
+//     @extend %nosize;
+//     @extend %noborder;
+//     content: '';
+//     display: block;
+//     position: absolute;
+//     border-left-color: $border;
+//     border-right-width: 0;
+//     border-top-width: $side + $margin;
+//     border-bottom-width: $side + $margin;
+//     border-left-width: ($side + $margin) * sqrt(3);
+//     z-index: -1;
+//     overflow: hidden;
+//   }
+// }

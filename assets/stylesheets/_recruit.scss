@@ -1,0 +1,38 @@
+#qr {
+  img {
+    margin: 0 auto;
+  }
+
+  margin-bottom: 2rem;
+}
+
+.wa {
+  border: 1px white solid;
+  border-radius: 50%;
+  padding: 0.5rem;
+  color: white;
+  background-color: black;
+
+  &::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: -1px;
+  filter: drop-shadow(0px 2px 0 white);
+  border-width: 9px 5px 0px 5px;
+  border-color: black transparent;
+  border-style: solid;
+  transform: rotate(35deg);
+}
+}
+
+.mail {
+  padding-bottom: 0.4rem;
+  vertical-align: middle;
+  font-size: 2rem;
+  color: white;
+}
+
+.mail, .wa{
+  margin-left: 2rem;
+}

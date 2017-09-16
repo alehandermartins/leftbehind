@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Left Behind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <%= stylesheet_tag 'vendor' %>
+    <%= stylesheet_tag 'ours' %>
+
+    <meta property="og:title" content="Left Behind" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="<%= request.base_url + asset_path('og.png')%>" />
+    <meta property="og:image:width" content="124" />
+    <meta property="og:image:height" content="103" />
+    <link rel="shortcut icon" type="image/png" href="<%= asset_path 'icon.png'%>" />
+
+    <%= emojione_tags %>
+</head>
+<body>
+  <div class="container">
+    <div class="background">
+      <div class="planet"></div>
+      <div class="ship">
+        <div class="body"></div>
+        <div class="propeller middle"></div>
+        <div class="propeller left"></div>
+        <div class="propeller right"></div>
+      </div>
+      <div class="darkness"></div>
+    </div>
+
+    <div class="game_header">
+      <h1>&nbsp;Left Behind&nbsp;</h1>
+      <span class="game_name"></span>
+      <span class="timer"></span>
+      <span class="options"></span>
+    </div>
+
+    <div class="game_container"></div>
+    <div class="game_footer">
+      <h3>Cooperate, betray... survive.&nbsp;&nbsp;</h3>
+    </div>
+  </div>
+
+
+  <%= javascript_tag 'vendor' %>
+  <%= javascript_tag 'ours' %>
+  <%= yield %>
+  <img src="<%= image_path 'wait.svg' %>" style="display: none">
+</body>
+</html>
