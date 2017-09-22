@@ -234,8 +234,7 @@
 
   ns.Widgets.Player = function(player, actions, slotWidget){
     var _createdWidget = $(crel('div')).addClass('col-xs-12')
-    var _background = $(crel('div')).addClass('col-xs-12')
-    _background.css({width: "430", height:'150', padding: '0'})
+    var _background = $(crel('div')).addClass('room col-xs-12')
 
     var addActionButton = function(action){
       var action = actions[action];

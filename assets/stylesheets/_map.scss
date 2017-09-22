@@ -1,14 +1,10 @@
 .room {
+  display: block;
   padding: 0;
   background-size:contain;
   background-repeat: no-repeat;
-}
-
-.room:before {
-  content: "";
-  display: inline-block;
-  vertical-align: middle;
-  padding-bottom: 50%;
+  height: 150px;
+  background-position: center; 
 }
 
 .uuid1{
