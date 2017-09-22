@@ -1,36 +1,49 @@
-.room1 {
+.room {
+  padding: 0;
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+.room:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  padding-bottom: 50%;
+}
+
+.uuid1{
   background-image: asset-url('map/bridge.jpg');
 }
 
-.room2 {
+.uuid2 {
   background-image: asset-url('map/cabins.jpg');
 }
 
-.room3 {
+.uuid3 {
   background-image: asset-url('map/weapons_bay.jpg');
 }
 
-.room4 {
+.uuid4 {
   background-image: asset-url('map/enfermery.jpg');
 }
 
-.room5 {
+.uuid5 {
   background-image: asset-url('map/engine.jpg');
 }
 
-.room6 {
+.uuid6 {
   background-image: asset-url('map/warehouse.jpg');
 }
 
-.room7 {
+.uuid7 {
   background-image: asset-url('map/life_support.jpg');
 }
 
-.room8 {
+.uuid8 {
   background-image: asset-url('map/escape.jpg');
 }
 
-.roomlocked {
+.locked {
   background-image: asset-url('map/locked.jpg');
 }
 

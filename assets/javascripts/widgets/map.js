@@ -14,19 +14,19 @@
     var moveAction, endmoveAction, elapsedTime
 
     function moveRight(){
-    	label.style.marginLeft = -18 + elapsedTime / movingTime * 433 + 'px'
-      map.style.left = elapsedTime / movingTime * 433 + 'px'
+    	label.style.marginLeft = -20 + elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
+      map.style.left = elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
     }
 
     function endMoveRight(){
-    	label.style.marginLeft = '415px'
+    	label.style.marginLeft = map.offsetWidth - 45 + 'px'
       map.style.display = 'none'
       selection.style.display = 'block'
     }
 
     function moveLeft(){
-    	label.style.marginLeft = 415 - elapsedTime / movingTime * 433 + 'px'
-      map.style.left = 433 - elapsedTime / movingTime * 433 + 'px'
+    	label.style.marginLeft = map.offsetWidth - 20 - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
+      map.style.left = map.offsetWidth - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
     }
 
     function endMoveLeft(){
@@ -168,8 +168,7 @@
 
   ns.Widgets.LockedRoom = function(location, actions, slotWidget){
     var _createdWidget = $(crel('div')).addClass('col-xs-12')
-    var _background = $(crel('div')).addClass('roomlocked col-xs-12')
-    _background.css({width: "430", height:'150', padding: '0'})
+    var _background = $(crel('div')).addClass('room locked col-xs-12')
 
 
     var addActionButton = function(action){
@@ -200,8 +199,7 @@
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
 
     var _createdWidget = $(crel('div')).addClass('col-xs-12')
-    var _background = $(crel('div')).addClass('room'+ location.uuid + ' col-xs-12')
-    _background.css({width: "430", height:'150', padding: '0'})
+    var _background = $(crel('div')).addClass('room uuid'+ location.uuid + ' col-xs-12')
 
     var addActionButton = function(action){
       var action = actions[action];
