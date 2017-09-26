@@ -1,12 +1,14 @@
 module LB
   class Action::Escape < Action::Base
     include Cooperative
+    include Alien
     include EndGame
 
     def run context
       super context
 
       return @context if computed?
+      return @context if devoured?
 
       escape = lambda do |action|
 
@@ -62,6 +64,7 @@ module LB
 
     def resolve context
       super context
+
       performer.information.add_to performer.uuid, slot, information(self.class.name, true)
       @context
     end

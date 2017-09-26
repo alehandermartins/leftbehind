@@ -84,6 +84,7 @@ describe 'Search' do
 
     it 'does not subtract if empty location and adds information' do
       allow(@initial_context.locations['2']).to receive(:[]).with(:inventory).and_return({ food: 0 })
+      allow(@initial_context.locations['4']).to receive(:[]).with(:inventory).and_return({ food: 1 })
 
       derived_context = @one_action.run @initial_context
       derived_context = @otter_action.run derived_context
@@ -181,7 +182,8 @@ describe 'Search' do
     end
 
     it 'lets other coworkers know who found a helmet' do
-      allow(@initial_context.locations['2']).to receive(:[]).with(:inventory).and_return({ helmet: 1})
+      @initial_context.locations['2'][:inventory][:helmet] = 1
+      @initial_context.locations['2'][:inventory][:food] = 0
 
       location = @initial_context.locations['2']
 

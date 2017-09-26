@@ -131,31 +131,5 @@ describe 'Eat' do
       expect(@player.information['otter'][6][:result][:info]).to eq('player.status.starved')
       expect(derived_context.players['anotter'].status).to eq(:alive)
     end
-
-    it 'does not subtract food from the dead' do
-      @initial_context.team.information.add_to :voting, 5, {result: {winners: ['player']}}
-      allow(@anotter).to receive(:alive?).and_return(false)
-      @initial_context.team.inventory.add :food, 1
-      @player.inventory.add :food, 1
-      @otter.inventory.add :food, 2
-      @anotter.inventory.add :food, 2
-
-      derived_context = @one_action.run @initial_context
-      derived_context = @otter_action.run derived_context
-      derived_context = @anotter_action.run derived_context
-
-      derived_context = @one_action.resolve derived_context
-      derived_context = @otter_action.resolve derived_context
-      derived_context = @anotter_action.resolve derived_context
-
-      expect(derived_context.team.inventory[:food]).to eq(0)
-      expect(@player.inventory[:food]).to eq(0)
-      expect(@player.status).to eq(:alive)
-      expect(@otter.inventory[:food]).to eq(2)
-      expect(@otter.status).to eq(:alive)
-      expect(@anotter.inventory[:food]).to eq(2)
-      expect(derived_context.players['player'].status).to eq(:alive)
-      expect(derived_context.players['otter'].status).to eq(:alive)
-    end
   end
 end

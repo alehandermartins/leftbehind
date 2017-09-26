@@ -7,6 +7,17 @@
   background-position: center; 
 }
 
+.alien {
+  position: absolute;
+  background-image: asset-url('map/alien.jpg');
+  background-repeat: no-repeat;
+  background-size:contain;
+  height: 50px;
+  width: 100px;
+  left: 75%;
+  z-index: 1;
+}
+
 .uuid1{
   background-image: asset-url('map/bridge.jpg');
 }

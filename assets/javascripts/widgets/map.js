@@ -22,6 +22,9 @@
     	label.style.marginLeft = map.offsetWidth - 45 + 'px'
       map.style.display = 'none'
       selection.style.display = 'block'
+      $(".mapLabel").one('click', function(){
+        LB.Widgets.MoveLabel('left')
+      })
     }
 
     function moveLeft(){
@@ -69,10 +72,6 @@
 
     var _mapLabel = $(crel('div')).addClass('mapLabel').css('display', 'none')
     var _createdWidget = $(crel('div')).addClass('map col-xs-12').css('display', 'block')
-
-    _mapLabel.on('click', function(){
-      LB.Widgets.MoveLabel('left')
-    })
 
     var _players = stats.players
 
@@ -200,6 +199,11 @@
 
     var _createdWidget = $(crel('div')).addClass('col-xs-12')
     var _background = $(crel('div')).addClass('room uuid'+ location.uuid + ' col-xs-12')
+    
+    if(location.status == 'marked'){
+      var _alien = $(crel('div')).addClass('alien')
+      _createdWidget.append(_alien)
+    }
 
     var addActionButton = function(action){
       var action = actions[action];
@@ -266,7 +270,5 @@
       }
     }
   }
-
-
 
 }(LB || {}))

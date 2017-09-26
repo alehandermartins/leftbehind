@@ -34,7 +34,7 @@ describe 'Stats' do
     [
       {
         :uuid=>"1",
-        :status=>:unlocked
+        :status=>:marked
       },
       {
         :uuid=>"2",
@@ -54,11 +54,11 @@ describe 'Stats' do
       },
       {
         :uuid=>"6",
-        :status=>:unlocked
+        :status=>:marked
       },
       {
         :uuid=>"7",
-        :status=>:unlocked
+        :status=>:marked
       },
       {
         :uuid=>"8",
@@ -179,7 +179,7 @@ describe 'Stats' do
       {
         :game => game,
         :current_slot => 4,
-        :escape_shuttle => 8,
+        :escape_shuttle => 7,
         :players => {
           'player' => {
             :name => 'player_name',
@@ -195,7 +195,7 @@ describe 'Stats' do
             :role => :pilot,
             :stage => :events,
             :event => :voting,
-            :shared_inventory => {:food=>0, :parts=>0, :work=>0}
+            :shared_inventory => {:food=>0, :parts=>0, :work=>1}
           },
             'anotter' => {
             :name => 'anotter_player_name',
@@ -220,7 +220,7 @@ describe 'Stats' do
       {
         :game => game,
         :current_slot => 4,
-        :escape_shuttle => 8,
+        :escape_shuttle => 7,
         :players => {
           'player' => {
             :name => 'player_name',
@@ -236,7 +236,7 @@ describe 'Stats' do
             :role => :pilot,
             :stage => :events,
             :event => :voting,
-            :shared_inventory => {:food=>0, :parts=>0, :work=>0}
+            :shared_inventory => {:food=>0, :parts=>0, :work=>1}
           },
             'anotter' => {
             :name => 'anotter_player_name',
@@ -260,7 +260,7 @@ describe 'Stats' do
       {
         :game => game,
         :current_slot => 4,
-        :escape_shuttle => 8,
+        :escape_shuttle => 7,
         :players => {
           'player' => {
             :name => 'player_name',
@@ -276,7 +276,7 @@ describe 'Stats' do
             :role => :pilot,
             :stage => :events,
             :event => :voting,
-            :shared_inventory => {:food=>0, :parts=>0, :work=>0}
+            :shared_inventory => {:food=>0, :parts=>0, :work=>1}
           },
             'anotter' => {
             :name => 'anotter_player_name',
@@ -302,7 +302,7 @@ describe 'Stats' do
         },
         {
           :uuid=>"2",
-          :status=>:unlocked
+          :status=>:marked
         },
         {
           :uuid=>"3",
@@ -314,7 +314,7 @@ describe 'Stats' do
         },
         {
           :uuid=>"5",
-          :status=>:unlocked
+          :status=>:marked
         },
         {
           :uuid=>"6",
@@ -322,7 +322,7 @@ describe 'Stats' do
         },
         {
           :uuid=>"7",
-          :status=>:unlocked
+          :status=>:marked
         },
         {
           :uuid=>"8",

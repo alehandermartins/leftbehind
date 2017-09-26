@@ -7,11 +7,6 @@ module LB
 
       return @context if computed?
 
-      unless performer.alive?
-        add_status :fail
-        return @context
-      end
-
       add_status :success
       add_bounty resource => 1
       @context
@@ -19,8 +14,6 @@ module LB
 
     def resolve context
       super context
-
-      return @context unless success?
 
       if able?
         feed_from_team

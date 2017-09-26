@@ -13,6 +13,7 @@ module LB
 
     def resolve context
       super context
+
       return @context if resolved?
 
       kill_everyone unless someone_entered?

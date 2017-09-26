@@ -206,6 +206,7 @@
       inventory: 'Inventory: %{resources}',
       status: {
         dead: 'You are dead',
+        devoured: 'The alien devoured you',
         starved: 'You died of starvation',
         escaped: 'Congratulations, you managed to escape... for now...',
         trapped: 'You... were... Left Behind.',

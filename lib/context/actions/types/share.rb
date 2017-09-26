@@ -6,6 +6,7 @@ module LB
 
     def run context
       super context
+      return @context if computed?
 
       add_status :success
       @context

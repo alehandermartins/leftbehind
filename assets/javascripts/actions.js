@@ -340,6 +340,19 @@
 
     ns.OtherActions = function(stats){
       return {
+        death: {
+          showResult: function(result){
+            var _resultLabel = ns.t.html('action.eat.label') + 'Was devoured by the alien'
+            if (result.info == 'player.status.starved'){
+              if (result.performer == LB.playerUuid())
+                _resultLabel = ns.t.html('action.eat.label') + ns.t.html('action.eat.result.youstarved')
+              else
+                _resultLabel = ns.t.html('action.eat.label') + ns.t.text('action.eat.result.otterstarved')
+            }
+            var resultLabel = $(crel('div')).addClass('col-xs-12').html(_resultLabel).addClass('unpadded');
+            return resultLabel;
+          }
+        },
         vote: {
           showResult: function(result){
             var _winners = [];

@@ -1,9 +1,12 @@
 module LB
   class Action::Craft < Action::Base
     include WithItem
+    include Alien
 
     def run context
       super context
+      return @context if computed?
+      return @context if devoured?
 
       unless is_possible?
         add_status :fail
@@ -17,9 +20,9 @@ module LB
 
     def resolve context
       super context
+
       performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
-      return @context unless success?
-      performer.inventory.add_item item.to_sym
+      performer.inventory.add_item item.to_sym if success?
       @context
     end
 

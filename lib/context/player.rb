@@ -74,6 +74,10 @@ class Player
     @status = :crashed
   end
 
+  def devour
+    @status = :devoured
+  end
+
   def escape
     @status = :escaped
   end

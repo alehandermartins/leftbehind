@@ -36,6 +36,17 @@ class Slots
     }
   end
 
+  def replace_actions player, slot_key, params
+    slots.each{ |key, slot|
+      next unless key > slot_key
+      slot.replace ActionBuilder.new()
+        .for(player)
+        .at(key)
+        .parameterized_with(params)
+        .build()
+    }
+  end
+
   private
   attr_reader :slots
 end

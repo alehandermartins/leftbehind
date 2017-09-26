@@ -26,10 +26,6 @@ class Slot
     @actions
   end
 
-  def actions_by_player
-    actions.group_by {|action| action[:performer].uuid}
-  end
-
   def run_on context
     actions.sort_by{ |the_action|
       ACTIONS_PRIORITIES.index the_action.class.name
@@ -52,8 +48,12 @@ class Slot
     }
   end
 
+  def replace new_action
+    actions.map!{ |action| action[:performer].uuid == new_action[:performer].uuid ? new_action : action }
+  end
+
   def completed? num_players
-    actions_by_player.length == num_players
+    actions.group_by {|action| action[:performer].uuid}.length == num_players
   end
 
   def completed_for? player

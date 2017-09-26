@@ -51,8 +51,8 @@ class Locations
   def lock generator
     @locations['8'][:status] = :locked
     places = ['1', '2', '3', '4', '5', '7'].sample(2, random: generator)
-    2.times do |it|
-      @locations[places[it]][:status] = :locked
-    end
+    places.each{ |uuid|
+      @locations[uuid][:status] = :locked
+    }
   end
 end

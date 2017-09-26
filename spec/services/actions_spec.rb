@@ -81,8 +81,8 @@ describe 'Actions' do
 
     @anotter_actions = {
       'morning' => search_cabins,
-      'afternoon' => search_cabins,
-      'evening' => work,
+      'afternoon' => work,
+      'evening' => search_cabins,
       'midnight' => work
     }
 
@@ -274,14 +274,6 @@ describe 'Actions' do
 
       retrieved_actions = Services::Actions.send :retrieve, game_id, @player_hash['uuid']
       expect(retrieved_actions).to eq(transformed_actions + transformed_voting + transformed_eating)
-    end
-
-    it 'does add dead actions when alive players have sent theirs' do
-      Services::Actions.save_actions game_id, @otter_player_hash['uuid'], @otter_actions
-      Services::Actions.save_actions game_id, @anotter_player_hash['uuid'], @anotter_actions
-
-      retrieved_actions = Services::Actions.send :retrieve, game_id, @player_hash['uuid']
-      expect(retrieved_actions).to eq(transformed_actions + transformed_voting + transformed_eating + transformed_dead)
     end
 
     it 'does add dead actions when alive players have sent theirs' do

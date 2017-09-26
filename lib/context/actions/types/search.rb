@@ -2,12 +2,14 @@ module LB
   class Action::Search < Action::Base
     include Located
     include Cooperative
+    include Alien
     include EndGame
 
     def run context
       super context
-
+      
       return @context if computed?
+      return @context if devoured?
 
       search = lambda do |action|
 

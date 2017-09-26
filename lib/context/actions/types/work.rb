@@ -2,12 +2,14 @@ module LB
   class Action::Work < Action::Base
     include Cooperative
     include WithItem
+    include Alien
     include EndGame
 
     def run context
       super context
 
       return @context if computed?
+      return @context if devoured?
 
       work = lambda do |action|
         if fixed?
@@ -43,7 +45,6 @@ module LB
       super context
 
       performer.information.add_to performer.uuid, slot, information(self.class.name, true)
-
       return @context unless success?
 
       fix

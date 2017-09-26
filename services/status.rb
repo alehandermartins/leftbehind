@@ -53,6 +53,7 @@ module Services
     def compute stage = :actions
       stage_slots = remaining_slots.take(stage_actions[stage])
       compute_stage stage_slots
+      context.alien.lurk context.locations
 
       @current_slot = stage_slots.last || 0
       store_stats
@@ -130,7 +131,7 @@ module Services
     def players_situation
       situation = Hash.new
       context.players.each{ |player|
-        player.crash if (current_slot >= 67 && player.alive?)
+        player.crash if (current_slot >= 58 && player.alive?)
         situation[player.uuid] = compose_situation player
       }
       situation
