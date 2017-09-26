@@ -46,6 +46,7 @@ class BaseController < Sinatra::Base
     roles/pilot.png
     roles/mechanic.png
     roles/scientist.png
+    map/alien.jpg
     map/bridge.jpg
     map/cabins.jpg
     map/enfermery.jpg
