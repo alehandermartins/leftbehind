@@ -77,7 +77,7 @@
     action: {
       craft: {
         modalTitle: 'Choose what you need to craft',
-        list: ':pick: ( 5 :parts:)',
+        list: ':pick: ( 3 :parts:)',
         label: 'Craft a :pick:',
         result:{
           success: 'Added to your inventory',

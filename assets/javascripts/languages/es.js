@@ -77,7 +77,7 @@
     action: {
       craft: {
         modalTitle: 'Elige lo que necesitas fabricar',
-        list: ':pick: ( 5 :parts:)',
+        list: ':pick: ( 3 :parts:)',
         label: 'Fabricar un :pick:',
         result:{
           success: 'Añadido a tu inventario',

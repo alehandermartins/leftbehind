@@ -151,13 +151,13 @@ describe 'Steal' do
       derived_context = @one_action.resolve derived_context
       derived_context = @anotter_action.resolve derived_context
 
-      expect(@player.inventory[:food]).to eq(0)
-      expect(@anotter.inventory[:food]).to eq(1)
+      expect(@player.inventory[:food]).to eq(1)
+      expect(@anotter.inventory[:food]).to eq(0)
       expect(@otter.inventory[:food]).to eq(0)
-      expect(@one_action.status).to eq(:fail)
-      expect(@anotter_action.status).to eq(:success)
-      expect(@one_action.info).to eq(reason: 'action.steal.result.empty')
-      expect(@player.information['player'][1][:result][:info]).to eq(reason: 'action.steal.result.empty')
+      expect(@one_action.status).to eq(:success)
+      expect(@anotter_action.status).to eq(:fail)
+      expect(@anotter_action.info).to eq(reason: 'action.steal.result.empty')
+      expect(@anotter.information['anotter'][1][:result][:info]).to eq(reason: 'action.steal.result.empty')
     end
 
     it 'fails if target left behind' do

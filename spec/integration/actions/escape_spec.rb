@@ -52,7 +52,6 @@ describe 'Escape' do
       name: 'test_game',
       uuid: game_id
     })
-
     Services::Games.add_player game_id, player_hash['uuid'], player_hash['name']
     Services::Games.add_player game_id, otter_player_hash['uuid'], otter_player_hash['name']
     Services::Games.add_player game_id, anotter_player_hash['uuid'], anotter_player_hash['name']

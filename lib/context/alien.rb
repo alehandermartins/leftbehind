@@ -2,7 +2,6 @@ class Alien
   def initialize locations, generator
     @location
     @generator = generator
-    lurk locations
   end
 
   def lurk locations
@@ -14,7 +13,6 @@ class Alien
     places.each{ |uuid|
       locations[uuid][:status] = :marked
     }
-
     @location = places.sample(random: @generator)
   end
 
