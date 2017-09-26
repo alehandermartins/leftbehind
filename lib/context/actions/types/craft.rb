@@ -5,6 +5,8 @@ module LB
 
     def run context
       super context
+      payload[:location] = '6'
+
       return @context if computed?
       return @context if devoured?
 
