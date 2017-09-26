@@ -53,7 +53,7 @@ module Services
     def compute stage = :actions
       stage_slots = remaining_slots.take(stage_actions[stage])
       compute_stage stage_slots
-      context.alien.lurk context.locations
+      context.alien.lurk context.locations if stage == :actions
 
       @current_slot = stage_slots.last || 0
       store_stats

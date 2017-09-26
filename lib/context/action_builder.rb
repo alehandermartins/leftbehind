@@ -31,6 +31,7 @@ class ActionBuilder
 
   def parameterized_with params
     @params = params
+    @params[:payload] = @params[:payload] || {}
     self
   end
 
