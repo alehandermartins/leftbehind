@@ -189,7 +189,7 @@ describe 'Fusion' do
 
       expect(derived_context.players['player'].inventory[:helmet]).to eq(0)
       expect(derived_context.players['otter'].inventory[:helmet]).to eq(0)
-      expect(helmets_amount derived_context).to eq(1)
+      expect(helmets_amount derived_context).to eq(2)
 
       expect(@player.information['player'][5][:result][:info]).to eq('action.fusion.result.entered')
       expect(@player.information['otter'][5][:result][:info]).to eq('action.fusion.result.entered')

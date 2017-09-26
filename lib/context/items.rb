@@ -6,7 +6,7 @@ class Items
         fix: 10
       },
       'pick' => {
-        parts: 5
+        parts: 3
       }
     }
   end

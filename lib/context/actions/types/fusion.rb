@@ -38,7 +38,7 @@ module LB
 
     def backup_helmets
       alive_players = @context.players.alive.size
-      helmets = alive_players - total_helmets - 1
+      helmets = alive_players - total_helmets
       helmets = 0 if helmets < 0
       Array.new(helmets, :helmet)
     end
