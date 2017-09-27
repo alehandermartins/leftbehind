@@ -3,17 +3,13 @@
 
 	ns.Widgets = ns.Widgets || {}
 
-	ns.Widgets.MoveLabel = function(direction){
+	ns.Widgets.MoveLabel = function(){
 
-    var startTime = new Date().getTime()
     var movingTime = 1000
-    var label = document.querySelector(".mapLabel")
-    var map = document.querySelector(".map")
-
-    var selection = document.querySelector(".map_selected")
-    var moveAction, endmoveAction, elapsedTime
-
-    function moveRight(){
+    var status = 'iddle'
+    var label, map, moveAction, endmoveAction, elapsedTime, startTime, selection
+   
+    function moveItRight(){
     	label.style.right = map.offsetWidth - 10 - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
       map.style.right =  - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
     }
@@ -22,12 +18,9 @@
     	label.style.right =  '2.5%'
       map.style.display = 'none'
       selection.style.display = 'block'
-      $(".mapLabel").one('click', function(){
-        LB.Widgets.MoveLabel('left')
-      })
     }
 
-    function moveLeft(){
+    function moveItLeft(){
     	label.style.right = - 10 + elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
       map.style.right = - map.offsetWidth + elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
     }
@@ -46,21 +39,41 @@
         setTimeout(function(){ move() }, 20)
       }else{
       	endmoveAction()
+        status = 'iddle'
       }
     }
 
-    if(direction == 'right'){
-      label.style.display = 'block'
-      moveAction = moveRight
-      endmoveAction = endMoveRight
+    return {
+      moveRight: function(){
+        if(status == 'running')
+          return
+
+        status = 'running'
+        label = document.querySelector(".mapLabel")
+        map = document.querySelector(".map")
+        startTime = new Date().getTime()
+        selection = document.querySelector(".map_selected")
+        label.style.display = 'block'
+        moveAction = moveItRight
+        endmoveAction = endMoveRight
+        move()
+      },
+      moveLeft: function(){
+        if(status == 'running')
+          return
+
+        status = 'running'
+        label = document.querySelector(".mapLabel")
+        map = document.querySelector(".map")
+        startTime = new Date().getTime()
+        selection = document.querySelector(".map_selected")
+        selection.style.display = 'none'
+        map.style.display = 'block'
+        moveAction = moveItLeft
+        endmoveAction = endMoveLeft
+        move()
+      }
     }
-    else{
-      selection.style.display = 'none'
-      map.style.display = 'block'
-    	moveAction = moveLeft
-      endmoveAction = endMoveLeft
-    }
-    move()
   }
 
  ns.Widgets.ActionSelector = function(slotWidget, stats){
@@ -72,6 +85,11 @@
 
     var _mapLabel = $(crel('div')).addClass('mapLabel').css('display', 'none')
     var _createdWidget = $(crel('div')).addClass('map col-xs-12').css('display', 'block')
+
+    var moveLabel = LB.Widgets.MoveLabel()
+    _mapLabel.on('click', function(){
+      moveLabel.moveLeft()
+    })
 
     var _players = stats.players
 
@@ -137,7 +155,7 @@
           _player.show()
         }else{
           _player.addClass('map_selected')
-          LB.Widgets.MoveLabel('right')
+          moveLabel.moveRight()
         }
       })
 
@@ -150,7 +168,7 @@
 
       var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
         _room.addClass('map_selected')
-        LB.Widgets.MoveLabel('right')
+        moveLabel.moveRight()
       })
 
       _createdWidget.append(_locationButton.render())
