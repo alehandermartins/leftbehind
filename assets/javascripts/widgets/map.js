@@ -14,12 +14,12 @@
     var moveAction, endmoveAction, elapsedTime
 
     function moveRight(){
-    	label.style.marginLeft = -20 + elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
-      map.style.left = elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
+    	label.style.right = map.offsetWidth - 10 - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
+      map.style.right =  - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
     }
 
     function endMoveRight(){
-    	label.style.marginLeft = map.offsetWidth - 45 + 'px'
+    	label.style.right =  '2.5%'
       map.style.display = 'none'
       selection.style.display = 'block'
       $(".mapLabel").one('click', function(){
@@ -28,13 +28,13 @@
     }
 
     function moveLeft(){
-    	label.style.marginLeft = map.offsetWidth - 20 - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
-      map.style.left = map.offsetWidth - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
+    	label.style.right = - 10 + elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
+      map.style.right = - map.offsetWidth + elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
     }
 
     function endMoveLeft(){
     	label.style.display = 'none'
-      map.style.left = 0
+      map.style.right = 0
       selection.classList.remove("map_selected")
     }
 

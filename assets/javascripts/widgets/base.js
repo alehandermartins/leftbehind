@@ -67,7 +67,6 @@
         size = 6;
       targets.forEach(function(target){
         var _generatedButton = ns.Widgets.Button(target.label || target.name, function(){
-          console.log(target);
           if (_selectedTargets.indexOf(target) >= 0)
             return;
 
@@ -145,8 +144,6 @@
     }
 
     var personalInfo = stats.personal_info
-    console.log(stats.current_slot)
-    console.log(stats.day_status)
 
     var slots = [];
     var _infos = [];
@@ -154,7 +151,6 @@
     for (var i = stats.current_slot - slotsToShow[stats.day_status]; i < stats.current_slot; i++){
       slots.push(i + 1);
     }
-
 
     var _displayActions = function(actions){
       slots.forEach(function(slot){
