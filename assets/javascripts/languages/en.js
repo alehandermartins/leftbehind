@@ -22,7 +22,7 @@
       4:'infirmary',
       5:'engines room',
       6:'supplies room',
-      7:'life support module',
+      7:'life support',
       8:'escape shuttle'
     },
     locations_labels: {
@@ -32,7 +32,7 @@
       4:'infirmary',
       5:'engines room',
       6:'supplies room',
-      7:'life support module',
+      7:'life support',
       8:'escape shuttle'
     },
     welcome: {
@@ -238,7 +238,7 @@
       stay: 'Stay'
     },
     results: {
-      label: 'Results :day: %{day}:',
+      label: 'Results %{day}:',
       general: 'GENERAL INFO',
       personal: 'PERSONAL INFO'
     },

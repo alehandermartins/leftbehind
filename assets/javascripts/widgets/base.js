@@ -138,7 +138,6 @@
 
   ns.Widgets.Information = function(stats){
     var _createdWidget = $(crel('div')).addClass('row');
-    var _day = stats.status.day;
 
     var slotsToShow = {
       'actions': 2,
@@ -146,17 +145,16 @@
     }
 
     var personalInfo = stats.personal_info
-    var firstSlotToShow = (_day - 1) * 6 + 1;
-
-    if (stats.day_status == 'actions')
-      firstSlotToShow -= 2;
+    console.log(stats.current_slot)
+    console.log(stats.day_status)
 
     var slots = [];
     var _infos = [];
 
-    for (var i = 0 ; i < slotsToShow[stats.day_status]; i++){
-      slots.push(firstSlotToShow + i);
+    for (var i = stats.current_slot - slotsToShow[stats.day_status]; i < stats.current_slot; i++){
+      slots.push(i + 1);
     }
+
 
     var _displayActions = function(actions){
       slots.forEach(function(slot){
@@ -235,7 +233,7 @@
         if (_infos.length > 0){
           _infos[0].show()
           bootbox.dialog({
-            title: ns.t.text('results.label', {day: _day}),
+            title: ns.t.text('results.label', {day: stats.status.day}),
             message: _createdWidget,
             buttons: {
               previous: {

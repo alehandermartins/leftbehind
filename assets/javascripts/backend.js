@@ -227,8 +227,9 @@
             day_status: data.stats.game_stats.players[ns.playerUuid()].stage,
             game: data.stats.game_stats.game,
             locations: data.stats.game_stats.locations,
+            current_slot: parseInt(data.stats.game_stats.current_slot), 
             status: {
-              day: parseInt((data.stats.game_stats.current_slot / 6) + 1),
+              day: parseInt(10 - (data.stats.game_stats.current_slot / 6)) + 'h',
               shuttle: (10 - data.stats.game_stats.escape_shuttle) * 10 + '%'
             },
             player_status: data.stats.game_stats.players[ns.playerUuid()].status,

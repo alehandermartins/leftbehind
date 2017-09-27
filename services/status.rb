@@ -5,6 +5,7 @@ module Services
       @stats = {}
       @game = Repos::Games.game(game)
       @context = Context.build_for game
+      @roles = %i(captain pilot mechanic scientist).shuffle(random: @context.random_generator)
       @current_slot = 0
       @max_slots = max_slots || @context.slots.completed_number
     end
@@ -52,8 +53,8 @@ module Services
 
     def compute stage = :actions
       stage_slots = remaining_slots.take(stage_actions[stage])
-      compute_stage stage_slots
       context.alien.lurk context.locations if stage == :actions
+      compute_stage stage_slots
 
       @current_slot = stage_slots.last || 0
       store_stats
@@ -149,8 +150,7 @@ module Services
     end
 
     def role player
-      roles = %i(captain pilot mechanic scientist)
-      roles[context.players.to_a.index(player)]
+      @roles[context.players.to_a.index(player)]
     end
 
     def player_stage player

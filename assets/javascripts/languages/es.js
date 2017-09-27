@@ -22,7 +22,7 @@
       4:'enfermería',
       5:'sala de motores',
       6:'almacén',
-      7:'módulo de soporte vital',
+      7:'soporte vital',
       8:'cápsula de escape'
     },
     locations_labels: {
@@ -32,7 +32,7 @@
       4:'la enfermería',
       5:'la sala de motores',
       6:'el almacén',
-      7:'el módulo de soporte vital',
+      7:'el soporte vital',
       8:'la cápsula de escape'
     },
     welcome: {
@@ -236,7 +236,7 @@
       stay: 'Quedarse'
     },
     results: {
-      label: 'Resultados :day: %{day}:',
+      label: 'Resultados %{day}:',
       general: 'INFO GENERAL',
       personal: 'INFO PERSONAL'
     },

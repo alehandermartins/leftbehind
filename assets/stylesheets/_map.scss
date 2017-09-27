@@ -4,7 +4,7 @@
   background-size:contain;
   background-repeat: no-repeat;
   height: 150px;
-  background-position: center; 
+  background-position: center;
 }
 
 .alien {
@@ -16,6 +16,14 @@
   width: 100px;
   left: 75%;
   z-index: 1;
+}
+
+.alien-kill {
+  background-image: asset-url('map/alienkill.jpg');
+  background-repeat: no-repeat;
+  background-size:contain;
+  height: 150px;
+  background-position: center;
 }
 
 .uuid1{

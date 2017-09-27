@@ -77,13 +77,18 @@
       if (data.player_status !== 'alive'){
         var _message = ns.t.html('player.status.' + data.player_status);
         var _result = $(crel('h2')).append(_message).addClass('end-game');
-
+        var _resultImage
+        if(data.player_status == 'devoured'){
+          _result.css('color', 'red')
+          _resultImage = $(crel('div')).addClass('alien-kill')
+        }
         var _headerWidget = LB.Widgets.Header(data);
 
         $('.game_container').empty().append(
           $(crel('div')).addClass('content').append(
             _headerWidget.render(),
-            _result
+            _result,
+            _resultImage
           )
         );
         return;
@@ -97,10 +102,10 @@
       };
 
       behaviorsMap[stage](data);
-      if (ns.Cache.lastStatus != stage){
-        ns.Widgets.StageTutorial(stage).render();
-        ns.Cache.lastStatus = stage;
-      }
+      // if (ns.Cache.lastStatus != stage){
+      //   ns.Widgets.StageTutorial(stage).render();
+      //   ns.Cache.lastStatus = stage;
+      // }
     });
   };
 
