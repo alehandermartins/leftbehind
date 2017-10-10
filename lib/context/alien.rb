@@ -2,6 +2,7 @@ class Alien
   def initialize locations, generator
     @location
     @generator = generator
+    lurk locations
   end
 
   def lurk locations
