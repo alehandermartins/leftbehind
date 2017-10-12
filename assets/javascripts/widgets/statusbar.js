@@ -42,7 +42,7 @@
       var _status = 'lagging';
       var _role =_players[player].role
 
-      if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
+      if (['dead', 'devoured', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
         _status = 'wont-play';
       else
         if (_players[player].stage == 'wait' || _players[player].status == 'escaped')
@@ -58,12 +58,12 @@
       _player.append(contributions(player));
       _player.append(_name);
 
-      _player.on('click', function(){
-        bootbox.alert({
-          title: _players[player].name,
-          message: playerInfo(player).render()
-        });
-      });
+      // _player.on('click', function(){
+      //   bootbox.alert({
+      //     title: _players[player].name,
+      //     message: playerInfo(player).render()
+      //   });
+      // });
 
       _createdWidget.append(_player)
     })
