@@ -112,7 +112,7 @@
 
     var _text = $(crel('span')).text(ns.t.text('start.style.label'))
 
-    var _styleSelect = $(crel('select')).addClass('col-xs-12');
+    var _styleSelect = $(crel('select')).addClass('col-xs-12').css('background-color', '#303030');
     _styleSelect.append($(crel('option')).text(ns.t.text('start.style.gentle')).val('gentle'));
     _styleSelect.append($(crel('option')).text(ns.t.text('start.style.turbo')).val('turbo'));
 
