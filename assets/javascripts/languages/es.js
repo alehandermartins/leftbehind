@@ -123,6 +123,9 @@
           otterentered: 'Entró en la cámara'
         }
       },
+      oxygen: {
+        label: 'Generate :food:'
+      },
       none: {
         label: 'Acción por defecto'
       },

@@ -11,9 +11,13 @@
 
     var _personal = $(crel('div')).addClass('personal')
     var siblings = Object.keys(stats['personal']).map(function(subStat){
+      var _subStat = $(crel('span')).addClass('value').text(stats['personal'][subStat])
+      if (subStat == 'food')
+        _subStat = $(crel('span')).addClass('value').text(stats['personal'][subStat] + " / 2")
+
       return $(crel('div')).addClass('stat ' + subStat).append(
         $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join(subStat))),
-        $(crel('span')).addClass('value').text(stats['personal'][subStat])
+        _subStat
       )
     })
 

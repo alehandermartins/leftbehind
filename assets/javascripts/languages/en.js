@@ -123,6 +123,13 @@
           otterentered: 'Entered the chamber'
         }
       },
+      oxygen: {
+        label: 'Generate :food:',
+        result: {
+          fail: 'You reached the oxygen limit',
+          success: 'You produced 1 :food:'
+        }
+      },
       none: {
         label: 'Default action'
       },

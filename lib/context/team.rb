@@ -1,9 +1,10 @@
 class Team
   attr_reader :inventory, :information, :votes_by_player
 
-  def initialize players, inventory, winner_selection
+  def initialize players, winner_selection
     @players = players
-    @inventory = inventory
+    @inventory = Inventory.new
+    @inventory.empty
     @information = Information.new
     @winner_selection = winner_selection
   end

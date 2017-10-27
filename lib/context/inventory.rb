@@ -2,7 +2,7 @@ class Inventory
   def initialize xxx = nil
     return @inventory = xxx if xxx.is_a? Hash
 
-    @inventory = an_empty_inventory
+    @inventory = initial_inventory
   end
 
   def [] key
@@ -34,6 +34,10 @@ class Inventory
     inventory.to_h
   end
 
+  def empty
+    @inventory = an_empty_inventory
+  end
+
   def empty?
     inventory == an_empty_inventory
   end
@@ -41,11 +45,19 @@ class Inventory
   private
   attr_reader :inventory
 
+  def initial_inventory
+    {
+      food: 2,
+      parts: 0,
+      helmet: 1
+    }
+  end
+
   def an_empty_inventory
     {
       food: 0,
       parts: 0,
-      helmet: 1
+      helmet: 0
     }
   end
 end

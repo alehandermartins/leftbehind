@@ -239,6 +239,10 @@
       addActionButton('craft')
     }
 
+    if(location.uuid == 7){
+      addActionButton('oxygen')
+    }
+
     if(location.uuid == 8){
       addActionButton('work')
       addActionButton('escape')

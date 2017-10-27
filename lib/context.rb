@@ -23,11 +23,8 @@ class Context
 
     @players = Factories::Players.create(players_hashes)
 
-    @inventory = Inventory.new(game)
-
     @team = Team.new(
       @players,
-      @inventory,
       WinnerSelection.new(RandomTieBreaker.new(@random_generator))
     )
 

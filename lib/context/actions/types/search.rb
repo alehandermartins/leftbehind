@@ -42,11 +42,9 @@ module LB
       return @context unless success?
 
       if alone?
-        performer.inventory.add :food, bounties[:food] if bounties.has_key? :food
         performer.inventory.add :parts, bounties[:parts] if bounties.has_key? :parts
         performer.inventory.add :helmet, bounties[:helmet] if bounties.has_key? :helmet
       else
-        @context.team.inventory.add :food, bounties[:food] if bounties.has_key? :food
         @context.team.inventory.add :parts, bounties[:parts] if bounties.has_key? :parts
 
         if bounties.has_key? :helmet

@@ -100,6 +100,21 @@
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
+        oxygen:{
+          label: ':food:',
+          buildLabel: function(){
+            return ns.t.html('action.oxygen.label')
+          },
+          showResult: function(result){
+            var _resultLabel = ns.t.html('action.oxygen.result.' +  result.status )
+            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel() + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            return resultLabel
+          },
+          run: function(location, slotWidget){
+            var _builtAction = {name: 'oxygen', payload: {}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
         search: {
           label: ':search:',
           buildLabel: function(payload){
@@ -274,7 +289,6 @@
           run: function(target, slotWidget){
             var modalTitle = ns.t.html('action.steal.modalTitle')
             var list = [
-              {label: ':food:', name: 'food', uuid:'1'},
               {label: ':parts:', name: 'parts', uuid:'2'},
               {label: ':helmet:', name: 'helmet', uuid:'3'}
             ]
