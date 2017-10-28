@@ -1,7 +1,7 @@
 class Locations
   def initialize random_generator
     desired_supplies = {
-      parts: 16,
+      parts: 24,
       helmet: 0
     }
 
@@ -50,14 +50,14 @@ class Locations
 
   def lock
     uuid = @locations.to_h.map{ |uuid, location|
-      uuid if location[:status] == :unlocked && uuid != "6" && uuid != "8"
+      uuid if location[:status] != :unlocked && uuid != "6" && uuid != "8"
     }.compact.sample(random: @generator)
-    @locations[uuid][:status] = :locked
+    @locations[uuid][:status] = :locked unless uuid.nil?
   end
 
   def initial_lock
     @locations['8'][:status] = :locked
-    places = ['1', '2', '3', '4', '5', '7'].sample(2, random: @generator)
+    places = ['1', '2', '3', '4', '5'].sample(2, random: @generator)
     places.each{ |uuid|
       @locations[uuid][:status] = :locked
     }

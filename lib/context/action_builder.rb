@@ -4,6 +4,7 @@ class ActionBuilder
 
   ACTIONS_MAP = {
     'search' => LB::Action::Search,
+    'oxygen' => LB::Action::Oxygen,
     'defend' => LB::Action::Defend,
     'craft' => LB::Action::Craft,
     'spy' => LB::Action::Spy,

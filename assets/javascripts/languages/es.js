@@ -124,7 +124,11 @@
         }
       },
       oxygen: {
-        label: 'Generate :food:'
+        label: 'Generar :food:',
+        result: {
+          fail: 'Alcanzaste el límite de oxígeno',
+          success: 'Generaste 1 :food:'
+        }
       },
       none: {
         label: 'Acción por defecto'

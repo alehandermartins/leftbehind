@@ -10,7 +10,7 @@ module LB
       return @context if computed?
       return @context if devoured?
 
-      unless is_possible?
+      unless able?
         add_status :fail
         return @context
       end
@@ -29,12 +29,19 @@ module LB
     end
 
     private
-    def is_possible?
-      performer.inventory[:parts] >= price
+    def able?
+      performer.inventory[:parts] + @context.team.inventory[:parts] >= price
     end
 
     def spend_material
+      return with_help if price > performer.inventory[:parts]
       performer.inventory.subtract :parts, price
+    end
+
+    def with_help
+      team_price = price - performer.inventory[:parts]
+      performer.inventory.subtract_all :parts
+      @context.team.inventory.subtract :parts, team_price
     end
   end
 end
