@@ -123,6 +123,9 @@
           otterentered: 'Entered the chamber'
         }
       },
+      hack: {
+        label: ':computer: the %{location}'
+      },
       oxygen: {
         label: 'Generate :food:',
         result: {

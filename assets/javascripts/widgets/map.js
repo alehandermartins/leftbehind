@@ -234,6 +234,7 @@
     }
 
     addActionButton('search')
+    addActionButton('hack')
 
     if(location.uuid == 6){
       addActionButton('craft')

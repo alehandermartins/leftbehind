@@ -100,6 +100,17 @@
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
+        hack:{
+          label: ':computer:',
+          buildLabel: function(payload){
+            var location_label = ns.t.text('locations_labels.' + payload.location)
+            return ns.t.html('action.hack.label', {location: location_label})
+          },
+          run: function(location, slotWidget){
+            var _builtAction = {name: 'hack', payload: {location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
         oxygen:{
           label: ':food:',
           buildLabel: function(){

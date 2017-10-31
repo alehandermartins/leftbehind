@@ -123,6 +123,9 @@
           otterentered: 'Entró en la cámara'
         }
       },
+      hack: {
+        label: ':computer: %{location}'
+      },
       oxygen: {
         label: 'Generate :food:'
       },
