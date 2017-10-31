@@ -117,6 +117,7 @@
             return ns.t.html('action.oxygen.label')
           },
           showResult: function(result){
+            console.log(result)
             var _resultLabel = ns.t.html('action.oxygen.result.' +  result.status )
             var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel() + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel

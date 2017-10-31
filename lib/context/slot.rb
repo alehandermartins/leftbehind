@@ -8,6 +8,7 @@ class Slot
     'LB::Action::Work',
     'LB::Action::Craft',
     'LB::Action::Search',
+    'LB::Action::Oxygen',
     'LB::Action::Share',
     'LB::Action::Unlock',
     'LB::Action::Steal',
