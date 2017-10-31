@@ -109,6 +109,11 @@
           run: function(location, slotWidget){
             var _builtAction = {name: 'hack', payload: {location: location.uuid}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
+          },
+          showResult: function(result){
+            var _resultLabel = ns.t.html('action.hack.result.' +  result.status )
+            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            return resultLabel
           }
         },
         oxygen:{

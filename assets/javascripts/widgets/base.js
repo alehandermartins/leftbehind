@@ -138,6 +138,7 @@
   ns.Widgets.Information = function(stats){
     var _createdWidget = $(crel('div')).addClass('row');
 
+    console.log(stats.locations)
     var slotsToShow = {
       'actions': 2,
       'events': 4
@@ -172,7 +173,6 @@
             var name = split[4].toLowerCase();
             var action = actions[name];
             var result = personalInfo[player][slot].result;
-            console.log(personalInfo[player][slot]);
             if (personalInfo[player][slot].payload && personalInfo[player][slot].payload.target)
               result['target'] = personalInfo[player][slot].payload.target;
             result['performer'] = player;

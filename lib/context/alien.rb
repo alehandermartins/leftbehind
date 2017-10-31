@@ -12,9 +12,16 @@ class Alien
       uuid if location[:status] == :unlocked
     }.compact.sample(3, random: @generator)
     places.each{ |uuid|
-      locations[uuid][:status] = :marked
+      locations.mark uuid
     }
     @location = places.sample(random: @generator)
+  end
+
+  def lock locations
+    uuid = locations.to_h.map{ |uuid, location|
+      uuid if location[:status] == :unlocked && uuid != "6" && uuid != "8"
+    }.compact.sample(random: @generator)
+    locations.lock uuid unless uuid.nil?
   end
 
   def location
@@ -23,9 +30,9 @@ class Alien
 
   private
 
-    def unmark_locations locations
-      locations.to_h.each{ |uuid, location|
-        location[:status] = :unlocked if location[:status] == :marked
-      }
-    end
+  def unmark_locations locations
+    locations.to_h.each{ |uuid, location|
+      locations.unlock uuid if location[:status] == :marked
+    }
+  end
 end

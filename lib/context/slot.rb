@@ -9,6 +9,7 @@ class Slot
     'LB::Action::Craft',
     'LB::Action::Search',
     'LB::Action::Oxygen',
+    'LB::Action::Hack',
     'LB::Action::Share',
     'LB::Action::Unlock',
     'LB::Action::Steal',

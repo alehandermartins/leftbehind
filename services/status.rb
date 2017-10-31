@@ -55,6 +55,7 @@ module Services
       stage_slots = remaining_slots.take(stage_actions[stage])
 
       context.alien.lurk context.locations if stage == :events
+      context.alien.lock context.locations if stage == :events
       compute_stage stage_slots
 
       @current_slot = stage_slots.last || 0

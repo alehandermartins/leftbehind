@@ -124,7 +124,11 @@
         }
       },
       hack: {
-        label: ':computer: the %{location}'
+        label: ':computer: the %{location}',
+        result: {
+          fail: "You failed",
+          success: "This room is safe now"
+        }
       },
       oxygen: {
         label: 'Generate :food:',

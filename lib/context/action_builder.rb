@@ -6,6 +6,7 @@ class ActionBuilder
     'search' => LB::Action::Search,
     'oxygen' => LB::Action::Oxygen,
     'defend' => LB::Action::Defend,
+    'hack' => LB::Action::Hack,
     'craft' => LB::Action::Craft,
     'spy' => LB::Action::Spy,
     'steal' => LB::Action::Steal,

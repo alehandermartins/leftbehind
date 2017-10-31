@@ -48,18 +48,27 @@ class Locations
     @locations.to_h
   end
 
-  def lock
-    uuid = @locations.to_h.map{ |uuid, location|
-      uuid if location[:status] != :unlocked && uuid != "6" && uuid != "8"
-    }.compact.sample(random: @generator)
-    @locations[uuid][:status] = :locked unless uuid.nil?
+  def hack uuid
+    @locations[uuid][:status] = :hacked
+  end
+
+  def lock uuid
+    @locations[uuid][:status] = :locked
+  end
+
+  def mark uuid
+    @locations[uuid][:status] = :marked
+  end
+
+  def unlock uuid
+    @locations[uuid][:status] = :unlocked
   end
 
   def initial_lock
     @locations['8'][:status] = :locked
     places = ['1', '2', '3', '4', '5'].sample(2, random: @generator)
     places.each{ |uuid|
-      @locations[uuid][:status] = :locked
+      lock uuid
     }
   end
 end
