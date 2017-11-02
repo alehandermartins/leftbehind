@@ -236,10 +236,6 @@
     addActionButton('search')
     addActionButton('hack')
 
-    if(location.uuid == 6){
-      addActionButton('craft')
-    }
-
     if(location.uuid == 7){
       addActionButton('oxygen')
     }

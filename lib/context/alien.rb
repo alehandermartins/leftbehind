@@ -19,7 +19,7 @@ class Alien
 
   def lock locations
     uuid = locations.to_h.map{ |uuid, location|
-      uuid if location[:status] == :unlocked && uuid != "6" && uuid != "8"
+      uuid if location[:status] == :unlocked && uuid != "8"
     }.compact.sample(random: @generator)
     locations.lock uuid unless uuid.nil?
   end

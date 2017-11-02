@@ -189,9 +189,8 @@
       },
       unlock: {
         label: 'Desbloquear %{location}',
-        list: ':pick:',
-        modalTitle: 'Elige herramienta',
-        noToolsMessage: "Necesitarás fabricar una herramienta para realizar esta acción"
+        list: ':unlock: (necesita 2 :parts:)',
+        modalTitle: 'Desbloqua %{location}'
       },
       vote: {
         label: ':ballot_box: Resultados: ',

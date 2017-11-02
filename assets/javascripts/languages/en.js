@@ -190,9 +190,8 @@
       },
       unlock: {
         label: 'Unlock the %{location}',
-        list: ':pick:',
-        modalTitle: 'Choose tool',
-        noToolsMessage: "You will need to craft a tool in order to perform this action"
+        list: ':unlock: (spends 2 :parts:)',
+        modalTitle: 'Unlock the %{location}'
       },
       vote: {
         label: ':ballot_box: Results: ',

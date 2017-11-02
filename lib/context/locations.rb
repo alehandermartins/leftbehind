@@ -66,7 +66,7 @@ class Locations
 
   def initial_lock
     @locations['8'][:status] = :locked
-    places = ['1', '2', '3', '4', '5'].sample(2, random: @generator)
+    places = ['1', '2', '3', '4', '5', '6'].sample(2, random: @generator)
     places.each{ |uuid|
       lock uuid
     }

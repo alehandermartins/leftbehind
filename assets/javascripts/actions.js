@@ -122,7 +122,6 @@
             return ns.t.html('action.oxygen.label')
           },
           showResult: function(result){
-            console.log(result)
             var _resultLabel = ns.t.html('action.oxygen.result.' +  result.status )
             var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel() + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel
@@ -321,23 +320,18 @@
             return ns.t.html('action.unlock.label', {location: ns.t.html('locations_labels.' + payload.location)})
           },
           showResult: function(result){
-            return $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)).addClass('unpadded')
+            console.log(result)
+            var _resultLabel = ns.t.html('action.unlock.result.' +  result.status )
+            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            return resultLabel
           },
           run: function(location, slotWidget) {
-            var modalTitle = ns.t.html('action.unlock.modalTitle')
-            if(Object.keys(stats.personal).includes('pick')){
-              var list = [{name: ns.t.html('action.unlock.list'), uuid:'pick'}]
-              ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-                var _builtAction = {name: 'unlock', payload: {location: location.uuid, item: selection[0].uuid}}
-                console.log(_builtAction)
-                slotWidget.selectActionForCurrentSlot(_builtAction)
-              })
-            }else{
-              bootbox.alert({
-                title: modalTitle,
-                message: ns.t.html('action.unlock.noToolsMessage'),
-              })
-            }
+            var modalTitle = ns.t.html('action.unlock.modalTitle', {location: ns.t.html('locations_labels.' + location.uuid)})
+            var list = [{name: ns.t.html('action.unlock.list')}]
+            ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
+              var _builtAction = {name: 'unlock', payload: {location: location.uuid}}
+              slotWidget.selectActionForCurrentSlot(_builtAction)
+            })
           }
         },
         work: {
