@@ -223,7 +223,7 @@
       inventory: 'Inventario: %{resources}',
       status: {
         dead: 'Estás muerto',
-        devoured: 'El alien te devoró',
+        killed: 'La IA te encontró',
         starved: 'Moriste por falta de :food:',
         escaped: 'Felicidades, lograste escapar... por ahora...',
         trapped: 'You... were... Left Behind.',

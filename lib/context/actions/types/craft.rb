@@ -1,14 +1,14 @@
 module LB
   class Action::Craft < Action::Base
     include WithItem
-    include Alien
+    include IA
 
     def run context
       super context
       payload[:location] = '6'
 
       return @context if computed?
-      return @context if devoured?
+      return @context if killed?
 
       unless able?
         add_status :fail

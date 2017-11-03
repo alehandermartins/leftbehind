@@ -22,7 +22,6 @@ module LB
 
       if starving?
         performer.kill
-        performer.bury slot, 'starvation'
         add_to_everyone_log
         return @context
       end

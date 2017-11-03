@@ -42,7 +42,7 @@
       var _status = 'lagging';
       var _role =_players[player].role
 
-      if (['dead', 'devoured', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
+      if (['dead', 'killed', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
         _status = 'wont-play';
       else
         if (_players[player].stage == 'wait' || _players[player].status == 'escaped')

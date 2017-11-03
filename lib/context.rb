@@ -2,7 +2,7 @@ require_relative './context/team'
 require_relative './context/players'
 require_relative './context/locations'
 require_relative './context/items'
-require_relative './context/alien'
+require_relative './context/ia'
 require_relative './context/slots'
 require_relative './context/inventory'
 require_relative './context/information'
@@ -32,7 +32,7 @@ class Context
 
     @items = Items.new(game)
 
-    @alien = Alien.new(@locations, @random_generator)
+    @ia = IA.new(@locations, @random_generator)
 
     @slots = Factories::Slots.create(actions_from_repo, players)
   end
@@ -55,8 +55,8 @@ class Context
     @items
   end
 
-  def alien
-    @alien
+  def ia
+    @ia
   end
 
   def slots

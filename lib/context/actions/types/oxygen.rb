@@ -1,13 +1,13 @@
 module LB
   class Action::Oxygen < Action::Base
-    include Alien
+    include IA
     include EndGame
 
     def run context
       super context
 
       return @context if computed?
-      return @context if devoured?
+      return @context if killed?
 
       unless able?
         add_status :fail

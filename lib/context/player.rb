@@ -54,28 +54,21 @@ class Player
   def alive?
     @status == :alive
   end
+  
+  def tomb
+    @tomb
+  end
 
   def kill
     @status = :dead
-  end
-
-  def bury slot, reason
-    @tomb = {
-      slot: slot,
-      reason: reason
-    }
-  end
-
-  def tomb
-    @tomb
   end
 
   def crash
     @status = :crashed
   end
 
-  def devour
-    @status = :devoured
+  def ia_kill
+    @status = :killed
   end
 
   def escape

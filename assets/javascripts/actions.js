@@ -96,7 +96,7 @@
             return resultLabel;
           },
           run: function(location, slotWidget) {
-            var _builtAction = {name: 'escape', payload: {}}
+            var _builtAction = {name: 'escape', payload: {location: location.uuid}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
@@ -127,7 +127,7 @@
             return resultLabel
           },
           run: function(location, slotWidget){
-            var _builtAction = {name: 'oxygen', payload: {}}
+            var _builtAction = {name: 'oxygen', payload: {location: location.uuid}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
@@ -348,7 +348,7 @@
             var list = [{name: ns.t.html('action.work.list'), uuid:'escape_shuttle'}]
             var modalTitle = ns.t.html('action.work.modalTitle')
             ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-              var _builtAction = {name: 'work', payload: {item: 'escape shuttle'}}
+              var _builtAction = {name: 'work', payload: {item: 'escape shuttle', location: location.uuid}}
               slotWidget.selectActionForCurrentSlot(_builtAction)
             })
           }
@@ -363,7 +363,7 @@
       return {
         death: {
           showResult: function(result){
-            var _resultLabel = ns.t.html('action.eat.label') + 'Was devoured by the alien'
+            var _resultLabel = ns.t.html('action.eat.label') + 'Was killed by the IA'
             if (result.info == 'player.status.starved'){
               if (result.performer == LB.playerUuid())
                 _resultLabel = ns.t.html('action.eat.label') + ns.t.html('action.eat.result.youstarved')

@@ -88,14 +88,12 @@ module LB
 
     def kill player
       player.radiate
-      player.bury slot, 'radiation'
       add_to_everyone_log player, 'player.status.radiated'
     end
 
     def kill_everyone
       @context.players.each{|player|
         player.explode
-        player.bury slot, 'explosion'
         add_to_everyone_log player, 'player.status.exploded'
       }
     end

@@ -1,7 +1,7 @@
 module LB
   class Action::Escape < Action::Base
     include Cooperative
-    include Alien
+    include IA
     include EndGame
 
     def run context
@@ -9,7 +9,7 @@ module LB
       payload[:location] = '8'
 
       return @context if computed?
-      return @context if devoured?
+      return @context if killed?
 
       escape = lambda do |action|
 

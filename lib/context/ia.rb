@@ -1,8 +1,13 @@
-class Alien
+class IA
   def initialize locations, generator
     @location
     @generator = generator
     lurk locations
+  end
+
+  def activate locations
+    lurk locations
+    lock locations
   end
 
   def lurk locations

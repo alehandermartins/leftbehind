@@ -1,19 +1,18 @@
 module LB
-  module Alien
+  module IA
 
-    def devoured?
-      return false unless alien_found_player?
+    def killed?
+      return false unless ia_found_player?
       devour
       true
     end
 
-    def alien_found_player?
-      payload[:location] == @context.alien.location
+    def ia_found_player?
+      payload[:location] == @context.ia.location
     end
 
-    def devour
-      performer.devour
-      performer.bury slot, 'devoured'
+    def kill
+      performer.ia_kill
       add_status :fail
       add_info action: self.class.name
       @context.slots.replace_actions performer, slot, dead_action

@@ -2,7 +2,7 @@ module LB
   class Action::Work < Action::Base
     include Cooperative
     include WithItem
-    include Alien
+    include IA
     include EndGame
 
     def run context
@@ -10,7 +10,7 @@ module LB
       payload[:location] = '8'
 
       return @context if computed?
-      return @context if devoured?
+      return @context if killed?
 
       work = lambda do |action|
         if fixed?

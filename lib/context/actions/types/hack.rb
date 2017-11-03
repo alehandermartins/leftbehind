@@ -2,13 +2,13 @@ module LB
   class Action::Hack < Action::Base
     include Located
     include Cooperative
-    include Alien
+    include IA
 
     def run context
       super context
 
       return @context if computed?
-      return @context if devoured?
+      return @context if killed?
 
       hack = lambda do |action|
         action.add_status :success

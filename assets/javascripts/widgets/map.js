@@ -219,8 +219,8 @@
     var _background = $(crel('div')).addClass('room uuid'+ location.uuid + ' col-xs-12')
     
     if(location.status == 'marked'){
-      var _alien = $(crel('div')).addClass('alien')
-      _createdWidget.append(_alien)
+      var _ia = $(crel('div')).addClass('ia')
+      _createdWidget.append(_ia)
     }
 
     var addActionButton = function(action){
