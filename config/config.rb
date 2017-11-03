@@ -56,6 +56,8 @@ class BaseController < Sinatra::Base
     map/locked.jpg
     map/warehouse.jpg
     map/weapons_bay.jpg
+    endings/killed.png
+    endings/exploded.jpg
     custom/*
   )
 
