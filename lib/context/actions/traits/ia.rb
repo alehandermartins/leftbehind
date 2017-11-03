@@ -3,7 +3,7 @@ module LB
 
     def killed?
       return false unless ia_found_player?
-      devour
+      kill
       true
     end
 
