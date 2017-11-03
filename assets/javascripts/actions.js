@@ -219,13 +219,6 @@
 
             return ns.t.html('action.share.label', {resource: [':', ':'].join(payload.resource), target: targetName});
           },
-          buildAction: function(resource, target){
-            if(target == LB.playerUuid())
-              target = 'team'
-
-            var _builtAction = {name: 'share', payload: {target: target, resource: resource.name}};
-            return _builtAction;
-          },
           showResult: function(result){
             var resultLabel = $(crel('div')).addClass('col-xs-12')
             resultLabel.html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)).addClass('unpadded')
@@ -320,8 +313,11 @@
             return ns.t.html('action.unlock.label', {location: ns.t.html('locations_labels.' + payload.location)})
           },
           showResult: function(result){
-            console.log(result)
-            var _resultLabel = ns.t.html('action.unlock.result.' +  result.status )
+            var _label = result.status
+            if(result.status == "fail")
+              _label = result.info.reason
+
+            var _resultLabel = ns.t.html('action.unlock.result.' +  _label )
             var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel
           },

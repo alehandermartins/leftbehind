@@ -234,7 +234,9 @@
     }
 
     addActionButton('search')
-    addActionButton('hack')
+
+    if(location.status != 'hacked')
+      addActionButton('hack')
 
     if(location.uuid == 7){
       addActionButton('oxygen')

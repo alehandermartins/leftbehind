@@ -191,7 +191,12 @@
       unlock: {
         label: 'Unlock the %{location}',
         list: ':unlock: (spends 2 :parts:)',
-        modalTitle: 'Unlock the %{location}'
+        modalTitle: 'Unlock the %{location}',
+        result: {
+          no_materials: "You didn't have the needed :parts:",
+          redundancy: "Already unlocked",
+          success: "Unlocked"
+        }
       },
       vote: {
         label: ':ballot_box: Results: ',
