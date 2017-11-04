@@ -171,7 +171,6 @@ module Services
 
     def player_event player
       return :defaultEvent unless player_stage(player) == :events
-      return :voting if voting_necessary?
       return :fusion if !player.events.include?(:fusion)
       :defaultEvent
     end
@@ -183,12 +182,6 @@ module Services
           status: location[:status]
         }
       }
-    end
-
-    def voting_necessary?
-      food_available = context.team.inventory[:food]
-      alive_players = context.players.alive.size
-      food_available < alive_players && food_available != 0
     end
 
     def alive_players_ready?

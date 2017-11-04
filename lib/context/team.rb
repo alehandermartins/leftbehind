@@ -3,8 +3,7 @@ class Team
 
   def initialize players, winner_selection
     @players = players
-    @inventory = Inventory.new
-    @inventory.empty
+    @inventory = TeamInventory.new
     @information = Information.new
     @winner_selection = winner_selection
   end

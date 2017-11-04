@@ -136,6 +136,7 @@
   };
 
   ns.Widgets.Information = function(stats){
+    console.log(stats)
     var _createdWidget = $(crel('div')).addClass('row');
 
     console.log(stats.locations)

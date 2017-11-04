@@ -227,7 +227,7 @@
             day_status: data.stats.game_stats.players[ns.playerUuid()].stage,
             game: data.stats.game_stats.game,
             locations: data.stats.game_stats.locations,
-            current_slot: parseInt(data.stats.game_stats.current_slot), 
+            current_slot: parseInt(data.stats.game_stats.current_slot),
             status: {
               day: parseInt(10 - (data.stats.game_stats.current_slot / 6)) + 'h',
               shuttle: (10 - data.stats.game_stats.escape_shuttle) * 10 + '%'
@@ -237,7 +237,6 @@
             personal: data.stats.personal_stats.inventory,
             personal_info: data.stats.personal_stats.information,
             team: {
-              food: data.stats.team_stats.inventory.food,
               parts: data.stats.team_stats.inventory.parts
             },
             team_info: data.stats.team_stats.information
