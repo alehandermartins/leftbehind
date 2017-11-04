@@ -11,10 +11,9 @@
       var _giftables = function(target){
         var _isBasic = true
 
-        if(target == 'team')
-          _isBasic = ['food', 'parts'].includes(resource)
-
         var _gifts = Object.keys(stats.personal).filter(function(resource){
+          if(target == 'team')
+          _isBasic = ['parts'].includes(resource)
           return stats.personal[resource] > 0 && _isBasic
         })
         return _gifts.map(function(resource, indx){
@@ -238,7 +237,6 @@
           },
           run: function(target, slotWidget) {
             var targetName
-            var list = _giftables(target)
             if(target == LB.playerUuid()){
               target = 'team'
               targetName = ':team:'
@@ -246,6 +244,7 @@
             else
               targetName = stats.players[target].name
 
+            var list = _giftables(target)
             var modalTitle = ns.t.html('action.share.modalTitle', {target: targetName})
             ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
               var _builtAction = {name: 'share', payload: {target: target, resource: selection[0].name}}
