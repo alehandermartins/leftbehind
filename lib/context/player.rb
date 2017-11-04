@@ -54,7 +54,7 @@ class Player
   def alive?
     @status == :alive
   end
-  
+
   def tomb
     @tomb
   end

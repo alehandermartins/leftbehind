@@ -222,12 +222,11 @@
     player: {
       inventory: 'Inventario: %{resources}',
       status: {
-        dead: 'Estás muerto',
+        dead: 'Moriste asfixiado',
         killed: 'La IA te encontró',
-        starved: 'Moriste por falta de :food:',
         escaped: 'Felicidades, lograste escapar... por ahora...',
         trapped: 'You... were... Left Behind.',
-        crashed: 'La nave se estrella, matando a todos en su interior...no fuiste capaz de escapar a tiempo',
+        crashed: 'La IA destruye la nave, matando a todos en su interior...no fuiste capaz de escapar a tiempo',
         exploded: 'La nave explota... nadie tuvo el valor de hacer lo que había que hacer',
         radiated: 'Demasiada radiación te fríe el cerebro'
       }

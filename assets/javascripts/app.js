@@ -78,10 +78,10 @@
         var _message = ns.t.html('player.status.' + data.player_status);
         var _result = $(crel('h2')).append(_message).addClass('end-game');
         var _resultImage
-        if(data.player_status == 'killed'){
+        if(data.player_status != 'escaped')
           _result.css('color', 'red')
-          _resultImage = $(crel('div')).addClass('killed')
-        }
+
+        _resultImage = $(crel('div')).addClass(data.player_status)
         var _headerWidget = LB.Widgets.Header(data);
 
         $('.game_container').empty().append(

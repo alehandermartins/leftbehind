@@ -223,12 +223,11 @@
     player: {
       inventory: 'Inventory: %{resources}',
       status: {
-        dead: 'You are dead',
+        dead: 'You died of suffocation',
         killed: 'The IA found you',
-        starved: 'You died of starvation',
         escaped: 'Congratulations, you managed to escape... for now...',
         trapped: 'You... were... Left Behind.',
-        crashed: 'The ship crashes, killing everyone inside... you were not able to escape on time',
+        crashed: 'The IA destroys the ship, killing everyone inside... you were not able to escape on time',
         exploded: 'The ship explodes... nobody had the guts to do what should had been done',
         radiated: 'Too much radiation fries your brain'
       }
