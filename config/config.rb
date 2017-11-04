@@ -60,7 +60,7 @@ class BaseController < Sinatra::Base
     endings/dead.jpg
     endings/escaped.jpg
     endings/exploded.jpg
-    endings/killed.jpg
+    endings/killed.png
     endings/radiated.jpg
     endings/trapped.jpg
     custom/*

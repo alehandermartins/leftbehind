@@ -77,7 +77,7 @@ module Services
 
       def add_actions game, context
         day_slot = context.slots.completed_number % SLOTS_PER_DAY
-        add_eating_actions game if day_slot == 5
+        add_eating_actions game, context if day_slot == 5
       end
 
       def save game, player, actions
@@ -121,9 +121,10 @@ module Services
         actions_by_player.map(&:count).min
       end
 
-      def add_eating_actions game
-        Services::Games.players(game).each { |the_player|
-          save game, the_player['uuid'], LB::Default::Actions.eating_action
+      def add_eating_actions game, context
+        context.players.each{ |player|
+          save game, player.uuid, LB::Default::Actions.eating_action if player.status == :alive
+          save game, player.uuid, LB::Default::Actions.dead_eating if player.status != :alive
         }
       end
 

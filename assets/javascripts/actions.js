@@ -147,30 +147,42 @@
             var _resultLabel = '';
 
             var _showcoworkers = function(){
-              var _label = '';
+              var _label
 
               if (_resources.length > 0)
-                _label = ns.t.html('action.search.result.teamInventory');
+                _label = ns.t.html('action.search.result.teamInventory')
 
               if (_coworkers.length == 1){
-                _label += ns.t.text('action.search.result.coworker', {coworker: _coworkers[0]});
-                return $(crel('div')).addClass('col-xs-12').html(_label);
+                _label += ns.t.text('action.search.result.coworker', {coworker: _coworkers[0]})
+                return $(crel('div')).addClass('col-xs-12').html(_label)
               }
 
-              var _lastcoworker = _coworkers.pop();
-              _label += ns.t.text('action.search.result.coworkers', {coworkers: _coworkers.join(', '), coworker: _lastcoworker});
-              return $(crel('div')).addClass('col-xs-12').html(_label);
+              var _lastcoworker = _coworkers.pop()
+              _label += ns.t.text('action.search.result.coworkers', {coworkers: _coworkers.join(', '), coworker: _lastcoworker})
+              return $(crel('div')).addClass('col-xs-12').html(_label)
             }
 
             var _showbounty = function(){
               if (Object.keys(result.bounty).length == 0)
-                return ns.t.html('action.search.result.nothing');
+                return ns.t.html('action.search.result.nothing')
+
 
               _resources = Object.keys(result.bounty).map(function(resource){
-                return [':', ':'].join(resource) + ' ' + result.bounty[resource];
-              });
+                return [':', ':'].join(resource) + ' ' + result.bounty[resource]
+              })
 
-              return ns.t.html('action.search.result.bounty', {resources: _resources.join(', ')});
+              if(_coworkers.length > 0){
+                var _basicResources = Object.keys(result.bounty).filter(function(resource){
+                  return ['food', 'parts'].includes(resource)
+                })
+                console.log(_basicResources)
+                var _showResources = _basicResources.map(function(resource){
+                  return [':', ':'].join(resource) + ' ' + result.bounty[resource]
+                })
+                return ns.t.html('action.search.result.bounty', {resources: _showResources.join(', ')})
+              }
+
+              return ns.t.html('action.search.result.bounty', {resources: _resources.join(', ')})
             }
 
             var _specialItem = function(){

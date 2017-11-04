@@ -43,6 +43,15 @@ module LB
           }
         end
 
+        def dead_eating
+          {
+            'eating' => {
+              name: 'playdead',
+              payload: {}
+            }
+          }
+        end
+
         def default_actions
           {
             actions: {
