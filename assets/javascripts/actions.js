@@ -105,9 +105,13 @@
             var location_label = ns.t.text('locations_labels.' + payload.location)
             return ns.t.html('action.hack.label', {location: location_label})
           },
-          run: function(location, slotWidget){
-            var _builtAction = {name: 'hack', payload: {location: location.uuid}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
+          run: function(location, slotWidget) {
+            var modalTitle = ns.t.html('action.hack.modalTitle', {location: ns.t.html('locations_labels.' + location.uuid)})
+            var list = [{name: ns.t.html('action.hack.list')}]
+            ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
+              var _builtAction = {name: 'hack', payload: {location: location.uuid}}
+              slotWidget.selectActionForCurrentSlot(_builtAction)
+            })
           },
           showResult: function(result){
             var _resultLabel = ns.t.html('action.hack.result.' +  result.status )

@@ -125,8 +125,11 @@
       },
       hack: {
         label: ':computer: the %{location}',
+        list: ':computer: (spends 2 :energy:)',
+        modalTitle: 'Hack the %{location}',
         result: {
-          fail: "You failed",
+          no_materials: "You didn't have the needed :energy:",
+          redundancy: "Already hacked",
           success: "This room is safe now"
         }
       },

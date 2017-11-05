@@ -125,8 +125,11 @@
       },
       hack: {
         label: ':computer: %{location}',
+        list: ':computer: (necesita 2 :energy:)',
+        modalTitle: 'Hakiar %{location}',
         result: {
-          fail: "Fallaste",
+          no_materials: "No disponías de las :energy: necesarias",
+          redundancy: "Esta habitación ya ha sido hakiada",
           success: "Esta habitación es segura ahora"
         }
       },
