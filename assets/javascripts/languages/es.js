@@ -189,10 +189,10 @@
       },
       unlock: {
         label: 'Desbloquear %{location}',
-        list: ':unlock: (necesita 2 :parts:)',
+        list: ':unlock: (necesita 2 :energy:)',
         modalTitle: 'Desbloqua %{location}',
         result: {
-          no_materials: "No disponías de las :parts: necesarias",
+          no_materials: "No disponías de las :energy: necesarias",
           redundancy: "Esta habitación ya ha sido desbloqueada",
           success: "Desbloqueada"
         }

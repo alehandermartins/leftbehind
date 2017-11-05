@@ -27,13 +27,13 @@ module LB
       end
 
       run_multiple unlock
-      
+
       @context
     end
 
     def resolve context
       super context
-      
+
       performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
       return @context unless success?
       @context
@@ -49,20 +49,20 @@ module LB
 
       @context
     end
-    
+
     def able?
-      performer.inventory[:parts] + @context.team.inventory[:parts] >= UNLOCK_PRICE
+      performer.inventory[:energy] + @context.team.inventory[:energy] >= UNLOCK_PRICE
     end
 
     def spend_material
-      return with_help if UNLOCK_PRICE > performer.inventory[:parts]
-      performer.inventory.subtract :parts, UNLOCK_PRICE
+      return with_help if UNLOCK_PRICE > performer.inventory[:energy]
+      performer.inventory.subtract :energy, UNLOCK_PRICE
     end
 
     def with_help
-      team_price = UNLOCK_PRICE - performer.inventory[:parts]
-      performer.inventory.subtract_all :parts
-      @context.team.inventory.subtract :parts, team_price
+      team_price = UNLOCK_PRICE - performer.inventory[:energy]
+      performer.inventory.subtract_all :energy
+      @context.team.inventory.subtract :energy, team_price
     end
   end
 end

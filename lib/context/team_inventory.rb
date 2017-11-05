@@ -47,13 +47,15 @@ class TeamInventory
 
   def initial_inventory
     {
-      parts: 0
+      parts: 0,
+      energy: 0
     }
   end
 
   def an_empty_inventory
     {
-      parts: 0
+      parts: 0,
+      energy: 0
     }
   end
 end

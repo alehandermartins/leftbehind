@@ -2,6 +2,7 @@ class Locations
   def initialize random_generator
     desired_supplies = {
       parts: 24,
+      energy: 15,
       helmet: 0
     }
 
@@ -32,8 +33,8 @@ class Locations
   def initial_inventory
     {
       inventory:{
-        food: 0,
         parts: 0,
+        energy: 0,
         helmet: 0
       },
       status: :unlocked

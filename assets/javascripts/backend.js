@@ -237,7 +237,8 @@
             personal: data.stats.personal_stats.inventory,
             personal_info: data.stats.personal_stats.information,
             team: {
-              parts: data.stats.team_stats.inventory.parts
+              parts: data.stats.team_stats.inventory.parts,
+              energy: data.stats.team_stats.inventory.energy
             },
             team_info: data.stats.team_stats.information
           }

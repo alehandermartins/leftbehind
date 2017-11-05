@@ -7,7 +7,7 @@ module LB
 
     def run context
       super context
-      
+
       return @context if computed?
       return @context if killed?
 
@@ -42,9 +42,11 @@ module LB
       return @context unless success?
 
       if alone?
+        performer.inventory.add :energy, bounties[:energy] if bounties.has_key? :energy
         performer.inventory.add :parts, bounties[:parts] if bounties.has_key? :parts
         performer.inventory.add :helmet, bounties[:helmet] if bounties.has_key? :helmet
       else
+        @context.team.inventory.add :energy, bounties[:energy] if bounties.has_key? :energy
         @context.team.inventory.add :parts, bounties[:parts] if bounties.has_key? :parts
 
         if bounties.has_key? :helmet

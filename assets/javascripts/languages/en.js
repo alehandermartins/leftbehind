@@ -190,10 +190,10 @@
       },
       unlock: {
         label: 'Unlock the %{location}',
-        list: ':unlock: (spends 2 :parts:)',
+        list: ':unlock: (spends 2 :energy:)',
         modalTitle: 'Unlock the %{location}',
         result: {
-          no_materials: "You didn't have the needed :parts:",
+          no_materials: "You didn't have the needed :energy:",
           redundancy: "Already unlocked",
           success: "Unlocked"
         }

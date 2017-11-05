@@ -49,6 +49,7 @@ class Inventory
     {
       food: 2,
       parts: 0,
+      energy: 0,
       helmet: 1
     }
   end
@@ -57,6 +58,7 @@ class Inventory
     {
       food: 0,
       parts: 0,
+      energy: 0,
       helmet: 0
     }
   end
