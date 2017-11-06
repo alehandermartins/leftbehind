@@ -22,6 +22,7 @@ module LB
           return @context
         end
 
+        spend_material
         action.add_status :success
         @context.locations.unlock location
       end

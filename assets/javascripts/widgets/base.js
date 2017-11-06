@@ -136,10 +136,8 @@
   };
 
   ns.Widgets.Information = function(stats){
-    console.log(stats)
     var _createdWidget = $(crel('div')).addClass('row');
 
-    console.log(stats.locations)
     var slotsToShow = {
       'actions': 2,
       'events': 4

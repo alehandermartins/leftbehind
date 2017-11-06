@@ -1,13 +1,14 @@
 class Locations
   def initialize random_generator
     desired_supplies = {
-      parts: 24,
-      energy: 15,
+      parts: 16,
+      energy: 16,
       helmet: 0
     }
 
     @locations = initial_inventories(uuids, desired_supplies, random_generator)
     @generator = random_generator
+    @unlocked_list = Array.new
     initial_lock
   end
 
@@ -61,15 +62,26 @@ class Locations
     @locations[uuid][:status] = :marked
   end
 
+  def unmark_all
+    @locations.each{ |uuid, location|
+      unlock uuid if location[:status] == :marked
+    }
+  end
+
   def unlock uuid
     @locations[uuid][:status] = :unlocked
+    @unlocked_list << uuid
+  end
+
+  def lock_random
+    uuid = @locations.map{ |uuid, location|
+      uuid if location[:status] == :unlocked && !@unlocked_list.include?(uuid)
+    }.compact.sample(random: @generator)
+    lock uuid unless uuid.nil?
+    @unlocked_list.clear
   end
 
   def initial_lock
     @locations['8'][:status] = :locked
-    places = ['1', '2', '3', '4', '5', '6'].sample(2, random: @generator)
-    places.each{ |uuid|
-      lock uuid
-    }
   end
 end

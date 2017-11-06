@@ -162,7 +162,15 @@
       _statusbar.append(_playerButton)
     })
 
+    var locationsInfo = stats.personal_info.locations
+    if(locationsInfo)
+      var emptyLocations = Object.keys(locationsInfo)
+
     stats.locations.forEach(function(location){
+
+      if(emptyLocations)
+        location.empty = emptyLocations.includes(location.uuid)
+
       var _room = ns.Widgets.Room(location, actions, slotWidget).render()
       _createdWidgetRow.append(_room)
 
@@ -210,7 +218,6 @@
     }
   }
 
-
   ns.Widgets.Room = function(location, actions, slotWidget){
     if(location.status == 'locked')
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
@@ -233,7 +240,8 @@
       _background.append(_actionButton)
     }
 
-    addActionButton('search')
+    if(!location.empty)
+      addActionButton('search')
 
     if(location.status != 'hacked')
       addActionButton('hack')

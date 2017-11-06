@@ -12,7 +12,8 @@ module LB
       return @context if killed?
 
       hack = lambda do |action|
-        unless @context.locations[location][:status] == :hacked
+
+        if @context.locations[location][:status] == :hacked
           action.add_status :fail
           action.add_info reason: 'redundancy'
           return @context
@@ -24,6 +25,7 @@ module LB
           return @context
         end
 
+        spend_material
         action.add_status :success
         @context.locations.hack location
       end

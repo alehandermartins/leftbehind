@@ -114,7 +114,12 @@
             })
           },
           showResult: function(result){
-            var _resultLabel = ns.t.html('action.hack.result.' +  result.status )
+            console.log(result)
+            var _label = result.status
+            if(result.status == "fail")
+              _label = result.info.reason
+
+            var _resultLabel = ns.t.html('action.hack.result.' +  _label )
             var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel
           }
@@ -169,16 +174,18 @@
               if (Object.keys(result.bounty).length == 0)
                 return ns.t.html('action.search.result.nothing')
 
-
               _resources = Object.keys(result.bounty).map(function(resource){
                 return [':', ':'].join(resource) + ' ' + result.bounty[resource]
               })
 
               if(_coworkers.length > 0){
                 var _basicResources = Object.keys(result.bounty).filter(function(resource){
-                  return ['food', 'parts'].includes(resource)
+                  return ['energy', 'parts'].includes(resource)
                 })
-                console.log(_basicResources)
+
+                if (_basicResources.length == 0)
+                  return ns.t.html('action.search.result.nothing')
+                
                 var _showResources = _basicResources.map(function(resource){
                   return [':', ':'].join(resource) + ' ' + result.bounty[resource]
                 })
