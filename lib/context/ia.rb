@@ -1,31 +1,17 @@
 class IA
-  def initialize locations, generator
+  def initialize
     @location
-    @lurk_count = 1
-    @generator = generator
-    lurk locations
+    @mark_count = 1
   end
 
   def activate locations
     locations.unmark_all
-    lurk locations
+    @location = locations.mark_random @mark_count
     locations.lock_random
+    @mark_count += 1 if @mark_count < 3
   end
 
   def location
     @location
-  end
-
-  private
-
-  def lurk locations
-    places = locations.to_h.map{ |uuid, location|
-      uuid if location[:status] == :unlocked
-    }.compact.sample(@lurk_count, random: @generator)
-    places.each{ |uuid|
-      locations.mark uuid
-    }
-    @location = places.sample(random: @generator)
-    @lurk_count += 1 if @lurk_count < 3
   end
 end

@@ -116,7 +116,7 @@
     _styleSelect.append($(crel('option')).text(ns.t.text('start.style.gentle')).val('gentle'));
     _styleSelect.append($(crel('option')).text(ns.t.text('start.style.turbo')).val('turbo'));
 
-    var _timeSelect = $(crel('select')).addClass('col-xs-12');
+    var _timeSelect = $(crel('select')).addClass('col-xs-12').css('background-color', '#303030');
     // _timeSelect.append($(crel('option')).text('30 s').val(30));
     _timeSelect.append($(crel('option')).text('1 min').val(60));
     _timeSelect.append($(crel('option')).text('5 min').val(300));
@@ -125,6 +125,7 @@
     _timeSelect.append($(crel('option')).text('2 h').val(3600 * 2));
     _timeSelect.append($(crel('option')).text('4 h').val(3600 * 4));
     _timeSelect.append($(crel('option')).text('8 h').val(3600 * 8));
+    _timeSelect.append($(crel('option')).text('12 h').val(3600 * 12));
     _timeSelect.append($(crel('option')).text('1 day').val(3600 * 24));
 
     _styleSelect.on('change', function(){

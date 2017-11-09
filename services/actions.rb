@@ -45,7 +45,7 @@ module Services
         time = game[:time].to_i + game[:lapse].to_i
         Repos::Games.save_time game[:uuid], time
         context = Context.build_for game[:uuid]
-        add_actions game, context
+        add_actions game[:uuid], context
       end
 
       private

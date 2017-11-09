@@ -33,7 +33,7 @@ class Context
 
     @items = Items.new(game)
 
-    @ia = IA.new(@locations, @random_generator)
+    @ia = IA.new
 
     @slots = Factories::Slots.create(actions_from_repo, players)
   end
