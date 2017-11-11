@@ -488,19 +488,19 @@
     ns.SLOTS = [
       {
         name: 'morning',
-        label: ':waxing_crescent_moon:'
+        label: ':day:'
       },
       {
         name: 'afternoon',
-        label: ':first_quarter_moon:'
+        label: ':second_quarter:'
       },
       {
         name: 'evening',
-        label: ':waxing_gibbous_moon:'
+        label: ':third_quarter:'
       },
       {
         name: 'midnight',
-        label: ':full_moon:'
+        label: ':fourth_quarter:'
       },
     ];
 
