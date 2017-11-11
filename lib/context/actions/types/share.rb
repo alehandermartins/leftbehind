@@ -18,7 +18,6 @@ module LB
       if target == 'team'
         @context.team.inventory.add resource, 1
         performer.inventory.subtract resource, 1
-        performer.shared_inventory.add resource, 1
         add_to_everyone_log
       else
         performer.inventory.subtract resource, 1

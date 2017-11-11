@@ -4,7 +4,7 @@ LB.vote = function(stats){
   dayContainer.empty();
 
   var _headerWidget = LB.Widgets.Header(stats);
-  var _playersStatus = LB.Widgets.PlayersStatus(stats);
+  var _players = LB.Widgets.Players(stats);
   var _informationWidget = LB.Widgets.Information(stats);
   var _votingWidget = LB.Widgets.Voting(stats);
   var _content = $(crel('div')).addClass('content')
@@ -17,7 +17,7 @@ LB.vote = function(stats){
 
 
   dayContainer.append(
-    _playersStatus.render(),
+    _players.render(),
     _content
   );
 };

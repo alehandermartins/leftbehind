@@ -4,7 +4,6 @@ class Player
     @uuid = uuid
     @name = name
     @inventory = Inventory.new
-    @shared_inventory = Inventory.new(team_inventory)
     @information = Information.new
     @status = :alive
     @tomb = {}
@@ -13,10 +12,6 @@ class Player
 
   def inventory
     @inventory
-  end
-
-  def shared_inventory
-    @shared_inventory
   end
 
   def team_inventory

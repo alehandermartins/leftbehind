@@ -146,7 +146,6 @@ module Services
         role: role(player),
         stage: player_stage(player),
         event: player_event(player),
-        shared_inventory: player.shared_inventory.to_h
       }
     end
 

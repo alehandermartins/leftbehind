@@ -4,7 +4,7 @@ LB.wait = function(stats){
   dayContainer.empty();
 
   var _headerWidget = LB.Widgets.Header(stats);
-  var _playersStatus = LB.Widgets.PlayersStatus(stats);
+  var _players = LB.Widgets.Players(stats);
   var _waitWidget = $(crel('div')).addClass('wait col-xs-12');
   var _content = $(crel('div')).addClass('content')
 
@@ -14,7 +14,7 @@ LB.wait = function(stats){
   )
 
   dayContainer.append(
-    _playersStatus.render(),
+    _players.render(),
     _content
   );
 
