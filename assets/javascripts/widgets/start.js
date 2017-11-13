@@ -68,10 +68,10 @@
 
       messageContainer.append($(crel('p')).text(ns.t.html('invite.scan'))).append($(crel('div')).attr('id', 'qr'));
 
-      messageContainer.append(ns.Widgets.Button(ns.t.html('invite.recruit'), function(){
-        LB.Backend.recruit();
-        bootbox.hideAll();
-      }, 12).render());
+      // messageContainer.append(ns.Widgets.Button(ns.t.html('invite.recruit'), function(){
+      //   LB.Backend.recruit();
+      //   bootbox.hideAll();
+      // }, 12).render());
 
       return messageContainer;
     };
