@@ -23,14 +23,12 @@ module LB
         if team_able?
           action.add_status :success
           @context.team.inventory.subtract :parts, 1
-          action.performer.shared_inventory.add :work, 1
           return @context
         end
 
         if player_able?(action.performer)
           action.add_status :success
           action.performer.inventory.subtract :parts, 1
-          action.performer.shared_inventory.add :work, 1
           return @context
         end
 

@@ -1,6 +1,6 @@
 module Services
   class Games
-    MINIMUM_NEEDED_PLAYERS = 2
+    MINIMUM_NEEDED_PLAYERS = 1
     MAXIMUM_PLAYERS = 4
     class << self
 

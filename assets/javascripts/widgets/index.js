@@ -6,6 +6,6 @@
 // = require ./voting
 // = require ./fusion
 // = require ./header
-// = require ./statusbar
 // = require ./favicon
+// = require ./players
 // = require ./map

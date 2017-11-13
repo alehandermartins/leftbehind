@@ -93,19 +93,6 @@
 
     var _players = stats.players
 
-    var contributions = function(player){
-      var _contributions = $(crel('div')).addClass('contributions')
-
-      var siblings = Object.keys(_players[player].shared_inventory).map(function(subStat){
-        return $(crel('span')).addClass('resource').append(
-          _players[player].shared_inventory[subStat],
-          ns.t.html([':', ':'].join(subStat))
-        );
-      });
-      _contributions.append(siblings)
-      return _contributions
-    }
-
     Object.keys(_players).sort(function(a, b){
       var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
 
@@ -139,9 +126,8 @@
 
       _wrapper.append(_avatar)
 
-      _playerButton.append(_wrapper)
-      _playerButton.append(contributions(player))
       _playerButton.append(_name)
+      _playerButton.append(_wrapper)
 
       var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
       _createdWidgetRow.append(_player)

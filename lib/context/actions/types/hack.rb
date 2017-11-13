@@ -40,6 +40,8 @@ module LB
 
       performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
       return @context unless success?
+
+      add_to_everyone_else_log performer.uuid
       @context
     end
 
@@ -67,6 +69,14 @@ module LB
       team_price = HACK_PRICE - performer.inventory[:energy]
       performer.inventory.subtract_all :energy
       @context.team.inventory.subtract :energy, team_price
+    end
+
+    def add_to_everyone_else_log target
+      @context.players.reject{ |the_player|
+        the_player.uuid == performer.uuid
+      }.each{ |the_player|
+        @context.players[the_player.uuid].information.add_to(target, slot, information(self.class.name))
+      }
     end
   end
 end
