@@ -12,6 +12,7 @@ gem 'bson_ext'
 gem 'psych'
 gem 'sinatra-asset-pipeline', '~> 0.7'
 gem 'uglifier'
+gem 'webpush'
 
 group :development, :test do
   gem 'rspec'

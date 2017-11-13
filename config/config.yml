@@ -1,7 +1,12 @@
 ---
-development:
+development: &default
   mongo_uri: mongodb://127.0.0.1:27017/lb_dev
+  vapid:
+    public_key: BNiwROvxdQ8aVEYcVdxBIPqkhGojQBhlk0EnDmTwmnEZK8k9YeAR4XkSq3bVDi1WGmkSxPg4_1hXTY-VSfniSQM=
+    private_key: vBu_bOm-UrgRNaJ850ZISljgMbd7vgj3YTGpz3941Lg=
 test:
+  <<: *default
   mongo_uri: mongodb://127.0.0.1:27017/lb_test
 production:
+  <<: *default
   mongo_uri: mongodb://heroku_h14smznl:trlavfo43mm1rl802s1cvi1upt@ds135514.mlab.com:35514/heroku_h14smznl

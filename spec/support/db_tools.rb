@@ -13,6 +13,7 @@ module LB
       end
 
       def prepare_db
+        Repos::Users.for db
         Repos::Games.for db
         Repos::Players.for db
         Repos::Actions.for db

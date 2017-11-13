@@ -17,6 +17,8 @@ GEM
     execjs (2.7.0)
     ffi (1.9.18)
     hike (1.2.3)
+    hkdf (0.3.0)
+    jwt (2.1.0)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
     mongo (2.4.3)
@@ -89,6 +91,9 @@ GEM
       execjs (>= 0.3.0, < 3)
     uuid (2.3.8)
       macaddr (~> 1.0)
+    webpush (0.3.3)
+      hkdf (~> 0.2)
+      jwt (~> 2.0)
 
 PLATFORMS
   ruby
@@ -107,6 +112,7 @@ DEPENDENCIES
   thin
   uglifier
   uuid
+  webpush
 
 RUBY VERSION
    ruby 2.4.1p111

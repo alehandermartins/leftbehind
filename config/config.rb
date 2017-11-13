@@ -1,9 +1,11 @@
 require 'sinatra/config_file'
 require 'sinatra/asset_pipeline'
 require 'mongo'
+require 'webpush'
 
 require_relative '../exceptions'
 
+require_relative '../repos/users'
 require_relative '../repos/games'
 require_relative '../repos/players'
 require_relative '../repos/actions'
@@ -97,6 +99,7 @@ class BaseController < Sinatra::Base
   end
 
   configure do
+    Repos::Users.for @@db
     Repos::Games.for @@db
     Repos::Players.for @@db
     Repos::Actions.for @@db
@@ -107,6 +110,8 @@ class BaseController < Sinatra::Base
     set :raise_errors, true
     set :show_exceptions, false
   end
+
+  ENV['VAPID_PUBLIC_KEY'] = settings.vapid['public_key']
 
   helpers do
     def emojione_tags
