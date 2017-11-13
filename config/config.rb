@@ -1,7 +1,6 @@
 require 'sinatra/config_file'
 require 'sinatra/asset_pipeline'
 require 'mongo'
-require 'webpush'
 
 require_relative '../exceptions'
 
@@ -110,8 +109,6 @@ class BaseController < Sinatra::Base
     set :raise_errors, true
     set :show_exceptions, false
   end
-
-  ENV['VAPID_PUBLIC_KEY'] = settings.vapid['public_key']
 
   helpers do
     def emojione_tags
