@@ -7,7 +7,7 @@ module Repos
       end
 
       def add user
-        @@players_collection.insert_one(user)
+        @@users_collection.insert_one(user)
       end
 
       def exists? uuid

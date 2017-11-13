@@ -136,6 +136,7 @@ class GamesController < BaseController
 
   def add_to game, player
     type = player['type'] || :human
+    Repos::Users.add({ uuid: player['uuid'] }) unless Repos::Users.exists?(player['uuid']) 
     Services::Games.add_player game, player['uuid'], player['name'], type
     game
   end
