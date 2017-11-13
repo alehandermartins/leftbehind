@@ -26,9 +26,15 @@
       var OneSignal = window.OneSignal || [];
       OneSignal.push(["init", {
         appId: "ee9d0079-e53b-46e8-b664-f6c7f4647f96",
-        autoRegister: false, /* Set to true to automatically prompt visitors */
-        notifyButton: {
-            enable: true /* Set to false to hide */
+        autoRegister: true, /* Set to true to automatically prompt visitors */
+        promptOptions: {
+          /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+          /* actionMessage limited to 90 characters */
+          actionMessage: "Notifications will improve your game experience by letting you know when other players are ready.",
+          /* acceptButtonText limited to 15 characters */
+          acceptButtonText: "ALLOW",
+          /* cancelButtonText limited to 15 characters */
+          cancelButtonText: "NO THANKS"
         }
       }]);
     </script>
