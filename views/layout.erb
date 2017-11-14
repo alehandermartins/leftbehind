@@ -24,19 +24,36 @@
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
     <script>
       var OneSignal = window.OneSignal || [];
+
+      OneSignal.push(function() {
+        // Occurs when the user's subscription changes to a new value.
+        OneSignal.on('subscriptionChange', function (isSubscribed) {
+          console.log("The user's subscription state is now:", isSubscribed);
+          OneSignal.push(function() {
+          /* These examples are all valid */
+            OneSignal.getUserId(function(userId) {
+              console.log("OneSignal User ID:", userId);
+              // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
+            });
+          });
+        });
+      });
+
       OneSignal.push(["init", {
         appId: "ee9d0079-e53b-46e8-b664-f6c7f4647f96",
         autoRegister: true, /* Set to true to automatically prompt visitors */
         promptOptions: {
           /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
           /* actionMessage limited to 90 characters */
-          actionMessage: "Notifications will improve your game experience by letting you know when other players are ready.",
+          actionMessage: "Notifications will let you know when other players are ready",
           /* acceptButtonText limited to 15 characters */
           acceptButtonText: "ALLOW",
           /* cancelButtonText limited to 15 characters */
           cancelButtonText: "NO THANKS"
         }
       }]);
+
+
     </script>
 </head>
 <body>
