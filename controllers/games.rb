@@ -29,17 +29,15 @@ class GamesController < BaseController
     success game
   end
 
-  post '/game_status?' do
-    scopify uuid: :game
-    exists? game
-    current_game = Repos::Games.game game
-    success game, {game_status: current_game[:status]}
-  end
-
   post '/ready' do
     scopify uuid: :game, player: true
     return fail! 'Not enough players' unless Services::Games.ready? game
     success game
+  end
+
+  post '/notify_me' do
+    scopify uuid: true, player_id: true
+    Repos::Users.add({ uuid: uuid, player_id: player_id }) unless Repos::Users.exists?(uuid) 
   end
 
   post '/available' do
@@ -52,13 +50,6 @@ class GamesController < BaseController
     scopify player_uuid: :player
 
     ongoing_for(player).to_json
-  end
-
-  post '/team-mates' do
-    respond_with_json
-    scopify game_uuid: :game, player_uuid: :player
-
-    team_mates(player, game).to_json
   end
 
   post '/players' do
@@ -136,7 +127,6 @@ class GamesController < BaseController
 
   def add_to game, player
     type = player['type'] || :human
-    Repos::Users.add({ uuid: player['uuid'] }) unless Repos::Users.exists?(player['uuid']) 
     Services::Games.add_player game, player['uuid'], player['name'], type
     game
   end
@@ -147,12 +137,6 @@ class GamesController < BaseController
 
   def ongoing_for player
     Services::Games.ongoing(player)
-  end
-
-  def team_mates player, game
-    players(game).reject { |the_player|
-      the_player[:uuid] == player
-    }
   end
 
   def players game

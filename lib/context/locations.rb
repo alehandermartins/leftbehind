@@ -81,15 +81,12 @@ class Locations
   end
 
   def mark_random amount
-    puts amount
     places = @locations.map{ |uuid, location|
       uuid if location[:status] == :unlocked
     }.compact.sample(amount, random: @generator)
 
     places.reject!{ |place| place == '7' } if amount < 3
-    puts places
     places.each{ |uuid| mark uuid }
     places.sample(random: @generator)
   end
-  
 end

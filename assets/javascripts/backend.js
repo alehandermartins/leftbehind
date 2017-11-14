@@ -150,20 +150,6 @@
       );
     };
 
-    var _teamMates = function(callback){
-      _send(
-        '/games/team-mates',
-        {
-          game_uuid: LB.currentGame(),
-          player_uuid: LB.playerUuid()
-        },
-        function(data){
-          callback(data);
-        },
-        true
-      );
-    };
-
     var _players = function(callback){
       _send(
         '/games/players',
@@ -184,6 +170,16 @@
         },
         function(data){
           callback(data);
+        },
+        true
+      );
+    };
+
+    var _notifyMe = function(data){
+      _send(
+        '/games/notify_me',
+        data,
+        function(data){
         },
         true
       );
@@ -285,13 +281,13 @@
       daySelections: _daySelections,
       send: _send,
       getStats: _getStats,
-      teamMates: _teamMates,
       players: _players,
       gameName: _gameName,
       fiutur: _fiutur,
       past: _past,
       startGame: _startGame,
-      recruit: _recruit
+      recruit: _recruit,
+      notifyMe: _notifyMe
     };
 
   }());
