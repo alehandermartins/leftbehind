@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Left Behind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <%= stylesheet_tag 'vendor' %>
+    <%= stylesheet_tag 'ours' %>
+
+    <meta property="og:title" content="Left Behind" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="<%= request.base_url + asset_path('og.png')%>" />
+    <meta property="og:image:width" content="124" />
+    <meta property="og:image:height" content="103" />
+    <link rel="shortcut icon" type="image/png" href="<%= asset_path 'icon.png'%>" />
+    <link rel="manifest" href="/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+    <script type="text/javascript">
+
+    var OneSignal = window.OneSignal || [];
+
+      OneSignal.push(function() {
+        OneSignal.on('subscriptionChange', function (isSubscribed) {
+          OneSignal.push(function() {
+            OneSignal.getUserId(function(userId) {
+              ns.Backend.notifyMe({
+                uuid: LB.playerUuid(),
+                player_id: userId
+              })        
+              console.log("OneSignal User ID:", userId)
+            })
+          })
+        })
+      })
+
+      OneSignal.push(["init", {
+        appId: "ee9d0079-e53b-46e8-b664-f6c7f4647f96",
+        autoRegister: false, /* Set to true to automatically prompt visitors */
+        notifyButton: {
+          enable: true, /* Required to use the notify button */
+          size: 'medium', /* One of 'small', 'medium', or 'large' */
+          theme: 'default', /* One of 'default' (red-white) or 'inverse" (white-red) */
+          position: 'bottom-right', /* Either 'bottom-left' or 'bottom-right' */
+          offset: {
+              bottom: '0px',
+              left: '0px', /* Only applied if bottom-left */
+              right: '0px' /* Only applied if bottom-right */
+          },
+          prenotify: true, /* Show an icon with 1 unread message for first-time site visitors */
+          showCredit: false, /* Hide the OneSignal logo */
+          text: {
+              'tip.state.unsubscribed': 'Subscribe to notifications',
+              'tip.state.subscribed': "You're subscribed to notifications",
+              'tip.state.blocked': "You've blocked notifications",
+              'message.prenotify': 'Click to subscribe to notifications',
+              'message.action.subscribed': "Thanks for subscribing!",
+              'message.action.resubscribed': "You're subscribed to notifications",
+              'message.action.unsubscribed': "You won't receive notifications again",
+              'dialog.main.title': 'Manage Site Notifications',
+              'dialog.main.button.subscribe': 'SUBSCRIBE',
+              'dialog.main.button.unsubscribe': 'UNSUBSCRIBE',
+              'dialog.blocked.title': 'Unblock Notifications',
+              'dialog.blocked.message': "Follow these instructions to allow notifications:"
+          }
+        },
+        promptOptions: {
+          /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+          /* Change bold title, limited to 30 characters */
+          siteName: 'Left Behind',
+          /* actionMessage limited to 90 characters */
+          actionMessage: "Notifications will let you know when other players are ready",
+          /* acceptButtonText limited to 15 characters */
+          acceptButtonText: "ALLOW",
+          /* cancelButtonText limited to 15 characters */
+          cancelButtonText: "NO THANKS",
+          /* Example notification title */
+          exampleNotificationTitle: 'Left Behind',
+          /* Example notification message */
+          exampleNotificationMessage: 'Cooperate, betray... survive',
+          /* Text below example notification, limited to 50 characters */
+          exampleNotificationCaption: 'You can unsubscribe anytime',
+        }
+      }])
+    </script>
+
+    <%= emojione_tags %>
+</head>
+<body>
+  <div class="container">
+    <div class="background">
+      <div class="planet"></div>
+      <div class="ship">
+        <div class="body"></div>
+        <div class="propeller middle"></div>
+        <div class="propeller left"></div>
+        <div class="propeller right"></div>
+      </div>
+    </div>
+
+    <div class="game_header">
+      <h1>&nbsp;Left Behind&nbsp;</h1>
+      <span class="game_name"></span>
+      <span class="timer"></span>
+      <span class="options"></span>
+    </div>
+
+    <div class="game_container"></div>
+    <div class="game_footer">
+      <h3>Cooperate, betray... survive.&nbsp;&nbsp;</h3>
+    </div>
+  </div>
+
+
+  <%= javascript_tag 'vendor' %>
+  <%= javascript_tag 'ours' %>
+  <%= yield %>
+  <img src="<%= image_path 'wait.svg' %>" style="display: none">
+</body>
+</html>

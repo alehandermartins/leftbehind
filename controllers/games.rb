@@ -63,7 +63,7 @@ class GamesController < BaseController
     scopify uuid: :game
     redirect '/' unless exists? game
 
-    erb :join
+    erb :join, layout: :join_layout
   end
 
   post '/game-name' do
