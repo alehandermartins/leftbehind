@@ -8,6 +8,7 @@
 // = require events
 // = require widgets
 // = require options
+// = require onesignal
 // = require behaviors
 // = require actions
 // = require app

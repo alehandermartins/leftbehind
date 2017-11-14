@@ -30,6 +30,7 @@
   }
 
   ns.paintScreen = function(){
+    ns.OneSignal()
     ns.Backend.getStats(
     function(data){
       if (data.response !== 'success'){
