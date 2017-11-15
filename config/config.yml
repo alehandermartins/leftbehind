@@ -2,12 +2,14 @@
 development: &default
   mongo_uri: mongodb://127.0.0.1:27017/lb_dev
   onesignal:
-    app_id: ee9d0079-e53b-46e8-b664-f6c7f4647f96
-    rest_key: NTM1MmQwODMtYjJlZS00OWM1LThhZTAtNWQ1ZTM4MDM3NGZj
 test:
   <<: *default
   mongo_uri: mongodb://127.0.0.1:27017/lb_test
 production:
   <<: *default
   mongo_uri: mongodb://heroku_h14smznl:trlavfo43mm1rl802s1cvi1upt@ds135514.mlab.com:35514/heroku_h14smznl
+  onesignal:
+    uri: https://onesignal.com/api/v1/notifications
+    app_id: ee9d0079-e53b-46e8-b664-f6c7f4647f96
+    rest_key: NTM1MmQwODMtYjJlZS00OWM1LThhZTAtNWQ1ZTM4MDM3NGZj
   
