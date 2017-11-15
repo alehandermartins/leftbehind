@@ -1,6 +1,8 @@
 require 'sinatra/config_file'
 require 'sinatra/asset_pipeline'
 require 'mongo'
+require 'net/http'
+require 'json'
 
 require_relative '../exceptions'
 
@@ -13,6 +15,7 @@ require_relative '../repos/actions_in_memory'
 require_relative '../services/games'
 require_relative '../services/actions'
 require_relative '../services/status'
+require_relative '../services/http'
 
 require_relative '../lib/context'
 

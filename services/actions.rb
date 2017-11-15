@@ -63,6 +63,7 @@ module Services
         game_status = Services::GameStatus.new game
         context = game_status.get_context
         add_actions game, context
+        Services.Http.notify(context.players.identifiers, game)
       end
 
       def save_the_dead game, context

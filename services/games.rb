@@ -31,6 +31,8 @@ module Services
       end
 
       def start game
+        uuids = players(game[:uuid]).map { |player| player["uuid"] }
+        Services::Http.notify uuids, game[:uuid]
         Repos::Games.start game
       end
 

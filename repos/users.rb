@@ -14,11 +14,10 @@ module Repos
         @@users_collection.count(uuid: uuid) > 0
       end
 
-      def grab uuid
-        results = @@users_collection.find(uuid: uuid)
-
+      def player_ids uuids
+        results = @@users_collection.find(uuid: {"$in"=> uuids})
         results.map { |user|
-          Util.string_keyed_hash_to_symbolized user
+          user["player_id"]
         }
       end
     end
