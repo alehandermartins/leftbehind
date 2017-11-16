@@ -4,6 +4,11 @@
 
   ns.OneSignal = function(){
     var OneSignal = window.OneSignal || [];
+
+    OneSignal.on('notificationDisplay', function (event) {
+      alert('OneSignal notification displayed:', event)
+    }
+
     OneSignal.push(function() {
       OneSignal.on('subscriptionChange', function (isSubscribed) {
         console.log(isSubscribed)
