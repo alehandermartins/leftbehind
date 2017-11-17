@@ -18,7 +18,7 @@ module Repos
           {
             "upsert": true,
           }
-        })
+        )
       end
 
       def exists? uuid
