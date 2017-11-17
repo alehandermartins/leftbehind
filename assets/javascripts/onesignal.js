@@ -17,7 +17,7 @@
               ns.Backend.notifyMe({
                 uuid: LB.playerUuid(),
                 player_id: userId
-              })        
+              })
               console.log("OneSignal User ID:", userId)
             })
           })
@@ -27,7 +27,7 @@
 
     OneSignal.push(["init", {
       appId: "ee9d0079-e53b-46e8-b664-f6c7f4647f96",
-      safari_web_id: "web.onesignal.auto.204803f7-478b-4564-9a97-0318e873c676"
+      safari_web_id: "web.onesignal.auto.204803f7-478b-4564-9a97-0318e873c676",
       autoRegister: false, /* Set to true to automatically prompt visitors */
       notifyButton: {
         enable: true, /* Required to use the notify button */
@@ -42,18 +42,18 @@
         prenotify: true, /* Show an icon with 1 unread message for first-time site visitors */
         showCredit: false, /* Hide the OneSignal logo */
         text: {
-            'tip.state.unsubscribed': 'Subscribe to notifications',
-            'tip.state.subscribed': "You're subscribed to notifications",
-            'tip.state.blocked': "You've blocked notifications",
-            'message.prenotify': 'Click to subscribe to notifications',
-            'message.action.subscribed': "Thanks for subscribing!",
-            'message.action.resubscribed': "You're subscribed to notifications",
-            'message.action.unsubscribed': "You won't receive notifications again",
-            'dialog.main.title': 'Manage Site Notifications',
-            'dialog.main.button.subscribe': 'SUBSCRIBE',
-            'dialog.main.button.unsubscribe': 'UNSUBSCRIBE',
-            'dialog.blocked.title': 'Unblock Notifications',
-            'dialog.blocked.message': "Follow these instructions to allow notifications:"
+          'tip.state.unsubscribed': 'Subscribe to notifications',
+          'tip.state.subscribed': "You're subscribed to notifications",
+          'tip.state.blocked': "You've blocked notifications",
+          'message.prenotify': 'Click to subscribe to notifications',
+          'message.action.subscribed': "Thanks for subscribing!",
+          'message.action.resubscribed': "You're subscribed to notifications",
+          'message.action.unsubscribed': "You won't receive notifications again",
+          'dialog.main.title': 'Manage Site Notifications',
+          'dialog.main.button.subscribe': 'SUBSCRIBE',
+          'dialog.main.button.unsubscribe': 'UNSUBSCRIBE',
+          'dialog.blocked.title': 'Unblock Notifications',
+          'dialog.blocked.message': "Follow these instructions to allow notifications:"
         }
       },
       promptOptions: {
