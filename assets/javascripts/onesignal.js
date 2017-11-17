@@ -72,8 +72,7 @@
         exampleNotificationMessage: 'Cooperate, betray... survive',
         /* Text below example notification, limited to 50 characters */
         exampleNotificationCaption: 'You can unsubscribe anytime',
-      },
-      notificationClickHandlerMatch: 'origin'
+      }
     }])
   }
 }(LB || {}));

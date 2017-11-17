@@ -6,6 +6,7 @@ module Services
 		 		def notify uuids, game
 		 			return unless BaseController.settings.onesignal
 	 				players = Repos::Users.player_ids(uuids)
+	 				#return if players.size <= 1
 	 			 	params = {
 				    "app_id" => BaseController.settings.onesignal["app_id"],
 				    "contents" => {"en" => "Next phase is ready"},
