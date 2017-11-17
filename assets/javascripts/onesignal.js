@@ -5,22 +5,23 @@
   ns.OneSignal = function(){
     var OneSignal = window.OneSignal || [];
 
-    // OneSignal.on('notificationDisplay', function (event) {
-    //   alert('OneSignal notification displayed:', event)
-    // })
+    OneSignal.on('notificationDisplay', function (event) {
+      console.log('OneSignal notification displayed:', event)
+    })
 
     OneSignal.push(function() {
       OneSignal.on('subscriptionChange', function (isSubscribed) {
-        console.log(isSubscribed)
-        OneSignal.push(function() {
-          OneSignal.getUserId(function(userId) {
-            ns.Backend.notifyMe({
-              uuid: LB.playerUuid(),
-              player_id: userId
-            })        
-            console.log("OneSignal User ID:", userId)
+        if(isSubscribed == true){
+          OneSignal.push(function() {
+            OneSignal.getUserId(function(userId) {
+              ns.Backend.notifyMe({
+                uuid: LB.playerUuid(),
+                player_id: userId
+              })        
+              console.log("OneSignal User ID:", userId)
+            })
           })
-        })
+        }
       })
     })
 

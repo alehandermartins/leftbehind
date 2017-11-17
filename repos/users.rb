@@ -10,6 +10,14 @@ module Repos
         @@users_collection.insert_one(user)
       end
 
+      def update user
+        @@users_collection.update_one({uuid: user[:uuid]},{
+          "$set": {
+            "player_id": user[:player_id]
+          }
+        })
+      end
+
       def exists? uuid
         @@users_collection.count(uuid: uuid) > 0
       end

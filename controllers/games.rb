@@ -34,7 +34,7 @@ class GamesController < BaseController
 
   post '/notify_me' do
     scopify uuid: true, player_id: true
-    Repos::Users.add({ uuid: uuid, player_id: player_id }) unless Repos::Users.exists?(uuid) 
+    Repos::Users.add({ uuid: uuid, player_id: player_id }) 
   end
 
   post '/available' do
