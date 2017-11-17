@@ -9,7 +9,7 @@ module Services
         Repos::Games.create name, type, password, host
       end
 
-      def add_player game, player, type = :human
+      def add_player game, new_player, type = :human
         raise LB::Invalid::Game unless Repos::Games.exists? game
         players = Repos::Players.grab game
         raise LB::Invalid::Game if players.count == MAXIMUM_PLAYERS
