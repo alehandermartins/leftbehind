@@ -16,7 +16,7 @@ module Services
         raise LB::Invalid::Player if players.any? { |player| player["uuid"] == new_player["uuid"] }
         raise LB::Invalid::Name if players.any? { |player| player["name"] == new_player["name"] }
         Repos::Games.fill game if players.count == (MAXIMUM_PLAYERS - 1)
-        Repos::Players.add game, player["uuid"], player["name"], type
+        Repos::Players.add game, new_player["uuid"], new_player["name"], type
       end
 
       def players game
