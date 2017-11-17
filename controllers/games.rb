@@ -1,21 +1,18 @@
 class GamesController < BaseController
 
   post '/create' do
-    scopify name: :game, player: true, type: true, password: true
-    check_names game, player
+    scopify name: :game_name, player: true, type: true, password: true
+    check_names game_name, player
     check_type_and_password type, password
-
-    success create_for player, game, type, password, player['uuid']
+    game = Services::Games.create game_name, type, password, player['uuid']
+    Services::Games.add_player game, player
+    success game
   end
 
   post '/join' do
     scopify uuid: :game, player: true
-    exists? game
-    check_player player
-    check_full game
-    check_started game
-
-    success add_to game, player
+    Services::Games.add_player game, player
+    success game
   end
 
   post '/start' do
@@ -118,17 +115,6 @@ class GamesController < BaseController
   def check_full game
     game_is_full = Services::Games.full? game
     raise LB::Invalid.new 'game_full' if game_is_full
-  end
-
-  def create_for player, name, type, password, host
-    game = Services::Games.create name, type, password, host
-    add_to game, player
-  end
-
-  def add_to game, player
-    type = player['type'] || :human
-    Services::Games.add_player game, player['uuid'], player['name'], type
-    game
   end
 
   def available

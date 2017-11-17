@@ -37,7 +37,7 @@
         console.log(data);
         return;
       }
-      if (data.game.status == 'ready'){
+      if (data.game.status == 'ready' || data.game.status == 'full'){
         ns.startGame(data.game);
         return;
       }

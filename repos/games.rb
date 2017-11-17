@@ -46,6 +46,14 @@ module Repos
         results.each{ |result| result.delete('password')}
       end
 
+      def fill game
+        @@games_collection.update_one({uuid: game[:uuid]},{
+          "$set": {
+            "status": "full"
+          }
+        })
+      end
+
       def start game
         @@games_collection.update_one({uuid: game[:uuid]},{
           "$set": {

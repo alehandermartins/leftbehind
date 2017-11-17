@@ -37,13 +37,6 @@ module Repos
       def list player_uuid
         @@players_collection.find({uuid: player_uuid}, {fields: ["game"]}).map { |game|  game['game']}
       end
-
-      def get_name game_uuid, player_uuid
-        @@players_collection.find({
-          game: game_uuid,
-          uuid: player_uuid
-        }).limit(1).first['name']
-      end
     end
   end
 end
