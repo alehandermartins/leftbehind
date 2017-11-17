@@ -13,7 +13,8 @@ module Repos
       def update user
         @@users_collection.update_one({uuid: user[:uuid]},{
           "$set": {
-            "player_id": user[:player_id]
+              "player_id": user[:player_id]
+            }
           },
           {
             "upsert": true,
