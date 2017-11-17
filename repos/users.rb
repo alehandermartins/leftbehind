@@ -14,6 +14,9 @@ module Repos
         @@users_collection.update_one({uuid: user[:uuid]},{
           "$set": {
             "player_id": user[:player_id]
+          },
+          {
+            "upsert": true,
           }
         })
       end
