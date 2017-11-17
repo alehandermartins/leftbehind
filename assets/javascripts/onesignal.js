@@ -27,6 +27,7 @@
 
     OneSignal.push(["init", {
       appId: "ee9d0079-e53b-46e8-b664-f6c7f4647f96",
+      safari_web_id: "web.onesignal.auto.204803f7-478b-4564-9a97-0318e873c676"
       autoRegister: false, /* Set to true to automatically prompt visitors */
       notifyButton: {
         enable: true, /* Required to use the notify button */
@@ -71,7 +72,8 @@
         exampleNotificationMessage: 'Cooperate, betray... survive',
         /* Text below example notification, limited to 50 characters */
         exampleNotificationCaption: 'You can unsubscribe anytime',
-      }
+      },
+      notificationClickHandlerMatch: 'origin'
     }])
   }
 }(LB || {}));
