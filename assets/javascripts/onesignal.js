@@ -6,7 +6,7 @@
     var OneSignal = window.OneSignal || [];
 
     OneSignal.on('notificationDisplay', function (event) {
-      console.log('OneSignal notification displayed:', event)
+      alert('OneSignal notification displayed:', event)
     })
 
     OneSignal.push(function() {
