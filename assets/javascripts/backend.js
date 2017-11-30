@@ -23,7 +23,8 @@
         url: url,
         type: 'POST',
         dataType: 'json',
-        data: data
+        data: JSON.stringify(data),
+        contentType: 'application/json'
       })
       .done(function(response) {
         if (cached){

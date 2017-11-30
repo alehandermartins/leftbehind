@@ -113,6 +113,20 @@ class BaseController < Sinatra::Base
     set :show_exceptions, false
   end
 
+  set(:method) do |method|
+    method = method.to_s.upcase
+    condition { request.request_method == method }
+  end
+
+  before :method => :post do
+    begin
+      params.merge! JSON.parse(request.env["rack.input"].read)
+    rescue JSON::ParserError
+      p "Cannot parse request body."
+    end
+  end
+
+
   helpers do
     def emojione_tags
       return [

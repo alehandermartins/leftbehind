@@ -1,3 +1,4 @@
 #ignore text editor backups
 *~
 .sass-cache
+.bundle
