@@ -1,7 +1,6 @@
 class GamesController < BaseController
 
   post '/create' do
-    puts params
     scopify name: :game_name, player: true, type: true, password: true
     check_names game_name, player
     check_type_and_password type, password
