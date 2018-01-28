@@ -14,16 +14,10 @@ module LB
 
     def resolve context
       super context
-
-      if target == 'team'
-        @context.team.inventory.add resource, 1
-        performer.inventory.subtract resource, 1
-        add_to_everyone_log
-      else
-        performer.inventory.subtract resource, 1
-        @context.players[target].inventory.add resource, 1
-        add_to_log
-      end
+      
+      performer.inventory.subtract resource, 1
+      @context.players[target].inventory.add resource, 1
+      add_to_log
 
       performer.information.add_to performer.uuid, slot, information(self.class.name, true)
       @context

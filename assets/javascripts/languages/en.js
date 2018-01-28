@@ -151,7 +151,6 @@
         result: {
           nothing: 'You found nothing. ',
           bounty: 'You found %{resources}',
-          teamInventory: '(Added to the :team: inventory). ',
           coworker:'%{coworker} was with you.',
           coworkers: '%{coworkers} and %{coworker} were with you.',
           itemfound: 'You found a %{item}.',

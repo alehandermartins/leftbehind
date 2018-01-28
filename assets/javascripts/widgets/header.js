@@ -5,37 +5,87 @@
 
   ns.Widgets.Header = function(stats){
     var _createdWidget = $(crel('div')).addClass('header')
+    var avatar = $(crel('div')).addClass('statusbar col-xs-2')
+
+    var _players = stats.players
+    Object.keys(_players).sort(function(a, b){
+      var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
+
+      if (a == ns.playerUuid())
+        return -1
+
+      if (b == ns.playerUuid())
+        return 1
+
+      return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
+
+    }).forEach(function(player){
+      if(player != ns.playerUuid())
+        return
+
+      var _cell = $(crel('div')).addClass('col-xs-3').css('padding', 0)
+      var _wrapper = $(crel('div')).addClass('avatarWrapper')
+      var _playerButton = $(crel('div')).addClass('player')
+      var _avatar = $(crel('div')).addClass('avatar')
+      var _name = $(crel('div')).addClass('name').text(_players[player].name)
+      var _status = 'lagging'
+      var _role =_players[player].role
+
+      if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
+        _status = 'wont-play'
+      else
+        if (_players[player].stage == 'wait' || _players[player].status == 'escaped')
+          _status = 'ahead';
+
+      _avatar.addClass(_status)
+      _avatar.addClass(_role)
+      _avatar.addClass(player)
+
+      _wrapper.append(_avatar)
+
+      _playerButton.append(_name)
+      _playerButton.append(_wrapper)
+    avatar.append(_playerButton)
+    })
+
+    _createdWidget.append(avatar)
+
 
     var _info = $(crel('div')).addClass('info')
     _createdWidget.append(_info)
 
     var _personal = $(crel('div')).addClass('personal')
-    var siblings = Object.keys(stats['personal']).map(function(subStat){
-      var _subStat = $(crel('span')).addClass('value').text(stats['personal'][subStat])
-      if (subStat == 'food')
-        _subStat = $(crel('span')).addClass('value').text(stats['personal'][subStat] + " / 2")
+    var _team = $(crel('div')).addClass('team')
 
-      return $(crel('div')).addClass('stat ' + subStat).append(
-        $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join(subStat))),
-        _subStat
-      )
-    })
+    var _oxygen =  $(crel('div')).addClass('stat food').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('food'))),
+      $(crel('span')).addClass('value').text(stats.personal['food'] + " / 2")
+    )
+    var _helmet = $(crel('div')).addClass('stat helmet').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('helmet'))),
+      $(crel('span')).addClass('value').text(stats.personal['helmet'])
+    )
+    var _time = $(crel('div')).addClass('stat day').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('day'))),
+      $(crel('span')).addClass('value').text(stats.status['day'])
+    )
+    var _shuttle = $(crel('div')).addClass('stat shuttle').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('shuttle'))),
+      $(crel('span')).addClass('value').text(stats.status['shuttle'])
+    )
+    var _parts = $(crel('div')).addClass('stat parts').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('parts'))),
+      $(crel('span')).addClass('value').text(stats.team['parts'])
+    )
+    var _energy = $(crel('div')).addClass('stat energy').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('energy'))),
+      $(crel('span')).addClass('value').text(stats.team['energy'])
+    )
 
-    _personal.append(siblings)
-    _info.append(_personal)
+    _personal.append(_oxygen, _helmet, _time)
+    _team.append(_shuttle, _energy, _parts)
 
-    var _team = $(crel('div')).addClass('team').append(
-      $(crel('div')).addClass('avatar').append(ns.t.html(':team:')))
-    !['status', 'team'].forEach(function(stat){
-      var siblings = Object.keys(stats[stat]).map(function(subStat){
-        return $(crel('div')).addClass('stat ' + subStat).append(
-          $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join(subStat))),
-          $(crel('span')).addClass('value').text(stats[stat][subStat])
-        )
-      })
-      _team.append(siblings)
-      _info.append(_team)
-    })
+    _info.append(_personal, _team)
 
     return {
       render: function(){

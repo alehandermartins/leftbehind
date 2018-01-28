@@ -79,9 +79,9 @@
  ns.Widgets.ActionSelector = function(slotWidget, stats){
     var actions = LB.Actions(stats)
     var _container = $('.game_container')
-    var _statusbar = $(crel('div')).addClass('statusbar')
-    _container.append(_statusbar)
+    var _statusbar = $(crel('div')).addClass('statusbar col-xs-2')
     var _createdWidgetRow = $(crel('div')).addClass('row')
+    _createdWidgetRow.append(_statusbar)
 
     var _mapLabel = $(crel('div')).addClass('mapLabel').css('display', 'none')
     var _createdWidget = $(crel('div')).addClass('map col-xs-12').css('display', 'block')

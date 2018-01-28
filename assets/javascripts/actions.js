@@ -9,12 +9,8 @@
     ns.Actions = function(stats){
 
       var _giftables = function(target){
-        var _isBasic = true
-
         var _gifts = Object.keys(stats.personal).filter(function(resource){
-          if(target == 'team')
-          _isBasic = ['parts'].includes(resource)
-          return stats.personal[resource] > 0 && _isBasic
+          return stats.personal[resource] > 0
         })
         return _gifts.map(function(resource, indx){
           return {label: ':' + resource + ':', name: resource, uuid: indx}
@@ -155,10 +151,7 @@
             var _resultLabel = '';
 
             var _showcoworkers = function(){
-              var _label
-
-              if (_resources.length > 0)
-                _label = ns.t.html('action.search.result.teamInventory')
+              var _label = "";
 
               if (_coworkers.length == 1){
                 _label += ns.t.text('action.search.result.coworker', {coworker: _coworkers[0]})
@@ -320,7 +313,6 @@
           run: function(target, slotWidget){
             var modalTitle = ns.t.html('action.steal.modalTitle')
             var list = [
-              {label: ':parts:', name: 'parts', uuid:'2'},
               {label: ':helmet:', name: 'helmet', uuid:'3'}
             ]
             ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){

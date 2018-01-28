@@ -52,18 +52,11 @@ module LB
     end
 
     def able?
-      performer.inventory[:energy] + @context.team.inventory[:energy] >= UNLOCK_PRICE
+      @context.team.inventory[:energy] >= UNLOCK_PRICE
     end
 
     def spend_material
-      return with_help if UNLOCK_PRICE > performer.inventory[:energy]
-      performer.inventory.subtract :energy, UNLOCK_PRICE
-    end
-
-    def with_help
-      team_price = UNLOCK_PRICE - performer.inventory[:energy]
-      performer.inventory.subtract_all :energy
-      @context.team.inventory.subtract :energy, team_price
+      @context.team.inventory.subtract :energy, UNLOCK_PRICE
     end
   end
 end

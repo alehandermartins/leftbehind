@@ -41,24 +41,18 @@ module LB
       super context
       return @context unless success?
 
-      if alone?
-        performer.inventory.add :energy, bounties[:energy] if bounties.has_key? :energy
-        performer.inventory.add :parts, bounties[:parts] if bounties.has_key? :parts
-        performer.inventory.add :helmet, bounties[:helmet] if bounties.has_key? :helmet
-      else
-        @context.team.inventory.add :energy, bounties[:energy] if bounties.has_key? :energy
-        @context.team.inventory.add :parts, bounties[:parts] if bounties.has_key? :parts
+      @context.team.inventory.add :energy, bounties[:energy] if bounties.has_key? :energy
+      @context.team.inventory.add :parts, bounties[:parts] if bounties.has_key? :parts
 
-        if bounties.has_key? :helmet
-          cowork_actions.sample(bounties[:helmet], random: @context.random_generator).each do |the_action|
-            the_action.performer.inventory.add :helmet, 1
+      if bounties.has_key? :helmet
+        cowork_actions.sample(bounties[:helmet], random: @context.random_generator).each do |the_action|
+          the_action.performer.inventory.add :helmet, 1
 
-            cowork_actions.each {|coworker_action|
-              coworker_action.add_info the_action.performer.uuid => :helmet
-            }
-          end
-          bounties[:helmet] = 0
+          cowork_actions.each {|coworker_action|
+            coworker_action.add_info the_action.performer.uuid => :helmet
+          }
         end
+        bounties[:helmet] = 0
       end
       cowork_actions.each{ |coworker_action|
         @context.players[performer.uuid].information.add_to(coworker_action.performer.uuid, slot, information(self.class.name, false))

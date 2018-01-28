@@ -14,14 +14,6 @@ class Player
     @inventory
   end
 
-  def team_inventory
-    {
-      food: 0,
-      parts: 0,
-      work: 0
-    }
-  end
-
   def information
     @information
   end
