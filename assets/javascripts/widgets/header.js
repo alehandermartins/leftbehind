@@ -4,8 +4,8 @@
   ns.Widgets = ns.Widgets || {};
 
   ns.Widgets.Header = function(stats){
-    var _createdWidget = $(crel('div')).addClass('header')
-    var avatar = $(crel('div')).addClass('statusbar col-xs-2')
+    var _createdWidget = $(crel('div')).addClass('header row')
+    var avatar = $(crel('div')).addClass('statusbar col-2')
 
     var _players = stats.players
     Object.keys(_players).sort(function(a, b){
@@ -23,7 +23,7 @@
       if(player != ns.playerUuid())
         return
 
-      var _cell = $(crel('div')).addClass('col-xs-3').css('padding', 0)
+      var _cell = $(crel('div')).addClass('col-3').css('padding', 0)
       var _wrapper = $(crel('div')).addClass('avatarWrapper')
       var _playerButton = $(crel('div')).addClass('player')
       var _avatar = $(crel('div')).addClass('avatar')
@@ -51,33 +51,33 @@
     _createdWidget.append(avatar)
 
 
-    var _info = $(crel('div')).addClass('info')
+    var _info = $(crel('div')).addClass('info col-10')
     _createdWidget.append(_info)
 
-    var _personal = $(crel('div')).addClass('personal')
-    var _team = $(crel('div')).addClass('team')
+    var _personal = $(crel('div')).addClass('row personal')
+    var _team = $(crel('div')).addClass('row team')
 
-    var _oxygen =  $(crel('div')).addClass('stat food').append(
+    var _oxygen =  $(crel('div')).addClass('stat food col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('food'))),
       $(crel('span')).addClass('value').text(stats.personal['food'] + " / 2")
     )
-    var _helmet = $(crel('div')).addClass('stat helmet').append(
+    var _helmet = $(crel('div')).addClass('stat helmet col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('helmet'))),
       $(crel('span')).addClass('value').text(stats.personal['helmet'])
     )
-    var _time = $(crel('div')).addClass('stat day').append(
+    var _time = $(crel('div')).addClass('stat day col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('day'))),
       $(crel('span')).addClass('value').text(stats.status['day'])
     )
-    var _shuttle = $(crel('div')).addClass('stat shuttle').append(
+    var _shuttle = $(crel('div')).addClass('stat shuttle col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('shuttle'))),
       $(crel('span')).addClass('value').text(stats.status['shuttle'])
     )
-    var _parts = $(crel('div')).addClass('stat parts').append(
+    var _parts = $(crel('div')).addClass('stat parts col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('parts'))),
       $(crel('span')).addClass('value').text(stats.team['parts'])
     )
-    var _energy = $(crel('div')).addClass('stat energy').append(
+    var _energy = $(crel('div')).addClass('stat energy col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('energy'))),
       $(crel('span')).addClass('value').text(stats.team['energy'])
     )
@@ -95,7 +95,7 @@
   };
 
   ns.Widgets.EmptyLocationsInfo = function(provider){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12')
+    var _createdWidget = $(crel('div')).addClass('col-12')
     if (!provider)
       _createdWidget.append('You don\'t know of any')
     else
