@@ -4,7 +4,7 @@
   ns.Widgets = ns.Widgets || {};
 
   ns.Widgets.Voting = function(stats){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12');
+    var _createdWidget = $(crel('div')).addClass('col-12');
 
     var _alive_players = [];
     Object.keys(stats.players).forEach(function(player){
@@ -18,7 +18,7 @@
 
     var _instructions = ns.Widgets.Label(ns.t.html(ns.t.text('events.voting.intro', {alive: _alive_players.length.toString(), food: _food_amount.toString(), votes: _number_of_votes})),
       '', 12);
-    var _createdWidgetContainer = $(crel('div')).addClass('col-xs-12');
+    var _createdWidgetContainer = $(crel('div')).addClass('col-12');
     var _label = ns.Widgets.Label('Your vote', '', 12);
 
     var _selectedTargets = [];

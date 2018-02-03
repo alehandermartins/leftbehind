@@ -18,7 +18,7 @@
 
 	    }).forEach(function(player){
 	      _players[player].uuid = player
-	      var _cell = $(crel('div')).addClass('col-xs-3').css('padding', 0)
+	      var _cell = $(crel('div')).addClass('col-3').css('padding', 0)
 	      var _wrapper = $(crel('div')).addClass('avatarWrapper')
 	      var _playerButton = $(crel('div')).addClass('player')
 	      var _avatar = $(crel('div')).addClass('avatar')

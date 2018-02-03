@@ -5,7 +5,7 @@
 
   ns.Widgets.Label = function(type, value, size){
     size = size || 3;
-    var _createdWidget = $(crel('div')).addClass('col-xs-' + size)//.addClass(type);
+    var _createdWidget = $(crel('div')).addClass('col-' + size)//.addClass(type);
     var _createdWidgetLabel = $(crel('span')).addClass('_label').html(ns.t.html(type));
     var _createdWidgetValue = $(crel('span')).addClass('value').text(value);
 
@@ -26,10 +26,10 @@
     size = size || 12;
     var createdId = 'ts-' + slot.name;
     var _createdWidgetRow = $(crel('div')).addClass('row');
-    var _createdWidget = $(crel('div')).addClass('col-xs-' + size).addClass('time_slot');
-    var _createdWidgetRadio = $(crel('input')).attr('type', 'radio')./*addClass('col-xs-1').*/attr('name', 'xxx').attr('id', createdId);
-    var _createdWidgetLabel = $(crel('label')).attr('for', createdId).addClass('col-xs-3 col-sm-2 btn-default btn-xs btn').html(ns.t.html(slot.label));
-    var _createdWidgetValue = $(crel('span')).addClass('value').addClass('col-xs-9').text(selected_action);
+    var _createdWidget = $(crel('div')).addClass('col-' + size).addClass('time_slot');
+    var _createdWidgetRadio = $(crel('input')).attr('type', 'radio')./*addClass('col-1').*/attr('name', 'xxx').attr('id', createdId);
+    var _createdWidgetLabel = $(crel('label')).attr('for', createdId).addClass('col-3 col-sm-2 btn-default btn-xs btn').html(ns.t.html(slot.label));
+    var _createdWidgetValue = $(crel('span')).addClass('value').addClass('col-9').text(selected_action);
     _createdWidgetRadio.click(function(e){
       callback(slot.name);
     });
@@ -194,7 +194,7 @@
         });
 
         if(_personalInfos.length > 0){
-          var _info = $(crel('div')).addClass('col-xs-12');
+          var _info = $(crel('div')).addClass('col-12');
           _info.css(
             {
               'display': 'inline-block',

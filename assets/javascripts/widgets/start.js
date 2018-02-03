@@ -2,8 +2,8 @@
 (function(ns){
 
   ns.Widgets.CurrentPlayers = function(){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12');
-    var _currentPlayers = $(crel('div')).addClass('col-xs-12 players');
+    var _createdWidget = $(crel('div')).addClass('col-12');
+    var _currentPlayers = $(crel('div')).addClass('col-12 players');
 
     var _label = $(crel('span')).text(ns.t.html('start.players'));
     _label.css({'font-weight': 'bold'});
@@ -94,7 +94,7 @@
   };
 
   ns.Widgets.Introduction = function(){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12');
+    var _createdWidget = $(crel('div')).addClass('col-12');
     var _introduction = $(crel('div')).addClass('text-center').text(ns.t.text('start.intro'));
     _introduction.css({'border-style':'solid','border-width':'5px', 'border-top-width': '15px'});
 
@@ -108,15 +108,15 @@
   }
 
   ns.Widgets.PlayButton = function(game){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12');
+    var _createdWidget = $(crel('div')).addClass('col-12');
 
     var _text = $(crel('span')).text(ns.t.text('start.style.label'))
 
-    var _styleSelect = $(crel('select')).addClass('col-xs-12').css('background-color', '#303030');
+    var _styleSelect = $(crel('select')).addClass('col-12').css('background-color', '#303030');
     _styleSelect.append($(crel('option')).text(ns.t.text('start.style.gentle')).val('gentle'));
     _styleSelect.append($(crel('option')).text(ns.t.text('start.style.turbo')).val('turbo'));
 
-    var _timeSelect = $(crel('select')).addClass('col-xs-12').css('background-color', '#303030');
+    var _timeSelect = $(crel('select')).addClass('col-12').css('background-color', '#303030');
     // _timeSelect.append($(crel('option')).text('30 s').val(30));
     _timeSelect.append($(crel('option')).text('1 min').val(60));
     _timeSelect.append($(crel('option')).text('5 min').val(300));

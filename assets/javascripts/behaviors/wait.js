@@ -5,7 +5,7 @@ LB.wait = function(stats){
 
   var _headerWidget = LB.Widgets.Header(stats);
   var _players = LB.Widgets.Players(stats);
-  var _waitWidget = $(crel('div')).addClass('wait col-xs-12');
+  var _waitWidget = $(crel('div')).addClass('wait col-12');
   var _content = $(crel('div')).addClass('content')
 
   _content.append(

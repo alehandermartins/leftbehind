@@ -5,7 +5,7 @@
 
   ns.Widgets.DayPlanning = function(slots, actions){
     var _createdWidgetRow = $(crel('div')).addClass('row');
-    var _createdWidget = $(crel('div')).addClass('day_planning col-xs-12');
+    var _createdWidget = $(crel('div')).addClass('day_planning col-12');
     var _slots = {};
     var _currentSlot = '';
     var _selectedActions = {};

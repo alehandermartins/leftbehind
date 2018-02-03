@@ -79,12 +79,12 @@
  ns.Widgets.ActionSelector = function(slotWidget, stats){
     var actions = LB.Actions(stats)
     var _container = $('.game_container')
-    var _statusbar = $(crel('div')).addClass('statusbar col-xs-2')
+    var _statusbar = $(crel('div')).addClass('statusbar col-2')
     var _createdWidgetRow = $(crel('div')).addClass('row')
     _createdWidgetRow.append(_statusbar)
 
     var _mapLabel = $(crel('div')).addClass('mapLabel').css('display', 'none')
-    var _createdWidget = $(crel('div')).addClass('map col-xs-12').css('display', 'block')
+    var _createdWidget = $(crel('div')).addClass('map col-12').css('display', 'block')
 
     var moveLabel = LB.Widgets.MoveLabel()
     _mapLabel.on('click', function(){
@@ -106,7 +106,7 @@
 
     }).forEach(function(player){
       _players[player].uuid = player
-      var _cell = $(crel('div')).addClass('col-xs-3').css('padding', 0)
+      var _cell = $(crel('div')).addClass('col-3').css('padding', 0)
       var _wrapper = $(crel('div')).addClass('avatarWrapper')
       var _playerButton = $(crel('div')).addClass('player')
       var _avatar = $(crel('div')).addClass('avatar')
@@ -178,8 +178,8 @@
   }
 
   ns.Widgets.LockedRoom = function(location, actions, slotWidget){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12')
-    var _background = $(crel('div')).addClass('room locked col-xs-12')
+    var _createdWidget = $(crel('div')).addClass('col-12')
+    var _background = $(crel('div')).addClass('room locked col-12')
 
 
     var addActionButton = function(action){
@@ -208,8 +208,8 @@
     if(location.status == 'locked')
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
 
-    var _createdWidget = $(crel('div')).addClass('col-xs-12')
-    var _background = $(crel('div')).addClass('room uuid'+ location.uuid + ' col-xs-12')
+    var _createdWidget = $(crel('div')).addClass('col-12')
+    var _background = $(crel('div')).addClass('room uuid'+ location.uuid + ' col-12')
     
     if(location.status == 'marked'){
       var _ia = $(crel('div')).addClass('ia')
@@ -252,8 +252,8 @@
   }
 
   ns.Widgets.Player = function(player, actions, slotWidget){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12')
-    var _background = $(crel('div')).addClass('room col-xs-12')
+    var _createdWidget = $(crel('div')).addClass('col-12')
+    var _background = $(crel('div')).addClass('room col-12')
 
     var addActionButton = function(action){
       var action = actions[action];

@@ -4,7 +4,7 @@
   ns.Widgets = ns.Widgets || {};
 
   ns.Widgets.Header = function(stats){
-    var _createdWidget = $(crel('div')).addClass('header row')
+    var _createdWidget = $(crel('div')).addClass('header row text-center')
     var avatar = $(crel('div')).addClass('statusbar col-2')
 
     var _players = stats.players
@@ -101,14 +101,14 @@
     else
       Object.keys(provider).map(function(locationName){
         var _infoLine = $(crel('div')).addClass('row')
-        var _locationName = $(crel('span')).addClass('col-xs-4').text(locationName + ':')
+        var _locationName = $(crel('span')).addClass('col-4').text(locationName + ':')
 
         var _slot = provider[locationName]
         var _day = Math.floor(_slot / 7) + 1
         var _daySlot = ns.SLOTS[(_slot % 7) - 1]
         var _dateText = 'since day ' + _day + ', ' + _daySlot.label
 
-        var _emptySince = $(crel('span')).addClass('col-xs-4').html(ns.t.html(_dateText))
+        var _emptySince = $(crel('span')).addClass('col-4').html(ns.t.html(_dateText))
 
         _infoLine.append(
           _locationName,

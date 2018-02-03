@@ -4,7 +4,7 @@
   ns.Widgets = ns.Widgets || {};
 
   ns.Widgets.Fusion = function(stats){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12');
+    var _createdWidget = $(crel('div')).addClass('col-12');
     var _instructions = ns.Widgets.Label(ns.t.html('events.fusion.intro'),'', 12);
 
     var _enterButton = ns.Widgets.Button(ns.t.html('buttons.enter'), function(){

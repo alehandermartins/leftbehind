@@ -6,7 +6,7 @@
   ns.Widgets.Button = function(label, callback, size){
     size = size || 6;
     var _createdButton = $(crel('div'))
-     .addClass('btn btn-default col-xs-' + size)
+     .addClass('btn btn-default col-' + size)
      .html(ns.t.html(label))
      .click(callback);
 
@@ -20,7 +20,7 @@
   ns.Widgets.ExtraSmallButton = function(label, callback, size){
     size = size || 10;
     var _createdButton = $(crel('div'))
-     .addClass('btn btn-default btn-xs col-xs-' + size)
+     .addClass('btn btn-default btn-xs col-' + size)
      .text(label)
      .click(callback);
 
@@ -59,7 +59,7 @@
 
   ns.Widgets.SendActionsButton = function(origin){
     var _createdWidgetRow = $(crel('div')).addClass('row');
-    var _createdWidget = $(crel('div')).addClass('col-xs-12');
+    var _createdWidget = $(crel('div')).addClass('col-12');
     var _createdButton = ns.Widgets.SpinningButton(ns.t.html('buttons.send'), function(){
       origin.getSelections(function(selections){
         ns.Backend.daySelections(
@@ -83,7 +83,7 @@
   };
 
   ns.Widgets.OKButton = function(){
-    var _createdWidget = $(crel('div')).addClass('col-xs-12').addClass('send-shares');
+    var _createdWidget = $(crel('div')).addClass('col-12').addClass('send-shares');
     var _createdButton = ns.Widgets.SpinningButton('OK', function(){
       var _builtAction =  {'events': {name: 'none', payload: {}}}
       ns.Backend.daySelections(

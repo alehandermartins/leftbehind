@@ -1,6 +1,10 @@
 @import 'colors';
 
 .content > .header {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: $main_lighter;
+
   .personal {
     height: 50%;
     align-items: center;
@@ -10,7 +14,6 @@
     height: 50%;
     background-color: $main_lighter;
     border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
     align-items: center;
   }
 }

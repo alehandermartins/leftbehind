@@ -30,7 +30,7 @@
             else
               _resultLabel = ns.t.html('action.craft.result.fail')
 
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel;
           },
           run: function(location, slotWidget) {
@@ -67,7 +67,7 @@
               _resultLabel = ns.t.text('action.defend.result.nobody_defended');
             }
 
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
 
             return resultLabel;
           },
@@ -87,7 +87,7 @@
               _resultLabel = result.info.reason;
             else{_resultLabel = ns.t.html('action.escape.result.success')};
 
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel;
           },
           run: function(location, slotWidget) {
@@ -116,7 +116,7 @@
               _label = result.info.reason
 
             var _resultLabel = ns.t.html('action.hack.result.' +  _label )
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel
           }
         },
@@ -127,7 +127,7 @@
           },
           showResult: function(result){
             var _resultLabel = ns.t.html('action.oxygen.result.' +  result.status )
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel() + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel() + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel
           },
           run: function(location, slotWidget){
@@ -155,12 +155,12 @@
 
               if (_coworkers.length == 1){
                 _label += ns.t.text('action.search.result.coworker', {coworker: _coworkers[0]})
-                return $(crel('div')).addClass('col-xs-12').html(_label)
+                return $(crel('div')).addClass('col-12').html(_label)
               }
 
               var _lastcoworker = _coworkers.pop()
               _label += ns.t.text('action.search.result.coworkers', {coworkers: _coworkers.join(', '), coworker: _lastcoworker})
-              return $(crel('div')).addClass('col-xs-12').html(_label)
+              return $(crel('div')).addClass('col-12').html(_label)
             }
 
             var _showbounty = function(){
@@ -203,13 +203,13 @@
 
               if (_findings.length > 0){
                 var _label = _findings.join(', ');
-                return $(crel('div')).addClass('col-xs-12').html(_label);
+                return $(crel('div')).addClass('col-12').html(_label);
               }
               return false;
             }
 
             var _bounty = _showbounty();
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + _bounty).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + _bounty).addClass('unpadded');
             if (_coworkers.length > 0){
               resultLabel.append(_showcoworkers());
 
@@ -235,7 +235,7 @@
             return ns.t.html('action.share.label', {resource: [':', ':'].join(payload.resource), target: targetName});
           },
           showResult: function(result){
-            var resultLabel = $(crel('div')).addClass('col-xs-12')
+            var resultLabel = $(crel('div')).addClass('col-12')
             resultLabel.html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)).addClass('unpadded')
             return resultLabel
           },
@@ -264,7 +264,7 @@
           },
           showResult: function(result, players){
             var _resultLabel;
-            var resultLabel = $(crel('div')).addClass('col-xs-12');
+            var resultLabel = $(crel('div')).addClass('col-12');
             var _inventoryLabel;
 
             if (result.status == 'fail'){
@@ -306,7 +306,7 @@
                 _resultLabel = ns.t.text('action.steal.result.bounty', {resources: _resources});
               }
 
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': ' + this.buildLabel(result.payload, players) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': ' + this.buildLabel(result.payload, players) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
 
             return resultLabel;
           },
@@ -332,7 +332,7 @@
               _label = result.info.reason
 
             var _resultLabel = ns.t.html('action.unlock.result.' +  _label )
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel
           },
           run: function(location, slotWidget) {
@@ -355,7 +355,7 @@
               _resultLabel = result.info.reason;
             else{_resultLabel = ns.t.html('action.work.result.success')};
 
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
             return resultLabel;
           },
           run: function(location, slotWidget) {
@@ -384,7 +384,7 @@
               else
                 _resultLabel = ns.t.html('action.eat.label') + ns.t.text('action.eat.result.otterstarved')
             }
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(_resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(_resultLabel).addClass('unpadded');
             return resultLabel;
           }
         },
@@ -401,13 +401,13 @@
             if(_winners.length == 1)
               _resultLabel = ns.t.text('action.vote.result.winner', {players: _winners.join(', ')});
 
-            var _winnersLabel = $(crel('div')).addClass('col-xs-12').text(_resultLabel);
+            var _winnersLabel = $(crel('div')).addClass('col-12').text(_resultLabel);
 
             Object.keys(result.results).map(function(candidate){
               if (result.results[candidate] != 0){
                 var _name = stats.players[candidate].name;
                 var _candidateLabel = ns.t.text('action.vote.result.votes', {player: _name, votes: result.results[candidate]});
-                var _label = $(crel('div')).addClass('col-xs-12').text(_candidateLabel);
+                var _label = $(crel('div')).addClass('col-12').text(_candidateLabel);
                 _candidates.push(_label);
               };
             });
@@ -432,7 +432,7 @@
               else
                 _resultLabel = ns.t.html('action.eat.label') + ns.t.text('action.eat.result.otterstarved')
             }
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(_resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(_resultLabel).addClass('unpadded');
             return resultLabel;
           }
         },
@@ -452,7 +452,7 @@
                 _resultLabel = ns.t.text('action.fusion.result.otterdied')
             }
 
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(ns.t.html('action.fusion.label') + _resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.fusion.label') + _resultLabel).addClass('unpadded');
             return resultLabel
           }
         },
@@ -465,7 +465,7 @@
               return false
 
             var slot = LB.SLOTS[(result.slot - 1) % 4]
-            var resultLabel = $(crel('div')).addClass('col-xs-12').html(ns.t.html(slot.label) + ': ' + ns.t.text('action.none.label')).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html(slot.label) + ': ' + ns.t.text('action.none.label')).addClass('unpadded');
             return resultLabel;
           }
         },
