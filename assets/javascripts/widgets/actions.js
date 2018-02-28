@@ -4,7 +4,6 @@
   ns.Widgets = ns.Widgets || {};
 
   ns.Widgets.DayPlanning = function(slots, actions){
-    var _createdWidgetRow = $(crel('div')).addClass('row');
     var _createdWidget = $(crel('div')).addClass('day_planning col-12');
     var _slots = {};
     var _currentSlot = '';
@@ -46,13 +45,11 @@
       _selectSlot(_currentSlot);
     };
 
-    _createdWidgetRow.append(_createdWidget);
-
     _next();
 
     return {
       render: function(){
-        return _createdWidgetRow;
+        return _createdWidget;
       },
       selectActionForCurrentSlot: _selectActionForCurrentSlot,
       getSelections: _getSelections,

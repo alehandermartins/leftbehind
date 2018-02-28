@@ -8,13 +8,18 @@ LB.selectActions = function(stats){
   var _dayPlanningWidget = LB.Widgets.DayPlanning(LB.SLOTS, LB.Actions(stats));
   var _actionSelectorWidget = LB.Widgets.ActionSelector(_dayPlanningWidget, stats);
   var _sendActionsButtonWidget = LB.Widgets.SendActionsButton(_dayPlanningWidget);
-  var _content = $(crel('div')).addClass('content')
+  var _content = $(crel('div')).addClass('content');
+  var _selections = $(crel('div')).addClass('selections row');
+
+  _selections.append(
+    _dayPlanningWidget.render(),
+    _sendActionsButtonWidget.render()
+  )
 
   _content.append(
     _headerWidget.render(),
     _informationWidget.render(),
-    _dayPlanningWidget.render(),
-    _sendActionsButtonWidget.render()
+    _selections
   )
 
   dayContainer.append(
