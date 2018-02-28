@@ -23,20 +23,19 @@
   };
 
   ns.Widgets.TimeSlot = function(slot, selected_action, callback, size){
+    selected_action = selected_action || "Escoge una acción"
     size = size || 12;
     var createdId = 'ts-' + slot.name;
     var _createdWidgetRow = $(crel('div')).addClass('row');
     var _createdWidget = $(crel('div')).addClass('col-' + size).addClass('time_slot');
-    var _createdWidgetRadio = $(crel('input')).attr('type', 'radio')./*addClass('col-1').*/attr('name', 'xxx').attr('id', createdId);
-    var _createdWidgetLabel = $(crel('label')).attr('for', createdId).addClass('col-3 col-sm-2 btn-default btn-xs btn').html(ns.t.html(slot.label));
-    var _createdWidgetValue = $(crel('span')).addClass('value').addClass('col-9').text(selected_action);
+    var _createdWidgetRadio = $(crel('input')).attr('type', 'radio').attr('name', 'xxx').attr('id', createdId);
+    var _createdWidgetLabel = $(crel('label')).attr('for', createdId).addClass('col-12 btn-default btn-xs btn').html(ns.t.html(slot.label) + ns.t.html(selected_action));
     _createdWidgetRadio.click(function(e){
       callback(slot.name);
     });
 
     _createdWidget.append(_createdWidgetRadio);
     _createdWidget.append(_createdWidgetLabel);
-    _createdWidget.append(_createdWidgetValue);
 
     _createdWidgetRow.append(_createdWidget);
 
@@ -45,7 +44,7 @@
         return _createdWidgetRow;
       },
       setSelectedAction: function(value){
-        _createdWidgetValue.html(ns.t.html(value));
+        _createdWidgetLabel.html(ns.t.html(slot.label) + ns.t.html(value));
       },
       check: function(){
         _createdWidgetRadio.prop('checked', true);

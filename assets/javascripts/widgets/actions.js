@@ -13,7 +13,6 @@
     slots.forEach(function(slot){
       _slots[slot.name] = ns.Widgets.TimeSlot(slot, '', function(slot){
         _selectSlot(slot);
-        console.log(slot);
       }, 12 );
 
       _createdWidget.append( _slots[slot.name].render() );

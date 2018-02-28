@@ -13,7 +13,6 @@ LB.selectActions = function(stats){
   _content.append(
     _headerWidget.render(),
     _informationWidget.render(),
-    _actionSelectorWidget.render(),
     _dayPlanningWidget.render(),
     _sendActionsButtonWidget.render()
   )

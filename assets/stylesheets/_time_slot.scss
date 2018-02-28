@@ -1,3 +1,7 @@
+.day_planning, .send_actions{
+  background-color: $main_lighter;
+}
+
 .time_slot {
   input[type="radio"] {
     opacity: 0;

@@ -58,7 +58,7 @@
   };
 
   ns.Widgets.SendActionsButton = function(origin){
-    var _createdWidgetRow = $(crel('div')).addClass('row');
+    var _createdWidgetRow = $(crel('div')).addClass('row send_actions');
     var _createdWidget = $(crel('div')).addClass('col-12');
     var _createdButton = ns.Widgets.SpinningButton(ns.t.html('buttons.send'), function(){
       origin.getSelections(function(selections){
