@@ -1,3 +1,13 @@
 .content{
   flex: 1 0 80%;
 }
+
+.playgorund {
+  background-color: $main_lighter;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.selections {
+  background-color: $main_lighter;
+}

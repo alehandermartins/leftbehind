@@ -4,13 +4,14 @@
   ns.Widgets = ns.Widgets || {};
 
   ns.Widgets.DayPlanning = function(slots, actions){
-    var _createdWidget = $(crel('div')).addClass('day_planning col-12');
+    var _createdWidget = $(crel('div')).addClass('day_planning');
     var _slots = {};
     var _currentSlot = '';
     var _selectedActions = {};
 
     slots.forEach(function(slot){
       _slots[slot.name] = ns.Widgets.TimeSlot(slot, '', function(slot){
+        $(".selections").addClass("animated fadeOutRight");
         _selectSlot(slot);
       }, 12 );
 

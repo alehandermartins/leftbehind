@@ -9,7 +9,14 @@ LB.selectActions = function(stats){
   var _actionSelectorWidget = LB.Widgets.ActionSelector(_dayPlanningWidget, stats);
   var _sendActionsButtonWidget = LB.Widgets.SendActionsButton(_dayPlanningWidget);
   var _content = $(crel('div')).addClass('content');
-  var _selections = $(crel('div')).addClass('selections row');
+  var _mainDisplay = $(crel('div')).addClass('playgorund row'); 
+  var _sidebar = $(crel('div')).addClass('sidebar col-2');
+  var _selections = $(crel('div')).addClass('selections col-10');
+
+  _mainDisplay.append(
+    _sidebar,
+    _selections
+  )
 
   _selections.append(
     _dayPlanningWidget.render(),
@@ -19,7 +26,7 @@ LB.selectActions = function(stats){
   _content.append(
     _headerWidget.render(),
     _informationWidget.render(),
-    _selections
+    _mainDisplay
   )
 
   dayContainer.append(
