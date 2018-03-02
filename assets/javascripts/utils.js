@@ -117,8 +117,8 @@ Object.values = function(o) {
       this.addClass('animated ' + animationName).one(animationEnd, function() {
         if (typeof callback === 'function')
           callback();
-        else
-          $(this).removeClass('animated ' + animationName);
+        
+        $(this).removeClass('animated ' + animationName);
       });
 
       return this;

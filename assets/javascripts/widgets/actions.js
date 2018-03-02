@@ -14,7 +14,7 @@
         $(".dayPlanner").animateCss("fadeOutRight", function(){
           $(".targetSelector").css('display', 'block');
           $(".dayPlanner").css('display', 'none');
-          $(".targetSelector").addClass("animated fadeInRight");
+          $(".targetSelector").animateCss("fadeInRight");
         });
         _selectSlot(slot);
       }, 12 );
@@ -31,6 +31,13 @@
       _slots[_currentSlot].setSelectedAction(actions[action.name].buildLabel(action.payload));
       _selectedActions[_currentSlot] = action;
       _next();
+      $(".actionSelector").animateCss("fadeOutRight", function(){
+        $(".dayPlanner").css('display', 'block');
+        $(".actionSelector").css('display', 'none');
+        $(".selected-room").css('display', 'none');
+        $(".selected-room").removeClass('selected-room');
+        $(".dayPlanner").animateCss("fadeInRight");
+      });
     };
 
     var _getSelections = function(callback){

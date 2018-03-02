@@ -54,19 +54,17 @@
       _playerButton.append(_wrapper)
       _playerButton.append(_name)
 
-      //var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
-      //_createdWidget.append(_player)
+      var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
+      actionSelector.append(_player)
 
       _playerButton.on('click', function(){
-        if(document.querySelector(".map").style.display == 'none'){
-          var selected = document.querySelector(".map_selected")
-          selected.style.display = 'none'
-          selected.classList.remove("map_selected");
-          _player.addClass('map_selected')
-          _player.show()
-        }else{
-          _player.addClass('map_selected')
-        }
+        $(".targetSelector").animateCss("fadeOutRight", function(){
+          actionSelector.css('display', 'block');
+          _player.addClass('selected-room');
+          _player.css('display', 'block');
+          $(".targetSelector").css('display', 'none');
+          actionSelector.animateCss("fadeInRight");
+        });
       })
 
       _selectPlayer.append(_playerButton)
@@ -87,9 +85,10 @@
       var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
         $(".targetSelector").animateCss("fadeOutRight", function(){
           actionSelector.css('display', 'block');
+          _room.addClass('selected-room');
           _room.css('display', 'block');
           $(".targetSelector").css('display', 'none');
-          actionSelector.addClass("animated fadeInRight");
+          actionSelector.animateCss("fadeInRight");
         });
       })
 
@@ -106,7 +105,7 @@
   ns.Widgets.LockedRoom = function(location, actions, slotWidget){
     var _createdWidget = $(crel('div')).addClass('col-12')
     var _background = $(crel('div')).addClass('room locked col-12')
-
+    _createdWidget.append(_background)
 
     var addActionButton = function(action){
       var action = actions[action];
@@ -115,12 +114,11 @@
         action.run(location, slotWidget)
       }).render()
 
-      _background.append(_actionButton)
+      _createdWidget.append(_actionButton)
     }
 
     addActionButton('unlock')
 
-    _createdWidget.append(_background)
     _createdWidget.hide()
 
     return {
