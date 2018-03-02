@@ -1,83 +1,83 @@
 .statusbar {
   text-align: center;
   padding: 3px;
+}
 
-  .player {
-    width: 100%;
-    align-items: center;
+.player {
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+
+  .name {
+    filter: drop-shadow(0 0 3px black);
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &:first-child {
+    .avatarWrapper {
+      width: 75%;
+    }
+  }
+
+  .avatarWrapper {
+    position: relative;
+    width: 55%;
+    margin: 0 auto;
     cursor: pointer;
 
-    .name {
-      filter: drop-shadow(0 0 3px black);
-      width: 90%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    &:before{
+      content: '';
+      display: block;
+      padding-bottom: 100%
     }
 
-    &:first-child {
-      .avatarWrapper {
-        width: 75%;
+    .avatar {
+      position: absolute;
+      border: 2px solid white;
+      border-radius: 50%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: url('//cdn.jsdelivr.net/emojione/assets/png/1f464.png?v=2.2.6');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: grey;
+
+      &.wont-play {
+        border-color: brown;
       }
-    }
 
-    .avatarWrapper {
-      position: relative;
-      width: 55%;
-      margin: 0 auto;
-      cursor: pointer;
-
-      &:before{
-        content: '';
-        display: block;
-        padding-bottom: 100%
+      &.lagging {
+        border-color: orange;
       }
 
-      .avatar {
-        position: absolute;
-        border: 2px solid white;
-        border-radius: 50%;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-image: url('//cdn.jsdelivr.net/emojione/assets/png/1f464.png?v=2.2.6');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: grey;
+      &.ahead {
+        border-color: limegreen;
+      }
 
-        &.wont-play {
-          border-color: brown;
-        }
+      &.captain {
+        background-image: asset-url('roles/captain.png');
+        // background-color: lighten(brown, 40%);
+      }
 
-        &.lagging {
-          border-color: orange;
-        }
+      &.pilot {
+        background-image: asset-url('roles/pilot.png');
+        // background-color: lighten(lime, 40%);
+      }
 
-        &.ahead {
-          border-color: limegreen;
-        }
+      &.mechanic {
+        background-image: asset-url('roles/mechanic.png');
+        // background-color: lighten(blue, 40%);
+      }
 
-        &.captain {
-          background-image: asset-url('roles/captain.png');
-          // background-color: lighten(brown, 40%);
-        }
-
-        &.pilot {
-          background-image: asset-url('roles/pilot.png');
-          // background-color: lighten(lime, 40%);
-        }
-
-        &.mechanic {
-          background-image: asset-url('roles/mechanic.png');
-          // background-color: lighten(blue, 40%);
-        }
-
-        &.scientist {
-          background-image: asset-url('roles/scientist.png');
-          // background-color: lighten(yellow, 40%);
-        }
+      &.scientist {
+        background-image: asset-url('roles/scientist.png');
+        // background-color: lighten(yellow, 40%);
       }
     }
   }

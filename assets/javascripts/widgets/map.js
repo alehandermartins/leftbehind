@@ -6,65 +6,71 @@
   ns.Widgets.ActionSelector = function(slotWidget, stats){
     var actions = LB.Actions(stats)
     var _createdWidget = $(crel('div'))
+    var _selectTargetLabel = $(crel('div')).addClass('col-12 text-center').text('Select target');
+    var _selectRoomLabel = $(crel('div')).addClass('col-12 text-center').text('Select room');
 
-    // var _players = stats.players
-    // Object.keys(_players).sort(function(a, b){
-    //   var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
+    _createdWidget.append(_selectTargetLabel);
 
-    //   if (a == ns.playerUuid())
-    //     return -1
+    var _players = stats.players
+    Object.keys(_players).sort(function(a, b){
+      var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
 
-    //   if (b == ns.playerUuid())
-    //     return 1
+      if (a == ns.playerUuid())
+        return -1
 
-    //   return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
+      if (b == ns.playerUuid())
+        return 1
 
-    // }).forEach(function(player){
-    //   _players[player].uuid = player
-    //   var _cell = $(crel('div')).addClass('col-3').css('padding', 0)
-    //   var _wrapper = $(crel('div')).addClass('avatarWrapper')
-    //   var _playerButton = $(crel('div')).addClass('player')
-    //   var _avatar = $(crel('div')).addClass('avatar')
-    //   var _name = $(crel('div')).addClass('name').text(_players[player].name)
-    //   var _status = 'lagging'
-    //   var _role =_players[player].role
+      return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
 
-    //   if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
-    //     _status = 'wont-play'
-    //   else
-    //     if (_players[player].stage == 'wait' || _players[player].status == 'escaped')
-    //       _status = 'ahead';
+    }).forEach(function(player){
+      _players[player].uuid = player
+      var _playerButton = $(crel('div')).addClass('player col-4')
+      var _wrapper = $(crel('div')).addClass('avatarWrapper')
+      var _avatar = $(crel('div')).addClass('avatar')
+      var _name = $(crel('div')).addClass('name text-center').text(_players[player].name)
+      var _status = 'lagging'
+      var _role =_players[player].role
 
-    //   _avatar.addClass(_status)
-    //   _avatar.addClass(_role)
-    //   _avatar.addClass(player)
+      if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
+        _status = 'wont-play'
+      else
+        if (_players[player].stage == 'wait' || _players[player].status == 'escaped')
+          _status = 'ahead';
 
-    //   _wrapper.append(_avatar)
+      _avatar.addClass(_status)
+      _avatar.addClass(_role)
+      _avatar.addClass(player)
 
-    //   _playerButton.append(_name)
-    //   _playerButton.append(_wrapper)
+      _wrapper.append(_avatar)
 
-    //   var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
-    //   _createdWidget.append(_player)
+      _playerButton.append(_wrapper)
+      _playerButton.append(_name)
 
-    //   _playerButton.on('click', function(){
-    //     if(document.querySelector(".map").style.display == 'none'){
-    //       var selected = document.querySelector(".map_selected")
-    //       selected.style.display = 'none'
-    //       selected.classList.remove("map_selected");
-    //       _player.addClass('map_selected')
-    //       _player.show()
-    //     }else{
-    //       _player.addClass('map_selected')
-    //     }
-    //   })
+      var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
+      _createdWidget.append(_player)
 
-    //   _statusbar.append(_playerButton)
-    // })
+      _playerButton.on('click', function(){
+        if(document.querySelector(".map").style.display == 'none'){
+          var selected = document.querySelector(".map_selected")
+          selected.style.display = 'none'
+          selected.classList.remove("map_selected");
+          _player.addClass('map_selected')
+          _player.show()
+        }else{
+          _player.addClass('map_selected')
+        }
+      })
+
+      _createdWidget.append(_playerButton)
+    })
 
     var locationsInfo = stats.personal_info.locations
     if(locationsInfo)
       var emptyLocations = Object.keys(locationsInfo)
+
+
+    _createdWidget.append(_selectRoomLabel);
 
     stats.locations.forEach(function(location){
 
