@@ -3,150 +3,64 @@
 
 	ns.Widgets = ns.Widgets || {}
 
-	ns.Widgets.MoveLabel = function(){
-
-    var movingTime = 1000
-    var status = 'iddle'
-    var label, map, moveAction, endmoveAction, elapsedTime, startTime, selection
-   
-    function moveItRight(){
-    	label.style.right = map.offsetWidth - 10 - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
-      map.style.right =  - elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
-    }
-
-    function endMoveRight(){
-    	label.style.right =  '2.5%'
-      map.style.display = 'none'
-      selection.style.display = 'block'
-    }
-
-    function moveItLeft(){
-    	label.style.right = - 10 + elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
-      map.style.right = - map.offsetWidth + elapsedTime / movingTime * (map.offsetWidth - 20) + 'px'
-    }
-
-    function endMoveLeft(){
-    	label.style.display = 'none'
-      map.style.right = 0
-      selection.classList.remove("map_selected")
-    }
-
-    function move(){
-    	var currentTime = new Date().getTime()
-      elapsedTime = currentTime - startTime
-    	if (elapsedTime < movingTime){
-    		moveAction()
-        setTimeout(function(){ move() }, 20)
-      }else{
-      	endmoveAction()
-        status = 'iddle'
-      }
-    }
-
-    return {
-      moveRight: function(){
-        if(status == 'running')
-          return
-
-        status = 'running'
-        label = document.querySelector(".mapLabel")
-        map = document.querySelector(".map")
-        startTime = new Date().getTime()
-        selection = document.querySelector(".map_selected")
-        label.style.display = 'block'
-        moveAction = moveItRight
-        endmoveAction = endMoveRight
-        move()
-      },
-      moveLeft: function(){
-        if(status == 'running')
-          return
-
-        status = 'running'
-        label = document.querySelector(".mapLabel")
-        map = document.querySelector(".map")
-        startTime = new Date().getTime()
-        selection = document.querySelector(".map_selected")
-        selection.style.display = 'none'
-        map.style.display = 'block'
-        moveAction = moveItLeft
-        endmoveAction = endMoveLeft
-        move()
-      }
-    }
-  }
-
- ns.Widgets.ActionSelector = function(slotWidget, stats){
+  ns.Widgets.ActionSelector = function(slotWidget, stats){
     var actions = LB.Actions(stats)
-    var _container = $('.game_container')
-    var _statusbar = $(crel('div')).addClass('statusbar col-2')
-    var _createdWidgetRow = $(crel('div')).addClass('row')
-    _createdWidgetRow.append(_statusbar)
+    var _createdWidget = $(crel('div'))
 
-    var _mapLabel = $(crel('div')).addClass('mapLabel').css('display', 'none')
-    var _createdWidget = $(crel('div')).addClass('map col-12').css('display', 'block')
+    // var _players = stats.players
+    // Object.keys(_players).sort(function(a, b){
+    //   var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
 
-    var moveLabel = LB.Widgets.MoveLabel()
-    _mapLabel.on('click', function(){
-      moveLabel.moveLeft()
-    })
+    //   if (a == ns.playerUuid())
+    //     return -1
 
-    var _players = stats.players
+    //   if (b == ns.playerUuid())
+    //     return 1
 
-    Object.keys(_players).sort(function(a, b){
-      var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
+    //   return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
 
-      if (a == ns.playerUuid())
-        return -1
+    // }).forEach(function(player){
+    //   _players[player].uuid = player
+    //   var _cell = $(crel('div')).addClass('col-3').css('padding', 0)
+    //   var _wrapper = $(crel('div')).addClass('avatarWrapper')
+    //   var _playerButton = $(crel('div')).addClass('player')
+    //   var _avatar = $(crel('div')).addClass('avatar')
+    //   var _name = $(crel('div')).addClass('name').text(_players[player].name)
+    //   var _status = 'lagging'
+    //   var _role =_players[player].role
 
-      if (b == ns.playerUuid())
-        return 1
+    //   if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
+    //     _status = 'wont-play'
+    //   else
+    //     if (_players[player].stage == 'wait' || _players[player].status == 'escaped')
+    //       _status = 'ahead';
 
-      return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
+    //   _avatar.addClass(_status)
+    //   _avatar.addClass(_role)
+    //   _avatar.addClass(player)
 
-    }).forEach(function(player){
-      _players[player].uuid = player
-      var _cell = $(crel('div')).addClass('col-3').css('padding', 0)
-      var _wrapper = $(crel('div')).addClass('avatarWrapper')
-      var _playerButton = $(crel('div')).addClass('player')
-      var _avatar = $(crel('div')).addClass('avatar')
-      var _name = $(crel('div')).addClass('name').text(_players[player].name)
-      var _status = 'lagging'
-      var _role =_players[player].role
+    //   _wrapper.append(_avatar)
 
-      if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
-        _status = 'wont-play'
-      else
-        if (_players[player].stage == 'wait' || _players[player].status == 'escaped')
-          _status = 'ahead';
+    //   _playerButton.append(_name)
+    //   _playerButton.append(_wrapper)
 
-      _avatar.addClass(_status)
-      _avatar.addClass(_role)
-      _avatar.addClass(player)
+    //   var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
+    //   _createdWidget.append(_player)
 
-      _wrapper.append(_avatar)
+    //   _playerButton.on('click', function(){
+    //     if(document.querySelector(".map").style.display == 'none'){
+    //       var selected = document.querySelector(".map_selected")
+    //       selected.style.display = 'none'
+    //       selected.classList.remove("map_selected");
+    //       _player.addClass('map_selected')
+    //       _player.show()
+    //     }else{
+    //       _player.addClass('map_selected')
+    //     }
+    //   })
 
-      _playerButton.append(_name)
-      _playerButton.append(_wrapper)
-
-      var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
-      _createdWidgetRow.append(_player)
-
-      _playerButton.on('click', function(){
-        if(document.querySelector(".map").style.display == 'none'){
-          var selected = document.querySelector(".map_selected")
-          selected.style.display = 'none'
-          selected.classList.remove("map_selected");
-          _player.addClass('map_selected')
-          _player.show()
-        }else{
-          _player.addClass('map_selected')
-          moveLabel.moveRight()
-        }
-      })
-
-      _statusbar.append(_playerButton)
-    })
+    //   _statusbar.append(_playerButton)
+    // })
 
     var locationsInfo = stats.personal_info.locations
     if(locationsInfo)
@@ -158,21 +72,18 @@
         location.empty = emptyLocations.includes(location.uuid)
 
       var _room = ns.Widgets.Room(location, actions, slotWidget).render()
-      _createdWidgetRow.append(_room)
+      _createdWidget.append(_room)
 
       var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
         _room.addClass('map_selected')
-        moveLabel.moveRight()
       })
 
       _createdWidget.append(_locationButton.render())
     })
 
-    _createdWidgetRow.append(_mapLabel, _createdWidget)
-
     return {
       render: function(){
-        return _createdWidgetRow;
+        return _createdWidget;
       }
     }
   }

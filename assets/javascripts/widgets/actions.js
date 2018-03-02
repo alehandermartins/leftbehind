@@ -11,7 +11,11 @@
 
     slots.forEach(function(slot){
       _slots[slot.name] = ns.Widgets.TimeSlot(slot, '', function(slot){
-        $(".selections").addClass("animated fadeOutRight");
+        $(".selections").animateCss("fadeOutRight", function(){
+          $(".map").css('display', 'block');
+          $(".selections").css('display', 'none');
+          $(".map").addClass("animated fadeInRight");
+        });
         _selectSlot(slot);
       }, 12 );
 

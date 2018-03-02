@@ -53,15 +53,3 @@
 .locked {
   background-image: asset-url('map/locked.jpg');
 }
-
-.mapLabel {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  margin-left: -18px;
-  border-top: 74px solid transparent;
-  border-right: 30px solid #0a187e;
-  border-bottom: 74px solid transparent;
-  cursor: pointer;
-}

@@ -23,7 +23,7 @@
   };
 
   ns.Widgets.TimeSlot = function(slot, selected_action, callback, size){
-    selected_action = selected_action || "Escoge una acción"
+    selected_action = selected_action || " Escoge una acción"
     size = size || 12;
     var createdId = 'ts-' + slot.name;
     var _createdWidgetRow = $(crel('div')).addClass('row');
@@ -44,7 +44,7 @@
         return _createdWidgetRow;
       },
       setSelectedAction: function(value){
-        _createdWidgetLabel.html(ns.t.html(slot.label) + ns.t.html(value));
+        _createdWidgetLabel.html(ns.t.html(slot.label) + " " + ns.t.html(value));
       },
       check: function(){
         _createdWidgetRadio.prop('checked', true);

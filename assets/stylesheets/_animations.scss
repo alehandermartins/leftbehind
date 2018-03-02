@@ -24,3 +24,10 @@
     transform: rotate(359deg);
   }
 }
+
+.fadeOutRight {
+  -webkit-animation: fadeOutRight 0.5s; /* Safari 4+ */
+  -moz-animation:    fadeOutRight 0.5s; /* Fx 5+ */
+  -o-animation:      fadeOutRight 0.5s; /* Opera 12+ */
+  animation:         fadeOutRight 0.5s; /* IE 10+, Fx 29+ */
+}

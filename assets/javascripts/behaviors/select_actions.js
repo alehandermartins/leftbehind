@@ -12,15 +12,23 @@ LB.selectActions = function(stats){
   var _mainDisplay = $(crel('div')).addClass('playgorund row'); 
   var _sidebar = $(crel('div')).addClass('sidebar col-2');
   var _selections = $(crel('div')).addClass('selections col-10');
+  var _map = $(crel('div')).addClass('map col-10');
+
+  _map.css('display', 'none');
 
   _mainDisplay.append(
     _sidebar,
-    _selections
+    _selections,
+    _map
   )
 
   _selections.append(
     _dayPlanningWidget.render(),
-    _sendActionsButtonWidget.render()
+    _sendActionsButtonWidget.render(),
+  )
+
+  _map.append(
+    _actionSelectorWidget.render()
   )
 
   _content.append(
