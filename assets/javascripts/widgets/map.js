@@ -6,12 +6,19 @@
   ns.Widgets.ActionSelector = function(slotWidget, stats){
     var actions = LB.Actions(stats)
     var _createdWidget = $(crel('div'))
-    var _selectTargetLabel = $(crel('div')).addClass('col-12 text-center').text('Select target');
-    var _selectRoomLabel = $(crel('div')).addClass('col-12 text-center').text('Select room');
 
-    _createdWidget.append(_selectTargetLabel);
+    var _selectPlayer = $(crel('div')).addClass('row text-center');
+    var _selectPlayerLabel = $(crel('div')).addClass('col-12').text('Select target');
 
-    var _players = stats.players
+    var _selectRoom = $(crel('div')).addClass('row text-center');
+    var _selectRoomLabel = $(crel('div')).addClass('col-12').text('Select room');
+
+    _selectPlayer.append(_selectPlayerLabel);
+    _selectRoom.append(_selectRoomLabel);
+
+    _createdWidget.append(_selectPlayer, _selectRoom);
+
+    var _players = stats.players;
     Object.keys(_players).sort(function(a, b){
       var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
 
@@ -28,7 +35,7 @@
       var _playerButton = $(crel('div')).addClass('player col-4')
       var _wrapper = $(crel('div')).addClass('avatarWrapper')
       var _avatar = $(crel('div')).addClass('avatar')
-      var _name = $(crel('div')).addClass('name text-center').text(_players[player].name)
+      var _name = $(crel('div')).addClass('name').text(_players[player].name)
       var _status = 'lagging'
       var _role =_players[player].role
 
@@ -47,8 +54,8 @@
       _playerButton.append(_wrapper)
       _playerButton.append(_name)
 
-      var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
-      _createdWidget.append(_player)
+      //var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
+      //_createdWidget.append(_player)
 
       _playerButton.on('click', function(){
         if(document.querySelector(".map").style.display == 'none'){
@@ -62,29 +69,26 @@
         }
       })
 
-      _createdWidget.append(_playerButton)
+      _selectPlayer.append(_playerButton)
     })
 
     var locationsInfo = stats.personal_info.locations
     if(locationsInfo)
       var emptyLocations = Object.keys(locationsInfo)
 
-
-    _createdWidget.append(_selectRoomLabel);
-
     stats.locations.forEach(function(location){
 
       if(emptyLocations)
         location.empty = emptyLocations.includes(location.uuid)
 
-      var _room = ns.Widgets.Room(location, actions, slotWidget).render()
-      _createdWidget.append(_room)
+      // var _room = ns.Widgets.Room(location, actions, slotWidget).render()
+      // _createdWidget.append(_room)
 
       var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
         _room.addClass('map_selected')
       })
 
-      _createdWidget.append(_locationButton.render())
+      _selectRoom.append(_locationButton.render())
     })
 
     return {
