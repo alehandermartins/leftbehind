@@ -3,7 +3,7 @@
 
 	ns.Widgets = ns.Widgets || {}
 
-  ns.Widgets.DayTargetSelector = function(slotWidget, stats){
+  ns.Widgets.DayTargetSelector = function(slotWidget, actionSelector, stats){
     var actions = LB.Actions(stats)
     var _createdWidget = $(crel('div'))
 
@@ -82,9 +82,15 @@
         location.empty = emptyLocations.includes(location.uuid)
 
       var _room = ns.Widgets.Room(location, actions, slotWidget).render()
-      // _createdWidget.append(_room)
+      actionSelector.append(_room)
 
       var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
+        $(".targetSelector").animateCss("fadeOutRight", function(){
+          actionSelector.css('display', 'block');
+          _room.css('display', 'block');
+          $(".targetSelector").css('display', 'none');
+          actionSelector.addClass("animated fadeInRight");
+        });
       })
 
       _selectRoom.append(_locationButton.render())
@@ -128,9 +134,10 @@
     if(location.status == 'locked')
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
 
-    var _createdWidget = $(crel('div')).addClass('col-12')
+    var _createdWidget = $(crel('div'))
     var _background = $(crel('div')).addClass('room uuid'+ location.uuid + ' col-12')
-    
+    _createdWidget.append(_background)
+
     if(location.status == 'marked'){
       var _ia = $(crel('div')).addClass('ia')
       _createdWidget.append(_ia)
@@ -143,7 +150,7 @@
         action.run(location, slotWidget)
       }).render()
 
-      _background.append(_actionButton)
+      _createdWidget.append(_actionButton)
     }
 
     if(!location.empty)
@@ -161,7 +168,6 @@
       addActionButton('escape')
     }
 
-    _createdWidget.append(_background)
     _createdWidget.hide()
 
     return {
