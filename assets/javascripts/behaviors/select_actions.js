@@ -5,36 +5,42 @@ LB.selectActions = function(stats){
 
   var _headerWidget = LB.Widgets.Header(stats);
   var _informationWidget = LB.Widgets.Information(stats);
+  
   var _dayPlanningWidget = LB.Widgets.DayPlanning(LB.SLOTS, LB.Actions(stats));
-  var _actionSelectorWidget = LB.Widgets.ActionSelector(_dayPlanningWidget, stats);
+  var _targetSelectorWidget = LB.Widgets.DayTargetSelector(_dayPlanningWidget, stats);
   var _sendActionsButtonWidget = LB.Widgets.SendActionsButton(_dayPlanningWidget);
+  
   var _content = $(crel('div')).addClass('content');
-  var _mainDisplay = $(crel('div')).addClass('playgorund row'); 
+  var _playGround = $(crel('div')).addClass('playground row'); 
   var _sidebar = $(crel('div')).addClass('sidebar col-2');
-  var _selections = $(crel('div')).addClass('selections col-10');
-  var _map = $(crel('div')).addClass('map col-10');
+  
+  var _dayPlanner = $(crel('div')).addClass('dayPlanner col-10');
+  var _targetSelector = $(crel('div')).addClass('targetSelector col-10');
+  var _actionSelector = $(crel('div')).addClass('actionsSelector col-10');
 
-  _map.css('display', 'none');
+  _targetSelector.css('display', 'none');
+  _actionSelector.css('display', 'none');
 
-  _mainDisplay.append(
+  _playGround.append(
     _sidebar,
-    _selections,
-    _map
+    _dayPlanner,
+    _targetSelector,
+    _actionSelector
   )
 
-  _selections.append(
+  _dayPlanner.append(
     _dayPlanningWidget.render(),
     _sendActionsButtonWidget.render(),
   )
 
-  _map.append(
-    _actionSelectorWidget.render()
+  _targetSelector.append(
+    _targetSelectorWidget.render()
   )
 
   _content.append(
     _headerWidget.render(),
     _informationWidget.render(),
-    _mainDisplay
+    _playGround
   )
 
   dayContainer.append(

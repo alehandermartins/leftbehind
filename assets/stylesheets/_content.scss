@@ -2,12 +2,12 @@
   flex: 1 0 80%;
 }
 
-.playgorund {
+.playground {
   background-color: $main_lighter;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
 
-.selections, .map {
+.dayPlanner, .targetSelector, .actionSelector {
   background-color: $main_lighter;
 }

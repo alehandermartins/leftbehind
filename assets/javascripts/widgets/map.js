@@ -3,7 +3,7 @@
 
 	ns.Widgets = ns.Widgets || {}
 
-  ns.Widgets.ActionSelector = function(slotWidget, stats){
+  ns.Widgets.DayTargetSelector = function(slotWidget, stats){
     var actions = LB.Actions(stats)
     var _createdWidget = $(crel('div'))
 
@@ -81,11 +81,10 @@
       if(emptyLocations)
         location.empty = emptyLocations.includes(location.uuid)
 
-      // var _room = ns.Widgets.Room(location, actions, slotWidget).render()
+      var _room = ns.Widgets.Room(location, actions, slotWidget).render()
       // _createdWidget.append(_room)
 
       var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
-        _room.addClass('map_selected')
       })
 
       _selectRoom.append(_locationButton.render())

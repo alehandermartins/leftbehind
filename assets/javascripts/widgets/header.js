@@ -44,11 +44,10 @@
 
       _playerButton.append(_name)
       _playerButton.append(_wrapper)
-    avatar.append(_playerButton)
+      avatar.append(_playerButton)
     })
 
     _createdWidget.append(avatar)
-
 
     var _info = $(crel('div')).addClass('info col-10')
     _createdWidget.append(_info)
