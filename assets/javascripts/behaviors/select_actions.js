@@ -26,7 +26,7 @@ LB.selectActions = function(stats){
     _dayPlanner,
     _targetSelector,
     _actionSelector
-  )
+  );
 
   _dayPlanner.append(
     _dayPlanningWidget.render(),
@@ -35,13 +35,13 @@ LB.selectActions = function(stats){
 
   _targetSelector.append(
     _targetSelectorWidget.render()
-  )
+  );
 
   _content.append(
     _headerWidget.render(),
     _informationWidget.render(),
     _playGround
-  )
+  );
 
   dayContainer.append(
     _content

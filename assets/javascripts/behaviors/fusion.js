@@ -15,7 +15,8 @@ LB.fusion = function(stats){
   _playGround.append(
     _sidebar,
     _fusionWidget.render()
-  )
+  );
+  
   _content.append(
     _headerWidget.render(),
     _informationWidget.render(),
