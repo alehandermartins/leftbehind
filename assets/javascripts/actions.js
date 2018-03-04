@@ -96,18 +96,14 @@
           }
         },
         hack:{
-          label: ':computer:',
+          label: ns.t.html('action.hack.label'),
           buildLabel: function(payload){
             var location_label = ns.t.text('locations_labels.' + payload.location)
-            return ns.t.html('action.hack.label', {location: location_label})
+            return ns.t.html('action.hack.selection', {location: location_label})
           },
           run: function(location, slotWidget) {
-            var modalTitle = ns.t.html('action.hack.modalTitle', {location: ns.t.html('locations_labels.' + location.uuid)})
-            var list = [{name: ns.t.html('action.hack.list')}]
-            ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-              var _builtAction = {name: 'hack', payload: {location: location.uuid}}
-              slotWidget.selectActionForCurrentSlot(_builtAction)
-            })
+            var _builtAction = {name: 'hack', payload: {location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
           },
           showResult: function(result){
             console.log(result)
@@ -322,9 +318,9 @@
           }
         },
         unlock: {
-          label: ':unlock:',
+          label: ns.t.html('action.unlock.label'),
           buildLabel: function(payload){
-            return ns.t.html('action.unlock.label', {location: ns.t.html('locations_labels.' + payload.location)})
+            return ns.t.html('action.unlock.selection', {location: ns.t.html('locations_labels.' + payload.location)})
           },
           showResult: function(result){
             var _label = result.status
@@ -336,12 +332,8 @@
             return resultLabel
           },
           run: function(location, slotWidget) {
-            var modalTitle = ns.t.html('action.unlock.modalTitle', {location: ns.t.html('locations_labels.' + location.uuid)})
-            var list = [{name: ns.t.html('action.unlock.list')}]
-            ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-              var _builtAction = {name: 'unlock', payload: {location: location.uuid}}
-              slotWidget.selectActionForCurrentSlot(_builtAction)
-            })
+            var _builtAction = {name: 'unlock', payload: {location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
         work: {

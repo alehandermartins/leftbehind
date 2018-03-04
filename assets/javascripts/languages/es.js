@@ -124,9 +124,8 @@
         }
       },
       hack: {
-        label: ':computer: %{location}',
-        list: ':computer: (necesita 2 :energy:)',
-        modalTitle: 'Hakiar %{location}',
+        label: 'Hackear (:energy: 2)',
+        selection: 'Hackear %{location}',
         result: {
           no_materials: "No disponías de las :energy: necesarias",
           redundancy: "Esta habitación ya ha sido hakiada",
@@ -191,9 +190,8 @@
         }
       },
       unlock: {
-        label: 'Desbloquear %{location}',
-        list: ':unlock: (necesita 2 :energy:)',
-        modalTitle: 'Desbloqua %{location}',
+        label: 'Desbloquear (:energy: 2)',
+        selection: 'Desbloquear %{location}',
         result: {
           no_materials: "No disponías de las :energy: necesarias",
           redundancy: "Esta habitación ya ha sido desbloqueada",

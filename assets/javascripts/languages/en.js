@@ -124,9 +124,8 @@
         }
       },
       hack: {
-        label: ':computer: the %{location}',
-        list: ':computer: (spends 2 :energy:)',
-        modalTitle: 'Hack the %{location}',
+        label: 'Hack (:energy: 2)',
+        selection: 'Hack the %{location}',
         result: {
           no_materials: "You didn't have the needed :energy:",
           redundancy: "Already hacked",
@@ -191,9 +190,8 @@
         }
       },
       unlock: {
-        label: 'Unlock the %{location}',
-        list: ':unlock: (spends 2 :energy:)',
-        modalTitle: 'Unlock the %{location}',
+        label: 'Unlock (:energy: 2)',
+        selection: 'Unlock the %{location}',
         result: {
           no_materials: "You didn't have the needed :energy:",
           redundancy: "Already unlocked",
