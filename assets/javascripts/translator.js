@@ -30,7 +30,6 @@
     }
 
     var _html = function(key, interpolations){
-      console.log(key)
       var translated = _text(key, interpolations)
 
       return emojione.shortnameToImage(imager.replace(translated))
