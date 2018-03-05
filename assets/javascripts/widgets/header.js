@@ -23,10 +23,10 @@
       if(player != ns.playerUuid())
         return
 
-      var _wrapper = $(crel('div')).addClass('avatarWrapper')
       var _playerButton = $(crel('div')).addClass('player')
+      var _wrapper = $(crel('div')).addClass('avatarWrapper')
       var _avatar = $(crel('div')).addClass('avatar')
-      var _name = $(crel('div')).addClass('name text-center').text(_players[player].name)
+      var _name = $(crel('div')).addClass('name').text(_players[player].name)
       var _status = 'lagging'
       var _role =_players[player].role
 
@@ -42,8 +42,8 @@
 
       _wrapper.append(_avatar)
 
-      _playerButton.append(_name)
       _playerButton.append(_wrapper)
+      _playerButton.append(_name)
       avatar.append(_playerButton)
     })
 

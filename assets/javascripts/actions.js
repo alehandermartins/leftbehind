@@ -313,6 +313,7 @@
             ]
             ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
               var _builtAction = {name: 'steal', payload: {target: target, resource: selection[0].name}}
+              console.log(_builtAction);
               slotWidget.selectActionForCurrentSlot(_builtAction)
             })
           }

@@ -8,7 +8,6 @@ LB.fusion = function(stats){
   var _sidebar = $(crel('div')).addClass('sidebar col-2');
 
   var _headerWidget = LB.Widgets.Header(stats);
-  var _players = LB.Widgets.Players(stats);
   var _informationWidget = LB.Widgets.Information(stats);
   var _fusionWidget = LB.Widgets.Fusion(stats);
 

@@ -32,32 +32,12 @@
 
     }).forEach(function(player){
       _players[player].uuid = player
-      var _playerButton = $(crel('div')).addClass('player col-4')
-      var _wrapper = $(crel('div')).addClass('avatarWrapper')
-      var _avatar = $(crel('div')).addClass('avatar')
-      var _name = $(crel('div')).addClass('name').text(_players[player].name)
-      var _status = 'lagging'
-      var _role =_players[player].role
-
-      if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
-        _status = 'wont-play'
-      else
-        if (_players[player].stage == 'wait' || _players[player].status == 'escaped')
-          _status = 'ahead';
-
-      _avatar.addClass(_status)
-      _avatar.addClass(_role)
-      _avatar.addClass(player)
-
-      _wrapper.append(_avatar)
-
-      _playerButton.append(_wrapper)
-      _playerButton.append(_name)
+      var _playerAvatar = LB.Widgets.PlayerAvatar(_players[player]).render();
 
       var _player = LB.Widgets.Player(_players[player], actions, slotWidget).render()
       actionSelector.append(_player)
 
-      _playerButton.on('click', function(){
+      _playerAvatar.on('click', function(){
         $(".targetSelector").animateCss("fadeOutRight", function(){
           actionSelector.css('display', 'block');
           _player.addClass('selected-room');
@@ -67,7 +47,7 @@
         });
       })
 
-      _selectPlayer.append(_playerButton)
+      _selectPlayer.append(_playerAvatar)
     })
 
     var locationsInfo = stats.personal_info.locations
@@ -112,7 +92,7 @@
       var currentActionLabel = action.label;
       var _actionButton = ns.Widgets.Button(currentActionLabel, function(){
         action.run(location, slotWidget)
-      }).render()
+      }, 12).render()
 
       _createdWidget.append(_actionButton)
     }
@@ -146,7 +126,7 @@
       var currentActionLabel = action.label;
       var _actionButton = ns.Widgets.Button(currentActionLabel, function(){
         action.run(location, slotWidget)
-      }).render()
+      }, 12).render()
 
       _createdWidget.append(_actionButton)
     }
@@ -174,40 +154,4 @@
       }
     }
   }
-
-  ns.Widgets.Player = function(player, actions, slotWidget){
-    var _createdWidget = $(crel('div')).addClass('col-12')
-    var _background = $(crel('div')).addClass('room col-12')
-
-    var addActionButton = function(action){
-      var action = actions[action];
-      var currentActionLabel = action.label;
-      var _actionButton = ns.Widgets.Button(currentActionLabel, function(){
-        action.run(player.uuid, slotWidget)
-      }).render()
-
-      _background.append(_actionButton)
-    }
-
-    var _name = $(crel('div')).addClass('name').text(player.name)
-    _background.append(_name)
-    addActionButton('share')
-
-    if(player.uuid == LB.playerUuid()){
-      addActionButton('defend')
-    }else{
-      addActionButton('spy')
-      addActionButton('steal')
-    }
-
-    _createdWidget.append(_background)
-    _createdWidget.hide()
-
-    return {
-      render: function(){
-        return _createdWidget;
-      }
-    }
-  }
-
 }(LB || {}))

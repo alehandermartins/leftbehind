@@ -7,5 +7,5 @@
 // = require ./fusion
 // = require ./header
 // = require ./favicon
-// = require ./players
-// = require ./map
+// = require ./player
+// = require ./targetSelector
