@@ -89,7 +89,7 @@
 
     var addActionButton = function(action){
       var action = actions[action];
-      var currentActionLabel = action.label;
+      var currentActionLabel = action.label();
       var _actionButton = ns.Widgets.Button(currentActionLabel, function(){
         action.run(location, slotWidget)
       }, 12).render()
@@ -123,7 +123,7 @@
 
     var addActionButton = function(action){
       var action = actions[action];
-      var currentActionLabel = action.label;
+      var currentActionLabel = action.label();
       var _actionButton = ns.Widgets.Button(currentActionLabel, function(){
         action.run(location, slotWidget)
       }, 12).render()

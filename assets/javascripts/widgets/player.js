@@ -3,30 +3,26 @@
 
 	ns.Widgets.Player = function(player, actions, slotWidget){
     var _createdWidget = $(crel('div')).addClass('col-12')
-    var _background = $(crel('div')).addClass('room col-12')
+    var _playerAvatar = LB.Widgets.PlayerAvatar(player).render()
 
-    var addActionButton = function(action){
+    _createdWidget.append(_playerAvatar)
+
+    var addActionButton = function(action, resource){
       var action = actions[action];
-      var currentActionLabel = action.label;
+      var currentActionLabel = action.label(resource);
       var _actionButton = ns.Widgets.Button(currentActionLabel, function(){
-        action.run(player.uuid, slotWidget)
+        action.run(player.uuid, slotWidget, resource)
       }, 12).render()
 
-      _background.append(_actionButton)
+      _createdWidget.append(_actionButton)
     }
 
-    var _name = $(crel('div')).addClass('name').text(player.name)
-    _background.append(_name)
-    addActionButton('share')
+    addActionButton('share', 'food')
+    addActionButton('share', 'helmet')
+    addActionButton('steal')
+    addActionButton('spy')
+    addActionButton('defend')
 
-    if(player.uuid == LB.playerUuid()){
-      addActionButton('defend')
-    }else{
-      addActionButton('spy')
-      addActionButton('steal')
-    }
-
-    _createdWidget.append(_background)
     _createdWidget.hide()
 
     return {
@@ -37,7 +33,7 @@
   }
 
   ns.Widgets.PlayerAvatar = function(player){
-    var _playerAvatar = $(crel('div')).addClass('player col-4')
+    var _playerAvatar = $(crel('div')).addClass('player text-center col-4')
     var _wrapper = $(crel('div')).addClass('avatarWrapper')
     var _avatar = $(crel('div')).addClass('avatar')
     var _name = $(crel('div')).addClass('name').text(player.name)

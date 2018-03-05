@@ -43,7 +43,9 @@
           }
         },
         defend: {
-          label: ':defend:',
+          label: function(){
+            return ns.t.html('action.defend.label')
+          },
           buildLabel: function(payload){
             return ns.t.html('action.defend.label');
           },
@@ -77,7 +79,9 @@
           }
         },
         escape: {
-          label: ':escape:',
+          label: function(){
+            return ns.t.html('action.escape.label');
+          },
           buildLabel: function(payload){
             return ns.t.html('action.escape.label');
           },
@@ -96,7 +100,9 @@
           }
         },
         hack:{
-          label: ns.t.html('action.hack.label'),
+          label: function(){
+            return ns.t.html('action.hack.label')
+          },
           buildLabel: function(payload){
             var location_label = ns.t.text('locations_labels.' + payload.location)
             return ns.t.html('action.hack.selection', {location: location_label})
@@ -117,7 +123,9 @@
           }
         },
         oxygen:{
-          label: ':food:',
+          label: function(){
+            return ':food:'
+          },
           buildLabel: function(){
             return ns.t.html('action.oxygen.label')
           },
@@ -132,10 +140,12 @@
           }
         },
         search: {
-          label: ':search:',
+          label: function(){
+            return ns.t.html('action.search.label')
+          },
           buildLabel: function(payload){
             var location_label = ns.t.text('locations_labels.' + payload.location);
-            return ns.t.html('action.search.label', {location: location_label});
+            return ns.t.html('action.search.selection', {location: location_label});
           },
           showResult: function(result, players){
             var _coworkers = [];
@@ -222,41 +232,30 @@
           }
         },
         share: {
-          label: ':gift:',
+          label: function(resource){
+            return ns.t.html('action.share.label', {resource: [':', ':'].join(resource)});
+          },
           buildLabel: function(payload){
-            var targetName = 'Team'
-            if(payload.target != 'team')
-              targetName = stats.players[payload.target].name
-
-            return ns.t.html('action.share.label', {resource: [':', ':'].join(payload.resource), target: targetName});
+            var targetName = stats.players[payload.target].name
+            return ns.t.html('action.share.selection', {resource: [':', ':'].join(payload.resource), target: targetName});
           },
           showResult: function(result){
             var resultLabel = $(crel('div')).addClass('col-12')
             resultLabel.html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)).addClass('unpadded')
             return resultLabel
           },
-          run: function(target, slotWidget) {
-            var targetName
-            if(target == LB.playerUuid()){
-              target = 'team'
-              targetName = ':team:'
-            }
-            else
-              targetName = stats.players[target].name
-
-            var list = _giftables(target)
-            var modalTitle = ns.t.html('action.share.modalTitle', {target: targetName})
-            ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-              var _builtAction = {name: 'share', payload: {target: target, resource: selection[0].name}}
-              slotWidget.selectActionForCurrentSlot(_builtAction)
-            })
+          run: function(target, slotWidget, resource) {
+            var _builtAction = {name: 'share', payload: {target: target, resource: resource}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
         spy: {
-          label: ':spy:',
+          label: function(){
+            return ns.t.html('action.spy.label')
+          },
           buildLabel: function(payload){
             var targetName = stats.players[payload.target].name
-            return ns.t.html('action.spy.label', {target: targetName});
+            return ns.t.html('action.spy.selection', {target: targetName});
           },
           showResult: function(result, players){
             var _resultLabel;
@@ -284,10 +283,12 @@
           }
         },
         steal: {
-          label: ':steal:',
+          label: function(){
+            return ns.t.html('action.steal.label')
+          },
           buildLabel: function(payload){
             var targetName = stats.players[payload.target].name
-            return ns.t.html('action.steal.label', {resource: [':', ':'].join(payload.resource), target: targetName});
+            return ns.t.html('action.steal.selection', {resource: [':', ':'].join(payload.resource), target: targetName});
           },
           showResult: function(result, players){
             var _resultLabel;
@@ -307,19 +308,14 @@
             return resultLabel;
           },
           run: function(target, slotWidget){
-            var modalTitle = ns.t.html('action.steal.modalTitle')
-            var list = [
-              {label: ':helmet:', name: 'helmet', uuid:'3'}
-            ]
-            ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-              var _builtAction = {name: 'steal', payload: {target: target, resource: selection[0].name}}
-              console.log(_builtAction);
-              slotWidget.selectActionForCurrentSlot(_builtAction)
-            })
+            var _builtAction = {name: 'steal', payload: {target: target, resource: 'helmet'}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
         unlock: {
-          label: ns.t.html('action.unlock.label'),
+          label: function(){
+            return ns.t.html('action.unlock.label')
+          },
           buildLabel: function(payload){
             return ns.t.html('action.unlock.selection', {location: ns.t.html('locations_labels.' + payload.location)})
           },
@@ -338,7 +334,9 @@
           }
         },
         work: {
-          label: ':work:',
+          label: function(){
+            return ns.t.html('action.work.label')
+          },
           buildLabel: function(payload){
             return ns.t.html('action.work.label');
           },
@@ -352,12 +350,8 @@
             return resultLabel;
           },
           run: function(location, slotWidget) {
-            var list = [{name: ns.t.html('action.work.list'), uuid:'escape_shuttle'}]
-            var modalTitle = ns.t.html('action.work.modalTitle')
-            ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-              var _builtAction = {name: 'work', payload: {item: 'escape shuttle', location: location.uuid}}
-              slotWidget.selectActionForCurrentSlot(_builtAction)
-            })
+            var _builtAction = {name: 'work', payload: {item: 'escape shuttle', location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         }
       }

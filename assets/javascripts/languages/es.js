@@ -87,7 +87,7 @@
       defend:{
         tutorialTitle: 'Tutorial: Defenderse',
         tutorialInfo: '¿No te sientes seguro entre tanto mentiroso?. Defiéndete para evitar que te espien o te roben. Además sabrás quien va detras tuya...',
-        label: ':defend:',
+        label: ':defend: Defenderte',
         result: {
           attack_defended: 'Se defendió y te pateó el culo!!',
           spy_defended: '%{player} te estaba espiando.',
@@ -103,9 +103,9 @@
         }
       },
       escape:{
+        label: 'Escapar',
         tutorialTitle: 'Tutorial: Escapar',
         tutorialInfo: 'Es hora de abandonar esta trampa mortal, ¿tienes puesto el :helmet:?...Aseguraos de abandonar la nave al mismo tiempo o dejaréis atrás a los demás...y no queréis que eso pase... ¿verdad?',
-        label: ':escape:',
         result: {
           success: 'Enciendes los motores y te marchas...',
           helmet_needed: 'Necesitas un :helmet: para sobrevivir en la cápsula',
@@ -151,9 +151,10 @@
         }
       },
       search: {
+        label: ':search: Buscar',
+        selection: ':search: Buscar en %{location}',
         tutorialTitle: 'Tutorial: Buscar',
         tutorialInfo: 'Explora en las diferentes :locations: de la nave para encontrar recursos... o algo útil. Encontrarás una recurso cada vez que busques. Si dos o más jugadores visitan la misma habitación al mismo tiempo los recursos se añadirán al inventario del :team:.',
-        label: ':search: en %{location}',
         result: {
           nothing: 'No encontraste nada. ',
           bounty: 'Encontraste %{resources}',
@@ -165,7 +166,8 @@
         }
       },
       share: {
-        label: ':gift: %{resource} a %{target}',
+        label: 'Dar %{resource}',
+        selection: 'Dar %{resource} a %{target}',
         modalTitle: 'Qué quieres dar a %{target}?',
         result: {
           teamReceived: ':arrows_clockwise: El :team: recibió: ',
@@ -174,16 +176,15 @@
         }
       },
       spy:{
+        label: 'Espiar',
+        selection: 'Espiar a %{target}',
         tutorialTitle: 'Tutorial: Espiar',
         tutorialInfo: 'Espiar te permite conocer lo que estaba haciendo un jugador en un determinado momento. Además conocerás su inventario.',
-        label: ':spy: a %{target}',
         targetInventory: 'Inventario de %{target}: %{resources}'
       },
       steal:{
-        modalTitle: '¿Qué quieres robar...',
-        tutorialTitle: 'Tutorial: Robar',
-        tutorialInfo: 'Puedes coger cosas a los otros jugadores. Sólo puedes robar a un mismo jugador una vez por hora.',
-        label: ':steal: %{resource} a %{target}',
+        label: 'Robar :helmet:',
+        selection: 'Robar %{resource} a %{target}',
         result: {
           empty: 'No tenía nada',
           bounty: 'Robaste %{resources}'
@@ -207,11 +208,9 @@
         }
       },
       work:{
-        list: 'Reparar el :shuttle: (necesita 1 :parts:)',
-        modalTitle: 'A trabajar...',
+        label: 'Reparar el :shuttle: (:parts: 1)',
         tutorialTitle: 'Tutorial: Trabajar',
         tutorialInfo: 'Nadie va a venir a rescatarte. Será mejor que te pongas manos a la obra para arreglar este desastre',
-        label: ':work: el :shuttle:',
         result: {
           success: 'Bien hecho, ya queda menos...',
           broken_shuttle: 'El :shuttle: aun necesita reparaciones',
