@@ -4,10 +4,26 @@
 
 .playground {
   background-color: $main_lighter;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
 }
 
 .dayPlanner, .targetSelector, .actionSelector {
   background-color: $main_lighter;
+}
+
+.sidebar {
+	padding: 0;
+  
+  .dayPlannerToggler {
+  	height: 20%;
+  	display: flex;
+  	align-items: center;
+  	cursor: pointer;
+  	border: 2px outset $main_lighter;
+  	&.active {
+  		border: 2px inset $main_lighter;
+  	}
+  	.emojione {
+  		margin: auto;
+  	}
+  }
 }

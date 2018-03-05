@@ -1,9 +1,8 @@
 @import 'colors';
 
 .content > .header {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   background-color: $main_lighter;
+  border: 2px outset $main_lighter;
 
   .personal {
     height: 50%;

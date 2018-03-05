@@ -39,6 +39,8 @@
 
       _playerAvatar.on('click', function(){
         $(".targetSelector").animateCss("fadeOutRight", function(){
+          $(".targetSelector").removeClass('active');
+          actionSelector.addClass('active');
           actionSelector.css('display', 'block');
           _player.addClass('selected-room');
           _player.css('display', 'block');
@@ -64,6 +66,8 @@
 
       var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
         $(".targetSelector").animateCss("fadeOutRight", function(){
+          $(".targetSelector").removeClass('active');
+          actionSelector.addClass('active');
           actionSelector.css('display', 'block');
           _room.addClass('selected-room');
           _room.css('display', 'block');

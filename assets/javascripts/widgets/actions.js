@@ -5,6 +5,10 @@
 
   ns.Widgets.DayPlanning = function(slots, actions){
     var _createdWidget = $(crel('div')).addClass('day_planning');
+    var _tutotial = $(crel('div')).addClass('col-12 text-center');
+    _tutotial.text('Puedes realizar 4 acciones durante la siguiente hora. Cuando hayas escogido pulsa "Enviar"');
+    _createdWidget.append(_tutotial);
+
     var _slots = {};
     var _currentSlot = '';
     var _selectedActions = {};
@@ -12,6 +16,9 @@
     slots.forEach(function(slot){
       _slots[slot.name] = ns.Widgets.TimeSlot(slot, '', function(slot){
         $(".dayPlanner").animateCss("fadeOutRight", function(){
+          $(".dayPlanner").removeClass('active');
+          $(".dayPlannerToggler").removeClass('active');
+          $(".targetSelector").addClass('active');
           $(".targetSelector").css('display', 'block');
           $(".dayPlanner").css('display', 'none');
           $(".targetSelector").animateCss("fadeInRight");
@@ -32,6 +39,9 @@
       _selectedActions[_currentSlot] = action;
       _next();
       $(".actionSelector").animateCss("fadeOutRight", function(){
+        $(".actionSelector").removeClass('active');
+        $(".dayPlanner").addClass('active');
+        $(".dayPlannerToggler").addClass('active');
         $(".dayPlanner").css('display', 'block');
         $(".actionSelector").css('display', 'none');
         $(".selected-room").css('display', 'none');
