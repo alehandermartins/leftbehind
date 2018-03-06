@@ -1,10 +1,6 @@
 module LB
   module Cooperative
 
-    def bounties
-      @bounties ||= Hash.new { 0 }
-    end
-
     def mates
       cowork_actions.map { |the_action|
         the_action.performer

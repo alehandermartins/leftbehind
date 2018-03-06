@@ -41,10 +41,8 @@
         $(".targetSelector").animateCss("fadeOutRight", function(){
           $(".targetSelector").removeClass('active');
           actionSelector.addClass('active');
-          actionSelector.css('display', 'block');
           _player.addClass('selected-room');
           _player.css('display', 'block');
-          $(".targetSelector").css('display', 'none');
           actionSelector.animateCss("fadeInRight");
         });
       })
@@ -68,10 +66,8 @@
         $(".targetSelector").animateCss("fadeOutRight", function(){
           $(".targetSelector").removeClass('active');
           actionSelector.addClass('active');
-          actionSelector.css('display', 'block');
           _room.addClass('selected-room');
           _room.css('display', 'block');
-          $(".targetSelector").css('display', 'none');
           actionSelector.animateCss("fadeInRight");
         });
       })

@@ -151,8 +151,6 @@
         result: {
           nothing: 'You found nothing. ',
           bounty: 'You found %{resources}',
-          coworker:'%{coworker} was with you.',
-          coworkers: '%{coworkers} and %{coworker} were with you.',
           itemfound: 'You found a %{item}.',
           itemfounder: '%{founder} found a %{item}.'
         }
@@ -255,8 +253,7 @@
     },
     results: {
       label: 'Results %{day}:',
-      general: 'GENERAL INFO',
-      personal: 'PERSONAL INFO'
+      general: 'GENERAL INFO'
     },
     logs: {
       day: 'Hour %{day}:',

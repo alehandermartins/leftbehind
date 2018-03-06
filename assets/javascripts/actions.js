@@ -69,7 +69,9 @@
               _resultLabel = ns.t.text('action.defend.result.nobody_defended');
             }
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
             return resultLabel;
           },
@@ -91,7 +93,10 @@
               _resultLabel = result.info.reason;
             else{_resultLabel = ns.t.html('action.escape.result.success')};
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
             return resultLabel;
           },
           run: function(location, slotWidget) {
@@ -117,9 +122,11 @@
             if(result.status == "fail")
               _label = result.info.reason
 
-            var _resultLabel = ns.t.html('action.hack.result.' +  _label )
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
-            return resultLabel
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
           }
         },
         oxygen:{
@@ -131,8 +138,11 @@
           },
           showResult: function(result){
             var _resultLabel = ns.t.html('action.oxygen.result.' +  result.status )
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel() + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
-            return resultLabel
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
           },
           run: function(location, slotWidget){
             var _builtAction = {name: 'oxygen', payload: {location: location.uuid}}
@@ -148,81 +158,21 @@
             return ns.t.html('action.search.selection', {location: location_label});
           },
           showResult: function(result, players){
-            var _coworkers = [];
-            result.info.mates.forEach(function(mate){
-              if(mate != result.performer)
-                _coworkers.push(players[mate].name);
-            });
-            var _resources = [];
-            var _resultLabel = '';
-
-            var _showcoworkers = function(){
-              var _label = "";
-
-              if (_coworkers.length == 1){
-                _label += ns.t.text('action.search.result.coworker', {coworker: _coworkers[0]})
-                return $(crel('div')).addClass('col-12').html(_label)
-              }
-
-              var _lastcoworker = _coworkers.pop()
-              _label += ns.t.text('action.search.result.coworkers', {coworkers: _coworkers.join(', '), coworker: _lastcoworker})
-              return $(crel('div')).addClass('col-12').html(_label)
-            }
-
             var _showbounty = function(){
               if (Object.keys(result.bounty).length == 0)
                 return ns.t.html('action.search.result.nothing')
 
-              _resources = Object.keys(result.bounty).map(function(resource){
+              var _resources = Object.keys(result.bounty).map(function(resource){
                 return [':', ':'].join(resource) + ' ' + result.bounty[resource]
               })
 
-              if(_coworkers.length > 0){
-                var _basicResources = Object.keys(result.bounty).filter(function(resource){
-                  return ['energy', 'parts'].includes(resource)
-                })
-
-                if (_basicResources.length == 0)
-                  return ns.t.html('action.search.result.nothing')
-                
-                var _showResources = _basicResources.map(function(resource){
-                  return [':', ':'].join(resource) + ' ' + result.bounty[resource]
-                })
-                return ns.t.html('action.search.result.bounty', {resources: _showResources.join(', ')})
-              }
-
-              return ns.t.html('action.search.result.bounty', {resources: _resources.join(', ')})
+              return ns.t.html('action.search.result.bounty', {resources: _resources})
             }
 
-            var _specialItem = function(){
-              var _findings = [];
-              Object.keys(result.info).forEach(function(mate){
-                if (mate != 'mates'){
-                  if (mate == result.performer)
-                    _findings.push(ns.t.html('action.search.result.itemfound', {item: [':', ':'].join(result.info[mate])}));
-                  else{
-                    var _name = players[mate].name;
-                    _findings.push(ns.t.html('action.search.result.itemfounder', {founder: _name, item: [':', ':'].join(result.info[mate])}));
-                  }
-                }
-              });
-
-              if (_findings.length > 0){
-                var _label = _findings.join(', ');
-                return $(crel('div')).addClass('col-12').html(_label);
-              }
-              return false;
-            }
-
-            var _bounty = _showbounty();
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + _bounty).addClass('unpadded');
-            if (_coworkers.length > 0){
-              resultLabel.append(_showcoworkers());
-
-              if (_specialItem()){
-                resultLabel.append(_specialItem());
-              }
-            }
+            var _resultLabel = _showbounty();
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
             return resultLabel;
           },
@@ -273,7 +223,9 @@
               _resultLabel = ns.t.html(_inventoryLabel);
             }
 
-            resultLabel.html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload, players) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
             return resultLabel;
           },
@@ -303,7 +255,9 @@
                 _resultLabel = ns.t.text('action.steal.result.bounty', {resources: _resources});
               }
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': ' + this.buildLabel(result.payload, players) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
             return resultLabel;
           },
@@ -325,8 +279,11 @@
               _label = result.info.reason
 
             var _resultLabel = ns.t.html('action.unlock.result.' +  _label )
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
-            return resultLabel
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
           },
           run: function(location, slotWidget) {
             var _builtAction = {name: 'unlock', payload: {location: location.uuid}}
@@ -346,7 +303,10 @@
               _resultLabel = result.info.reason;
             else{_resultLabel = ns.t.html('action.work.result.success')};
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
             return resultLabel;
           },
           run: function(location, slotWidget) {

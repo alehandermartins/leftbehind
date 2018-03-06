@@ -19,8 +19,6 @@
           $(".dayPlanner").removeClass('active');
           $(".dayPlannerToggler").removeClass('active');
           $(".targetSelector").addClass('active');
-          $(".targetSelector").css('display', 'block');
-          $(".dayPlanner").css('display', 'none');
           $(".targetSelector").animateCss("fadeInRight");
         });
         _selectSlot(slot);
@@ -42,8 +40,6 @@
         $(".actionSelector").removeClass('active');
         $(".dayPlanner").addClass('active');
         $(".dayPlannerToggler").addClass('active');
-        $(".dayPlanner").css('display', 'block');
-        $(".actionSelector").css('display', 'none');
         $(".selected-room").css('display', 'none');
         $(".selected-room").removeClass('selected-room');
         $(".dayPlanner").animateCss("fadeInRight");

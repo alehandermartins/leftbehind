@@ -134,16 +134,15 @@
     };
   };
 
-  ns.Widgets.Information = function(stats){
-    var _createdWidget = $(crel('div')).addClass('row');
+  ns.Widgets.Results = function(stats){
+    var _createdWidget = $(crel('div'));
 
     var slotsToShow = {
       'actions': 2,
       'events': 4
     }
 
-    var personalInfo = stats.personal_info
-
+    var personalInfo = stats.personal_info;
     var slots = [];
     var _infos = [];
 
@@ -173,6 +172,7 @@
             var result = personalInfo[player][slot].result;
             if (personalInfo[player][slot].payload && personalInfo[player][slot].payload.target)
               result['target'] = personalInfo[player][slot].payload.target;
+            
             result['performer'] = player;
             result['payload'] = personalInfo[player][slot].payload;
             result['slot'] = slot;
@@ -180,14 +180,12 @@
 
             var _personalInfo = $(crel('div'));
             var _personalLabel = $(crel('span')).text(stats.players[player].name);
-
-            if (player == LB.playerUuid())
-              _personalLabel.text(ns.t.text('results.personal'))
-
             _personalLabel.css({'font-weight': 'bold'});
-            _personalInfo.append(_personalLabel);
-            _personalInfo.append(_action);
 
+            if (player != LB.playerUuid())
+             _personalInfo.append(_personalLabel);
+   
+            _personalInfo.append(_action);
             _personalInfos.push(_personalInfo);
           }
         });
@@ -209,7 +207,6 @@
             _info.append(_personalInfo)
           })
 
-          _info.hide()
           _infos.push(_info)
         }
       });
@@ -223,74 +220,7 @@
 
     return {
       render: function(){
-        var indx = 0
-
-        if (_infos.length > 0){
-          _infos[0].show()
-          bootbox.dialog({
-            title: ns.t.text('results.label', {day: stats.status.day}),
-            message: _createdWidget,
-            buttons: {
-              previous: {
-                label: "←",
-                className: "btn-primary previous",
-                callback: function() {
-                  nextButton.disabled = true
-                  okButton.disabled = true
-                  previousButton.disabled = true
-
-                  _infos[indx].hide("slide", { direction: "right" }, function(){
-                    _infos[indx - 1].show("slide", { direction: "left" }, function(){
-                      indx -= 1
-                      nextButton.disabled = false
-                      if (indx != 0)
-                        previousButton.disabled = false
-                    })
-                  })
-                  return false;
-                }
-              },
-              next: {
-                label: "→",
-                className: "btn-primary next",
-                callback: function() {
-                  nextButton.disabled = true
-                  okButton.disabled = true
-                  previousButton.disabled = true
-
-                  _infos[indx].hide("slide", { direction: "left" }, function(){
-                    _infos[indx + 1].show("slide", { direction: "right" }, function(){
-                      indx += 1
-                      previousButton.disabled = false
-                      if (indx != _infos.length - 1)
-                        nextButton.disabled = false
-                      else
-                        okButton.disabled = false
-                    })
-                  })
-                  return false
-                }
-              },
-              ok: {
-                label: "Ok",
-                className: 'btn-default ok',
-                callback: function(){
-                }
-              }
-          }
-          });
-
-          var previousButton = document.querySelector('.previous')
-          var nextButton = document.querySelector('.next')
-          var okButton = document.querySelector('.ok')
-          previousButton.disabled = true
-          okButton.disabled = true
-
-          if(_infos.length == 1){
-            nextButton.disabled = true
-            okButton.disabled = false
-          }
-        }
+        return _createdWidget;
       }
     };
   };

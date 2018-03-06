@@ -6,6 +6,7 @@
 // = require ./voting
 // = require ./fusion
 // = require ./header
+// = require ./sidebar
 // = require ./favicon
 // = require ./player
 // = require ./targetSelector

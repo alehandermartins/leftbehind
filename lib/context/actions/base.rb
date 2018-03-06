@@ -35,7 +35,7 @@ module LB
         @result[:status] = new_status
       end
 
-      def add_bounty new_bounty
+      def add_bounty new_bounty = {}
         @result = @result || {}
         @result[:bounty] = new_bounty
       end

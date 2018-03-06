@@ -159,8 +159,6 @@
           nothing: 'No encontraste nada. ',
           bounty: 'Encontraste %{resources}',
           teamInventory: '(Añadido al inventario del :team:). ',
-          coworker:'%{coworker} estuvo contigo.',
-          coworkers: '%{coworkers} y %{coworker} estuvieron contigo.',
           itemfound: 'Encontraste un %{item}.',
           itemfounder: '%{founder} encontró un %{item}.'
         }
@@ -255,8 +253,7 @@
     },
     results: {
       label: 'Resultados %{day}:',
-      general: 'INFO GENERAL',
-      personal: 'INFO PERSONAL'
+      general: 'INFO GENERAL'
     },
     logs: {
       day: 'Hora %{day}:',

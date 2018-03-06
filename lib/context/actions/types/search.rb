@@ -17,7 +17,7 @@ module LB
         action.add_status :success
 
         if flattened_inventory.empty?
-          action.add_bounty bounties
+          action.add_bounty
 
           (cowork_actions).each {|coworker_action|
             coworker_action.performer.information.add_to :locations, location, slot
@@ -27,13 +27,11 @@ module LB
         end
         found = flattened_inventory.sample(random: @context.random_generator)
 
-        bounties[found] += 1
         location_inventory[found] -= 1
-        action.add_bounty bounties
+        action.add_bounty Hash[found, 1]
       end
 
       run_multiple search
-
       @context
     end
 
@@ -41,21 +39,12 @@ module LB
       super context
       return @context unless success?
 
-      @context.team.inventory.add :energy, bounties[:energy] if bounties.has_key? :energy
-      @context.team.inventory.add :parts, bounties[:parts] if bounties.has_key? :parts
+      performer.inventory.add :helmet, bounty[:helmet] if bounty.has_key? :helmet
+      @context.team.inventory.add :energy, bounty[:energy] if bounty.has_key? :energy
+      @context.team.inventory.add :parts, bounty[:parts] if bounty.has_key? :parts
 
-      if bounties.has_key? :helmet
-        cowork_actions.sample(bounties[:helmet], random: @context.random_generator).each do |the_action|
-          the_action.performer.inventory.add :helmet, 1
-
-          cowork_actions.each {|coworker_action|
-            coworker_action.add_info the_action.performer.uuid => :helmet
-          }
-        end
-        bounties[:helmet] = 0
-      end
-      cowork_actions.each{ |coworker_action|
-        @context.players[performer.uuid].information.add_to(coworker_action.performer.uuid, slot, information(self.class.name, false))
+      mates.each {|mate|
+        mate.information.add_to(performer.uuid, slot, information(self.class.name, false))
       }
       performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
       @context

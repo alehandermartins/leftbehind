@@ -5,20 +5,31 @@ LB.fusion = function(stats){
 
   var _content = $(crel('div')).addClass('content');
   var _playGround = $(crel('div')).addClass('playground row'); 
-  var _sidebar = $(crel('div')).addClass('sidebar col-2');
+  var _sidebar = LB.Widgets.Sidebar(stats);
+
+  var _results = $(crel('div')).addClass('results active col-10');
+  var _dayPlanner = $(crel('div')).addClass('dayPlanner col-10');
 
   var _headerWidget = LB.Widgets.Header(stats);
-  var _informationWidget = LB.Widgets.Information(stats);
+  var _resultsWidget = LB.Widgets.Results(stats);
   var _fusionWidget = LB.Widgets.Fusion(stats);
 
   _playGround.append(
-    _sidebar,
+    _sidebar.render(),
+    _results,
+    _dayPlanner
+  );
+
+  _results.append(
+    _resultsWidget.render()
+  );
+
+  _dayPlanner.append(
     _fusionWidget.render()
   );
   
   _content.append(
     _headerWidget.render(),
-    _informationWidget.render(),
     _playGround
   );
 

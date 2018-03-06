@@ -6,21 +6,27 @@
   background-color: $main_lighter;
 }
 
-.dayPlanner, .targetSelector, .actionSelector {
+.dayPlanner, .results, .targetSelector, .actionSelector {
+  display: none;
   background-color: $main_lighter;
+  &.active {
+    display: block;
+  }
 }
 
 .sidebar {
 	padding: 0;
   
-  .dayPlannerToggler {
+  .dayPlannerToggler, .resultsToggler {
   	height: 20%;
+    min-height: 60px;
   	display: flex;
   	align-items: center;
   	cursor: pointer;
   	border: 2px outset $main_lighter;
   	&.active {
   		border: 2px inset $main_lighter;
+      background-color: $main_lighter;
   	}
   	.emojione {
   		margin: auto;

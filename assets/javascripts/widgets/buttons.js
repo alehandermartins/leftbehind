@@ -83,7 +83,7 @@
   };
 
   ns.Widgets.OKButton = function(){
-    var _createdWidget = $(crel('div')).addClass('col-10').addClass('send-shares');
+    var _createdWidget = $(crel('div')).addClass('send-shares');
     var _createdButton = ns.Widgets.SpinningButton('OK', function(){
       var _builtAction =  {'events': {name: 'none', payload: {}}}
       ns.Backend.daySelections(
