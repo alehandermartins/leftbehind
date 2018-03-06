@@ -6,7 +6,6 @@
   ns.Widgets.DayTargetSelector = function(slotWidget, actionSelector, stats){
     var actions = LB.Actions(stats)
     var _createdWidget = $(crel('div'))
-
     var _selectPlayer = $(crel('div')).addClass('row text-center');
     var _selectPlayerLabel = $(crel('div')).addClass('col-12').text('Select target');
 
