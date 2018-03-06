@@ -117,10 +117,9 @@
             slotWidget.selectActionForCurrentSlot(_builtAction)
           },
           showResult: function(result){
-            console.log(result)
-            var _label = result.status
+            var _resultLabel = result.status
             if(result.status == "fail")
-              _label = result.info.reason
+              _resultLabel = result.info.reason
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
