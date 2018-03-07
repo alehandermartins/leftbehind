@@ -13,30 +13,10 @@ LB.selectActions = function(stats){
   var _targetSelector = $(crel('div')).addClass('targetSelector col-10');
   var _actionSelector = $(crel('div')).addClass('actionSelector col-10');
 
-  var _back = $(crel('div'));
-  var _backLabel = $(crel('span')).text('Back ');
-  var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
-  _backLabel.append(_arrow);
-  _back.append(_backLabel);
-  _actionSelector.append(_back);
-  _back.addClass('col-12')
-  _back.css('text-align','right');
-  _backLabel.css('cursor', 'pointer');
-
   if(stats.current_slot == 0)
     _dayPlanner.addClass('active');
   else
     _results.addClass('active');
-
-  _backLabel.click(function(){
-    $('.actionSelector').animateCss("fadeOutRight", function(){
-      $('.actionSelector').removeClass('active');
-      $(".selected-room").css('display', 'none');
-      $(".selected-room").removeClass('selected-room');
-      $(".targetSelector").addClass('active');
-      $(".targetSelector").animateCss("fadeInRight");
-    });
-  });
 
   var _headerWidget = LB.Widgets.Header(stats);
   var _resultsWidget = LB.Widgets.Results(stats);

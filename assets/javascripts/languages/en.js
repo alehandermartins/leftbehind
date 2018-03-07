@@ -16,24 +16,14 @@
       }
     },
     locations: {
-      1:'bridge',
-      2:'cabins',
-      3:'weapons bay',
-      4:'infirmary',
-      5:'engines room',
-      6:'supplies room',
-      7:'life support',
-      8:'escape shuttle'
-    },
-    locations_labels: {
-      1:'bridge',
-      2:'cabins',
-      3:'weapons bay',
-      4:'infirmary',
-      5:'engines room',
-      6:'supplies room',
-      7:'life support',
-      8:'escape shuttle'
+      1:'Bridge',
+      2:'Cabins',
+      3:'Weapons bay',
+      4:'Infirmary',
+      5:'Engines room',
+      6:'Supplies room',
+      7:'Life support',
+      8:'Escape shuttle'
     },
     welcome: {
       create: {
@@ -125,7 +115,7 @@
       },
       hack: {
         label: 'Hack (:energy: 2)',
-        selection: 'Hack the %{location}',
+        selection: 'Hack: %{location}',
         result: {
           no_materials: "You didn't have the needed :energy:",
           redundancy: "Already hacked",
@@ -144,7 +134,7 @@
       },
       search: {
         label: ':search: Search',
-        selection: ':search: Search in the %{location}',
+        selection: ':search: Search: %{location}',
         modalTitle: 'Where do u wanna search?',
         tutorialTitle: 'Tutorial: Search',
         tutorialInfo: 'Explore the different :locations: of the ship in order to find basic resources... or something useful. You will only find one piece at a time. If two or more players visit the same location at the same time the found resources will be added to the :team: inventory.',
@@ -190,7 +180,7 @@
       },
       unlock: {
         label: 'Unlock (:energy: 2)',
-        selection: 'Unlock the %{location}',
+        selection: 'Unlock: %{location}',
         result: {
           no_materials: "You didn't have the needed :energy:",
           redundancy: "Already unlocked",

@@ -16,24 +16,14 @@
       }
     },
     locations: {
-      1:'puente de mando',
-      2:'camarotes',
-      3:'armería',
-      4:'enfermería',
-      5:'sala de motores',
-      6:'almacén',
-      7:'soporte vital',
-      8:'cápsula de escape'
-    },
-    locations_labels: {
-      1:'el puente de mando',
-      2:'los camarotes',
-      3:'la armería',
-      4:'la enfermería',
-      5:'la sala de motores',
-      6:'el almacén',
-      7:'el soporte vital',
-      8:'la cápsula de escape'
+      1:'Puente de mando',
+      2:'Camarotes',
+      3:'Armería',
+      4:'Enfermería',
+      5:'Sala de motores',
+      6:'Almacén',
+      7:'Soporte vital',
+      8:'Cápsula de escape'
     },
     welcome: {
       create: {
@@ -125,7 +115,7 @@
       },
       hack: {
         label: 'Hackear (:energy: 2)',
-        selection: 'Hackear %{location}',
+        selection: 'Hackear: %{location}',
         result: {
           no_materials: "No disponías de las :energy: necesarias",
           redundancy: "Esta habitación ya ha sido hakiada",
@@ -152,7 +142,7 @@
       },
       search: {
         label: ':search: Buscar',
-        selection: ':search: Buscar en %{location}',
+        selection: ':search: Buscar: %{location}',
         tutorialTitle: 'Tutorial: Buscar',
         tutorialInfo: 'Explora en las diferentes :locations: de la nave para encontrar recursos... o algo útil. Encontrarás una recurso cada vez que busques. Si dos o más jugadores visitan la misma habitación al mismo tiempo los recursos se añadirán al inventario del :team:.',
         result: {
@@ -190,7 +180,7 @@
       },
       unlock: {
         label: 'Desbloquear (:energy: 2)',
-        selection: 'Desbloquear %{location}',
+        selection: 'Desbloquear: %{location}',
         result: {
           no_materials: "No disponías de las :energy: necesarias",
           redundancy: "Esta habitación ya ha sido desbloqueada",

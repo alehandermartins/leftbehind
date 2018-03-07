@@ -109,7 +109,7 @@
             return ns.t.html('action.hack.label')
           },
           buildLabel: function(payload){
-            var location_label = ns.t.text('locations_labels.' + payload.location)
+            var location_label = ns.t.text('locations.' + payload.location)
             return ns.t.html('action.hack.selection', {location: location_label})
           },
           run: function(location, slotWidget) {
@@ -153,7 +153,7 @@
             return ns.t.html('action.search.label')
           },
           buildLabel: function(payload){
-            var location_label = ns.t.text('locations_labels.' + payload.location);
+            var location_label = ns.t.text('locations.' + payload.location);
             return ns.t.html('action.search.selection', {location: location_label});
           },
           showResult: function(result, players){
@@ -270,7 +270,7 @@
             return ns.t.html('action.unlock.label')
           },
           buildLabel: function(payload){
-            return ns.t.html('action.unlock.selection', {location: ns.t.html('locations_labels.' + payload.location)})
+            return ns.t.html('action.unlock.selection', {location: ns.t.html('locations.' + payload.location)})
           },
           showResult: function(result){
             var _label = result.status
@@ -445,13 +445,6 @@
     ns.AllActions = function(stats){
       return $.extend({}, LB.Actions(stats), LB.OtherActions(stats))
     }
-
-    ns.ALL_SLOTS = ns.SLOTS.concat([
-      {
-        name: 'sharing',
-        label: ':arrows_clockwise:'
-      }
-    ]);
   }
 
 }(LB || {}));

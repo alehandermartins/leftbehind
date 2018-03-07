@@ -4,6 +4,33 @@
 	ns.Widgets = ns.Widgets || {}
 
   ns.Widgets.DayTargetSelector = function(slotWidget, actionSelector, stats){
+
+    var _actionSelectorNav = $(crel('div')).addClass('row');
+    var _back = $(crel('div')).addClass('col-12');
+
+    var _backLabel = $(crel('span')).text('Back ');
+    var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
+    _backLabel.append(_arrow);
+    _back.append(_backLabel);
+    
+    _actionSelectorNav.append(
+      _back
+    );
+    _back.css('text-align','right');
+    _backLabel.css('cursor', 'pointer');
+
+    actionSelector.append(_actionSelectorNav);
+
+    _backLabel.click(function(){
+      $('.actionSelector').animateCss("fadeOutRight", function(){
+        $('.actionSelector').removeClass('active');
+        $(".selected-room").css('display', 'none');
+        $(".selected-room").removeClass('selected-room');
+        $(".targetSelector").addClass('active');
+        $(".targetSelector").animateCss("fadeInRight");
+      });
+    });
+
     var actions = LB.Actions(stats)
     var _createdWidget = $(crel('div'))
     var _selectPlayer = $(crel('div')).addClass('row text-center');
@@ -84,6 +111,10 @@
   ns.Widgets.LockedRoom = function(location, actions, slotWidget){
     var _createdWidget = $(crel('div')).addClass('col-12')
     var _background = $(crel('div')).addClass('room locked col-12')
+    var _roomName = $(crel('div')).addClass('col-12 text-center')
+    var _roomNameLabel = $(crel('h4')).html(ns.t.text('locations.' + location.uuid))
+    _roomName.append(_roomNameLabel)
+    _createdWidget.append(_roomName)
     _createdWidget.append(_background)
 
     var addActionButton = function(action){
@@ -112,12 +143,17 @@
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
 
     var _createdWidget = $(crel('div'))
+    var _roomName = $(crel('div')).addClass('col-12 text-center')
+    var _roomNameLabel = $(crel('h4')).html(ns.t.text('locations.' + location.uuid))
+    _roomName.append(_roomNameLabel)
+    _createdWidget.append(_roomName)
+    
     var _background = $(crel('div')).addClass('room uuid'+ location.uuid + ' col-12')
     _createdWidget.append(_background)
 
     if(location.status == 'marked'){
       var _ia = $(crel('div')).addClass('ia')
-      _createdWidget.append(_ia)
+      _background.append(_ia)
     }
 
     var addActionButton = function(action){
