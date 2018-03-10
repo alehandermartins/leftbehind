@@ -142,7 +142,7 @@
     if(location.status == 'locked')
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
 
-    var _createdWidget = $(crel('div'))
+    var _createdWidget = $(crel('div')).addClass('col-12')
     var _roomName = $(crel('div')).addClass('col-12 text-center')
     var _roomNameLabel = $(crel('h4')).html(ns.t.text('locations.' + location.uuid))
     _roomName.append(_roomNameLabel)
