@@ -108,6 +108,8 @@
       //   ns.Cache.lastStatus = stage;
       // }
     });
+
+    $(".game_container").css('height', window.innerHeight - $(".game_header").height() - $(".game_footer").height());
   };
 
 }(LB || {}));
