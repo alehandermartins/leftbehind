@@ -1,7 +1,6 @@
 class ActionsController < BaseController
 
   post '/send-selected' do
-  	puts params
     scopify actions: true, game_uuid: :game, player_uuid: :player
     fail! "not_enough_selected" unless Services::Actions.actions_validation actions, game, player
 

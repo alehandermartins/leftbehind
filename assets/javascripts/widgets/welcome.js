@@ -7,7 +7,7 @@
     var _createdWidget = $(crel('div')).addClass('create').addClass('form well');
     var _textRow = $(crel('div')).addClass('row');
     var _text = $(crel('div')).addClass('col-12').append($(crel('span')).text(ns.t.html('welcome.create.label')));
-    var _row = $(crel('div')).addClass('row');
+    var _row = $(crel('div')).addClass('row col-12');
     var _nameInput = $(crel('input')).prop({'type': 'text', placeholder: ns.t.html('welcome.game_name'), name: 'cg_name_game', autocomplete: 'on'}).addClass('col-12');
     var _playerInput = $(crel('input')).attr({'type': 'text', placeholder: ns.t.html('welcome.player_name'), name: 'cg_player_game', autocomplete: 'on'}).addClass('col-12');
     var _typeSelect = $(crel('select')).prop({name: 'cg_type_game'}).addClass('col-12').css('background-color', '#303030');
@@ -15,6 +15,7 @@
     _typeSelect.append($(crel('option')).text('Private match').val('private'));
     var _password = $(crel('input')).prop({'type': 'text', placeholder: 'password', name: 'cg_password_game'}).addClass('col-12');
     _password.hide();
+
 
     _typeSelect.on('change', function(){
       _password.hide();
@@ -61,7 +62,7 @@
     var _createdWidget = $(crel('div')).addClass('join').addClass('form well');
     var _textRow = $(crel('div')).addClass('row');
     var _text = $(crel('div')).addClass('col-12').append($(crel('span')).text(ns.t.html('welcome.join.label')));
-    var _row = $(crel('div')).addClass('row');
+    var _row = $(crel('div')).addClass('row col-12');
     var _playerInput = $(crel('input')).attr({'type': 'text', placeholder: ns.t.html('welcome.player_name'), name: 'cg_player_game'}).addClass('col-12');
 
     var _nameSelect = $(crel('select')).prop({name: 'cg_name_game'}).addClass('col-12');
@@ -111,7 +112,7 @@
     var _createdWidget = $(crel('div')).addClass('join').addClass('form well');
     var _textRow = $(crel('div')).addClass('row');
     var _text = $(crel('div')).addClass('col-12').append($(crel('span')).text(ns.t.html('welcome.resume.label')));
-    var _row = $(crel('div')).addClass('row');
+    var _row = $(crel('div')).addClass('row col-12');
     var _playerInput = $(crel('input')).attr({'type': 'text', placeholder: 'your name', name: 'cg_player_game'}).addClass('col-12');
 
     var _sendButton = ns.Widgets.SpinningButton('GO',function(){
@@ -159,7 +160,7 @@
 
   ns.Widgets.EnterGame = function(){
     var _createdWidget = $(crel('div')).addClass('join').addClass('form well');
-    var _row = $(crel('div')).addClass('row');
+    var _row = $(crel('div')).addClass('row col-12');
     var _playerInput = $(crel('input')).attr({'type': 'text', placeholder: 'your name', name: 'cg_player_game'}).addClass('col-12');
 
     var _welcomeText = $(crel('span'));

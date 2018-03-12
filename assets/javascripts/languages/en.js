@@ -52,7 +52,7 @@
         scientist: 'scientist'
       },
       style: {
-        label: 'Choose your game style. Gentle style will wait for the slowest player, while turbo style will force turn skip after lapse expires.',
+        label: 'Choose the max duration for each phase.',
         gentle: 'Gentle',
         turbo: 'Turbo'
       }

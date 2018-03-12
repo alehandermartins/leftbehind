@@ -112,30 +112,26 @@
 
     var _text = $(crel('span')).text(ns.t.text('start.style.label'))
 
-    var _styleSelect = $(crel('select')).addClass('col-12').css('background-color', '#303030');
-    _styleSelect.append($(crel('option')).text(ns.t.text('start.style.gentle')).val('gentle'));
-    _styleSelect.append($(crel('option')).text(ns.t.text('start.style.turbo')).val('turbo'));
+    // var _styleSelect = $(crel('select')).addClass('col-12').css('background-color', '#303030');
+    // _styleSelect.append($(crel('option')).text(ns.t.text('start.style.gentle')).val('gentle'));
+    // _styleSelect.append($(crel('option')).text(ns.t.text('start.style.turbo')).val('turbo'));
 
     var _timeSelect = $(crel('select')).addClass('col-12').css('background-color', '#303030');
-    // _timeSelect.append($(crel('option')).text('30 s').val(30));
-    _timeSelect.append($(crel('option')).text('1 min').val(60));
-    _timeSelect.append($(crel('option')).text('5 min').val(300));
-    _timeSelect.append($(crel('option')).text('30 min').val(1800));
-    _timeSelect.append($(crel('option')).text('1 h').val(3600));
-    _timeSelect.append($(crel('option')).text('2 h').val(3600 * 2));
-    _timeSelect.append($(crel('option')).text('4 h').val(3600 * 4));
-    _timeSelect.append($(crel('option')).text('8 h').val(3600 * 8));
-    _timeSelect.append($(crel('option')).text('12 h').val(3600 * 12));
-    _timeSelect.append($(crel('option')).text('1 day').val(3600 * 24));
 
-    _styleSelect.on('change', function(){
-      _timeSelect.hide();
-      if (_styleSelect.val() == 'turbo')
-        _timeSelect.show();
-    }).change();
+    _timeSelect.append($(crel('option')).text('1 min').val(60));
+    _timeSelect.append($(crel('option')).text('2 min').val(120));
+    _timeSelect.append($(crel('option')).text('5 min').val(300));
+    _timeSelect.append($(crel('option')).text('10 min').val(600));
+    _timeSelect.append($(crel('option')).text('15 min').val(900));
+
+    // _styleSelect.on('change', function(){
+    //   _timeSelect.hide();
+    //   if (_styleSelect.val() == 'turbo')
+    //     _timeSelect.show();
+    // }).change();
 
     var _playbuttonWidget = ns.Widgets.SpinningButton(ns.t.text('buttons.start'), function(){
-      ns.Backend.startGame(_styleSelect.val(), _timeSelect.val(), ns.Events.Play);
+      ns.Backend.startGame('turbo', _timeSelect.val(), ns.Events.Play);
     }, 12).render();
 
     var _refreshHost = function(){
@@ -161,7 +157,6 @@
 
     _createdWidget.append(
       _text,
-      _styleSelect,
       _timeSelect,
       _playbuttonWidget
     );

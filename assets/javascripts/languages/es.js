@@ -52,7 +52,7 @@
         scientist: 'científico'
       },
       style: {
-        label: 'Elige tu modo de juego. Gentil para esperar al jugador más lento, Turbo forzará el cambio de fase después de un tiempo',
+        label: 'Elige la duración máxima de cada fase.',
         gentle: 'Gentil',
         turbo: 'Turbo'
       }
