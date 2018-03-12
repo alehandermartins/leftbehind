@@ -2,7 +2,7 @@
 (function(ns){
 
   ns.Widgets.CurrentPlayers = function(){
-    var _createdWidget = $(crel('div')).addClass('col-12');
+    var _createdWidget = $(crel('div'));
     var _currentPlayers = $(crel('div')).addClass('col-12 players');
 
     var _label = $(crel('span')).text(ns.t.html('start.players'));
