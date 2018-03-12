@@ -8,7 +8,7 @@ class Locations
 
     @locations = initial_inventories(uuids, desired_supplies, random_generator)
     @generator = random_generator
-    @unlocked_list = Array.new
+    lock_random 3
   end
 
   def initial_inventories uuids, amounts, generator
@@ -69,24 +69,23 @@ class Locations
 
   def unlock uuid
     @locations[uuid][:status] = :unlocked
-    @unlocked_list << uuid
   end
 
-  def lock_random
-    uuid = @locations.map{ |uuid, location|
-      uuid if location[:status] == :unlocked && !@unlocked_list.include?(uuid)
-    }.compact.sample(random: @generator)
-    lock uuid unless uuid.nil?
-    @unlocked_list.clear
+  def lock_random amount
+    lock '8'
+    lockable = uuids.reject{ |place| place == '7' || place == '8' }
+    locked = lockable.sample(amount ,random: @generator)
+    locked.each{ |place| lock place }
   end
 
   def mark_random amount
     places = @locations.map{ |uuid, location|
       uuid if location[:status] == :unlocked
-    }.compact.sample(amount, random: @generator)
+    }.compact
 
     places.reject!{ |place| place == '7' } if amount < 3
-    places.each{ |uuid| mark uuid }
-    places.sample(random: @generator)
+    places.sample(amount, random: @generator).each{ |place|
+      mark place
+    }
   end
 end

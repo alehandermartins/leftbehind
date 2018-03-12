@@ -1,9 +1,12 @@
 .content{
-  flex: 1 0 80%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .playground {
   background-color: $main_lighter;
+  flex: auto;
 }
 
 .dayPlanner, .results, .targetSelector, .actionSelector {

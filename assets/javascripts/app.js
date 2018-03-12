@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 (function(ns){
 
   (function renderOptions(){
@@ -27,6 +29,10 @@
 
   var zeroPad = function(number){
     return ('0' + number).slice(-2)
+  }
+
+  ns.scalePlayground = function(){
+    $(".game_container").css('min-height', window.innerHeight - $(".game_header").height() - $(".game_footer").height());
   }
 
   ns.paintScreen = function(){
@@ -108,6 +114,13 @@
       //   ns.Cache.lastStatus = stage;
       // }
     });
+
+  $(window).resize(function(){
+    ns.scalePlayground();
+  });
+
+    ns.scalePlayground()
   };
+
 
 }(LB || {}));
