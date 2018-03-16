@@ -225,44 +225,4 @@
     };
   };
 
-  ns.Widgets.StageTutorial = function(stage){
-    var storage = sessionStorage
-
-    return {
-      render: function(){
-        if (storage['tutorial_'+ stage])
-          return;
-
-        bootbox.alert({
-          title: ns.t.html('tutorial.' + stage + '.title'),
-          message: ns.t.html('tutorial.' + stage + '.message'),
-          callback: function(){
-            storage['tutorial_'+ stage] = true;
-          }
-        });
-      }
-    }
-  };
-
-  ns.Widgets.ActionTutorial = function(id, menu){
-    var storage = sessionStorage
-
-    return  {
-      render: function(){
-        if (storage['tutorial_'+ id]){
-          menu()
-          return
-        }
-
-        bootbox.alert({
-          title: ns.t.html('action.' + id + '.tutorialTitle'),
-          message: ns.t.html('action.' + id + '.tutorialInfo'),
-          callback: function(){
-            storage['tutorial_'+ id] = true;
-            menu()
-          }
-        });
-      }
-    }
-  };
 }(LB || {}));

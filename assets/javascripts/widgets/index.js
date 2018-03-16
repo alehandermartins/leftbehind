@@ -2,6 +2,7 @@
 // = require ./base
 // = require ./welcome
 // = require ./start
+// = require ./tutorial
 // = require ./actions
 // = require ./voting
 // = require ./fusion
