@@ -51,6 +51,7 @@
   background-image: asset-url('map/escape.jpg');
 }
 
-.locked {
-  background-image: asset-url('map/locked.jpg');
+.img-responsive {
+  display: inline-block;
+  width: 100%;
 }

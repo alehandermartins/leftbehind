@@ -9,7 +9,7 @@
   flex: auto;
 }
 
-.dayPlanner, .results, .targetSelector, .actionSelector {
+.dayPlanner, .results, .tutorial, .targetSelector, .actionSelector {
   display: none;
   background-color: $main_lighter;
   &.active {
@@ -20,7 +20,7 @@
 .sidebar {
 	padding: 0;
   
-  .dayPlannerToggler, .resultsToggler {
+  .dayPlannerToggler, .resultsToggler, .tutorialToggler {
   	height: 20%;
     min-height: 60px;
   	display: flex;

@@ -131,7 +131,7 @@
     // }).change();
 
     var _playbuttonWidget = ns.Widgets.SpinningButton(ns.t.text('buttons.start'), function(){
-      ns.Backend.startGame('gentle', _timeSelect.val(), ns.Events.Play);
+      ns.Backend.startGame('turbo', _timeSelect.val(), ns.Events.Play);
     }, 12).render();
 
     var _refreshHost = function(){

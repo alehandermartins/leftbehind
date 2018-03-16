@@ -6,9 +6,11 @@
 
     var _dayPlannerToggler = $(crel('div')).addClass('dayPlannerToggler text-center col-12');
     var _resultsToggler = $(crel('div')).addClass('resultsToggler text-center col-12');
+    var _tutorialToggler = $(crel('div')).addClass('tutorialToggler text-center col-12');
 
     _dayPlannerToggler.html(LB.t.html(':fist_tone5:'));
     _resultsToggler.html(LB.t.html(':punch_tone5:'));
+    _tutorialToggler.html(LB.t.html(':question:'));
 
     if(stats.current_slot == 0){
       _dayPlannerToggler.addClass('active');
@@ -19,31 +21,48 @@
 
     _sidebar.append(
       _dayPlannerToggler,
-      _resultsToggler
+      _resultsToggler,
+      _tutorialToggler
     );
 
     var activateDayPlanner = function(){
       $('.dayPlanner').addClass('active');
       $('.dayPlanner').animateCss("fadeInRight");
-      _dayPlannerToggler.addClass('active');
       _resultsToggler.removeClass('active');
+      _tutorialToggler.removeClass('active');
+      _dayPlannerToggler.addClass('active');
     }
 
     var activateResults = function(){
       $('.results').addClass('active');
       $('.results').animateCss("fadeInRight");
       _dayPlannerToggler.removeClass('active');
+      _tutorialToggler.removeClass('active');
       _resultsToggler.addClass('active');
     }
 
-    _dayPlannerToggler.click(function(){
-     if(_dayPlannerToggler.hasClass('active'))
+    var activateTutorial = function(){
+      $('.tutorial').addClass('active');
+      $('.tutorial').animateCss("fadeInRight");
+      _dayPlannerToggler.removeClass('active');
+      _resultsToggler.removeClass('active');
+      _tutorialToggler.addClass('active');
+    }
+
+    var actions = {
+      'dayPlanner': activateDayPlanner,
+      'results': activateResults,
+      'tutorial': activateTutorial
+    }
+
+    var clickFunction = function(toggler, option){
+      if(toggler.hasClass('active'))
       return;
 
       if($('.targetSelector') && $('.targetSelector').hasClass('active')){
         $('.targetSelector').animateCss("fadeOutRight", function(){
           $('.targetSelector').removeClass('active');
-          activateDayPlanner();
+          actions[option]();
         });
       }
 
@@ -52,44 +71,48 @@
           $('.actionSelector').removeClass('active');
           $(".selected-room").css('display', 'none');
           $(".selected-room").removeClass('selected-room');
-          activateDayPlanner();
+          actions[option]();
         });
       }
 
-      if($('.results') && $('.results').hasClass('active')){
-        $('.results').animateCss("fadeOutRight", function(){
-          $('.results').removeClass('active');
-          activateDayPlanner();
-        });
+      if(option != 'dayPlanner'){
+        if($('.dayPlanner') && $('.dayPlanner').hasClass('active')){
+          $('.dayPlanner').animateCss("fadeOutRight", function(){
+            $('.dayPlanner').removeClass('active');
+            actions[option]();
+          });
+        }
       }
+
+      if(option != 'results'){
+        if($('.results') && $('.results').hasClass('active')){
+          $('.results').animateCss("fadeOutRight", function(){
+            $('.results').removeClass('active');
+            actions[option]();
+          });
+        }
+      }
+
+      if(option != 'tutorial'){
+        if($('.tutorial') && $('.tutorial').hasClass('active')){
+          $('.tutorial').animateCss("fadeOutRight", function(){
+            $('.tutorial').removeClass('active');
+            actions[option]();
+          });
+        }
+      }
+    }
+
+    _dayPlannerToggler.click(function(){
+      clickFunction(_dayPlannerToggler, 'dayPlanner');
     });
 
     _resultsToggler.click(function(){
-     if(_resultsToggler.hasClass('active'))
-      return;
+      clickFunction(_resultsToggler, 'results');
+    });
 
-      if($('.targetSelector') && $('.targetSelector').hasClass('active')){
-        $('.targetSelector').animateCss("fadeOutRight", function(){
-          $('.targetSelector').removeClass('active');
-          activateResults();
-        });
-      }
-
-      if($('.actionSelector').hasClass('active')){
-        $('.actionSelector').animateCss("fadeOutRight", function(){
-          $('.actionSelector').removeClass('active');
-          $(".selected-room").css('display', 'none');
-          $(".selected-room").removeClass('selected-room');
-          activateResults();
-        });
-      }
-
-      if($('.dayPlanner') && $('.dayPlanner').hasClass('active')){
-        $('.dayPlanner').animateCss("fadeOutRight", function(){
-          $('.dayPlanner').removeClass('active');
-          activateResults();
-        });
-      }
+    _tutorialToggler.click(function(){
+      clickFunction(_tutorialToggler, 'tutorial');
     });
 
     return {

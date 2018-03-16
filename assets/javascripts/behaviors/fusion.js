@@ -9,15 +9,22 @@ LB.fusion = function(stats){
 
   var _results = $(crel('div')).addClass('results active col-10');
   var _dayPlanner = $(crel('div')).addClass('dayPlanner col-10');
+  var _tutorial = $(crel('div')).addClass('tutorial col-10');
 
   var _headerWidget = LB.Widgets.Header(stats);
   var _resultsWidget = LB.Widgets.Results(stats);
   var _fusionWidget = LB.Widgets.Fusion(stats);
+  var _tutorialWidget = LB.Widgets.Tutorial(stats);
 
   _playGround.append(
     _sidebar.render(),
     _results,
-    _dayPlanner
+    _dayPlanner,
+    _tutorial
+  );
+
+  _tutorial.append(
+    _tutorialWidget.render()
   );
 
   _results.append(

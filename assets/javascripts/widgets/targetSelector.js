@@ -110,12 +110,23 @@
 
   ns.Widgets.LockedRoom = function(location, actions, slotWidget){
     var _createdWidget = $(crel('div')).addClass('col-12')
-    var _background = $(crel('div')).addClass('room locked col-12')
+
+    //var _background = $(crel('div')).addClass('room locked col-12')
+
+    var _background = $(crel('img')).addClass('img-responsive')
+    _background.attr('src', '/images/locked.jpg')
     var _roomName = $(crel('div')).addClass('col-12 text-center')
     var _roomNameLabel = $(crel('h4')).html(ns.t.text('locations.' + location.uuid))
+
+    var _lockedInfo = $(crel('div'))
+    var _lockedLabel = $(crel('span')).text('Esta habitación está bloqueada.')
+
     _roomName.append(_roomNameLabel)
-    _createdWidget.append(_roomName)
+    _lockedInfo.append(_lockedLabel)
+
+    _createdWidget.append(_roomName, _lockedInfo)
     _createdWidget.append(_background)
+
 
     var addActionButton = function(action){
       var action = actions[action];
