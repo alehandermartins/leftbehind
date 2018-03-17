@@ -118,11 +118,13 @@
 
     var _timeSelect = $(crel('select')).addClass('col-12').css('background-color', '#303030');
 
-    _timeSelect.append($(crel('option')).text('1 min').val(60));
-    _timeSelect.append($(crel('option')).text('2 min').val(120));
-    _timeSelect.append($(crel('option')).text('5 min').val(300));
-    _timeSelect.append($(crel('option')).text('10 min').val(600));
-    _timeSelect.append($(crel('option')).text('15 min').val(900));
+    _timeSelect.append($(crel('option')).text('1 min (Expert)').val(60));
+    _timeSelect.append($(crel('option')).text('2 min (Medium)').val(120));
+    _timeSelect.append($(crel('option')).text('5 min (Novice)').val(300));
+    _timeSelect.append($(crel('option')).text('10 min (Laid back)').val(600));
+    _timeSelect.append($(crel('option')).text('15 min (Laid back XL)').val(900));
+
+    _timeSelect.val(300).trigger('change');
 
     // _styleSelect.on('change', function(){
     //   _timeSelect.hide();

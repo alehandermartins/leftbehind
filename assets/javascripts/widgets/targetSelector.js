@@ -111,8 +111,6 @@
   ns.Widgets.LockedRoom = function(location, actions, slotWidget){
     var _createdWidget = $(crel('div')).addClass('col-12')
 
-    //var _background = $(crel('div')).addClass('room locked col-12')
-
     var _background = $(crel('img')).addClass('img-responsive')
     _background.attr('src', '/images/locked.jpg')
     var _roomName = $(crel('div')).addClass('col-12 text-center')
@@ -159,7 +157,8 @@
     _roomName.append(_roomNameLabel)
     _createdWidget.append(_roomName)
     
-    var _background = $(crel('div')).addClass('room uuid'+ location.uuid + ' col-12')
+    var _background = $(crel('img')).addClass('img-responsive')
+    _background.attr('src', '/images/room' + location.uuid + '.jpg')
     _createdWidget.append(_background)
 
     if(location.status == 'marked'){

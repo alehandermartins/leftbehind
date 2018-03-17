@@ -8,7 +8,7 @@ module LB
     end
 
     def ia_found_player?
-      payload[:location] == @context.ia.location
+      @context.locations[payload[:location]][:status] == :marked
     end
 
     def kill
