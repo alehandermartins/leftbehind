@@ -157,8 +157,10 @@
     _roomName.append(_roomNameLabel)
     _createdWidget.append(_roomName)
     
-    var _background = $(crel('img')).addClass('img-responsive')
-    _background.attr('src', '/images/room' + location.uuid + '.jpg')
+    var _background = $(crel('div'));
+    var _backgroundImg = $(crel('img')).addClass('img-responsive')
+    _backgroundImg.attr('src', '/images/room' + location.uuid + '.jpg')
+    _background.append(_backgroundImg)
     _createdWidget.append(_background)
 
     if(location.status == 'marked'){
