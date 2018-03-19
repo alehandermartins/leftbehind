@@ -27,11 +27,6 @@
 
     var activateDayPlanner = function(){
       $('.dayPlanner').addClass('active');
-      $('.slotSelector').addClass('active');
-      $('.targetSelector').removeClass('active');
-      $('.actionSelector').removeClass('active');
-      $(".selected-room").css('display', 'none');
-      $(".selected-room").removeClass('selected-room');
       $('.dayPlanner').animateCss("fadeInRight");
       _resultsToggler.removeClass('active');
       _tutorialToggler.removeClass('active');

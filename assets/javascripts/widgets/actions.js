@@ -27,14 +27,13 @@
       _slotSelector.append(_tutotial);
 
       var _slots = {};
-      var _currentSlot = '';
+      var _currentSlot;
       var _selectedActions = {};
 
       slots.forEach(function(slot){
         _slots[slot.name] = ns.Widgets.TimeSlot(slot, '', function(slot){
          _slotSelector.animateCss("fadeOutRight", function(){
             _slotSelector.removeClass('active');
-            $(".dayPlannerToggler").removeClass('active');
             _targetSelector.addClass('active');
             _targetSelector.animateCss("fadeInRight");
           });
@@ -47,6 +46,8 @@
       var _selectSlot = function(slot){
         _currentSlot = slot;
         _slots[_currentSlot].check();
+        $('.slotTargetInfo').html(ns.t.html(_slots[_currentSlot].label()) + ' Selecciona un objetivo:' );
+        $('.slotActionInfo').html(ns.t.html(_slots[_currentSlot].label()) + ' Selecciona una acción:' );
       };
 
       var _selectActionForCurrentSlot = function(action){
@@ -56,7 +57,6 @@
         _actionSelector.animateCss("fadeOutRight", function(){
           _actionSelector.removeClass('active');
           _slotSelector.addClass('active');
-          $(".dayPlannerToggler").addClass('active');
           $(".selected-room").css('display', 'none');
           $(".selected-room").removeClass('selected-room');
           _slotSelector.animateCss("fadeInRight");
@@ -90,37 +90,41 @@
     }
 
     var targetWidget = function(){
-      var _actionSelectorNav = $(crel('div')).addClass('row');
-      var _back = $(crel('div')).addClass('col-12');
+      var _targetSelectorNav = $(crel('div')).addClass('row slotInfo');
+      var _slotInfo = $(crel('div')).addClass('col-6');
+      var _slotLabel = $(crel('span')).addClass('slotTargetInfo');
 
+      _slotInfo.append(_slotLabel);
+      _slotInfo.css('text-align','left');
+
+      var _back = $(crel('div')).addClass('col-6');
       var _backLabel = $(crel('span')).text('Back ');
       var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
       _backLabel.append(_arrow);
       _back.append(_backLabel);
 
-      _actionSelectorNav.append(
+      _targetSelectorNav.append(
+        _slotInfo,
         _back
       );
       _back.css('text-align','right');
       _backLabel.css('cursor', 'pointer');
 
-      _actionSelector.append(_actionSelectorNav);
+      _targetSelector.append(_targetSelectorNav);
 
       _backLabel.click(function(){
-        _actionSelector.animateCss("fadeOutRight", function(){
-          _actionSelector.removeClass('active');
-          $(".selected-room").css('display', 'none');
-          $(".selected-room").removeClass('selected-room');
-          _targetSelector.addClass('active');
-          _targetSelector.animateCss("fadeInRight");
+        _targetSelector.animateCss("fadeOutRight", function(){
+          _targetSelector.removeClass('active');
+          _slotSelector.addClass('active');
+          _slotSelector.animateCss("fadeInRight");
         });
       });
 
       var _selectPlayer = $(crel('div')).addClass('row text-center');
-      var _selectPlayerLabel = $(crel('div')).addClass('col-12').text('Select target');
+      var _selectPlayerLabel = $(crel('div')).addClass('col-12').text('Tripulación');
 
       var _selectRoom = $(crel('div')).addClass('row text-center');
-      var _selectRoomLabel = $(crel('div')).addClass('col-12').text('Select room');
+      var _selectRoomLabel = $(crel('div')).addClass('col-12').text('Habitaciones');
 
       _selectPlayer.append(_selectPlayerLabel);
       _selectRoom.append(_selectRoomLabel);
@@ -185,11 +189,47 @@
       })
     }
 
-    var _slotWidget = slotWidget();
-    var _targetWidget = targetWidget();
-    var _sendActionsButtonWidget = LB.Widgets.SendActionsButton(_slotWidget);
+    var actionWidget = function(){
+      var _actionSelectorNav = $(crel('div')).addClass('row slotInfo');
+      var _slotInfo = $(crel('div')).addClass('col-6');
+      var _slotLabel = $(crel('span')).addClass('slotActionInfo');
 
+      _slotInfo.append(_slotLabel);
+      _slotInfo.css('text-align','left');
+
+      var _back = $(crel('div')).addClass('col-6');
+
+      var _backLabel = $(crel('span')).text('Back ');
+      var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
+      _backLabel.append(_arrow);
+      _back.append(_backLabel);
+
+      _actionSelectorNav.append(
+        _slotInfo,
+        _back
+      );
+      _back.css('text-align','right');
+      _backLabel.css('cursor', 'pointer');
+
+      _actionSelector.append(_actionSelectorNav);
+
+      _backLabel.click(function(){
+        _actionSelector.animateCss("fadeOutRight", function(){
+          _actionSelector.removeClass('active');
+          $(".selected-room").css('display', 'none');
+          $(".selected-room").removeClass('selected-room');
+          _targetSelector.addClass('active');
+          _targetSelector.animateCss("fadeInRight");
+        });
+      });
+    }
+
+    var _slotWidget = slotWidget();
+    var _sendActionsButtonWidget = LB.Widgets.SendActionsButton(_slotWidget);
     _slotSelector.append(_sendActionsButtonWidget.render());
+
+    actionWidget();
+    targetWidget();
 
     return {
       render: function(){

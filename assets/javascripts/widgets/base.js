@@ -48,6 +48,9 @@
       },
       check: function(){
         _createdWidgetRadio.prop('checked', true);
+      },
+      label: function(){
+        return slot.label;
       }
     };
   };
@@ -172,7 +175,7 @@
             var result = personalInfo[player][slot].result;
             if (personalInfo[player][slot].payload && personalInfo[player][slot].payload.target)
               result['target'] = personalInfo[player][slot].payload.target;
-            
+
             result['performer'] = player;
             result['payload'] = personalInfo[player][slot].payload;
             result['slot'] = slot;
@@ -184,7 +187,7 @@
 
             if (player != LB.playerUuid())
              _personalInfo.append(_personalLabel);
-   
+
             _personalInfo.append(_action);
             _personalInfos.push(_personalInfo);
           }
