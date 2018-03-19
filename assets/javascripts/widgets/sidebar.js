@@ -27,6 +27,11 @@
 
     var activateDayPlanner = function(){
       $('.dayPlanner').addClass('active');
+      $('.slotSelector').addClass('active');
+      $('.targetSelector').removeClass('active');
+      $('.actionSelector').removeClass('active');
+      $(".selected-room").css('display', 'none');
+      $(".selected-room").removeClass('selected-room');
       $('.dayPlanner').animateCss("fadeInRight");
       _resultsToggler.removeClass('active');
       _tutorialToggler.removeClass('active');
@@ -58,22 +63,6 @@
     var clickFunction = function(toggler, option){
       if(toggler.hasClass('active'))
       return;
-
-      if($('.targetSelector') && $('.targetSelector').hasClass('active')){
-        $('.targetSelector').animateCss("fadeOutRight", function(){
-          $('.targetSelector').removeClass('active');
-          actions[option]();
-        });
-      }
-
-      if($('.actionSelector').hasClass('active')){
-        $('.actionSelector').animateCss("fadeOutRight", function(){
-          $('.actionSelector').removeClass('active');
-          $(".selected-room").css('display', 'none');
-          $(".selected-room").removeClass('selected-room');
-          actions[option]();
-        });
-      }
 
       if(option != 'dayPlanner'){
         if($('.dayPlanner') && $('.dayPlanner').hasClass('active')){

@@ -9,9 +9,12 @@
   flex: auto;
 }
 
-.dayPlanner, .results, .tutorial, .targetSelector, .actionSelector {
-  display: none;
+.dayPlanner, .results, .tutorial {
   background-color: $main_lighter;
+}
+
+.dayPlanner, .results, .tutorial, .slotSelector, .targetSelector, .actionSelector {
+  display: none;
   &.active {
     display: block;
   }
@@ -19,7 +22,7 @@
 
 .sidebar {
 	padding: 0;
-  
+
   .dayPlannerToggler, .resultsToggler, .tutorialToggler {
   	height: 20%;
     min-height: 60px;

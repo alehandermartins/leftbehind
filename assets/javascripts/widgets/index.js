@@ -10,4 +10,4 @@
 // = require ./sidebar
 // = require ./favicon
 // = require ./player
-// = require ./targetSelector
+// = require ./room
