@@ -48,6 +48,8 @@
         _slots[_currentSlot].check();
         $('.slotTargetInfo').html(ns.t.html(_slots[_currentSlot].label()) + ' Selecciona un objetivo:' );
         $('.slotActionInfo').html(ns.t.html(_slots[_currentSlot].label()) + ' Selecciona una acción:' );
+        if(Object.keys(_selectedActions).length == 4)
+          _sendActionsButtonWidget.enable();
       };
 
       var _selectActionForCurrentSlot = function(action){
@@ -232,7 +234,7 @@
 
     var _slotWidget = slotWidget();
     var _sendActionsButtonWidget = LB.Widgets.SendActionsButton(_slotWidget);
-    //_sendActionsButtonWidget.disable();
+    _sendActionsButtonWidget.disable();
     _slotSelector.append(_sendActionsButtonWidget.render());
 
     actionWidget();

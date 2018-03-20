@@ -82,10 +82,12 @@
         return _createdWidget;
       },
       disable: function(){
-        _createdButton.addClass('disabled');
+        _createdButton.removeClass('btn-default disabled');
+        _createdButton.addClass('btn-default disabled');
       },
       enable: function(){
-        _createdButton.removeClass('disabled');
+        _createdButton.removeClass('btn-default disabled');
+        _createdButton.addClass('btn-success');
       }
     };
   };
