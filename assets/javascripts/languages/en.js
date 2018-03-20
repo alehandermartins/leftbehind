@@ -75,8 +75,7 @@
         }
       },
       defend:{
-        tutorialTitle: 'Tutorial: Defend',
-        tutorialInfo: 'Are you feeling unsecure among all those sleazy bastards? Take a defensive stance in order to avoid being robbed or spied. You will know who is after you... then take action.',
+        tutorial: ':defend: Defending avoids being robbed or spied. You will also know who is after you...',
         label: ':defend: Defend',
         result: {
           attack_defended: 'He was defending and kicked your ass!!',
@@ -94,8 +93,7 @@
       },
       escape:{
         label: 'Escape',
-        tutorialTitle: 'Tutorial: Escape',
-        tutorialInfo: 'It is time to leave this death trap, do you have your :helmet: on?... Be all sure to leave the ship at the same time or else you will Leave the rest Behind. You don\'t want that... do you?',
+        tutorial: 'Escapar: It is time to leave this death trap, do you have your helmet on?...',
         result: {
           success: 'You turn the engines on and leave...',
           helmet_needed: 'You need a :helmet: to survive in the :shuttle:',
@@ -114,6 +112,7 @@
         }
       },
       hack: {
+        tutorial: ":computer: Hack: The IA won't be able to attack this room.",
         label: 'Hack (:energy: 2)',
         selection: 'Hack: %{location}',
         result: {
@@ -123,6 +122,7 @@
         }
       },
       oxygen: {
+        tutorial: ":food: You will generate 1 bottle of oxygen.",
         label: 'Generate :food:',
         result: {
           fail: 'You reached the oxygen limit',
@@ -135,9 +135,7 @@
       search: {
         label: ':search: Search',
         selection: ':search: Search: %{location}',
-        modalTitle: 'Where do u wanna search?',
-        tutorialTitle: 'Tutorial: Search',
-        tutorialInfo: 'Explore the different :locations: of the ship in order to find basic resources... or something useful. You will only find one piece at a time. If two or more players visit the same location at the same time the found resources will be added to the :team: inventory.',
+        tutorial: ':search: Search: You will find :parts: or :energy:.',
         result: {
           nothing: 'You found nothing. ',
           bounty: 'You found %{resources}',
@@ -148,7 +146,7 @@
       share: {
         label: 'Give %{resource}',
         selection: 'Give %{resource} to %{target}',
-        modalTitle: 'What do u wanna give?',
+        tutorial: 'Give: transfers resources to another player',
         result: {
           teamReceived: ':arrows_clockwise: The :team: received: ',
           youReceived: ':arrows_clockwise: You received: ',
@@ -158,13 +156,13 @@
       spy:{
         label: 'Spy',
         selection: 'Spy on %{target}',
-        tutorialTitle: 'Tutorial: Spy',
-        tutorialInfo: 'Spying will let you know what a player was doing at an specific time. You will also know the inventory of the spied player.',
+        tutorial: 'Spy: will let you know what a player was doing at an specific time. You will also know his/her inventory.',
         targetInventory: '%{target} Inventory: %{resources}'
       },
       steal:{
         label: 'Steal :helmet:',
         selection: 'Steal %{resource} from %{target}',
+        tutorial: 'Steal: transfers resources from another player.',
         result: {
           empty: 'He had nothing',
           bounty: 'You stole %{resources}'
@@ -181,6 +179,7 @@
       unlock: {
         label: 'Unlock (:energy: 2)',
         selection: 'Unlock: %{location}',
+        tutorial: ':lock: Unlock: Opens a locked room.',
         result: {
           no_materials: "You didn't have the needed :energy:",
           redundancy: "Already unlocked",
@@ -197,8 +196,7 @@
       },
       work:{
         label: ':work: Repair the :shuttle: (:parts: 1)',
-        tutorialTitle: 'Tutorial: Work',
-        tutorialInfo: 'Nobody is coming to rescue you. You\'d better start getting your hands on fixing all this mess.',
+        tutorial: ':work: Repair: fix a percentaje of the escape shuttle.',
         result: {
           success: 'Well done, you are closer...',
           broken_shuttle: 'The :shuttle: still needs fixing',

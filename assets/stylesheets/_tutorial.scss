@@ -1,0 +1,16 @@
+.tutorial_layout {
+	text-align: justify;
+  text-justify: inter-word;
+
+  .tutorial_toggler {
+  	cursor: pointer;
+  	&.active {
+  		color: #800000;
+  		text-decoration: underline;
+  	}
+  }
+
+  .intro {
+    margin-bottom: 1em;
+  }
+}

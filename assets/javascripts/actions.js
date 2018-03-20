@@ -18,28 +18,237 @@
       }
 
       var _actions = {
-        craft: {
-          label: ':hammer:',
-          buildLabel: function(payload){
-            return ns.t.html('action.craft.label');
-          },
-          showResult: function(result){
-            var _resultLabel
-            if(result.status == 'success')
-              _resultLabel = ns.t.html('action.craft.result.success')
-            else
-              _resultLabel = ns.t.html('action.craft.result.fail')
+        // craft: {
+        //   label: ':hammer:',
+        //   buildLabel: function(payload){
+        //     return ns.t.html('action.craft.label');
+        //   },
+        //   showResult: function(result){
+        //     var _resultLabel
+        //     if(result.status == 'success')
+        //       _resultLabel = ns.t.html('action.craft.result.success')
+        //     else
+        //       _resultLabel = ns.t.html('action.craft.result.fail')
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+        //     var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
+        //     return resultLabel;
+        //   },
+        //   run: function(location, slotWidget) {
+        //     var list = [{name: ns.t.html('action.craft.list'), uuid:'pick'}]
+        //     var modalTitle = ns.t.html('action.craft.modalTitle')
+        //     ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
+        //       var _builtAction = {name: 'craft', payload: {item: 'pick'}}
+        //       slotWidget.selectActionForCurrentSlot(_builtAction)
+        //     })
+        //   }
+        // },
+        search: {
+          label: function(){
+            return ns.t.html('action.search.label')
+          },
+          buildLabel: function(payload){
+            var location_label = ns.t.text('locations.' + payload.location);
+            return ns.t.html('action.search.selection', {location: location_label});
+          },
+          showResult: function(result, players){
+            var _showbounty = function(){
+              if (Object.keys(result.bounty).length == 0)
+                return ns.t.html('action.search.result.nothing')
+
+              var _resources = Object.keys(result.bounty).map(function(resource){
+                return [':', ':'].join(resource) + ' ' + result.bounty[resource]
+              })
+
+              return ns.t.html('action.search.result.bounty', {resources: _resources})
+            }
+
+            var _resultLabel = _showbounty();
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
             return resultLabel;
           },
           run: function(location, slotWidget) {
-            var list = [{name: ns.t.html('action.craft.list'), uuid:'pick'}]
-            var modalTitle = ns.t.html('action.craft.modalTitle')
-            ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-              var _builtAction = {name: 'craft', payload: {item: 'pick'}}
-              slotWidget.selectActionForCurrentSlot(_builtAction)
-            })
+            var _builtAction = {name: 'search', payload: {location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
+        oxygen:{
+          label: function(){
+            return ':food:'
+          },
+          buildLabel: function(){
+            return ns.t.html('action.oxygen.label')
+          },
+          showResult: function(result){
+            var _resultLabel = ns.t.html('action.oxygen.result.' +  result.status )
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
+          },
+          run: function(location, slotWidget){
+            var _builtAction = {name: 'oxygen', payload: {location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
+        hack:{
+          label: function(){
+            return ns.t.html('action.hack.label')
+          },
+          buildLabel: function(payload){
+            var location_label = ns.t.text('locations.' + payload.location)
+            return ns.t.html('action.hack.selection', {location: location_label})
+          },
+          run: function(location, slotWidget) {
+            var _builtAction = {name: 'hack', payload: {location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          },
+          showResult: function(result){
+            var _resultLabel = result.status
+            if(result.status == "fail")
+              _resultLabel = result.info.reason
+
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
+          }
+        },
+        unlock: {
+          label: function(){
+            return ns.t.html('action.unlock.label')
+          },
+          buildLabel: function(payload){
+            return ns.t.html('action.unlock.selection', {location: ns.t.html('locations.' + payload.location)})
+          },
+          showResult: function(result){
+            var _label = result.status
+            if(result.status == "fail")
+              _label = result.info.reason
+
+            var _resultLabel = ns.t.html('action.unlock.result.' +  _label )
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
+          },
+          run: function(location, slotWidget) {
+            var _builtAction = {name: 'unlock', payload: {location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
+        work: {
+          label: function(){
+            return ns.t.html('action.work.label')
+          },
+          buildLabel: function(payload){
+            return ns.t.html('action.work.label');
+          },
+          showResult: function(result, players){
+            var _resultLabel = '';
+            if (result.status == 'fail')
+              _resultLabel = result.info.reason;
+            else{_resultLabel = ns.t.html('action.work.result.success')};
+
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
+          },
+          run: function(location, slotWidget) {
+            var _builtAction = {name: 'work', payload: {item: 'escape shuttle', location: location.uuid}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
+        spy: {
+          label: function(){
+            return ns.t.html('action.spy.label')
+          },
+          buildLabel: function(payload){
+            var targetName = stats.players[payload.target].name
+            return ns.t.html('action.spy.selection', {target: targetName});
+          },
+          showResult: function(result, players){
+            var _resultLabel;
+            var resultLabel = $(crel('div')).addClass('col-12');
+            var _inventoryLabel;
+
+            if (result.status == 'fail'){
+              _resultLabel = result.info.reason;
+            }
+            else {
+              var _resources = Object.keys(result.info.target_info.inventory).map(function(resource){
+                return [':', ':'].join(resource) + ' ' + result.info.target_info.inventory[resource];
+              }).join(', ');
+              _inventoryLabel = ns.t.text('action.spy.targetInventory', {target: players[result.payload.target].name, resources: _resources});
+              _resultLabel = ns.t.html(_inventoryLabel);
+            }
+
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
+          },
+          run: function(target, slotWidget) {
+            var _builtAction = {name: 'spy', payload: {target: target}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
+        share: {
+          label: function(resource){
+            return ns.t.html('action.share.label', {resource: [':', ':'].join(resource)});
+          },
+          buildLabel: function(payload){
+            var targetName = stats.players[payload.target].name
+            return ns.t.html('action.share.selection', {resource: [':', ':'].join(payload.resource), target: targetName});
+          },
+          showResult: function(result){
+            var resultLabel = $(crel('div')).addClass('col-12')
+            resultLabel.html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)).addClass('unpadded')
+            return resultLabel
+          },
+          run: function(target, slotWidget, resource) {
+            var _builtAction = {name: 'share', payload: {target: target, resource: resource}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
+        steal: {
+          label: function(){
+            return ns.t.html('action.steal.label')
+          },
+          buildLabel: function(payload){
+            var targetName = stats.players[payload.target].name
+            return ns.t.html('action.steal.selection', {resource: [':', ':'].join(payload.resource), target: targetName});
+          },
+          showResult: function(result, players){
+            var _resultLabel;
+            if (result.status == 'fail')
+              _resultLabel = result.info.reason;
+            else
+              if ('bounty' in result){
+                var _resources = Object.keys(result.bounty).map(function(resource){
+                  return [':', ':'].join(resource) + ' ' + result.bounty[resource];
+                }).join(', ');
+
+                _resultLabel = ns.t.text('action.steal.result.bounty', {resources: _resources});
+              }
+
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
+          },
+          run: function(target, slotWidget){
+            var _builtAction = {name: 'steal', payload: {target: target, resource: 'helmet'}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
         defend: {
@@ -101,215 +310,6 @@
           },
           run: function(location, slotWidget) {
             var _builtAction = {name: 'escape', payload: {location: location.uuid}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          }
-        },
-        hack:{
-          label: function(){
-            return ns.t.html('action.hack.label')
-          },
-          buildLabel: function(payload){
-            var location_label = ns.t.text('locations.' + payload.location)
-            return ns.t.html('action.hack.selection', {location: location_label})
-          },
-          run: function(location, slotWidget) {
-            var _builtAction = {name: 'hack', payload: {location: location.uuid}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          },
-          showResult: function(result){
-            var _resultLabel = result.status
-            if(result.status == "fail")
-              _resultLabel = result.info.reason
-
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
-
-            return resultLabel;
-          }
-        },
-        oxygen:{
-          label: function(){
-            return ':food:'
-          },
-          buildLabel: function(){
-            return ns.t.html('action.oxygen.label')
-          },
-          showResult: function(result){
-            var _resultLabel = ns.t.html('action.oxygen.result.' +  result.status )
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
-
-            return resultLabel;
-          },
-          run: function(location, slotWidget){
-            var _builtAction = {name: 'oxygen', payload: {location: location.uuid}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          }
-        },
-        search: {
-          label: function(){
-            return ns.t.html('action.search.label')
-          },
-          buildLabel: function(payload){
-            var location_label = ns.t.text('locations.' + payload.location);
-            return ns.t.html('action.search.selection', {location: location_label});
-          },
-          showResult: function(result, players){
-            var _showbounty = function(){
-              if (Object.keys(result.bounty).length == 0)
-                return ns.t.html('action.search.result.nothing')
-
-              var _resources = Object.keys(result.bounty).map(function(resource){
-                return [':', ':'].join(resource) + ' ' + result.bounty[resource]
-              })
-
-              return ns.t.html('action.search.result.bounty', {resources: _resources})
-            }
-
-            var _resultLabel = _showbounty();
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
-
-            return resultLabel;
-          },
-          run: function(location, slotWidget) {
-            var _builtAction = {name: 'search', payload: {location: location.uuid}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          }
-        },
-        share: {
-          label: function(resource){
-            return ns.t.html('action.share.label', {resource: [':', ':'].join(resource)});
-          },
-          buildLabel: function(payload){
-            var targetName = stats.players[payload.target].name
-            return ns.t.html('action.share.selection', {resource: [':', ':'].join(payload.resource), target: targetName});
-          },
-          showResult: function(result){
-            var resultLabel = $(crel('div')).addClass('col-12')
-            resultLabel.html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)).addClass('unpadded')
-            return resultLabel
-          },
-          run: function(target, slotWidget, resource) {
-            var _builtAction = {name: 'share', payload: {target: target, resource: resource}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          }
-        },
-        spy: {
-          label: function(){
-            return ns.t.html('action.spy.label')
-          },
-          buildLabel: function(payload){
-            var targetName = stats.players[payload.target].name
-            return ns.t.html('action.spy.selection', {target: targetName});
-          },
-          showResult: function(result, players){
-            var _resultLabel;
-            var resultLabel = $(crel('div')).addClass('col-12');
-            var _inventoryLabel;
-
-            if (result.status == 'fail'){
-              _resultLabel = result.info.reason;
-            }
-            else {
-              var _resources = Object.keys(result.info.target_info.inventory).map(function(resource){
-                return [':', ':'].join(resource) + ' ' + result.info.target_info.inventory[resource];
-              }).join(', ');
-              _inventoryLabel = ns.t.text('action.spy.targetInventory', {target: players[result.payload.target].name, resources: _resources});
-              _resultLabel = ns.t.html(_inventoryLabel);
-            }
-
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
-
-            return resultLabel;
-          },
-          run: function(target, slotWidget) {
-            var _builtAction = {name: 'spy', payload: {target: target}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          }
-        },
-        steal: {
-          label: function(){
-            return ns.t.html('action.steal.label')
-          },
-          buildLabel: function(payload){
-            var targetName = stats.players[payload.target].name
-            return ns.t.html('action.steal.selection', {resource: [':', ':'].join(payload.resource), target: targetName});
-          },
-          showResult: function(result, players){
-            var _resultLabel;
-            if (result.status == 'fail')
-              _resultLabel = result.info.reason;
-            else
-              if ('bounty' in result){
-                var _resources = Object.keys(result.bounty).map(function(resource){
-                  return [':', ':'].join(resource) + ' ' + result.bounty[resource];
-                }).join(', ');
-
-                _resultLabel = ns.t.text('action.steal.result.bounty', {resources: _resources});
-              }
-
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
-
-            return resultLabel;
-          },
-          run: function(target, slotWidget){
-            var _builtAction = {name: 'steal', payload: {target: target, resource: 'helmet'}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          }
-        },
-        unlock: {
-          label: function(){
-            return ns.t.html('action.unlock.label')
-          },
-          buildLabel: function(payload){
-            return ns.t.html('action.unlock.selection', {location: ns.t.html('locations.' + payload.location)})
-          },
-          showResult: function(result){
-            var _label = result.status
-            if(result.status == "fail")
-              _label = result.info.reason
-
-            var _resultLabel = ns.t.html('action.unlock.result.' +  _label )
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
-
-            return resultLabel;
-          },
-          run: function(location, slotWidget) {
-            var _builtAction = {name: 'unlock', payload: {location: location.uuid}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          }
-        },
-        work: {
-          label: function(){
-            return ns.t.html('action.work.label')
-          },
-          buildLabel: function(payload){
-            return ns.t.html('action.work.label');
-          },
-          showResult: function(result, players){
-            var _resultLabel = '';
-            if (result.status == 'fail')
-              _resultLabel = result.info.reason;
-            else{_resultLabel = ns.t.html('action.work.result.success')};
-
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
-
-            return resultLabel;
-          },
-          run: function(location, slotWidget) {
-            var _builtAction = {name: 'work', payload: {item: 'escape shuttle', location: location.uuid}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         }
@@ -398,7 +398,7 @@
                 _resultLabel = ns.t.text('action.fusion.result.otterdied')
             }
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.fusion.label') + _resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.fusion.label') + " " + _resultLabel).addClass('unpadded');
             return resultLabel
           }
         },

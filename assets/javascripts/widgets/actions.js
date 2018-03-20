@@ -91,13 +91,13 @@
 
     var targetWidget = function(){
       var _targetSelectorNav = $(crel('div')).addClass('row slotInfo');
-      var _slotInfo = $(crel('div')).addClass('col-6');
+      var _slotInfo = $(crel('div')).addClass('col-8');
       var _slotLabel = $(crel('span')).addClass('slotTargetInfo');
 
       _slotInfo.append(_slotLabel);
       _slotInfo.css('text-align','left');
 
-      var _back = $(crel('div')).addClass('col-6');
+      var _back = $(crel('div')).addClass('col-4');
       var _backLabel = $(crel('span')).text('Back ');
       var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
       _backLabel.append(_arrow);
@@ -120,48 +120,54 @@
         });
       });
 
-      var _selectPlayer = $(crel('div')).addClass('row text-center');
-      var _selectPlayerLabel = $(crel('div')).addClass('col-12').text('Tripulación');
+      var _players = stats.players;
+      if(Object.keys(_players).length > 1){
+
+        var _selectPlayer = $(crel('div')).addClass('row text-center')
+        var _selectPlayerLabel = $(crel('h5')).addClass('col-12').text('Tripulación')
+        _selectPlayer.append(_selectPlayerLabel)
+        _targetSelector.append(_selectPlayer)
+
+        var _reorderedPlayers = Object.keys(_players).sort(function(a, b){
+          var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
+
+          if (a == ns.playerUuid())
+            return -1
+
+          if (b == ns.playerUuid())
+            return 1
+
+          return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
+
+        });
+        _reorderedPlayers.shift();
+        _reorderedPlayers.forEach(function(player){
+          _players[player].uuid = player;
+          var _playerAvatar = LB.Widgets.PlayerAvatar(_players[player]).render();
+
+          var _player = LB.Widgets.Player(_players[player], actions, _slotWidget).render();
+          _actionSelector.append(_player);
+
+          _playerAvatar.on('click', function(){
+            _targetSelector.animateCss("fadeOutRight", function(){
+              _targetSelector.removeClass('active');
+              _actionSelector.addClass('active');
+              _player.addClass('selected-room');
+              _player.css('display', 'block');
+              _actionSelector.animateCss("fadeInRight");
+            });
+          });
+
+          _selectPlayer.append(_playerAvatar);
+        })
+      }
 
       var _selectRoom = $(crel('div')).addClass('row text-center');
-      var _selectRoomLabel = $(crel('div')).addClass('col-12').text('Habitaciones');
+      var _selectRoomLabel = $(crel('h5')).addClass('col-12').text('Habitaciones');
 
-      _selectPlayer.append(_selectPlayerLabel);
       _selectRoom.append(_selectRoomLabel);
+      _targetSelector.append(_selectRoom);
 
-      _targetSelector.append(_selectPlayer, _selectRoom);
-
-      var _players = stats.players;
-      Object.keys(_players).sort(function(a, b){
-        var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
-
-        if (a == ns.playerUuid())
-          return -1
-
-        if (b == ns.playerUuid())
-          return 1
-
-        return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
-
-      }).forEach(function(player){
-        _players[player].uuid = player
-        var _playerAvatar = LB.Widgets.PlayerAvatar(_players[player]).render();
-
-        var _player = LB.Widgets.Player(_players[player], actions, _slotWidget).render()
-        _actionSelector.append(_player)
-
-        _playerAvatar.on('click', function(){
-          _targetSelector.animateCss("fadeOutRight", function(){
-            _targetSelector.removeClass('active');
-            _actionSelector.addClass('active');
-            _player.addClass('selected-room');
-            _player.css('display', 'block');
-            _actionSelector.animateCss("fadeInRight");
-          });
-        })
-
-        _selectPlayer.append(_playerAvatar)
-      })
 
       var locationsInfo = stats.personal_info.locations
       if(locationsInfo)
@@ -191,13 +197,13 @@
 
     var actionWidget = function(){
       var _actionSelectorNav = $(crel('div')).addClass('row slotInfo');
-      var _slotInfo = $(crel('div')).addClass('col-6');
+      var _slotInfo = $(crel('div')).addClass('col-8');
       var _slotLabel = $(crel('span')).addClass('slotActionInfo');
 
       _slotInfo.append(_slotLabel);
       _slotInfo.css('text-align','left');
 
-      var _back = $(crel('div')).addClass('col-6');
+      var _back = $(crel('div')).addClass('col-4');
 
       var _backLabel = $(crel('span')).text('Back ');
       var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
@@ -226,6 +232,7 @@
 
     var _slotWidget = slotWidget();
     var _sendActionsButtonWidget = LB.Widgets.SendActionsButton(_slotWidget);
+    //_sendActionsButtonWidget.disable();
     _slotSelector.append(_sendActionsButtonWidget.render());
 
     actionWidget();

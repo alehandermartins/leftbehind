@@ -75,8 +75,7 @@
         }
       },
       defend:{
-        tutorialTitle: 'Tutorial: Defenderse',
-        tutorialInfo: '¿No te sientes seguro entre tanto mentiroso?. Defiéndete para evitar que te espien o te roben. Además sabrás quien va detras tuya...',
+        tutorial: ':defend: Defender evita que te espien o te roben. Además sabrás quién va detras tuya...',
         label: ':defend: Defenderte',
         result: {
           attack_defended: 'Se defendió y te pateó el culo!!',
@@ -94,8 +93,7 @@
       },
       escape:{
         label: 'Escapar',
-        tutorialTitle: 'Tutorial: Escapar',
-        tutorialInfo: 'Es hora de abandonar esta trampa mortal, ¿tienes puesto el :helmet:?...Aseguraos de abandonar la nave al mismo tiempo o dejaréis atrás a los demás...y no queréis que eso pase... ¿verdad?',
+        tutorial: 'Escapar: Es hora de abandonar esta trampa mortal, ¿tienes puesto el casco?...',
         result: {
           success: 'Enciendes los motores y te marchas...',
           helmet_needed: 'Necesitas un :helmet: para sobrevivir en la cápsula',
@@ -114,6 +112,7 @@
         }
       },
       hack: {
+        tutorial: ':computer: Hackear: La IA no será capaz de atacar esta habitación.',
         label: 'Hackear (:energy: 2)',
         selection: 'Hackear: %{location}',
         result: {
@@ -123,6 +122,7 @@
         }
       },
       oxygen: {
+        tutorial: ":food: Generarás 1 botella de oxígeno.",
         label: 'Generar :food:',
         result: {
           fail: 'Alcanzaste el límite de oxígeno',
@@ -143,8 +143,7 @@
       search: {
         label: ':search: Buscar',
         selection: ':search: Buscar: %{location}',
-        tutorialTitle: 'Tutorial: Buscar',
-        tutorialInfo: 'Explora en las diferentes :locations: de la nave para encontrar recursos... o algo útil. Encontrarás una recurso cada vez que busques. Si dos o más jugadores visitan la misma habitación al mismo tiempo los recursos se añadirán al inventario del :team:.',
+        tutorial: ':search: Search: Encontrarás :parts: o :energy:.',
         result: {
           nothing: 'No encontraste nada. ',
           bounty: 'Encontraste %{resources}',
@@ -156,7 +155,7 @@
       share: {
         label: 'Dar %{resource}',
         selection: 'Dar %{resource} a %{target}',
-        modalTitle: 'Qué quieres dar a %{target}?',
+        tutorial: 'Dar: transfiere recursos a otro jugador.',
         result: {
           teamReceived: ':arrows_clockwise: El :team: recibió: ',
           youReceived: ':arrows_clockwise: Recibiste: ',
@@ -166,13 +165,13 @@
       spy:{
         label: 'Espiar',
         selection: 'Espiar a %{target}',
-        tutorialTitle: 'Tutorial: Espiar',
-        tutorialInfo: 'Espiar te permite conocer lo que estaba haciendo un jugador en un determinado momento. Además conocerás su inventario.',
+        tutorial: 'Espiar: te permite conocer lo que estaba haciendo un jugador en un determinado momento. Además conocerás su inventario.',
         targetInventory: 'Inventario de %{target}: %{resources}'
       },
       steal:{
         label: 'Robar :helmet:',
         selection: 'Robar %{resource} a %{target}',
+        tutorial: 'Robar: transfiere recursos desde otro jugador.',
         result: {
           empty: 'No tenía nada',
           bounty: 'Robaste %{resources}'
@@ -181,6 +180,7 @@
       unlock: {
         label: 'Desbloquear (:energy: 2)',
         selection: 'Desbloquear: %{location}',
+        tutorial: ':lock: Desbloquear: Abre una habitación bloqueada.',
         result: {
           no_materials: "No disponías de las :energy: necesarias",
           redundancy: "Esta habitación ya ha sido desbloqueada",
@@ -197,8 +197,7 @@
       },
       work:{
         label: 'Reparar el :shuttle: (:parts: 1)',
-        tutorialTitle: 'Tutorial: Trabajar',
-        tutorialInfo: 'Nadie va a venir a rescatarte. Será mejor que te pongas manos a la obra para arreglar este desastre',
+        tutorial: ':work: Reparar: arregla un porcentaje de la cápsula de escape.',
         result: {
           success: 'Bien hecho, ya queda menos...',
           broken_shuttle: 'El :shuttle: aun necesita reparaciones',

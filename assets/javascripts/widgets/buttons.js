@@ -58,9 +58,12 @@
   };
 
   ns.Widgets.SendActionsButton = function(origin){
-    var _createdWidgetRow = $(crel('div')).addClass('send_actions col-12');
-    var _createdWidget = $(crel('div')).addClass('col-12');
-    var _createdButton = ns.Widgets.SpinningButton(ns.t.html('buttons.send'), function(){
+    var _createdWidget = $(crel('div')).addClass('col-12 text-center');
+    _createdWidget.css('margin-top', '20px');
+    var _createdButton = ns.Widgets.Button(ns.t.html('buttons.send'), function(){
+      if(_createdButton.hasClass('disabled'))
+        return
+
       origin.getSelections(function(selections){
         ns.Backend.daySelections(
           {
@@ -71,13 +74,18 @@
           ns.Events.SentSelections
         );
       });
-    }, 12);
+    }, 6).render();
 
-    _createdWidget.append(_createdButton.render());
-    _createdWidgetRow.append(_createdWidget);
+    _createdWidget.append(_createdButton);
     return {
       render: function(){
-        return _createdWidgetRow;
+        return _createdWidget;
+      },
+      disable: function(){
+        _createdButton.addClass('disabled');
+      },
+      enable: function(){
+        _createdButton.removeClass('disabled');
       }
     };
   };

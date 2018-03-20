@@ -2,11 +2,11 @@
 (function(ns){
 
   ns.Widgets.LockedRoom = function(location, actions, slotWidget){
-    var _createdWidget = $(crel('div')).addClass('col-12')
+    var _createdWidget = $(crel('div'))
 
     var _background = $(crel('img')).addClass('img-responsive')
     _background.attr('src', '/images/locked.jpg')
-    var _roomName = $(crel('div')).addClass('col-12 text-center')
+    var _roomName = $(crel('div')).addClass('text-center')
     var _roomNameLabel = $(crel('h4')).html(ns.t.text('locations.' + location.uuid))
 
     var _lockedInfo = $(crel('div'))
@@ -44,8 +44,8 @@
     if(location.status == 'locked')
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
 
-    var _createdWidget = $(crel('div')).addClass('col-12')
-    var _roomName = $(crel('div')).addClass('col-12 text-center')
+    var _createdWidget = $(crel('div'))
+    var _roomName = $(crel('div')).addClass('text-center')
     var _roomNameLabel = $(crel('h4')).html(ns.t.text('locations.' + location.uuid))
     _roomName.append(_roomNameLabel)
     _createdWidget.append(_roomName)
