@@ -12,7 +12,8 @@
     _resultsToggler.html(LB.t.html(':punch_tone5:'));
     _tutorialToggler.html(LB.t.html(':question:'));
 
-    if(stats.current_slot == 0){
+
+    if(stats.current_slot == 0 || stats.day_status == 'wait'){
       _dayPlannerToggler.addClass('active');
       _resultsToggler.css('display', 'none');
     }
