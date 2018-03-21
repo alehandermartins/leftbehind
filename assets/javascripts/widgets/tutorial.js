@@ -2,7 +2,7 @@
 (function(ns){
 
   ns.Widgets.Tutorial = function(stats){
-    var _createdWidget = $(crel('div')).addClass('tutorial_layout');
+    var _createdWidget = $(crel('div')).addClass('tutorial col-10');
     _createdWidget.css({
       'text-align': 'justify',
       'text-justify': 'inter-word'

@@ -101,18 +101,8 @@
         return;
       }
 
-      var behaviorsMap = {
-        actions: ns.selectActions,
-        sharing: ns.share,
-        events: ns.gameEvents,
-        wait: ns.wait
-      };
+      ns.Game(data);
 
-      behaviorsMap[stage](data);
-      // if (ns.Cache.lastStatus != stage){
-      //   ns.Widgets.StageTutorial(stage).render();
-      //   ns.Cache.lastStatus = stage;
-      // }
     });
 
   $(window).resize(function(){

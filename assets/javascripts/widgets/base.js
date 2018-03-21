@@ -22,39 +22,6 @@
     };
   };
 
-  ns.Widgets.TimeSlot = function(slot, selected_action, callback, size){
-    selected_action = selected_action || " Escoge una acción";
-    size = size || 12;
-    var createdId = 'ts-' + slot.name;
-    var _createdWidgetRow = $(crel('div')).addClass('row');
-    var _createdWidget = $(crel('div')).addClass('col-' + size).addClass('time_slot');
-    var _createdWidgetRadio = $(crel('input')).attr('type', 'radio').attr('name', 'xxx').attr('id', createdId);
-    var _createdWidgetLabel = $(crel('label')).attr('for', createdId).addClass('col-12 btn-default btn-xs btn').html(ns.t.html(slot.label) + ns.t.html(selected_action));
-    _createdWidgetRadio.click(function(e){
-      callback(slot.name);
-    });
-
-    _createdWidget.append(_createdWidgetRadio);
-    _createdWidget.append(_createdWidgetLabel);
-
-    _createdWidgetRow.append(_createdWidget);
-
-    return {
-      render: function(){
-        return _createdWidgetRow;
-      },
-      setSelectedAction: function(value){
-        _createdWidgetLabel.html(ns.t.html(slot.label) + " " + ns.t.html(value));
-      },
-      check: function(){
-        _createdWidgetRadio.prop('checked', true);
-      },
-      label: function(){
-        return slot.label;
-      }
-    };
-  };
-
   ns.Widgets.TargetSelector = function(origin, amount, callback){
     amount = amount || 1;
     callback = callback || function(){};
@@ -113,7 +80,6 @@
         return _selectedTargets;
       }
     };
-
   };
 
   ns.Widgets.ModalTargetSelector = function(origin, label, amount){
@@ -138,7 +104,10 @@
   };
 
   ns.Widgets.Results = function(stats){
-    var _createdWidget = $(crel('div'));
+    var _createdWidget = $(crel('div')).addClass('results col-10');
+    
+    if(stats.current_slot != 0)
+      _createdWidget.addClass('active');
 
     var slotsToShow = {
       'actions': 2,

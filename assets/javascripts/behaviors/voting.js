@@ -1,10 +1,8 @@
 'use strict';
 (function(ns){
 
-  ns.Widgets = ns.Widgets || {};
-
-  ns.Widgets.Voting = function(stats){
-    var _createdWidget = $(crel('div')).addClass('col-12');
+  ns.Voting = function(stats){
+    var _createdWidget = $(crel('div')).addClass('dayPlanner col-10');
 
     var _alive_players = [];
     Object.keys(stats.players).forEach(function(player){

@@ -1,46 +1,42 @@
 'use strict';
-LB.fusion = function(stats){
-  var dayContainer = $('.game_container');
-  dayContainer.empty();
+(function(ns){
 
-  var _content = $(crel('div')).addClass('content');
-  var _playGround = $(crel('div')).addClass('playground row'); 
-  var _sidebar = LB.Widgets.Sidebar(stats);
+  ns.Fusion = function(stats){
+    var _createdWidget = $(crel('div')).addClass('dayPlanner col-10');
+    var _instructions = ns.Widgets.Label(ns.t.html('events.fusion.intro'),'', 12);
 
-  var _results = $(crel('div')).addClass('results active col-10');
-  var _dayPlanner = $(crel('div')).addClass('dayPlanner col-10');
-  var _tutorial = $(crel('div')).addClass('tutorial col-10');
+    var _enterButton = ns.Widgets.Button(ns.t.html('buttons.enter'), function(){
+      _sendSelections(true);
+    }, 6);
 
-  var _headerWidget = LB.Widgets.Header(stats);
-  var _resultsWidget = LB.Widgets.Results(stats);
-  var _fusionWidget = LB.Widgets.Fusion(stats);
-  var _tutorialWidget = LB.Widgets.Tutorial(stats);
+    var _stayButton = ns.Widgets.Button(ns.t.html('buttons.stay'), function(){
+      _sendSelections(false);
+    }, 6);
 
-  _playGround.append(
-    _sidebar.render(),
-    _results,
-    _dayPlanner,
-    _tutorial
-  );
+    _createdWidget.append(
+      _instructions.render(),
+      _enterButton.render(),
+      _stayButton.render()
+    );
 
-  _tutorial.append(
-    _tutorialWidget.render()
-  );
+    var _sendSelections = function(selection){
+      var _builtAction = {'events': {name: 'fusion', payload: {enter: selection}}}
+      ns.Backend.daySelections(
+        {
+          game_uuid: ns.currentGame(),
+          player_uuid: ns.playerUuid(),
+          actions: _builtAction,
+        },
+        ns.Events.SentSelections
+      );
+    }
 
-  _results.append(
-    _resultsWidget.render()
-  );
 
-  _dayPlanner.append(
-    _fusionWidget.render()
-  );
-  
-  _content.append(
-    _headerWidget.render(),
-    _playGround
-  );
+    return{
+      render: function(){
+        return _createdWidget;
+      }
+    };
+  };
 
-  dayContainer.append(
-    _content
-  );
-};
+}(LB || {}));
