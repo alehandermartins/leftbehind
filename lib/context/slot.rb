@@ -16,7 +16,8 @@ class Slot
     'LB::Action::Spy',
     'LB::Action::Eat',
     'LB::Action::Vote',
-    'LB::Action::Fusion'
+    'LB::Action::Fusion',
+    'LB::Action::Inject'
   ]
 
   def add action

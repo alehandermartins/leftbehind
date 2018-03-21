@@ -4,5 +4,6 @@
 // = require ./wait
 // = require ./voting
 // = require ./fusion
+// = require ./inject
 // = require ./default_event
 // = require ./game

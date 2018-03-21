@@ -3,6 +3,7 @@ module Services
 
     def initialize game, max_slots = nil
       @stats = {}
+      @situation = {}
       @game = Repos::Games.game(game)
       @context = Context.build_for game
       @roles = %i(captain pilot mechanic scientist).shuffle(random: @context.random_generator)
@@ -58,6 +59,7 @@ module Services
       compute_stage stage_slots
 
       @current_slot = stage_slots.last || 0
+      store_situation
       store_stats
       game_over?
 
@@ -116,7 +118,7 @@ module Services
           game: @game,
           current_slot: @max_slots,
           escape_shuttle: context.items['escape shuttle'][:fix],
-          players: players_situation,
+          players: @situation,
           locations: locations
         },
         team_stats:{
@@ -130,22 +132,21 @@ module Services
       }
     end
 
-    def players_situation
-      situation = Hash.new
+    def store_situation
+      random_player = context.players.to_a.sample(random: context.random_generator)
       context.players.each{ |player|
         player.crash if (current_slot >= 58 && player.alive?)
-        situation[player.uuid] = compose_situation player
+        @situation[player.uuid] = compose_situation player, random_player
       }
-      situation
     end
 
-    def compose_situation player
+    def compose_situation player, random_player
       {
         name: player.name,
         status: player.status,
         role: role(player),
         stage: player_stage(player),
-        event: player_event(player),
+        event: player_event(player, random_player),
       }
     end
 
@@ -168,9 +169,10 @@ module Services
       }
     end
 
-    def player_event player
+    def player_event player, random_player
       return :defaultEvent unless player_stage(player) == :events
       return :fusion if !player.events.include?(:fusion)
+      return :inject if !player.events.include?(:inject) && player == random_player
       :defaultEvent
     end
 

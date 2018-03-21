@@ -13,12 +13,13 @@ class ActionBuilder
     'work' => LB::Action::Work,
     'share' => LB::Action::Share,
     'vote' => LB::Action::Vote,
-    'fusion' => LB::Action::Fusion,
     'eat' => LB::Action::Eat,
     'playdead' => LB::Action::PlayDead,
     'escape' => LB::Action::Escape,
     'none' => LB::Action::None,
-    'unlock' => LB::Action::Unlock
+    'unlock' => LB::Action::Unlock,
+    'fusion' => LB::Action::Fusion,
+    'inject' => LB::Action::Inject
   }
 
   def for player

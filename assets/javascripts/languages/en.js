@@ -121,6 +121,13 @@
           success: "This room is safe now"
         }
       },
+      inject: {
+        label: ':syringe:',
+        result: {
+          yes: 'You injected yourself. You can now breath toxic air',
+          no: "You decide it's not worth taking the risk"
+        }
+      },
       oxygen: {
         tutorial: ":food: You will generate 1 bottle of oxygen.",
         label: 'Generate :food:',
@@ -230,14 +237,19 @@
       },
       fusion: {
         intro: 'The core of the nucleus is melting... someone has to enter to the control chamber and stop it manually. ' +
-        'Only with one person entering will be enough, but the radiation is so high it will render the :helmet: of those who enter useless. If nobody enters the ship will explode'
+        'Only with one person entering will be enough, but the radiation is so high it will render the :helmet: of those who enter useless. If nobody enters the ship will explode',
+        yes: 'Enter',
+        no: 'Stay'
+      },
+      inject: {
+        intro: 'You fond a syringe with what appears to be an antidote for the neurotoxin. If you inject yourself you will no need :food: anymore. But... is this safe?',
+        yes: 'Inject',
+        no: 'Nevermind'
       }
     },
     buttons: {
       start: 'Start',
       send: 'Send',
-      enter: 'Enter',
-      stay: 'Stay'
     },
     results: {
       label: 'Results %{day}:',

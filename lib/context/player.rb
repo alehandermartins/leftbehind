@@ -8,6 +8,7 @@ class Player
     @status = :alive
     @tomb = {}
     @events = []
+    @traits = []
   end
 
   def inventory
@@ -24,6 +25,14 @@ class Player
 
   def add_event event
     @events.push event
+  end
+
+  def traits
+    @traits
+  end
+
+  def add_trait trait
+    @traits.push trait
   end
 
   def uuid

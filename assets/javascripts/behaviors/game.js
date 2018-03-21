@@ -41,8 +41,9 @@ LB.gameEvents = function(stats){
 
   var eventsMap = {
     defaultEvent: LB.DefaultEvent,
-    voting: LB.Voting,
-    fusion: LB.Fusion
+    fusion: LB.Fusion,
+    inject: LB.Inject,
+    voting: LB.Voting
   };
 
   return eventsMap[stats.players[LB.playerUuid()]['event']](stats);

@@ -14,11 +14,7 @@ module LB
 
     def resolve context
       super context
-
-      if able?
-        feed_from_team
-        return @context
-      end
+      return @context if injected?
 
       if starving?
         performer.kill
@@ -31,20 +27,12 @@ module LB
     end
 
     private
-    def feed_from_team
-      @context.team.inventory.subtract resource, bounty[resource]
-    end
-
     def starving?
       performer.inventory[:food] == 0
     end
 
-    def able?
-      (@context.team.inventory[resource] != 0) && !voted?
-    end
-
-    def voted?
-      @context.team.information.has_key?(:voting) && @context.team.information[:voting].has_key?(slot - 1) && @context.team.information[:voting][slot - 1][:result][:winners].include?(performer.uuid)
+    def injected?
+      performer.traits.include? :injected   
     end
 
     def add_to_everyone_log

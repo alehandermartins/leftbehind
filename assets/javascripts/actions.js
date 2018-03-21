@@ -382,8 +382,22 @@
             return resultLabel;
           }
         },
+        inject: {
+          showResult: function(result){
+            var _decision = result.payload.decision;
+            var _resultLabel;
+            if(_decision == true)
+              _resultLabel = ns.t.text('action.inject.result.yes')
+            else
+              _resultLabel = ns.t.text('action.inject.result.no')
+
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.inject.label') + " " + _resultLabel).addClass('unpadded');
+            return resultLabel
+          }
+        },
         fusion: {
           showResult: function(result){
+            console.log(result)
             var _resultLabel
             if (result.info == 'action.fusion.result.entered'){
               if (result.performer == LB.playerUuid())

@@ -1,14 +1,14 @@
 'use strict';
 
-LB.Fusion = function(stats){
+LB.Inject = function(stats){
   var _createdWidget = $(crel('div')).addClass('dayPlanner col-10');
-  var _instructions = LB.Widgets.Label(LB.t.html('events.fusion.intro'),'', 12);
+  var _instructions = LB.Widgets.Label(LB.t.html('events.inject.intro'),'', 12);
 
-  var _yesButton = LB.Widgets.Button(LB.t.html('events.fusion.yes'), function(){
+  var _yesButton = LB.Widgets.Button(LB.t.html('events.inject.yes'), function(){
     _sendSelections(true);
   }, 6);
 
-  var _noButton = LB.Widgets.Button(LB.t.html('events.fusion.no'), function(){
+  var _noButton = LB.Widgets.Button(LB.t.html('events.inject.no'), function(){
     _sendSelections(false);
   }, 6);
 
@@ -19,7 +19,7 @@ LB.Fusion = function(stats){
   );
 
   var _sendSelections = function(selection){
-    var _builtAction = {'events': {name: 'fusion', payload: {enter: selection}}}
+    var _builtAction = {'events': {name: 'inject', payload: {decision: selection}}}
     LB.Backend.daySelections(
       {
         game_uuid: LB.currentGame(),
@@ -29,6 +29,7 @@ LB.Fusion = function(stats){
       LB.Events.SentSelections
     );
   }
+
 
   return{
     render: function(){

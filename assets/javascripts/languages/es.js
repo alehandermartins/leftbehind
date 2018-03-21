@@ -121,6 +121,13 @@
           success: "Esta habitación es segura ahora"
         }
       },
+      inject: {
+        label: ':syringe:',
+        result: {
+          yes: 'Te inyectas. Ahora puedes respirar aire tóxico',
+          no: "Decides que el riesgo no vale la pena"
+        }
+      },
       oxygen: {
         tutorial: ":food: Generarás 1 botella de oxígeno.",
         label: 'Generar :food:',
@@ -231,14 +238,19 @@
       },
       fusion: {
         intro: 'El núcleo se está sobrecalentando... alguien debe entrar en la cámara de control y detener el proceso manualmente. ' +
-        'Con que entre una persona será suficiente, pero la radiación es tan alta que inutilizará el :helmet: de aquellos que entren. Si nadie entra la nave estallará'
+        'Con que entre una persona será suficiente, pero la radiación es tan alta que inutilizará el :helmet: de aquellos que entren. Si nadie entra la nave estallará',
+        yes: 'Entrar',
+        no: 'Quedarse'
+      },
+      inject: {
+        intro: 'Encuentras una jeringuilla con lo que parece un antídoto para la neurotoxina. Si te lo inyectas no necesitarás más :food:. Pero... es seguro?',
+        yes: 'Inyectarte',
+        no: 'Da igual'
       }
     },
     buttons: {
       start: 'Empezar',
-      send: 'Enviar',
-      enter: 'Entrar',
-      stay: 'Quedarse'
+      send: 'Enviar'
     },
     results: {
       label: 'Resultados %{day}:',

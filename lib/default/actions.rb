@@ -88,6 +88,14 @@ module LB
                 }
               }
             },
+            inject: {
+              'events' => {
+                name: 'inject',
+                payload: {
+                  selection: 'false'
+                }
+              }
+            },
             defaultEvent: {
               'events' => {
                 name: 'none',
