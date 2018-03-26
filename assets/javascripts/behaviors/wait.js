@@ -1,6 +1,6 @@
 'use strict';
 LB.Wait = function(stats){
-  var _createdWidget = $(crel('div')).addClass('wait dayPlanner active col-10');
+  var _createdWidget = $(crel('div')).addClass('wait dayPlanner active col-12');
 
   var checkStatus = function(){
     LB.Backend.getStats(function(data){

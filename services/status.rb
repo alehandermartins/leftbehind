@@ -55,7 +55,7 @@ module Services
     def compute stage = :actions
       stage_slots = remaining_slots.take(stage_actions[stage])
 
-      context.ia.activate if stage == :events
+      #context.ia.activate if stage == :events
       compute_stage stage_slots
 
       @current_slot = stage_slots.last || 0

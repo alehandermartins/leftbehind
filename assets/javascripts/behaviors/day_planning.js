@@ -5,7 +5,7 @@
     var slots = LB.SLOTS;
     var actions = LB.Actions(stats);
 
-    var _createdWidget = $(crel('div')).addClass('dayPlanner col-10');
+    var _createdWidget = $(crel('div')).addClass('dayPlanner col-12');
     var _slotSelector = $(crel('div')).addClass('slotSelector active');
     var _targetSelector = $(crel('div')).addClass('targetSelector');
     var _actionSelector = $(crel('div')).addClass('actionSelector');

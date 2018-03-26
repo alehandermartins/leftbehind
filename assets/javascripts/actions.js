@@ -94,30 +94,30 @@
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
-        hack:{
-          label: function(){
-            return ns.t.html('action.hack.label')
-          },
-          buildLabel: function(payload){
-            var location_label = ns.t.text('locations.' + payload.location)
-            return ns.t.html('action.hack.selection', {location: location_label})
-          },
-          run: function(location, slotWidget) {
-            var _builtAction = {name: 'hack', payload: {location: location.uuid}}
-            slotWidget.selectActionForCurrentSlot(_builtAction)
-          },
-          showResult: function(result){
-            var _resultLabel = result.status
-            if(result.status == "fail")
-              _resultLabel = result.info.reason
+        // hack:{
+        //   label: function(){
+        //     return ns.t.html('action.hack.label')
+        //   },
+        //   buildLabel: function(payload){
+        //     var location_label = ns.t.text('locations.' + payload.location)
+        //     return ns.t.html('action.hack.selection', {location: location_label})
+        //   },
+        //   run: function(location, slotWidget) {
+        //     var _builtAction = {name: 'hack', payload: {location: location.uuid}}
+        //     slotWidget.selectActionForCurrentSlot(_builtAction)
+        //   },
+        //   showResult: function(result){
+        //     var _resultLabel = result.status
+        //     if(result.status == "fail")
+        //       _resultLabel = result.info.reason
 
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+        //     var resultLabel = $(crel('div')).addClass('unpadded col-12')
+        //     resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+        //     resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
-            return resultLabel;
-          }
-        },
+        //     return resultLabel;
+        //   }
+        // },
         unlock: {
           label: function(){
             return ns.t.html('action.unlock.label')

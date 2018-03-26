@@ -1,6 +1,9 @@
 'use strict';
 LB.Game = function(stats){
 
+  $(".game_header").empty();
+  $(".game_footer").empty();
+
   var stagesMap = {
     actions: LB.DayPlanning,
     events: LB.gameEvents,
@@ -16,12 +19,11 @@ LB.Game = function(stats){
   var _headerWidget = LB.Widgets.Header(stats);
   var _playGround = $(crel('div')).addClass('playground row'); 
 
-  var _sidebar = LB.Widgets.Sidebar(stats);
+  var _footer = LB.Widgets.Footer(stats);
   var _resultsWidget = LB.Widgets.Results(stats);
   var _tutorialWidget = LB.Widgets.Tutorial(stats);
 
   _playGround.append(
-    _sidebar.render(),
     _stageWidget.render(),
     _resultsWidget.render(),
     _tutorialWidget.render()
@@ -35,6 +37,20 @@ LB.Game = function(stats){
   dayContainer.append(
     _content
   );
+
+  $(".game_footer").append(
+    _footer.render()
+  );
+
+  var scalePlayground = function(){
+    $(".game_container").css('height', window.innerHeight - $(".game_header").height() - $(".game_footer").height());
+  }
+
+  $(window).resize(function(){
+    scalePlayground();
+  });
+
+  scalePlayground()
 }
 
 LB.gameEvents = function(stats){

@@ -104,7 +104,7 @@
   };
 
   ns.Widgets.Results = function(stats){
-    var _createdWidget = $(crel('div')).addClass('results col-10');
+    var _createdWidget = $(crel('div')).addClass('results col-12');
     
     if(stats.current_slot != 0)
       _createdWidget.addClass('active');

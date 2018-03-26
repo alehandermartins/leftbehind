@@ -1,7 +1,7 @@
 'use strict';
 
 LB.Fusion = function(stats){
-  var _createdWidget = $(crel('div')).addClass('dayPlanner col-10');
+  var _createdWidget = $(crel('div')).addClass('dayPlanner col-12');
   var _instructions = LB.Widgets.Label(LB.t.html('events.fusion.intro'),'', 12);
 
   var _yesButton = LB.Widgets.Button(LB.t.html('events.fusion.yes'), function(){

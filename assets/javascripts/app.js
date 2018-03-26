@@ -27,14 +27,6 @@
     });
   }());
 
-  var zeroPad = function(number){
-    return ('0' + number).slice(-2)
-  }
-
-  ns.scalePlayground = function(){
-    $(".game_container").css('min-height', window.innerHeight - $(".game_header").height() - $(".game_footer").height());
-  }
-
   ns.paintScreen = function(){
     //ns.OneSignal()
     ns.Backend.getStats(
@@ -52,29 +44,6 @@
       clearAllTimeouts();
 
       $('.game_name').html(data.game.name);
-
-      if (data.game.style == 'turbo' && data.game.status == 'ongoing'){
-        var _refreshCoundown = function(){
-          var jsseconds = Math.round(new Date().getTime() / 1000);
-          var remaining = data.game.time + parseInt(data.game.lapse) - jsseconds;
-          var hours = Math.floor(remaining / 3600);
-          var minutes = Math.floor((remaining - hours * 3600) / 60);
-          var seconds = ((remaining - hours * 3600) - minutes *60);
-
-          if (remaining <= 0){
-            clearAllTimeouts();
-            LB.paintScreen();
-          }
-
-          var countdown = zeroPad(hours) + ':' + zeroPad(minutes) + ':' + zeroPad(seconds);
-          if (hours == 0)
-            countdown = zeroPad(minutes) + ':' + zeroPad(seconds);
-
-          $('.timer').html(countdown);
-        }
-        _refreshCoundown();
-        setInterval(_refreshCoundown, 1000);
-      }
 
       if (stage !== 'wait' && ns.background){
         ns.Widgets.favicon.badge('!');
@@ -105,11 +74,6 @@
 
     });
 
-  $(window).resize(function(){
-    ns.scalePlayground();
-  });
-
-    ns.scalePlayground()
   };
 
 

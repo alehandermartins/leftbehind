@@ -2,7 +2,7 @@
 (function(ns){
 
   ns.Voting = function(stats){
-    var _createdWidget = $(crel('div')).addClass('dayPlanner col-10');
+    var _createdWidget = $(crel('div')).addClass('dayPlanner col-12');
 
     var _alive_players = [];
     Object.keys(stats.players).forEach(function(player){

@@ -1,16 +1,46 @@
 'use strict';
 (function(ns){
 
-	ns.Widgets.Sidebar = function(stats){
-    var _sidebar = $(crel('div')).addClass('sidebar col-2');
+	ns.Widgets.Footer = function(stats){
+    var _footer = $(crel('div')).addClass('footer row col-12');
 
-    var _dayPlannerToggler = $(crel('div')).addClass('dayPlannerToggler text-center col-12');
-    var _resultsToggler = $(crel('div')).addClass('resultsToggler text-center col-12');
-    var _tutorialToggler = $(crel('div')).addClass('tutorialToggler text-center col-12');
+    var _timer = $(crel('div')).addClass('col-12 text-center');
+    _footer.append(_timer);
+
+    var zeroPad = function(number){
+      return ('0' + number).slice(-2)
+    }
+
+    if (stats.game.style == 'turbo' && stats.game.status == 'ongoing'){
+      var _refreshCoundown = function(){
+        var jsseconds = Math.round(new Date().getTime() / 1000);
+        var remaining = stats.game.time + parseInt(stats.game.lapse) - jsseconds;
+        var hours = Math.floor(remaining / 3600);
+        var minutes = Math.floor((remaining - hours * 3600) / 60);
+        var seconds = ((remaining - hours * 3600) - minutes *60);
+
+        if (remaining <= 0){
+          clearAllTimeouts();
+          LB.paintScreen();
+        }
+
+        var countdown = zeroPad(hours) + ':' + zeroPad(minutes) + ':' + zeroPad(seconds);
+        if (hours == 0)
+          countdown = zeroPad(minutes) + ':' + zeroPad(seconds);
+
+        _timer.html(countdown);
+      }
+      _refreshCoundown();
+      setInterval(_refreshCoundown, 1000);
+    }
+
+    var _dayPlannerToggler = $(crel('div')).addClass('dayPlannerToggler text-center col-4');
+    var _resultsToggler = $(crel('div')).addClass('resultsToggler text-center col-4');
+    var _tutorialToggler = $(crel('div')).addClass('tutorialToggler text-center col-4');
 
     _dayPlannerToggler.html(LB.t.html(':fist_tone5:'));
     _resultsToggler.html(LB.t.html(':punch_tone5:'));
-    _tutorialToggler.html(LB.t.html(':question:'));
+    _tutorialToggler.html(LB.t.html(':gear:'));
 
 
     if(stats.current_slot == 0 || stats.day_status == 'wait'){
@@ -20,7 +50,7 @@
     else
       _resultsToggler.addClass('active');
 
-    _sidebar.append(
+    _footer.append(
       _dayPlannerToggler,
       _resultsToggler,
       _tutorialToggler
@@ -102,7 +132,7 @@
 
     return {
       render: function(){
-        return _sidebar;
+        return _footer;
       }
     }
   }

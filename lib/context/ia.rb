@@ -2,7 +2,7 @@ class IA
   def initialize locations
     @locations = locations
     @mark_count = 1
-    @locations.mark_random @mark_count
+    #@locations.mark_random @mark_count
   end
 
   def activate
