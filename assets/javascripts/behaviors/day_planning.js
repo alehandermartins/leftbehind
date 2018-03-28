@@ -9,11 +9,13 @@
     var _slotSelector = $(crel('div')).addClass('slotSelector active');
     var _targetSelector = $(crel('div')).addClass('targetSelector');
     var _actionSelector = $(crel('div')).addClass('actionSelector');
+    var _wait = $(crel('div')).addClass('wait col-12');
 
     _createdWidget.append(
       _slotSelector,
       _targetSelector,
-      _actionSelector
+      _actionSelector,
+      _wait
     );
 
     if(stats.current_slot == 0)
@@ -230,8 +232,49 @@
       });
     }
 
+    var sendActionsButton = function(origin){
+      var _createdWidget = $(crel('div')).addClass('col-12 text-center');
+      _createdWidget.css('margin-top', '20px');
+      var _createdButton = ns.Widgets.Button(ns.t.html('buttons.send'), function(){
+        if(_createdButton.hasClass('disabled'))
+          return
+
+        _slotSelector.animateCss("fadeOutRight", function(){
+          _slotSelector.removeClass('active');
+          _wait.addClass('active');
+          _wait.animateCss("fadeInRight");
+        });
+
+        origin.getSelections(function(selections){
+          ns.Backend.daySelections(
+            {
+              game_uuid: ns.currentGame(),
+              player_uuid: ns.playerUuid(),
+              actions: selections,
+            },
+            ns.Events.SentSelections
+          );
+        });
+      }, 6).render();
+
+      _createdWidget.append(_createdButton);
+      return {
+        render: function(){
+          return _createdWidget;
+        },
+        disable: function(){
+          _createdButton.removeClass('btn-default disabled');
+          _createdButton.addClass('btn-default disabled');
+        },
+        enable: function(){
+          _createdButton.removeClass('btn-default disabled');
+          _createdButton.addClass('btn-success');
+        }
+      }
+    }
+
     var _slotWidget = slotWidget();
-    var _sendActionsButtonWidget = LB.Widgets.SendActionsButton(_slotWidget);
+    var _sendActionsButtonWidget = sendActionsButton(_slotWidget);
     _sendActionsButtonWidget.disable();
     _slotSelector.append(_sendActionsButtonWidget.render());
 

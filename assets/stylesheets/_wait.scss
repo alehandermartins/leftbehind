@@ -1,4 +1,5 @@
 .wait {
+  display: none;
   background-image: image-url('wait.svg');
   padding: 0;
   background-repeat: no-repeat;
@@ -15,5 +16,8 @@
     content: '';
     position: absolute;
     z-index: -1;
+  }
+  &.active {
+    display: block;
   }
 }

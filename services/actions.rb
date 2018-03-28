@@ -63,8 +63,8 @@ module Services
         game_status = Services::GameStatus.new game
         context = game_status.get_context
         add_actions game, context
-        alive_players = context.players.alive.map { |the_player| the_player.uuid }
-        Services::Http.notify(alive_players, game)
+        #alive_players = context.players.alive.map { |the_player| the_player.uuid }
+        #Services::Http.notify(alive_players, game)
       end
 
       def save_the_dead game, context
