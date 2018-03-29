@@ -43,9 +43,6 @@ module LB
       @context.team.inventory.add :energy, bounty[:energy] if bounty.has_key? :energy
       @context.team.inventory.add :parts, bounty[:parts] if bounty.has_key? :parts
 
-      mates.each {|mate|
-        mate.information.add_to(performer.uuid, slot, information(self.class.name, false))
-      }
       performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
       @context
     end
