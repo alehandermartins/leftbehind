@@ -10,7 +10,12 @@ LB.Game = function(stats){
     wait: LB.Wait
   }
 
-  var _stageWidget = stagesMap[stats.day_status](stats);
+  var _stageWidget;
+  if (stats.player_status !== 'alive')
+    _stageWidget = LB.EndGame(stats);
+  else
+    _stageWidget = stagesMap[stats.day_status](stats);
+
   var dayContainer = $('.game_container');
   dayContainer.empty();
 

@@ -32,7 +32,6 @@
     ns.Backend.getStats(
     function(data){
       if (data.response !== 'success'){
-        console.log(data);
         return;
       }
       if (data.game.status == 'ready' || data.game.status == 'full'){
@@ -48,26 +47,6 @@
       if (stage !== 'wait' && ns.background){
         ns.Widgets.favicon.badge('!');
         navigator.vibrate([200, 200, 200, 200, 500])
-      }
-
-      if (data.player_status !== 'alive'){
-        var _message = ns.t.html('player.status.' + data.player_status);
-        var _result = $(crel('h2')).append(_message).addClass('end-game');
-        var _resultImage
-        if(data.player_status != 'escaped')
-          _result.css('color', 'red')
-
-        _resultImage = $(crel('div')).addClass(data.player_status)
-        var _headerWidget = LB.Widgets.Header(data);
-
-        $('.game_container').empty().append(
-          $(crel('div')).addClass('content').append(
-            _headerWidget.render(),
-            _result,
-            _resultImage
-          )
-        );
-        return;
       }
 
       ns.Game(data);

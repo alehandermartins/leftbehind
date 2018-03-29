@@ -17,15 +17,9 @@
     text-overflow: ellipsis;
   }
 
-  &:first-child {
-    .avatarWrapper {
-      width: 75%;
-    }
-  }
-
   .avatarWrapper {
     position: relative;
-    width: 55%;
+    width: 100%;
     margin: 0 auto;
     cursor: pointer;
 

@@ -6,4 +6,5 @@
 // = require ./fusion
 // = require ./inject
 // = require ./default_event
+// = require ./end_game
 // = require ./game

@@ -183,6 +183,7 @@
         var _room = ns.Widgets.Room(location, actions, _slotWidget).render()
         _actionSelector.append(_room)
 
+
         var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
           _targetSelector.animateCss("fadeOutRight", function(){
             _targetSelector.removeClass('active');
@@ -191,9 +192,15 @@
             _room.css('display', 'block');
             _actionSelector.animateCss("fadeInRight");
           });
-        })
+        }).render();
 
-        _selectRoom.append(_locationButton.render())
+        if(location.status == 'locked'){
+          var _iconLock = $(crel('i')).addClass('fa fa-lock');
+          _iconLock.css({'padding-left':'5px', 'font-size': '20px', 'padding-top': '2px'});
+          _locationButton.append(_iconLock);
+        }
+
+        _selectRoom.append(_locationButton)
       })
     }
 
