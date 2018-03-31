@@ -13,8 +13,9 @@ module LB
     def resolve context
       super context
       return @context if resolved?
-      
-      performer.add_trait :injected if payload[:decision] == true
+
+      performer.add_trait :android if payload[:decision] == true
+      add_info reason: 'action.inject.result.android'
       add_event_to_everyone
       performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
 

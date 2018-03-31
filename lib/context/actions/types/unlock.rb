@@ -2,6 +2,7 @@ module LB
   class Action::Unlock < Action::Base
     include Located
     include Cooperative
+    include EndGame
     UNLOCK_PRICE = 2
 
     def run context
@@ -12,13 +13,13 @@ module LB
       unlock = lambda do |action|
         unless @context.locations[location][:status] == :locked
           action.add_status :fail
-          action.add_info reason: 'redundancy'
+          action.add_info reason: 'action.unlock.result.redundancy'
           return @context
         end
 
         unless able?
           action.add_status :fail
-          action.add_info reason: 'no_materials'
+          action.add_info reason: 'action.unlock.result.no_materials'
           return @context
         end
 

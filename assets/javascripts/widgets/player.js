@@ -1,9 +1,9 @@
 'use strict';
 (function(ns){
 
-	ns.Widgets.Player = function(player, actions, slotWidget){
+	ns.Widgets.Player = function(player, actions, slotWidget, size){
     var _createdWidget = $(crel('div')).addClass('col-12')
-    var _playerAvatar = LB.Widgets.PlayerAvatar(player).render()
+    var _playerAvatar = LB.Widgets.PlayerAvatar(player, size).render()
 
     _createdWidget.append(_playerAvatar)
 
@@ -17,11 +17,26 @@
       _createdWidget.append(_actionButton)
     }
 
-    addActionButton('share', 'food')
-    addActionButton('share', 'helmet')
-    addActionButton('steal')
-    addActionButton('spy')
-    addActionButton('defend')
+    if(player.condition == 'broken'){
+      if(player.uuid != LB.playerUuid()){
+        if(player.traits.includes('c3po')){
+          addActionButton('hackAndroid')
+          addActionButton('disconnectAndroid')
+        }
+      }
+      else{
+        if(player.traits.includes('c3po') || player.traits.includes('terminator'))
+          addActionButton('hackAndroid')
+      }
+    }
+
+    if(player.uuid != LB.playerUuid()){
+      addActionButton('share', 'food')
+      addActionButton('share', 'helmet')
+      addActionButton('steal')
+      addActionButton('spy')
+      addActionButton('defend')
+    }
 
     _createdWidget.hide()
 
@@ -32,8 +47,9 @@
     }
   }
 
-  ns.Widgets.PlayerAvatar = function(player){
-    var _playerAvatar = $(crel('div')).addClass('player text-center col-4')
+  ns.Widgets.PlayerAvatar = function(player, size){
+    size = size || 4
+    var _playerAvatar = $(crel('div')).addClass('player text-center col-' + size)
     var _wrapper = $(crel('div')).addClass('avatarWrapper')
     var _avatar = $(crel('div')).addClass('avatar')
     var _name = $(crel('div')).addClass('name').text(player.name)

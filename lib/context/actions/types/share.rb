@@ -14,7 +14,7 @@ module LB
 
     def resolve context
       super context
-      
+
       performer.inventory.subtract resource, 1
       @context.players[target].inventory.add resource, 1
       add_to_log
@@ -25,12 +25,6 @@ module LB
 
     def add_to_log
       @context.players[target].information.add_to performer.uuid, slot, information(self.class.name)
-    end
-
-    def add_to_everyone_log
-      @context.players.each{ |the_player|
-        the_player.information.add_to performer.uuid, slot, information(self.class.name)
-      }
     end
   end
 end

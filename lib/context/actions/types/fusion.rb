@@ -32,7 +32,7 @@ module LB
     private
     def place_backup_helmets
       backup_helmets.each{ |helmet|
-        @context.locations[unknown_locations.sample(random: @context.random_generator)][:inventory][helmet] += 1
+        @context.locations[@context.locations.locked.sample(random: @context.random_generator)][:inventory][helmet] += 1
       }
     end
 
@@ -47,18 +47,6 @@ module LB
       @context.players.map{ |player|
         player.inventory[:helmet]
       }.inject(0, :+)
-    end
-
-    def unknown_locations
-      known_locations = @context.players.map{|player|
-        next unless player.information.has_key? :locations
-        player.information[:locations].map{ |location, value|
-          location
-        }
-      }.compact.flatten.uniq
-      @context.locations.uuids.reject{|location|
-        known_locations.include? location.to_sym
-      }
     end
 
     def remove_damaged_helmets

@@ -57,6 +57,12 @@ class Locations
     @locations[uuid][:status] = :locked
   end
 
+  def locked
+    uuids.select{ |uuid|
+      @locations[uuid][:status] == :locked
+    }
+  end
+
   def mark uuid
     @locations[uuid][:status] = :marked
   end

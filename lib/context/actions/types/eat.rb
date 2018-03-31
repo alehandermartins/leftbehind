@@ -32,7 +32,7 @@ module LB
     end
 
     def injected?
-      performer.traits.include? :injected   
+      performer.traits.include?(:injected) || performer.traits.include?(:android)
     end
 
     def add_to_everyone_log

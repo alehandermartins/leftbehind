@@ -5,6 +5,7 @@
 // = require ./voting
 // = require ./fusion
 // = require ./inject
+// = require ./android
 // = require ./default_event
 // = require ./end_game
 // = require ./game

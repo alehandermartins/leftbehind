@@ -65,6 +65,26 @@
       recruit: 'Recruit a random player'
     },
     action: {
+      android: {
+        label: ':robot:',
+        result: {
+          informed: "%{player} Tells you that he/she is an android. The IA will detonate %{player} if he/she tries to escape, killing you all. It can be fixed by changing %{player}'s structure, using 4 :parts:. Or you can just disconnect %{player} and forget all about this.",
+          yes: 'You tell the others hoping they will help you',
+          no: "You decide it's not worth taking the risk to tell the others. You will fix yourself"
+        }
+      },
+      hackAndroid: {
+        label: 'Hack :robot: (1 :parts:) <strong>0%</strong>',
+        selection: 'Hack %{target} :robot:',
+        result: {
+        }
+      },
+      disconnectAndroid: {
+        label: ' Disconnect :robot:',
+        selection: 'Disconnect %{target} :robot:',
+        result: {
+        }
+      },
       craft: {
         modalTitle: 'Choose what you need to craft',
         list: ':pick: ( 3 :parts:)',
@@ -124,7 +144,8 @@
       inject: {
         label: ':syringe:',
         result: {
-          yes: 'You injected yourself. You can now breath toxic air',
+          injected: 'You injected yourself. You can now breath toxic air',
+          android: 'You injected yourself. You can now breath toxic air. But something is odd... you did not bleed after the injection.',
           no: "You decide it's not worth taking the risk"
         }
       },
@@ -245,6 +266,11 @@
         intro: 'You fond a syringe with what appears to be an antidote for the neurotoxin. If you inject yourself you will no need :food: anymore. But... is this safe?',
         yes: 'Inject',
         no: 'Nevermind'
+      },
+      android: {
+        intro: 'There can only be one reason for you not bleeding after the injection... you are not human. You are an android. Ooohh this is not good... you realize that the IA hidden move is to detonate you once you all are in the escape pod. If you try to escape it is sure that you all will die. But you can avoid this by making some changes in your structure. However this will cost you 4 :parts:. You can ask your teammates for help, but maybe they will get scared and disconnect you...',
+        yes: 'Ask for help',
+        no: 'Say nothing'
       }
     },
     buttons: {

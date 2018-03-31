@@ -19,7 +19,9 @@ class ActionBuilder
     'none' => LB::Action::None,
     'unlock' => LB::Action::Unlock,
     'fusion' => LB::Action::Fusion,
-    'inject' => LB::Action::Inject
+    'inject' => LB::Action::Inject,
+    'android' => LB::Action::Android,
+    'hackAndroid' => LB::Action::HackAndroid
   }
 
   def for player

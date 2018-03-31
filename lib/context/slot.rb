@@ -17,7 +17,9 @@ class Slot
     'LB::Action::Eat',
     'LB::Action::Vote',
     'LB::Action::Fusion',
-    'LB::Action::Inject'
+    'LB::Action::Inject',
+    'LB::Action::Android',
+    'LB::Action::HackAndroid',
   ]
 
   def add action

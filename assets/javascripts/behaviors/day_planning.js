@@ -123,7 +123,9 @@
       });
 
       var _players = stats.players;
-      if(Object.keys(_players).length > 1){
+      var _broken = stats.players[LB.playerUuid()].condition == 'broken';
+
+      if(Object.keys(_players).length > 1 || _broken){
 
         var _selectPlayer = $(crel('div')).addClass('row text-center')
         var _selectPlayerLabel = $(crel('h5')).addClass('col-12').text('Tripulación')
@@ -142,11 +144,19 @@
           return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
 
         });
-        _reorderedPlayers.shift();
+        console.log(stats)
+
+        if(!_broken)
+          _reorderedPlayers.shift();
+
         _reorderedPlayers.forEach(function(player){
           _players[player].uuid = player;
-          var _playerAvatar = LB.Widgets.PlayerAvatar(_players[player]).render();
 
+          var _size = 4;
+          if(_reorderedPlayers.length == 4)
+            _size = 3;
+
+          var _playerAvatar = LB.Widgets.PlayerAvatar(_players[player], _size).render();
           var _player = LB.Widgets.Player(_players[player], actions, _slotWidget).render();
           _actionSelector.append(_player);
 

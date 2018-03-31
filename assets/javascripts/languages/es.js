@@ -65,6 +65,26 @@
       recruit: 'Invita a alguien al azar'
     },
     action: {
+      android: {
+        label: ':robot:',
+        result: {
+          informed: "%{player} os dice que en realidad es un androide. La IA detonará a %{player} si intenta escapar, matando a todos con él/ella. Se puede arreglar cambiando la estructura de %{player}, utilizando 4 :parts:. O puedes simplemente desconectar a %{player} y olvidar todo esto.",
+          yes: 'Les cuentas a los demás lo que sucede, esperando ayuda.',
+          no: "Decides no contar nada a nadie. Te las arreglarás tú solo."
+        }
+      },
+      hackAndroid: {
+        label: ' Hack :robot: (1 :parts:) <strong>0%</strong>',
+        selection: 'Hack %{target} :robot:',
+        result: {
+        }
+      },
+      disconnectAndroid: {
+        label: ' Disconnect :robot:',
+        selection: 'Disconnect %{target} :robot:',
+        result: {
+        }
+      },
       craft: {
         modalTitle: 'Elige lo que necesitas fabricar',
         list: ':pick: ( 3 :parts:)',
@@ -124,7 +144,8 @@
       inject: {
         label: ':syringe:',
         result: {
-          yes: 'Te inyectas. Ahora puedes respirar aire tóxico',
+          injected: 'Te inyectas. Ahora puedes respirar aire tóxico',
+          android: 'Te inyectas. Ahora puedes respirar aire tóxico. Pero pasa algo raro... no has sangrado después de la inyección.',
           no: "Decides que el riesgo no vale la pena"
         }
       },
@@ -246,6 +267,11 @@
         intro: 'Encuentras una jeringuilla con lo que parece un antídoto para la neurotoxina. Si te lo inyectas no necesitarás más :food:. Pero... es seguro?',
         yes: 'Inyectarte',
         no: 'Da igual'
+      },
+      android: {
+        intro: 'Solamente puede haber una razón por la cual no has sangrado después de la inyección... no eres humano. Eres un androide. Ufff vaya desastre... te das cuenta de que el as en la manga de la IA es detonarte una vez estéis todos en la cápsula de escape. Si intentas escapar con los demás todos moriréis. Puedes evitarlo haciendo algunos cambios en tu estructura. Sin embargo te costará 4 :parts:. Puedes pedir ayuda a tus compañeros, pero es posible que se asusten y decidan desconectarte...',
+        yes: 'Pedir ayuda',
+        no: 'No decir nada'
       }
     },
     buttons: {

@@ -22,7 +22,7 @@ LB.Game = function(stats){
   var _content = $(crel('div')).addClass('content');
 
   var _headerWidget = LB.Widgets.Header(stats);
-  var _playGround = $(crel('div')).addClass('playground row'); 
+  var _playGround = $(crel('div')).addClass('playground row');
 
   var _footer = LB.Widgets.Footer(stats);
   var _resultsWidget = LB.Widgets.Results(stats);
@@ -33,7 +33,7 @@ LB.Game = function(stats){
     _resultsWidget.render(),
     _tutorialWidget.render()
   );
-  
+
   _content.append(
     _headerWidget.render(),
     _playGround
@@ -64,6 +64,7 @@ LB.gameEvents = function(stats){
     defaultEvent: LB.DefaultEvent,
     fusion: LB.Fusion,
     inject: LB.Inject,
+    android: LB.Android,
     voting: LB.Voting
   };
 

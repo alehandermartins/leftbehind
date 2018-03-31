@@ -9,6 +9,7 @@ class Player
     @tomb = {}
     @events = []
     @traits = []
+    @fix = 4
   end
 
   def inventory
@@ -53,6 +54,16 @@ class Player
 
   def tomb
     @tomb
+  end
+
+  def condition
+    return :ok unless @traits.include?(:c3po) || @traits.include?(:terminator)
+    return :ok if @fix == 0
+    :broken
+  end
+
+  def fix
+    @fix -= 1 if condition == :broken
   end
 
   def kill

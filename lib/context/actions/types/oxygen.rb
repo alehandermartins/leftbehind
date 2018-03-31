@@ -9,8 +9,14 @@ module LB
       return @context if computed?
       return @context if killed?
 
+      if performer.escaped?
+        escaped_action
+        return @context
+      end
+
       unless able?
         add_status :fail
+        add_info reason: 'action.oxygen.result.fail'
         return @context
       end
 
@@ -23,7 +29,6 @@ module LB
 
       performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
       return @context unless success?
-
       performer.inventory.add :food, 1
       @context
     end

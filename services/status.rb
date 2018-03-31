@@ -144,6 +144,8 @@ module Services
       {
         name: player.name,
         status: player.status,
+        traits: player.traits,
+        condition: player.condition,
         role: role(player),
         stage: player_stage(player),
         event: player_event(player, random_player),
@@ -173,6 +175,7 @@ module Services
       return :defaultEvent unless player_stage(player) == :events
       return :fusion if !player.events.include?(:fusion)
       return :inject if !player.events.include?(:inject) && player == random_player
+      return :android if !player.events.include?(:android) && player.traits.include?(:android)
       :defaultEvent
     end
 

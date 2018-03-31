@@ -96,6 +96,14 @@ module LB
                 }
               }
             },
+            android: {
+              'events' => {
+                name: 'android',
+                payload: {
+                  selection: 'false'
+                }
+              }
+            },
             defaultEvent: {
               'events' => {
                 name: 'none',

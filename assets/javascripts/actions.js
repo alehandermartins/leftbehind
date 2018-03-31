@@ -82,7 +82,13 @@
             return ns.t.html('action.oxygen.label')
           },
           showResult: function(result){
-            var _resultLabel = ns.t.html('action.oxygen.result.' +  result.status )
+            var _label
+            if(result.status == 'success')
+              _label = 'action.oxygen.result.success'
+            else
+              _label = result.info.reason
+
+            var _resultLabel = ns.t.html(_label)
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
             resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
@@ -126,11 +132,13 @@
             return ns.t.html('action.unlock.selection', {location: ns.t.html('locations.' + payload.location)})
           },
           showResult: function(result){
-            var _label = result.status
-            if(result.status == "fail")
+            var _label
+            if(result.status == "success")
+              _label = 'action.unlock.result.success'
+            else
               _label = result.info.reason
 
-            var _resultLabel = ns.t.html('action.unlock.result.' +  _label )
+            var _resultLabel = ns.t.html(_label)
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
             resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
@@ -312,6 +320,56 @@
             var _builtAction = {name: 'escape', payload: {location: location.uuid}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
+        },
+        hackAndroid: {
+          label: function(){
+            return ns.t.html('action.hackAndroid.label');
+          },
+          buildLabel: function(payload){
+            var targetName = stats.players[payload.target].name
+            return ns.t.html('action.hackAndroid.selection', {target: targetName});
+          },
+          showResult: function(result){
+            var _resultLabel = '';
+            if (result.status == 'fail')
+              _resultLabel = result.info.reason;
+            else{_resultLabel = ns.t.html('action.hackAndroid.result.success')};
+
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
+          },
+          run: function(target, slotWidget) {
+            var _builtAction = {name: 'hackAndroid', payload: {target: target}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
+        disconnectAndroid: {
+          label: function(){
+            return ns.t.html('action.disconnectAndroid.label');
+          },
+          buildLabel: function(payload){
+            var targetName = stats.players[payload.target].name
+            return ns.t.html('action.disconnectAndroid.selection', {target: targetName});
+          },
+          showResult: function(result){
+            var _resultLabel = '';
+            if (result.status == 'fail')
+              _resultLabel = result.info.reason;
+            else{_resultLabel = ns.t.html('action.disconnectAndroid.result.success')};
+
+            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+
+            return resultLabel;
+          },
+          run: function(target, slotWidget) {
+            var _builtAction = {name: 'disconnectAndroid', payload: {target: target}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
         }
       }
 
@@ -387,11 +445,29 @@
             var _decision = result.payload.decision;
             var _resultLabel;
             if(_decision == true)
-              _resultLabel = ns.t.text('action.inject.result.yes')
+              _resultLabel = result.info.reason
             else
-              _resultLabel = ns.t.text('action.inject.result.no')
+              _resultLabel = 'action.inject.result.no'
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.inject.label') + " " + _resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.inject.label') + " " + ns.t.text(_resultLabel)).addClass('unpadded');
+            return resultLabel
+          }
+        },
+        android: {
+          showResult: function(result){
+            var _decision = result.payload.decision;
+            var _resultLabel;
+
+            if(_decision == true)
+              _resultLabel = ns.t.html('action.android.result.yes')
+            else
+              _resultLabel = ns.t.html('action.android.result.no')
+
+            if (result.performer != LB.playerUuid())
+              _resultLabel = ns.t.html('action.android.result.informed', {player: stats.players[result.performer].name})
+
+
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.android.label') + " " + _resultLabel).addClass('unpadded');
             return resultLabel
           }
         },

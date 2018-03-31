@@ -1,12 +1,3 @@
-.room {
-  display: block;
-  padding: 0;
-  background-size:contain;
-  background-repeat: no-repeat;
-  height: 200px;
-  background-position: center;
-}
-
 .ia {
   position: absolute;
   background-image: asset-url('map/ia.png');
@@ -22,5 +13,5 @@
 .img-responsive {
   display: inline-block;
   width: 100%;
-  height: 200px;
+  max-height: 200px;
 }
