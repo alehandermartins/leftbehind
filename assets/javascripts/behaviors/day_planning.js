@@ -144,7 +144,6 @@
           return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
 
         });
-        console.log(stats)
 
         if(!_broken)
           _reorderedPlayers.shift();

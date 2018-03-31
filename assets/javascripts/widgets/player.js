@@ -20,13 +20,13 @@
     if(player.condition == 'broken'){
       if(player.uuid != LB.playerUuid()){
         if(player.traits.includes('c3po')){
-          addActionButton('hackandroid')
+          addActionButton('hackandroid', player.uuid)
           addActionButton('disconnectandroid')
         }
       }
       else{
         if(player.traits.includes('c3po') || player.traits.includes('terminator'))
-          addActionButton('hackandroid')
+          addActionButton('hackandroid', player.uuid)
       }
     }
 

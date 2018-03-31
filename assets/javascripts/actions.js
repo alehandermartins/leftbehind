@@ -322,8 +322,9 @@
           }
         },
         hackandroid: {
-          label: function(){
-            return ns.t.html('action.hackandroid.label');
+          label: function(target){
+            var fix_left = stats.players[target].fix_left;
+            return ns.t.html('action.hackandroid.label', {fix: (4- fix_left) * 25 + '%'});
           },
           buildLabel: function(payload){
             var targetName = stats.players[payload.target].name
@@ -331,9 +332,11 @@
           },
           showResult: function(result){
             var _resultLabel = '';
-            if (result.status == 'fail')
-              _resultLabel = result.info.reason;
-            else{_resultLabel = ns.t.html('action.hackandroid.result.success')};
+            if (result.status == 'fail'){
+              var targetName = stats.players[result.payload.target].name
+              _resultLabel = ns.t.html(result.info.reason, {player: targetName});
+            }else
+              _resultLabel = ns.t.html('action.hackandroid.result.success');
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));

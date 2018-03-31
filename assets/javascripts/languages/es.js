@@ -74,12 +74,13 @@
         }
       },
       hackandroid: {
-        label: ' Hack :robot: (1 :parts:) <strong>0%</strong>',
+        label: ' Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
         selection: 'Hack %{target} :robot:',
         result: {
           success: 'Bien hecho. Sighe así.',
           no_fixing_materials: "No tenías los :parts: necesarios",
-          already_fixed: 'Arreglado!!'
+          finally_fixed: 'Arreglado!! %{player} ya no es una amenaza.',
+          already_fixed: 'Ya había sido arreglado.'
         }
       },
       disconnectandroid: {
