@@ -12,9 +12,9 @@ module LB
 
       steal = lambda do |action|
 
-        escaped_action(action) if action.target_left_behind?
-        trapped_action(action) if action.target_escaped?
-        return if action.computed?
+        escaped_action(action) if target_left_behind?(action)
+        trapped_action(action) if target_escaped?(action)
+        return @context if action.computed?
 
         unless has_something? action
           action.add_status :fail

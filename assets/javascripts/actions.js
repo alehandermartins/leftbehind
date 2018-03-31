@@ -321,19 +321,19 @@
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
-        hackAndroid: {
+        hackandroid: {
           label: function(){
-            return ns.t.html('action.hackAndroid.label');
+            return ns.t.html('action.hackandroid.label');
           },
           buildLabel: function(payload){
             var targetName = stats.players[payload.target].name
-            return ns.t.html('action.hackAndroid.selection', {target: targetName});
+            return ns.t.html('action.hackandroid.selection', {target: targetName});
           },
           showResult: function(result){
             var _resultLabel = '';
             if (result.status == 'fail')
               _resultLabel = result.info.reason;
-            else{_resultLabel = ns.t.html('action.hackAndroid.result.success')};
+            else{_resultLabel = ns.t.html('action.hackandroid.result.success')};
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
@@ -342,23 +342,23 @@
             return resultLabel;
           },
           run: function(target, slotWidget) {
-            var _builtAction = {name: 'hackAndroid', payload: {target: target}}
+            var _builtAction = {name: 'hackandroid', payload: {target: target}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
-        disconnectAndroid: {
+        disconnectandroid: {
           label: function(){
-            return ns.t.html('action.disconnectAndroid.label');
+            return ns.t.html('action.disconnectandroid.label');
           },
           buildLabel: function(payload){
             var targetName = stats.players[payload.target].name
-            return ns.t.html('action.disconnectAndroid.selection', {target: targetName});
+            return ns.t.html('action.disconnectandroid.selection', {target: targetName});
           },
           showResult: function(result){
             var _resultLabel = '';
             if (result.status == 'fail')
               _resultLabel = result.info.reason;
-            else{_resultLabel = ns.t.html('action.disconnectAndroid.result.success')};
+            else{_resultLabel = ns.t.html('action.disconnectandroid.result.success')};
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
@@ -367,7 +367,7 @@
             return resultLabel;
           },
           run: function(target, slotWidget) {
-            var _builtAction = {name: 'disconnectAndroid', payload: {target: target}}
+            var _builtAction = {name: 'disconnectandroid', payload: {target: target}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         }

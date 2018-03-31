@@ -146,6 +146,7 @@ module Services
         status: player.status,
         traits: player.traits,
         condition: player.condition,
+        fix_left: player.fix_left,
         role: role(player),
         stage: player_stage(player),
         event: player_event(player, random_player),

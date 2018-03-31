@@ -66,6 +66,10 @@ class Player
     @fix -= 1 if condition == :broken
   end
 
+  def fix_left
+    @fix
+  end
+
   def kill
     @status = :dead
   end

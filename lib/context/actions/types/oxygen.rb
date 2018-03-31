@@ -10,7 +10,7 @@ module LB
       return @context if killed?
 
       if performer.escaped?
-        escaped_action
+        escaped_action(self)
         return @context
       end
 

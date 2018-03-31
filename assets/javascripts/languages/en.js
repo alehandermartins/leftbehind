@@ -73,13 +73,16 @@
           no: "You decide it's not worth taking the risk to tell the others. You will fix yourself"
         }
       },
-      hackAndroid: {
+      hackandroid: {
         label: 'Hack :robot: (1 :parts:) <strong>0%</strong>',
         selection: 'Hack %{target} :robot:',
         result: {
+          success: 'Well done. Keep it up.',
+          no_fixing_materials: "You didn't have the needed :parts:",
+          already_fixed: 'Fixed!!',
         }
       },
-      disconnectAndroid: {
+      disconnectandroid: {
         label: ' Disconnect :robot:',
         selection: 'Disconnect %{target} :robot:',
         result: {

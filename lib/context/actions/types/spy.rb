@@ -7,8 +7,8 @@ module LB
     def run context
       super context
 
-      escaped_action(self) if target_left_behind?
-      trapped_action(self) if target_escaped?
+      escaped_action(self) if target_left_behind?(self)
+      trapped_action(self) if target_escaped?(self)
       return @context if computed?
 
       add_status :success

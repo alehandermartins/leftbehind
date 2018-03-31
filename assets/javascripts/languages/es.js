@@ -73,13 +73,16 @@
           no: "Decides no contar nada a nadie. Te las arreglarás tú solo."
         }
       },
-      hackAndroid: {
+      hackandroid: {
         label: ' Hack :robot: (1 :parts:) <strong>0%</strong>',
         selection: 'Hack %{target} :robot:',
         result: {
+          success: 'Bien hecho. Sighe así.',
+          no_fixing_materials: "No tenías los :parts: necesarios",
+          already_fixed: 'Arreglado!!'
         }
       },
-      disconnectAndroid: {
+      disconnectandroid: {
         label: ' Disconnect :robot:',
         selection: 'Disconnect %{target} :robot:',
         result: {

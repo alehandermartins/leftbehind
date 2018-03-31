@@ -12,12 +12,12 @@ module LB
       @context.players[player].escaped?
     end
 
-    def target_left_behind?
-      performer.escaped? && (!player_escaped? target)
+    def target_left_behind? the_action
+      the_action.performer.escaped? && (!player_escaped? target)
     end
 
-    def target_escaped?
-      !performer.escaped? && (player_escaped? target)
+    def target_escaped? the_action
+      !the_action.performer.escaped? && (player_escaped? target)
     end
 
     def target_action

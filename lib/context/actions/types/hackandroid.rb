@@ -12,7 +12,7 @@ module LB
       hack = lambda do |action|
         unless @context.players[target].condition == :broken
           action.add_status :fail
-          action.add_info reason: 'action.hackAndroid.result.already_fixed'
+          action.add_info reason: 'action.hackandroid.result.already_fixed'
           return @context
         end
 
@@ -20,11 +20,14 @@ module LB
           action.add_status :success
           @context.team.inventory.subtract :parts, 1
           @context.players[target].fix
+          if @context.players[target].condition == :ok
+            action.add_info reason: 'action.hackandroid.result.already_fixed'
+          end
           return @context
         end
 
         action.add_status :fail
-        action.add_info reason: 'action.hackAndroid.result.no_fixing_materials'
+        action.add_info reason: 'action.hackandroid.result.no_fixing_materials'
         @context
       end
 
@@ -45,8 +48,8 @@ module LB
     private
     def run_multiple action_block
       cowork_actions.each do |the_action|
-        next escaped_action(the_action) if the_action.target_left_behind?
-        next trapped_action(self) if the_action.target_escaped?
+        next escaped_action(the_action) if target_left_behind?(the_action)
+        next trapped_action(self) if target_escaped?(the_action)
         action_block.call(the_action)
       end
 

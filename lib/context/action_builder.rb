@@ -21,7 +21,7 @@ class ActionBuilder
     'fusion' => LB::Action::Fusion,
     'inject' => LB::Action::Inject,
     'android' => LB::Action::Android,
-    'hackAndroid' => LB::Action::HackAndroid
+    'hackandroid' => LB::Action::HackAndroid
   }
 
   def for player
