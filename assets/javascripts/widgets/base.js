@@ -114,8 +114,15 @@
       'events': 4
     }
 
+    var getLastSlot = function(){
+      var maxSlots = Object.keys(stats.players).map(function(player){
+        return Math.max(...Object.keys(stats.personal_info[player]));
+      });
+
+      return Math.max(...maxSlots);
+    }
+
     var personalInfo = stats.personal_info;
-    console.log(Object.keys(personalInfo[LB.playerUuid()]))
 
     var slots = [];
     var _infos = [];
