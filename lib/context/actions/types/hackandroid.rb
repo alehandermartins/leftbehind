@@ -23,7 +23,7 @@ module LB
           action.add_info reason: 'action.hackandroid.result.success'
           if @context.players[target].condition == :ok
             action.add_info reason: 'action.hackandroid.result.finally_fixed'
-            add_to_everyone_log(action)
+            add_to_everyone_log(action.performer, action.information(the_action.class.name))
           end
           return @context
         end
@@ -63,13 +63,8 @@ module LB
     end
 
     def add_to_log
+      return unless @context.players[target].alive?
       @context.players[target].information.add_to performer.uuid, slot, information(self.class.name)
-    end
-
-    def add_to_everyone_log the_action
-      @context.players.each{ |the_player|
-        the_player.information.add_to the_action.performer.uuid, slot, the_action.information(the_action.class.name)
-      }
     end
   end
 end

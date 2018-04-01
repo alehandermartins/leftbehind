@@ -18,7 +18,7 @@ module LB
 
       if starving?
         performer.kill
-        add_to_everyone_log
+        add_to_everyone_log info
         return @context
       end
 
@@ -33,12 +33,6 @@ module LB
 
     def injected?
       performer.traits.include?(:injected) || performer.traits.include?(:android)
-    end
-
-    def add_to_everyone_log
-      @context.players.each{ |the_player|
-        the_player.information.add_to performer.uuid, slot, info
-      }
     end
 
     def info

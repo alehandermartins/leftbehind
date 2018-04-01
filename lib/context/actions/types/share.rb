@@ -24,6 +24,7 @@ module LB
     end
 
     def add_to_log
+      return unless @context.players[target].alive?
       @context.players[target].information.add_to performer.uuid, slot, information(self.class.name)
     end
   end

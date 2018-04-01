@@ -44,7 +44,7 @@
 
     if(stats.current_slot == 0 || stats.day_status == 'wait' || stats.player_status !== 'alive'){
       _dayPlannerToggler.addClass('active');
-      if(stats.current_slot == 0 || stats.player_status === 'wait')
+      if(stats.current_slot == 0 || stats.day_status === 'wait')
         _resultsToggler.css('display', 'none');
     }
     else

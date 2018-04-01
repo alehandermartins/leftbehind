@@ -56,6 +56,15 @@ module LB
         }
       end
 
+      def add_to_everyone_log player = nil, info = nil
+        player ||= performer
+        info ||= information(self.class.name)
+        @context.players.each{ |the_player|
+          next unless the_player.alive?
+          the_player.information.add_to player.uuid, slot, info
+        }
+      end
+
       def computed?
         !@result.nil?
       end

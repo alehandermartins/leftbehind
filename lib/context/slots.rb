@@ -38,7 +38,7 @@ class Slots
 
   def replace_actions player, slot_key, params
     slots.each{ |key, slot|
-      next unless key > slot_key
+      next unless key >= slot_key
       slot.replace ActionBuilder.new()
         .for(player)
         .at(key)

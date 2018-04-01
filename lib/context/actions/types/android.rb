@@ -37,11 +37,5 @@ module LB
     def terminator
       performer.add_trait :terminator
     end
-
-    def add_to_everyone_log
-      @context.players.each{ |the_player|
-        the_player.information.add_to performer.uuid, slot, information(self.class.name)
-      }
-    end
   end
 end

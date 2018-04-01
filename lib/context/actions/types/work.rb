@@ -37,14 +37,15 @@ module LB
     def resolve context
       super context
 
-      performer.information.add_to performer.uuid, slot, information(self.class.name, true)
+      performer.information.add_to performer.uuid, slot, information(self.class.name)
       return @context unless success?
 
       fix
-      add_to_everyone_else_log performer.uuid
+      add_to_everyone_log
       @context
     end
 
+    private
     def run_multiple action_block
       cowork_actions.each do |the_action|
         next escaped_action(the_action) if the_action.performer.escaped?
@@ -57,14 +58,5 @@ module LB
     def team_able?
       @context.team.inventory[:parts] > 0
     end
-
-    private
-      def add_to_everyone_else_log target
-        @context.players.reject{ |the_player|
-          the_player.uuid == performer.uuid
-        }.each{ |the_player|
-          @context.players[the_player.uuid].information.add_to(target, slot, information(self.class.name))
-        }
-      end
   end
 end

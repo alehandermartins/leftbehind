@@ -1,6 +1,9 @@
 class Slot
 
   ACTIONS_PRIORITIES = [
+    'LB::Action::Android',
+    'LB::Action::DisconnectAndroid',
+    'LB::Action::HackAndroid',
     'LB::Action::PlayDead',
     'LB::Action::None',
     'LB::Action::Defend',
@@ -17,10 +20,7 @@ class Slot
     'LB::Action::Eat',
     'LB::Action::Vote',
     'LB::Action::Fusion',
-    'LB::Action::Inject',
-    'LB::Action::Android',
-    'LB::Action::HackAndroid',
-    'LB::Action::DisconnectAndroid'
+    'LB::Action::Inject'
   ]
 
   def add action

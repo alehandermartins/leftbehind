@@ -115,6 +115,8 @@
     }
 
     var personalInfo = stats.personal_info;
+    console.log(personalInfo)
+
     var slots = [];
     var _infos = [];
 
