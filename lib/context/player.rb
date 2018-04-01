@@ -57,6 +57,7 @@ class Player
   end
 
   def condition
+    return :dead unless alive?
     return :ok unless @traits.include?(:c3po) || @traits.include?(:terminator)
     return :ok if @fix == 0
     :broken
@@ -80,6 +81,10 @@ class Player
 
   def ia_kill
     @status = :killed
+  end
+
+  def disconnect
+    @status = :disconnected
   end
 
   def escape

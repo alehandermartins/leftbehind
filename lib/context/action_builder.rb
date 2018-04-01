@@ -22,6 +22,7 @@ class ActionBuilder
     'inject' => LB::Action::Inject,
     'android' => LB::Action::Android,
     'hackandroid' => LB::Action::HackAndroid
+    'disconnectandroid' => LB::Action::DisconnectAndroid
   }
 
   def for player

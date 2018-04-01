@@ -142,8 +142,6 @@
             var name = split[4].toLowerCase();
             var action = actions[name];
             var result = personalInfo[player][slot].result;
-            if (personalInfo[player][slot].payload && personalInfo[player][slot].payload.target)
-              result['target'] = personalInfo[player][slot].payload.target;
 
             result['performer'] = player;
             result['payload'] = personalInfo[player][slot].payload;

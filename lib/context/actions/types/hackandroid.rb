@@ -20,9 +20,10 @@ module LB
           action.add_status :success
           @context.team.inventory.subtract :parts, 1
           @context.players[target].fix
+          action.add_info reason: 'action.hackandroid.result.success'
           if @context.players[target].condition == :ok
             action.add_info reason: 'action.hackandroid.result.finally_fixed'
-            add_to_everyone_log
+            add_to_everyone_log(action)
           end
           return @context
         end
@@ -65,9 +66,9 @@ module LB
       @context.players[target].information.add_to performer.uuid, slot, information(self.class.name)
     end
 
-    def add_to_everyone_log
+    def add_to_everyone_log the_action
       @context.players.each{ |the_player|
-        the_player.information.add_to performer.uuid, slot, information(self.class.name)
+        the_player.information.add_to the_action.performer.uuid, slot, the_action.information(the_action.class.name)
       }
     end
   end

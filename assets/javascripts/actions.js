@@ -331,12 +331,8 @@
             return ns.t.html('action.hackandroid.selection', {target: targetName});
           },
           showResult: function(result){
-            var _resultLabel = '';
-            if (result.status == 'fail'){
-              var targetName = stats.players[result.payload.target].name
-              _resultLabel = ns.t.html(result.info.reason, {player: targetName});
-            }else
-              _resultLabel = ns.t.html('action.hackandroid.result.success');
+            var targetName = stats.players[result.payload.target].name;
+            var _resultLabel = ns.t.html(result.info.reason, {player: targetName});
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
@@ -358,10 +354,8 @@
             return ns.t.html('action.disconnectandroid.selection', {target: targetName});
           },
           showResult: function(result){
-            var _resultLabel = '';
-            if (result.status == 'fail')
-              _resultLabel = result.info.reason;
-            else{_resultLabel = ns.t.html('action.disconnectandroid.result.success')};
+            var targetName = stats.players[result.payload.target].name;
+            var _resultLabel = ns.t.html(result.info.reason, {player: targetName});
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));

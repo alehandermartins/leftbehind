@@ -87,6 +87,7 @@
         label: ' Disconnect :robot:',
         selection: 'Disconnect %{target} :robot:',
         result: {
+          success: '%{player} has been disconnected.'
         }
       },
       craft: {

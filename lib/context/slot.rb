@@ -20,6 +20,7 @@ class Slot
     'LB::Action::Inject',
     'LB::Action::Android',
     'LB::Action::HackAndroid',
+    'LB::Action::DisconnectAndroid'
   ]
 
   def add action
