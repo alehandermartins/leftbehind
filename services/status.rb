@@ -158,6 +158,7 @@ module Services
     end
 
     def player_stage player
+      return :dead unless player.alive?
       unless alive_players_ready?
         return :wait if context.slots.completed_number_for(player.uuid) == context.slots.max_completed
       end

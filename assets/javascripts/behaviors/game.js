@@ -7,14 +7,11 @@ LB.Game = function(stats){
   var stagesMap = {
     actions: LB.DayPlanning,
     events: LB.gameEvents,
-    wait: LB.Wait
+    wait: LB.Wait,
+    dead: LB.EndGame
   }
 
-  var _stageWidget;
-  if (stats.player_status !== 'alive')
-    _stageWidget = LB.EndGame(stats);
-  else
-    _stageWidget = stagesMap[stats.day_status](stats);
+  var _stageWidget = stagesMap[stats.day_status](stats);
 
   var dayContainer = $('.game_container');
   dayContainer.empty();

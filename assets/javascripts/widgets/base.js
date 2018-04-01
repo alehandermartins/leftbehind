@@ -115,7 +115,7 @@
     }
 
     var personalInfo = stats.personal_info;
-    console.log(personalInfo)
+    console.log(Object.keys(personalInfo[LB.playerUuid()]))
 
     var slots = [];
     var _infos = [];
