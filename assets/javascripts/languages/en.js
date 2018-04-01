@@ -87,7 +87,7 @@
         label: ' Disconnect :robot:',
         selection: 'Disconnect %{target} :robot:',
         result: {
-          success: '%{player} has been disconnected.'
+          success: '%{player} has disconnected %{target}.'
         }
       },
       craft: {
@@ -247,7 +247,8 @@
         trapped: 'You... were... Left Behind.',
         crashed: 'The IA destroys the ship, killing everyone inside... you were not able to escape on time',
         exploded: 'The ship explodes... nobody had the guts to do what should had been done',
-        radiated: 'Too much radiation fries your brain'
+        radiated: 'Too much radiation fries your brain',
+        disconnected: 'You have been disconnected'
       }
     },
     events: {

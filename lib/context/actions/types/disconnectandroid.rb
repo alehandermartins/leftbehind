@@ -1,6 +1,7 @@
 module LB
   class Action::DisconnectAndroid < Action::Base
     include WithTarget
+    include IA
 
     def run context
       super context
@@ -15,6 +16,7 @@ module LB
       super context
 
       @context.players[target].disconnect
+      @context.slots.replace_actions @context.players[target], slot, dead_action
       add_to_everyone_log
       @context
     end

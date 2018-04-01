@@ -355,7 +355,8 @@
           },
           showResult: function(result){
             var targetName = stats.players[result.payload.target].name;
-            var _resultLabel = ns.t.html(result.info.reason, {player: targetName});
+            var performer = stats.players[result.performer].name;
+            var _resultLabel = ns.t.html('action.disconnectandroid.result.success', {target: targetName, player: performer});
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
