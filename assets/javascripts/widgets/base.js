@@ -106,11 +106,13 @@
   ns.Widgets.Results = function(stats){
     var _createdWidget = $(crel('div')).addClass('results col-12');
 
-    if(stats.current_slot != 0 && stats.player_status === 'alive')
+    if(stats.current_slot != 0 && stats.player_status === 'alive' && stats.day_status != 'wait')
       _createdWidget.addClass('active');
 
     var getLastSlot = function(){
       var maxSlots = Object.keys(stats.players).map(function(player){
+        if(!stats.personal_info[player])
+          return 0;
         return Math.max.apply(null, Object.keys(stats.personal_info[player]));
       });
 

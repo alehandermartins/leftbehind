@@ -33,7 +33,6 @@ module LB
 
         action.add_status :success
         action.performer.escape
-        trap_everybody
       end
 
       run_multiple escape
@@ -66,7 +65,16 @@ module LB
     def resolve context
       super context
 
-      performer.information.add_to performer.uuid, slot, information(self.class.name, true)
+      if escaped_players.size > 0
+        trap_everybody
+        if trojan_player?
+          escaped_players.each{ |player|
+            player.set_status :blown unless player.condition == :broken
+            player.set_status :detonated if player.condition == :broken
+          }
+        end
+      end
+      performer.information.add_to performer.uuid, slot, information(self.class.name) if performer.alive? || performer.escaped?
       @context
     end
 
@@ -76,6 +84,19 @@ module LB
 
     def shuttle_is_ready
       @context.items['escape shuttle'][:fix] == 0
+    end
+
+    def escaped_players
+      @context.players.map{ |player|
+        next unless player.status == :escaped
+        player
+      }.compact
+    end
+
+    def trojan_player?
+      escaped_players.any? { |player|
+        player.condition == :broken
+      } 
     end
   end
 end

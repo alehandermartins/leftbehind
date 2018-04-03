@@ -1,7 +1,14 @@
 'use strict';
 LB.EndGame = function(stats){
+  var blown;
+
+  Object.keys(stats.players).forEach(function(player){
+    if(stats.players[player].status == 'blown')
+      blown = stats.players[player].name;
+  });
+
   var _createdWidget = $(crel('div')).addClass('dayPlanner active col-12');
-  var _message = LB.t.html('player.status.' + stats.player_status);
+  var _message = LB.t.html('player.status.' + stats.player_status, {player: blown});
   var _result = $(crel('h2')).append(_message).addClass('end-game');
 
   var _background = $(crel('img')).addClass('img-responsive')

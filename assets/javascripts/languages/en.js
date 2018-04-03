@@ -120,7 +120,7 @@
         label: 'Escape',
         tutorial: 'Escapar: It is time to leave this death trap, do you have your helmet on?...',
         result: {
-          success: 'You turn the engines on and leave...',
+          success: 'You turn the engines on and leave... :shuttle:',
           helmet_needed: 'You need a :helmet: to survive in the :shuttle:',
           shuttle_left: 'The :shuttle: already left',
           you_left: 'You already left the ship',
@@ -248,7 +248,9 @@
         crashed: 'The IA destroys the ship, killing everyone inside... you were not able to escape on time',
         exploded: 'The ship explodes... nobody had the guts to do what should had been done',
         radiated: 'Too much radiation fries your brain',
-        disconnected: 'You have been disconnected'
+        disconnected: 'You have been disconnected',
+        blown: '%{player} was an android. The IA detonates %{player} as soon as you start the escape pod engines.',
+        detonated: 'The IA detonates you as soon as you start the escape pod engines. No one survives.'
       }
     },
     events: {

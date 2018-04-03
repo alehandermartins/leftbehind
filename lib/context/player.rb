@@ -48,6 +48,10 @@ class Player
     @status
   end
 
+  def set_status new_status
+    @status = new_status
+  end
+
   def alive?
     @status == :alive
   end
@@ -57,7 +61,7 @@ class Player
   end
 
   def condition
-    return :dead unless alive?
+    return :dead unless alive? || escaped?
     return :ok unless @traits.include?(:c3po) || @traits.include?(:terminator)
     return :ok if @fix == 0
     :broken

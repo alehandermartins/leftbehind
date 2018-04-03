@@ -120,7 +120,7 @@
         label: 'Escapar',
         tutorial: 'Escapar: Es hora de abandonar esta trampa mortal, ¿tienes puesto el casco?...',
         result: {
-          success: 'Enciendes los motores y te marchas...',
+          success: 'Enciendes los motores y te marchas... :shuttle:',
           helmet_needed: 'Necesitas un :helmet: para sobrevivir en la cápsula',
           shuttle_left: 'El :shuttle: ya partió',
           you_left: 'Ya abandonaste la nave',
@@ -249,7 +249,9 @@
         crashed: 'La IA destruye la nave, matando a todos en su interior...no fuiste capaz de escapar a tiempo',
         exploded: 'La nave explota... nadie tuvo el valor de hacer lo que había que hacer',
         radiated: 'Demasiada radiación te fríe el cerebro',
-        disconnected: 'Has sido desconectado'
+        disconnected: 'Has sido desconectado',
+        blown: '%{player} was an android. The IA detonates %{player} as soon as you start the escape pod engines.',
+        detonated: 'LA IA te detona en cuanto enciendes los motores de la cápsula de escape. Nadie sobrevive.'
       }
     },
     events: {
