@@ -274,7 +274,7 @@
         no: 'Nevermind'
       },
       android: {
-        intro: 'There can only be one reason for you not bleeding after the injection... you are not human. You are an android. Ooohh this is not good... you realize that the IA hidden move is to detonate you once you all are in the escape pod. If you try to escape it is sure that you all will die. But you can avoid this by making some changes in your structure. However this will cost you 4 :parts:. You can ask your teammates for help, but maybe they will get scared and disconnect you...',
+        intro: 'There can only be one reason for you not bleeding after the injection... you are not human. You are an android. Ooohh this is not good... you realize that the IA hidden move is to detonate you once you all are in the escape pod. If you try to escape it is sure that you all will die. But you can avoid this by making some changes in your structure. However this will cost you 6 :parts:. If you ask for help, then you can be fixed with only 4 :parts:, but maybe they will get scared and disconnect you...',
         yes: 'Ask for help',
         no: 'Say nothing'
       }

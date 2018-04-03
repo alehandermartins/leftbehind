@@ -324,7 +324,16 @@
         hackandroid: {
           label: function(target){
             var fix_left = stats.players[target].fix_left;
-            return ns.t.html('action.hackandroid.label', {fix: (4- fix_left) * 25 + '%'});
+            var fix;
+            var goodType = stats.players[target].traits.includes('c3po');
+            if(goodType)
+              fix = (4- fix_left) * 25 + '%';
+            else{
+              fix = (6- fix_left) * 16.5 + '%';
+              if(fix_left == 0)
+                fix = '100%'
+            }
+            return ns.t.html('action.hackandroid.label', {fix: fix});
           },
           buildLabel: function(payload){
             var targetName = stats.players[payload.target].name

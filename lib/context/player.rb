@@ -9,7 +9,7 @@ class Player
     @tomb = {}
     @events = []
     @traits = []
-    @fix = 4
+    @fix = 6
   end
 
   def inventory
@@ -63,8 +63,8 @@ class Player
     :broken
   end
 
-  def fix
-    @fix -= 1 if condition == :broken
+  def fix amount = 1
+    @fix -= amount if condition == :broken
   end
 
   def fix_left

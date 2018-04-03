@@ -32,6 +32,7 @@ module LB
 
     def c3po
       performer.add_trait :c3po
+      performer.fix 2
     end
 
     def terminator

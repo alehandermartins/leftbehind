@@ -17,8 +17,8 @@ module LB
       return @context if injected?
 
       if starving?
+        add_to_everyone_log performer, info
         performer.kill
-        add_to_everyone_log info
         return @context
       end
 

@@ -275,7 +275,7 @@
         no: 'Da igual'
       },
       android: {
-        intro: 'Solamente puede haber una razón por la cual no has sangrado después de la inyección... no eres humano. Eres un androide. Ufff vaya desastre... te das cuenta de que el as en la manga de la IA es detonarte una vez estéis todos en la cápsula de escape. Si intentas escapar con los demás todos moriréis. Puedes evitarlo haciendo algunos cambios en tu estructura. Sin embargo te costará 4 :parts:. Puedes pedir ayuda a tus compañeros, pero es posible que se asusten y decidan desconectarte...',
+        intro: 'Solamente puede haber una razón por la cual no has sangrado después de la inyección... no eres humano. Eres un androide. Ufff vaya desastre... te das cuenta de que el as en la manga de la IA es detonarte una vez estéis todos en la cápsula de escape. Si intentas escapar con los demás todos moriréis. Puedes evitarlo haciendo algunos cambios en tu estructura. Sin embargo te costará 6 :parts:. Si pides ayuda a tus compañeros sólo necesotarás 4 :parts:, pero es posible que se asusten y decidan desconectarte...',
         yes: 'Pedir ayuda',
         no: 'No decir nada'
       }
