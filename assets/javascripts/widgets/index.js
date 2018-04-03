@@ -6,4 +6,5 @@
 // = require ./header
 // = require ./footer
 // = require ./favicon
+// = require ./player
 // = require ./room

@@ -123,6 +123,7 @@
 
     if(lastDaySlots == 0)
       lastDaySlots = 2;
+    
     if(lastDaySlots == 5)
       lastDaySlots = 1;
 
