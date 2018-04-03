@@ -36,9 +36,21 @@
   	align-items: center;
   	cursor: pointer;
   	border: 2px outset $main_lighter;
+    h5 {
+      margin: auto;
+      color: white;
+    }
+
   	&.active {
+      color: red;
+      text-decoration: underline;
   		border: 2px inset $main_lighter;
       background-color: $main_lighter;
+
+      h5 {
+        color: red;
+        text-decoration: underline;
+      }
   	}
   	.emojione {
   		margin: auto;

@@ -38,8 +38,12 @@
     var _resultsToggler = $(crel('div')).addClass('resultsToggler text-center col-4');
     var _tutorialToggler = $(crel('div')).addClass('tutorialToggler text-center col-4');
 
-    _dayPlannerToggler.html(LB.t.html(':fist_tone5:'));
-    _resultsToggler.html(LB.t.html(':punch_tone5:'));
+    var _actionsLabel = $(crel('h5')).html(LB.t.html('Actions'));
+    var _resultsLabel = $(crel('h5')).html(LB.t.html('Results'));
+
+
+    _dayPlannerToggler.append(_actionsLabel);
+    _resultsToggler.append(_resultsLabel);
     _tutorialToggler.html(LB.t.html(':gear:'));
 
     if(stats.current_slot == 0 || stats.day_status == 'wait' || stats.player_status !== 'alive'){
