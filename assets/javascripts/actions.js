@@ -331,7 +331,7 @@
             else{
               fix = (6- fix_left) * 16.5 + '%';
               if(fix_left == 0)
-                fix = '100%'
+                fix = '100%';
             }
             return ns.t.html('action.hackandroid.label', {fix: fix});
           },

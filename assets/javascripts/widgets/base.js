@@ -126,10 +126,8 @@
     if(lastDaySlots == 5)
       lastDaySlots = 1;
 
-
     var slots = [];
     var _infos = [];
-
 
     for (var i = lastSlot - lastDaySlots; i < lastSlot; i++){
       slots.push(i + 1);
