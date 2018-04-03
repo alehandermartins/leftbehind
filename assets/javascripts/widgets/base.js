@@ -106,8 +106,6 @@
   ns.Widgets.Results = function(stats){
     var _createdWidget = $(crel('div')).addClass('results col-12');
 
-    console.log(stats)
-
     if(stats.current_slot != 0 && stats.player_status === 'alive')
       _createdWidget.addClass('active');
 
@@ -121,7 +119,6 @@
 
     var personalInfo = stats.personal_info;
     var lastSlot = getLastSlot();
-    console.log(lastSlot)
     var lastDaySlots = lastSlot % 6;
 
     if(lastDaySlots == 0)
