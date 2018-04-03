@@ -109,7 +109,13 @@
     if(stats.current_slot != 0 && stats.player_status === 'alive')
       _createdWidget.addClass('active');
 
+    var getLastSlot = function(){
+      var maxSlots = Object.keys(stats.players).map(function(player){
+        return Math.max(Object.keys(stats.personal_info[player]));
+      });
 
+      return Math.max(maxSlots);
+    }
 
     var personalInfo = stats.personal_info;
     var lastSlot = getLastSlot();
@@ -117,7 +123,7 @@
 
     if(lastDaySlots == 0)
       lastDaySlots = 2;
-    
+
     if(lastDaySlots == 5)
       lastDaySlots = 1;
 
