@@ -1,4 +1,5 @@
 // = require ./buttons
+// = require ./base
 // = require ./welcome
 // = require ./start
 // = require ./tutorial
