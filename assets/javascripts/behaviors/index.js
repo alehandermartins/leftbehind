@@ -5,5 +5,3 @@
 // = require ./voting
 // = require ./fusion
 // = require ./default_event
-// = require ./end_game
-// = require ./game
