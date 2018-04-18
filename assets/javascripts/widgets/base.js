@@ -111,9 +111,8 @@
 
     var getLastSlot = function(){
       var maxSlots = Object.keys(stats.players).map(function(player){
-        if(!stats.personal_info[player])
-          return 0;
-        return Math.max.apply(null, Object.keys(stats.personal_info[player]));
+        console.log(stats.personal_info[player].actions)
+        return Math.max.apply(null, Object.keys(stats.personal_info[player].actions));
       });
 
       return Math.max.apply(null, maxSlots);
@@ -151,14 +150,15 @@
 
           return rolesOrder.indexOf(stats.players[a].role) - rolesOrder.indexOf(stats.players[b].role)
         }).forEach(function(player){
-          if(personalInfo[player] && personalInfo[player][slot]){
-            var split = personalInfo[player][slot].action.split(':');
+          if(personalInfo[player].actions[slot]){
+            var slotInfo = personalInfo[player].actions[slot]
+            var split = slotInfo.action.split(':');
             var name = split[4].toLowerCase();
             var action = actions[name];
-            var result = personalInfo[player][slot].result;
+            var result = slotInfo.result;
 
             result['performer'] = player;
-            result['payload'] = personalInfo[player][slot].payload;
+            result['payload'] = slotInfo.payload;
             result['slot'] = slot;
             var _action = action.showResult(result, stats.players);
 

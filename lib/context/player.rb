@@ -1,10 +1,10 @@
 class Player
 
-  def initialize uuid, name
+  def initialize uuid, name, information
     @uuid = uuid
     @name = name
+    @information = information
     @inventory = Inventory.new
-    @information = Information.new
     @status = :alive
     @tomb = {}
     @events = []

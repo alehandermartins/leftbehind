@@ -69,15 +69,14 @@ module LB
 
     def add_to_everyone_log winners, results
       @context.players.each{ |the_player|
-        the_player.information.add_to the_player.uuid, slot, info(winners, results)
+        the_player.information.add_action the_player.uuid, slot, info(winners, results)
       }
     end
 
     def info winners, results
       {
         action: self.class.name,
-        result: {winners: winners, results: results},
-        inventory: ''
+        result: {winners: winners, results: results}
       }
     end
   end

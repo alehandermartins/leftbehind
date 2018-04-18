@@ -19,13 +19,13 @@ module LB
       @context.players[target].inventory.add resource, 1
       add_to_log
 
-      performer.information.add_to performer.uuid, slot, information(self.class.name, true)
+      performer.information.add_action performer.uuid, slot, information
       @context
     end
 
     def add_to_log
       return unless @context.players[target].alive?
-      @context.players[target].information.add_to performer.uuid, slot, information(self.class.name)
+      @context.players[target].information.add_action performer.uuid, slot, information
     end
   end
 end

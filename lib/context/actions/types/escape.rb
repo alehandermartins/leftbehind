@@ -56,7 +56,7 @@ module LB
           if the_action.class.name == 'LB::Action::Work'
             the_action.add_status :fail
             the_action.add_info(reason: 'action.escape.result.shuttle_left')
-            the_action.performer.information.add_to the_action.performer.uuid, slot, the_action.information('LB::Action::Work', true)
+            the_action.performer.information.add_action the_action.performer.uuid, slot, the_action.information
           end
         end
       end
@@ -74,7 +74,7 @@ module LB
           }
         end
       end
-      performer.information.add_to performer.uuid, slot, information(self.class.name) if performer.alive? || performer.escaped?
+      performer.information.add_to performer.uuid, slot, information if performer.alive? || performer.escaped?
       @context
     end
 

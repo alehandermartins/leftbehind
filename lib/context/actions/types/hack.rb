@@ -38,7 +38,7 @@ module LB
     def resolve context
       super context
 
-      performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
+      performer.information.add_action(performer.uuid, slot, information)
       return @context unless success?
 
       add_to_everyone_else_log performer.uuid
@@ -75,7 +75,7 @@ module LB
       @context.players.reject{ |the_player|
         the_player.uuid == performer.uuid
       }.each{ |the_player|
-        @context.players[the_player.uuid].information.add_to(target, slot, information(self.class.name))
+        @context.players[the_player.uuid].information.add_action(target, slot, information)
       }
     end
   end

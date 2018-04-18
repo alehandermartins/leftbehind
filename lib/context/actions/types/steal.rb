@@ -35,7 +35,7 @@ module LB
       super context
 
       manage_resources if success?
-      performer.information.add_to performer.uuid, slot, information(self.class.name, true)
+      performer.information.add_action performer.uuid, slot, information
 
       @context
     end

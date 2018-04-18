@@ -37,7 +37,7 @@ module LB
 
     def terminator
       performer.add_trait :terminator
-      performer.information.add_to(performer.uuid, slot, information(self.class.name))
+      performer.information.add_action(performer.uuid, slot, information)
     end
   end
 end

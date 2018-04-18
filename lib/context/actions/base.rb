@@ -46,22 +46,21 @@ module LB
         @result[:info].merge! message
       end
 
-      def information action, inventory = nil
-        inventory = performer.inventory.to_h.dup if inventory
+      def information action = nil
+        action ||= self.class.name
         return {
           action: action,
           payload: payload,
-          result: result,
-          inventory: inventory
+          result: result
         }
       end
 
       def add_to_everyone_log player = nil, info = nil
         player ||= performer
-        info ||= information(self.class.name)
+        info ||= information
         @context.players.each{ |the_player|
           next unless the_player.alive?
-          the_player.information.add_to player.uuid, slot, info
+          the_player.information.add_action player.uuid, slot, info
         }
       end
 

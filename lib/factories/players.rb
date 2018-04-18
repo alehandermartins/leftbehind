@@ -6,7 +6,8 @@ module Factories
     class << self
       def create(players_hashes)
         players = players_hashes.map do |player_hash|
-          ::Player.new(player_hash['uuid'], player_hash['name'])
+          information = Information.new(players_hashes)
+          ::Player.new(player_hash['uuid'], player_hash['name'], information)
         end
         ::Players.new(players)
       end

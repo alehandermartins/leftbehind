@@ -37,7 +37,7 @@ module LB
     def resolve context
       super context
 
-      performer.information.add_to performer.uuid, slot, information(self.class.name)
+      performer.information.add_action performer.uuid, slot, information
       return @context unless success?
 
       fix

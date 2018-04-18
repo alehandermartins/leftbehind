@@ -27,7 +27,7 @@ module LB
     def resolve context
       super context
 
-      performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
+      performer.information.add_action(performer.uuid, slot, information)
       return @context unless success?
       performer.inventory.add :food, 1
       @context

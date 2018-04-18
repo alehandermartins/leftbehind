@@ -123,7 +123,6 @@ module Services
         },
         team_stats:{
           inventory: context.team.inventory.to_h,
-          information: context.team.information.to_h
         },
         personal_stats: {
           inventory: context.players[player].inventory.to_h,

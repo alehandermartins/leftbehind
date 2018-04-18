@@ -20,7 +20,7 @@ module LB
 
       (same_actions).each {|same_action|
         same_action.add_info(target_info: same_action.target_info) if same_action.success?
-        same_action.performer.information.add_to same_action.performer.uuid, slot, same_action.information(self.class.name, true)
+        same_action.performer.information.add_action same_action.performer.uuid, slot, same_action.information
         same_action.add_target_information if same_action.success?
       }
 
@@ -30,7 +30,7 @@ module LB
     def add_target_information
       target_information = @context.players[target].information
       is_info = target_information.has_key?(target) && target_information[target].has_key?(slot)
-      performer.information.add_to target, slot, target_information[target][slot] if is_info
+      performer.information.add_action target, slot, target_information[target][slot] if is_info
     end
 
     def target_info

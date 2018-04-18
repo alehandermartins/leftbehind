@@ -17,7 +17,7 @@ module LB
       performer.add_trait :android if payload[:decision] == true
       add_info reason: 'action.inject.result.android'
       add_event_to_everyone
-      performer.information.add_to(performer.uuid, slot, information(self.class.name, true))
+      performer.information.add_action(performer.uuid, slot, information)
 
       @context
     end
