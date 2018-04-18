@@ -158,10 +158,9 @@
             return ns.t.html('action.work.label');
           },
           showResult: function(result, players){
-            var _resultLabel = '';
+            var _resultLabel = ns.t.html('action.work.result.success');
             if (result.status == 'fail')
-              _resultLabel = result.info.reason;
-            else{_resultLabel = ns.t.html('action.work.result.success')};
+              _resultLabel = ns.t.html(result.info.reason);
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));

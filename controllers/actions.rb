@@ -7,4 +7,8 @@ class ActionsController < BaseController
     Services::Actions.save_actions game, player, actions
     success game, {player: player}
   end
+
+  def active_page?(path)
+  	request.path_info == path
+	end
 end
