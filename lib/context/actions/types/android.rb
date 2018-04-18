@@ -17,7 +17,6 @@ module LB
       c3po if payload[:decision] == true
       terminator if payload[:decision] == false
       add_event_to_everyone
-      add_to_everyone_log
 
       @context
     end
@@ -33,10 +32,12 @@ module LB
     def c3po
       performer.add_trait :c3po
       performer.fix 2
+      add_to_everyone_log
     end
 
     def terminator
       performer.add_trait :terminator
+      performer.information.add_to(performer.uuid, slot, information(self.class.name))
     end
   end
 end
