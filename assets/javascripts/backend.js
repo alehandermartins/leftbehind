@@ -219,25 +219,25 @@
           player_uuid: LB.playerUuid()
         },
         function(data){
+          var stats = data.stats;
           callback({
             response: data.status,
-            day_status: data.stats.game_stats.players[ns.playerUuid()].stage,
-            game: data.stats.game_stats.game,
-            locations: data.stats.game_stats.locations,
-            current_slot: parseInt(data.stats.game_stats.current_slot),
+            day_status: stats.game.stage,
+            game: stats.game.data,
+            locations: stats.game.locations,
+            current_slot: parseInt(stats.game.current_slot),
             status: {
-              day: parseInt(10 - (data.stats.game_stats.current_slot / 6)) + 'h',
-              shuttle: (10 - data.stats.game_stats.escape_shuttle) * 10 + '%'
+              day: parseInt(10 - (stats.game.current_slot / 6)) + 'h',
+              shuttle: (10 - stats.game.escape_shuttle) * 10 + '%'
             },
-            player_status: data.stats.game_stats.players[ns.playerUuid()].status,
-            players: data.stats.game_stats.players,
-            personal: data.stats.personal_stats.inventory,
-            personal_info: data.stats.personal_stats.information,
+            player_status: stats.game.players[ns.playerUuid()].status,
+            players: stats.game.players,
+            personal: stats.personal.inventory,
+            personal_info: stats.personal.information,
             team: {
-              parts: data.stats.team_stats.inventory.parts,
-              energy: data.stats.team_stats.inventory.energy
-            },
-            team_info: data.stats.team_stats.information
+              parts: stats.team.inventory.parts,
+              energy: stats.team.inventory.energy
+            }
           }
           );
         }

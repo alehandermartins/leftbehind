@@ -6,7 +6,6 @@ module Services
       @situation = {}
       @game = Repos::Games.game(game)
       @context = Context.build_for game
-      @roles = %i(captain pilot mechanic scientist).shuffle(random: @context.random_generator)
       @current_slot = 0
       @max_slots = max_slots || @context.slots.completed_number
     end
@@ -108,25 +107,27 @@ module Services
 
     def store_stats
       context.players.each{ |player|
-        store_stats_for player.uuid
+        store_stats_for player
       }
     end
 
     def store_stats_for player
-      @stats[player] = {
-        game_stats: {
-          game: @game,
+      @stats[player.uuid] = {
+        game: {
+          data: @game,
           current_slot: @max_slots,
+          stage: player_stage(player),
+          event: @situation[player.uuid][:event],
           escape_shuttle: context.items['escape shuttle'][:fix],
           players: @situation,
           locations: locations
         },
-        team_stats:{
+        team:{
           inventory: context.team.inventory.to_h,
         },
-        personal_stats: {
-          inventory: context.players[player].inventory.to_h,
-          information: context.players[player].information.to_h
+        personal: {
+          inventory: player.inventory.to_h,
+          information: player.information.to_h
         }
       }
     end
@@ -143,17 +144,11 @@ module Services
       {
         name: player.name,
         status: player.status,
+        role: player.role,
         traits: player.traits,
         condition: player.condition,
-        fix_left: player.fix_left,
-        role: role(player),
-        stage: player_stage(player),
-        event: player_event(player, random_player),
+        fix_left: player.fix_left
       }
-    end
-
-    def role player
-      @roles[context.players.to_a.index(player)]
     end
 
     def player_stage player

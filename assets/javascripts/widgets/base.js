@@ -111,7 +111,6 @@
 
     var getLastSlot = function(){
       var maxSlots = Object.keys(stats.players).map(function(player){
-        console.log(stats.personal_info[player].actions)
         return Math.max.apply(null, Object.keys(stats.personal_info[player].actions));
       });
 

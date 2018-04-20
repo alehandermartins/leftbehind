@@ -3,12 +3,15 @@ class Information
 
   def initialize players_hashes
     @information = players_hashes.map do |player_hash|
-      [player_hash['uuid'], empty_info]
+      [player_hash['uuid'], basic_info(player_hash)]
     end.to_h
   end
 
-  def empty_info
+  def basic_info player_hash
     {
+      uuid: player_hash['uuid'],
+      name: player_hash['name'],
+      role: player_hash['role'],
       actions: {},
       traits: []
     }
@@ -32,6 +35,7 @@ class Information
   end
 
   def add_trait performer, trait
+    return if @information[performer][:traits].include?(trait)
     @information[performer][:traits].push(trait)
   end
 

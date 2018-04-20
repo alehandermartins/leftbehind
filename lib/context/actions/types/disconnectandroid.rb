@@ -15,7 +15,7 @@ module LB
     def resolve context
       super context
 
-      add_to_everyone_log
+      log_to_everyone
       target_action.add_status :fail
       @context.players[target].disconnect
       @context.slots.replace_actions @context.players[target], slot, dead_action

@@ -23,7 +23,7 @@ module LB
           action.add_info reason: 'action.hackandroid.result.success'
           if @context.players[target].condition == :ok
             action.add_info reason: 'action.hackandroid.result.finally_fixed'
-            add_to_everyone_log(action.performer, action.information)
+            log_to_everyone(action.performer, action.information)
           end
           return @context
         end

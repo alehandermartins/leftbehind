@@ -20,7 +20,7 @@ module LB
       winners = election_winners votes_by_player, winners_number
 
       @context.team.information.add_to :voting, slot, info(winners, votes_by_player)
-      add_to_everyone_log winners, votes_by_player
+      log_voting_to_everyone winners, votes_by_player
       votes_by_player = initialize_votes_by_player
 
       (same_actions).each {|same_action|
@@ -67,7 +67,7 @@ module LB
       alive_players - food_available
     end
 
-    def add_to_everyone_log winners, results
+    def log_voting_to_everyone winners, results
       @context.players.each{ |the_player|
         the_player.information.add_action the_player.uuid, slot, info(winners, results)
       }

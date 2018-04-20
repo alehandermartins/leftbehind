@@ -1,15 +1,27 @@
 class Player
 
-  def initialize uuid, name, information
+  def initialize uuid, name, role, information
     @uuid = uuid
     @name = name
+    @role = role
     @information = information
     @inventory = Inventory.new
     @status = :alive
-    @tomb = {}
     @events = []
     @traits = []
     @fix = 6
+  end
+
+  def uuid
+    @uuid
+  end
+
+  def name
+    @name
+  end
+
+  def role
+    @role
   end
 
   def inventory
@@ -34,14 +46,7 @@ class Player
 
   def add_trait trait
     @traits.push trait
-  end
-
-  def uuid
-    @uuid
-  end
-
-  def name
-    @name
+    @information.add_trait uuid, trait
   end
 
   def status
@@ -54,10 +59,6 @@ class Player
 
   def alive?
     @status == :alive
-  end
-
-  def tomb
-    @tomb
   end
 
   def condition

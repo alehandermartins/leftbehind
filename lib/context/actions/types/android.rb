@@ -32,7 +32,8 @@ module LB
     def c3po
       performer.add_trait :c3po
       performer.fix 2
-      add_to_everyone_log
+      log_to_everyone
+      log_trait_to_everyone :c3po
     end
 
     def terminator

@@ -55,12 +55,19 @@ module LB
         }
       end
 
-      def add_to_everyone_log player = nil, info = nil
+      def log_to_everyone player = nil, info = nil
         player ||= performer
         info ||= information
         @context.players.each{ |the_player|
           next unless the_player.alive?
           the_player.information.add_action player.uuid, slot, info
+        }
+      end
+
+      def log_trait_to_everyone trait
+        @context.players.each{ |the_player|
+          next unless the_player.alive?
+          the_player.information.add_trait performer.uuid, trait
         }
       end
 

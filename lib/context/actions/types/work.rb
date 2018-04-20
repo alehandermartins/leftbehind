@@ -41,7 +41,7 @@ module LB
       return @context unless success?
 
       fix
-      add_to_everyone_log
+      log_to_everyone
       @context
     end
 

@@ -50,11 +50,11 @@ module Services
 
       private
       def stage_for player, stats
-        stats[player][:game_stats][:players][player][:stage]
+        stats[player][:game][:stage]
       end
 
       def event_for player, stats
-        stats[player][:game_stats][:players][player][:event]
+        stats[player][:game][:event]
       end
 
       def next_phase game, context

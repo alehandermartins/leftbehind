@@ -57,7 +57,7 @@ module LB
 
     def remove_helmets player
       player.inventory.subtract_all :helmet
-      add_to_everyone_log player, info('action.fusion.result.entered')
+      log_to_everyone player, info('action.fusion.result.entered')
     end
 
     def safely_entered? action
@@ -76,13 +76,13 @@ module LB
 
     def kill player
       player.radiate
-      add_to_everyone_log player, info('player.status.radiated')
+      log_to_everyone player, info('player.status.radiated')
     end
 
     def kill_everyone
       @context.players.each{|player|
         player.explode
-        add_to_everyone_log player, info('player.status.exploded')
+        log_to_everyone player, info('player.status.exploded')
       }
     end
 
