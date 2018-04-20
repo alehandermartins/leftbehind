@@ -220,18 +220,20 @@
         },
         function(data){
           var stats = data.stats;
+          console.log(stats)
           callback({
             response: data.status,
             day_status: stats.game.stage,
             game: stats.game.data,
+            context: stats.game,
             locations: stats.game.locations,
             current_slot: parseInt(stats.game.current_slot),
             status: {
               day: parseInt(10 - (stats.game.current_slot / 6)) + 'h',
               shuttle: (10 - stats.game.escape_shuttle) * 10 + '%'
             },
-            player_status: stats.game.players[ns.playerUuid()].status,
-            players: stats.game.players,
+            players: stats.personal.information.players,
+            player_status: stats.personal.information.players[ns.playerUuid()].status,
             personal: stats.personal.inventory,
             personal_info: stats.personal.information,
             team: {

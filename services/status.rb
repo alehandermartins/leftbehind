@@ -3,7 +3,7 @@ module Services
 
     def initialize game, max_slots = nil
       @stats = {}
-      @situation = {}
+      @events = {}
       @game = Repos::Games.game(game)
       @context = Context.build_for game
       @current_slot = 0
@@ -58,7 +58,7 @@ module Services
       compute_stage stage_slots
 
       @current_slot = stage_slots.last || 0
-      store_situation
+      run_events
       store_stats
       game_over?
 
@@ -117,9 +117,8 @@ module Services
           data: @game,
           current_slot: @max_slots,
           stage: player_stage(player),
-          event: @situation[player.uuid][:event],
+          event: @events[player.uuid],
           escape_shuttle: context.items['escape shuttle'][:fix],
-          players: @situation,
           locations: locations
         },
         team:{
@@ -127,27 +126,16 @@ module Services
         },
         personal: {
           inventory: player.inventory.to_h,
-          information: player.information.to_h
+          information: player.information.for(context.players)
         }
       }
     end
 
-    def store_situation
+    def run_events
       random_player = context.players.to_a.sample(random: context.random_generator)
       context.players.each{ |player|
         player.crash if (current_slot >= 58 && player.alive?)
-        @situation[player.uuid] = compose_situation player, random_player
-      }
-    end
-
-    def compose_situation player, random_player
-      {
-        name: player.name,
-        status: player.status,
-        role: player.role,
-        traits: player.traits,
-        condition: player.condition,
-        fix_left: player.fix_left
+        @events[player.uuid] = event_for player, random_player
       }
     end
 
@@ -167,7 +155,7 @@ module Services
       }
     end
 
-    def player_event player, random_player
+    def event_for player, random_player
       return :defaultEvent unless player_stage(player) == :events
       return :fusion if !player.events.include?(:fusion)
       return :inject if !player.events.include?(:inject) && player == random_player

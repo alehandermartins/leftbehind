@@ -65,5 +65,6 @@ LB.gameEvents = function(stats){
     voting: LB.Voting
   };
 
-  return eventsMap[stats.players[LB.playerUuid()]['event']](stats);
+  console.log(stats.game)
+  return eventsMap[stats.context['event']](stats);
 };

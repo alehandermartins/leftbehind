@@ -74,7 +74,7 @@ module LB
           }
         end
       end
-      performer.information.add_to performer.uuid, slot, information if performer.alive? || performer.escaped?
+      performer.information.add_action performer.uuid, slot, information if performer.alive? || performer.escaped?
       @context
     end
 
@@ -96,7 +96,7 @@ module LB
     def trojan_player?
       escaped_players.any? { |player|
         player.condition == :broken
-      } 
+      }
     end
   end
 end

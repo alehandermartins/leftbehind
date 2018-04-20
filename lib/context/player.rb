@@ -32,6 +32,10 @@ class Player
     @information
   end
 
+  def information_for players
+    @information.for players
+  end
+
   def events
     @events
   end

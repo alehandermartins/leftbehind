@@ -16,14 +16,14 @@ module LB
       add_status :fail
       add_info action: self.class.name
       @context.slots.replace_actions performer, slot, dead_action
-      
+
       @context.players.each{ |the_player|
-        the_player.information.add_to performer.uuid, slot, information('LB::Action::Death')
+        the_player.information.add_action performer.uuid, slot, information('LB::Action::Death')
       }
     end
 
     def dead_action
-      {  
+      {
         name: 'playdead',
         payload: {}
       }

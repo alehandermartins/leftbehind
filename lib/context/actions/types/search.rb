@@ -20,7 +20,7 @@ module LB
           action.add_bounty
 
           (cowork_actions).each {|coworker_action|
-            coworker_action.performer.information.add_to :locations, location, slot
+            coworker_action.performer.information.add_location location, slot
           }
 
           return @context

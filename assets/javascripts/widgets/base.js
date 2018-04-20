@@ -109,15 +109,17 @@
     if(stats.current_slot != 0 && stats.player_status === 'alive' && stats.day_status != 'wait')
       _createdWidget.addClass('active');
 
+    var _players = stats.personal_info.players;
+    console.log(stats.personal_info.players)
+
     var getLastSlot = function(){
-      var maxSlots = Object.keys(stats.players).map(function(player){
-        return Math.max.apply(null, Object.keys(stats.personal_info[player].actions));
+      var maxSlots = Object.keys(_players).map(function(player){
+        return Math.max.apply(null, Object.keys(_players[player].actions));
       });
 
       return Math.max.apply(null, maxSlots);
     }
 
-    var personalInfo = stats.personal_info;
     var lastSlot = getLastSlot();
     var lastDaySlots = lastSlot % 6;
 
@@ -138,7 +140,7 @@
       slots.forEach(function(slot){
         var _personalInfos = [];
 
-        Object.keys(stats.players).sort(function(a, b){
+        Object.keys(_players).sort(function(a, b){
           var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
 
           if (a == ns.playerUuid())
@@ -147,10 +149,10 @@
           if (b == ns.playerUuid())
             return 1
 
-          return rolesOrder.indexOf(stats.players[a].role) - rolesOrder.indexOf(stats.players[b].role)
+          return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
         }).forEach(function(player){
-          if(personalInfo[player].actions[slot]){
-            var slotInfo = personalInfo[player].actions[slot]
+          if(_players[player].actions[slot]){
+            var slotInfo = _players[player].actions[slot]
             var split = slotInfo.action.split(':');
             var name = split[4].toLowerCase();
             var action = actions[name];
@@ -159,10 +161,10 @@
             result['performer'] = player;
             result['payload'] = slotInfo.payload;
             result['slot'] = slot;
-            var _action = action.showResult(result, stats.players);
+            var _action = action.showResult(result, _players);
 
             var _personalInfo = $(crel('div'));
-            var _personalLabel = $(crel('span')).text(stats.players[player].name);
+            var _personalLabel = $(crel('span')).text(_players[player].name);
             _personalLabel.css({'font-weight': 'bold'});
 
             if (player != LB.playerUuid())

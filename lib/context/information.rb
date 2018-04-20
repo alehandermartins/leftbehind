@@ -1,10 +1,10 @@
 class Information
-  attr_reader :information
 
   def initialize players_hashes
-    @information = players_hashes.map do |player_hash|
+    @players = players_hashes.map do |player_hash|
       [player_hash['uuid'], basic_info(player_hash)]
     end.to_h
+    @locations = Hash.new
   end
 
   def basic_info player_hash
@@ -17,29 +17,40 @@ class Information
     }
   end
 
-  def [] key
-    information[key]
+  def players
+    @players
   end
 
-  def has_key? what
-    information.has_key? what
-  end
-
-  def add_to subject, topic, info
-    information[subject] ||= {}
-    information[subject][topic] = info
+  def locations
+    @locations
   end
 
   def add_action performer, slot, info
-    @information[performer][:actions][slot] = info
+    @players[performer][:actions][slot] = info
   end
 
   def add_trait performer, trait
-    return if @information[performer][:traits].include?(trait)
-    @information[performer][:traits].push(trait)
+    return if @players[performer][:traits].include?(trait)
+    @players[performer][:traits].push(trait)
+  end
+
+  def add_location location, info
+    @locations[location] = info
+  end
+
+  def for players
+    players.each { |player|
+      @players[player.uuid][:status] = player.status
+      @players[player.uuid][:condition] = player.condition
+      @players[player.uuid][:fix_left] = player.fix_left
+    }
+    to_h
   end
 
   def to_h
-    information.to_h
+    {
+      players: @players,
+      locations: @locations
+    }
   end
 end
