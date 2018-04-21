@@ -202,11 +202,12 @@
       },
       steal:{
         label: 'Robar :helmet:',
+
         selection: 'Robar %{resource} a %{target}',
         tutorial: 'Robar: transfiere recursos desde otro jugador.',
         result: {
-          empty: 'No tenía nada',
-          bounty: 'Robaste %{resources}'
+          success: 'Robaste %{resources} a %{target}',
+          empty: 'No tenía nada'
         }
       },
       unlock: {
@@ -229,9 +230,10 @@
       },
       work:{
         label: 'Reparar el :shuttle: (:parts: 1)',
+        selection: 'Reparar el :shuttle:',
         tutorial: ':work: Reparar: arregla un porcentaje de la cápsula de escape.',
         result: {
-          success: 'Bien hecho, ya queda menos...',
+          success: 'Reparaste el :shuttle:',
           broken_shuttle: 'El :shuttle: aun necesita reparaciones',
           no_fixing_materials: "No tenías los :parts: necesarios",
           already_fixed: 'El :shuttle: ya está arreglado',

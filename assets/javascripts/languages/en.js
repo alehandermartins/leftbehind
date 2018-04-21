@@ -196,8 +196,8 @@
         selection: 'Steal %{resource} from %{target}',
         tutorial: 'Steal: transfers resources from another player.',
         result: {
-          empty: 'He had nothing',
-          bounty: 'You stole %{resources}'
+          success: 'You stole %{resources} from %{target}',
+          empty: 'He had nothing'
         }
       },
       playdead: {
@@ -228,9 +228,10 @@
       },
       work:{
         label: ':work: Repair the :shuttle: (:parts: 1)',
+        selection: 'Repair the :shuttle:',
         tutorial: ':work: Repair: fix a percentaje of the escape shuttle.',
         result: {
-          success: 'Well done, you are closer...',
+          success: 'You repaired the :shuttle:',
           broken_shuttle: 'The :shuttle: still needs fixing',
           no_fixing_materials: "You didn't have the needed :parts:",
           already_fixed: 'The :shuttle: is already fixed',

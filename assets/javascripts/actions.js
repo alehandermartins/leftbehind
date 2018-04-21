@@ -71,7 +71,7 @@
             var _resultLabel = ns.t.html(_label)
             var resultLabel = $(crel('div')).addClass('result-label col-12')
             if (result.performer == LB.playerUuid())
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ _resultLabel));
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
             else{
               resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
               resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
@@ -124,7 +124,7 @@
 
             var resultLabel = $(crel('div')).addClass('result-label col-12');
             if (result.performer == LB.playerUuid())
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ _resultLabel));
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
             else{
               resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
               resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
@@ -142,16 +142,21 @@
             return ns.t.html('action.work.label')
           },
           buildLabel: function(payload){
-            return ns.t.html('action.work.label');
+            return ns.t.html('action.work.selection');
           },
           showResult: function(result, players){
             var _resultLabel = ns.t.html('action.work.result.success');
             if (result.status == 'fail')
               _resultLabel = ns.t.html(result.info.reason);
 
-            var resultLabel = $(crel('div')).addClass('result-label col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
 
             return resultLabel;
           },
@@ -185,9 +190,9 @@
 
             var resultLabel = $(crel('div')).addClass('result-label col-12')
             if (result.performer == LB.playerUuid())
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ _resultLabel));
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
             else
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + this.buildLabel(result.payload)));
 
             return resultLabel;
           },
@@ -234,15 +239,20 @@
             else
               if ('bounty' in result){
                 var _resources = Object.keys(result.bounty).map(function(resource){
-                  return [':', ':'].join(resource) + ' ' + result.bounty[resource];
-                }).join(', ');
-
-                _resultLabel = ns.t.text('action.steal.result.bounty', {resources: _resources});
+                  return result.bounty[resource] + ' ' + [':', ':'].join(resource);
+                });
+                var targetName = stats.players[result.payload.target].name;
+                _resultLabel = ns.t.html('action.steal.result.success', {resources: _resources, target: targetName});
               }
 
-            var resultLabel = $(crel('div')).addClass('result-label col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
 
             return resultLabel;
           },
@@ -269,9 +279,13 @@
                 _resultLabel = ns.t.text('action.defend.result.nobody_defended');
             }
 
-            var resultLabel = $(crel('div')).addClass('result-label col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
 
             return resultLabel;
           },
@@ -292,9 +306,13 @@
             if (result.status == 'fail')
               _resultLabel = ns.t.html(result.info.reason);
 
-            var resultLabel = $(crel('div')).addClass('result-label col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
 
             return resultLabel;
           },
@@ -352,9 +370,13 @@
             if (result.status == 'fail')
               _resultLabel = ns.t.html(result.info.reason);
 
-            var resultLabel = $(crel('div')).addClass('result-label col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
 
             return resultLabel;
           },
@@ -420,15 +442,18 @@
           }
         },
         eat: {
-          showResult: function(result){
-            var _resultLabel = ''
+          showResult: function(result, players){
+            var _resultLabel;
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+
             if (result.info == 'player.status.starved'){
               if (result.performer == LB.playerUuid())
-                _resultLabel = ns.t.html('action.eat.label') + ns.t.html('action.eat.result.youstarved')
-              else
-                _resultLabel = ns.t.html('action.eat.label') + ns.t.text('action.eat.result.otterstarved')
+              resultLabel.append($(crel('div')).html(ns.t.html('action.eat.result.youstarved') + ns.t.html('action.eat.label')));
+              else{
+                resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+                resultLabel.append($(crel('div')).html('&nbsp' + ns.t.text('action.eat.result.otterstarved') + ns.t.html('action.eat.label')));
+              }
             }
-            var resultLabel = $(crel('div')).addClass('col-12').html(_resultLabel).addClass('result-label');
             return resultLabel;
           }
         },
