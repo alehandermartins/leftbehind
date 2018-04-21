@@ -220,7 +220,6 @@
         },
         function(data){
           var stats = data.stats;
-          console.log(stats)
           callback({
             response: data.status,
             day_status: stats.game.stage,

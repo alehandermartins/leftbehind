@@ -65,6 +65,5 @@ LB.gameEvents = function(stats){
     voting: LB.Voting
   };
 
-  console.log(stats.game)
   return eventsMap[stats.context['event']](stats);
 };

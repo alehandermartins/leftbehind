@@ -110,7 +110,6 @@
       _createdWidget.addClass('active');
 
     var _players = stats.personal_info.players;
-    console.log(stats.personal_info.players)
 
     var getLastSlot = function(){
       var maxSlots = Object.keys(_players).map(function(player){
@@ -164,11 +163,6 @@
             var _action = action.showResult(result, _players);
 
             var _personalInfo = $(crel('div'));
-            var _personalLabel = $(crel('span')).text(_players[player].name);
-            _personalLabel.css({'font-weight': 'bold'});
-
-            if (player != LB.playerUuid())
-             _personalInfo.append(_personalLabel);
 
             _personalInfo.append(_action);
             _personalInfos.push(_personalInfo);

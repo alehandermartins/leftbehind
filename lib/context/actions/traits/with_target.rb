@@ -4,6 +4,10 @@ module LB
       payload[:target]
     end
 
+    def target_player
+      @context.players[target]
+    end
+
     def target_inventory
       @context.players[target].inventory
     end

@@ -37,7 +37,8 @@ module LB
       super context
 
       performer.information.add_action(performer.uuid, slot, information)
-      return @context unless success?
+      log_to_everyone if success?
+
       @context
     end
 

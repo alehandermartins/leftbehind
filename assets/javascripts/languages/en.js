@@ -77,7 +77,7 @@
         label: 'Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
         selection: 'Hack %{target} :robot:',
         result: {
-          success: 'Well done. Keep it up.',
+          success: 'Hack %{target} :robot: <strong>%{fix}</strong>',
           no_fixing_materials: "You didn't have the needed :parts:",
           finally_fixed: "Fixed!! %{player} is no longer a threat",
           already_fixed: "Already fixed."
@@ -170,7 +170,7 @@
         tutorial: ':search: Search: You will find :parts: or :energy:.',
         result: {
           nothing: 'You found nothing. ',
-          bounty: 'You found %{resources}',
+          bounty: 'You found %{resources} (%{location})',
           itemfound: 'You found a %{item}.',
           itemfounder: '%{founder} found a %{item}.'
         }

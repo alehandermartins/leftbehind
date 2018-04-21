@@ -18,30 +18,6 @@
       }
 
       var _actions = {
-        // craft: {
-        //   label: ':hammer:',
-        //   buildLabel: function(payload){
-        //     return ns.t.html('action.craft.label');
-        //   },
-        //   showResult: function(result){
-        //     var _resultLabel
-        //     if(result.status == 'success')
-        //       _resultLabel = ns.t.html('action.craft.result.success')
-        //     else
-        //       _resultLabel = ns.t.html('action.craft.result.fail')
-
-        //     var resultLabel = $(crel('div')).addClass('col-12').html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload) + ' → ' + ns.t.html(_resultLabel)).addClass('unpadded');
-        //     return resultLabel;
-        //   },
-        //   run: function(location, slotWidget) {
-        //     var list = [{name: ns.t.html('action.craft.list'), uuid:'pick'}]
-        //     var modalTitle = ns.t.html('action.craft.modalTitle')
-        //     ns.Widgets.ModalTargetSelector(list, modalTitle).select(function(selection){
-        //       var _builtAction = {name: 'craft', payload: {item: 'pick'}}
-        //       slotWidget.selectActionForCurrentSlot(_builtAction)
-        //     })
-        //   }
-        // },
         search: {
           label: function(){
             return ns.t.html('action.search.label')
@@ -64,12 +40,13 @@
             }
 
             var _resultLabel = _showbounty();
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             if (result.performer == LB.playerUuid())
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ _resultLabel));
-            else
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
             return resultLabel;
           },
           run: function(location, slotWidget) {
@@ -92,11 +69,13 @@
               _label = result.info.reason
 
             var _resultLabel = ns.t.html(_label)
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             if (result.performer == LB.playerUuid())
               resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ _resultLabel));
-            else
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
 
             return resultLabel;
           },
@@ -136,17 +115,20 @@
           buildLabel: function(payload){
             return ns.t.html('action.unlock.selection', {location: ns.t.html('locations.' + payload.location)})
           },
-          showResult: function(result){
-            var _label
+          showResult: function(result, players){
+            var _resultLabel;
             if(result.status == "success")
-              _label = 'action.unlock.result.success'
+              _resultLabel = ns.t.html('action.unlock.result.success', {location: ns.t.html('locations.' + result.payload.location)});
             else
-              _label = result.info.reason
+              _resultLabel = ns.t.html(result.info.reason);
 
-            var _resultLabel = ns.t.html(_label)
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
-            resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ _resultLabel));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
 
             return resultLabel;
           },
@@ -167,7 +149,7 @@
             if (result.status == 'fail')
               _resultLabel = ns.t.html(result.info.reason);
 
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
             resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
@@ -201,7 +183,7 @@
               _resultLabel = ns.t.html(_inventoryLabel);
             }
 
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             if (result.performer == LB.playerUuid())
               resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ _resultLabel));
             else
@@ -223,7 +205,7 @@
             return ns.t.html('action.share.selection', {resource: [':', ':'].join(payload.resource), target: targetName});
           },
           showResult: function(result, players){
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             if (result.performer == LB.playerUuid())
               resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + this.buildLabel(result.payload)));
             else{
@@ -258,7 +240,7 @@
                 _resultLabel = ns.t.text('action.steal.result.bounty', {resources: _resources});
               }
 
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
             resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
@@ -287,7 +269,7 @@
                 _resultLabel = ns.t.text('action.defend.result.nobody_defended');
             }
 
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
             resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
@@ -310,7 +292,7 @@
             if (result.status == 'fail')
               _resultLabel = ns.t.html(result.info.reason);
 
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
             resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
@@ -323,16 +305,7 @@
         },
         hackandroid: {
           label: function(target){
-            var fix_left = stats.players[target].fix_left;
-            var fix;
-            var goodType = stats.players[target].traits.includes('c3po');
-            if(goodType)
-              fix = (4- fix_left) * 25 + '%';
-            else{
-              fix = (6- fix_left) * 16.5 + '%';
-              if(fix_left == 0)
-                fix = '100%';
-            }
+            var fix = stats.players[target].fix + '%';
             return ns.t.html('action.hackandroid.label', {fix: fix});
           },
           buildLabel: function(payload){
@@ -340,19 +313,23 @@
             return ns.t.html('action.hackandroid.selection', {target: targetName});
           },
           showResult: function(result, players){
+            var _resultLabel;
             var targetName = stats.players[result.payload.target].name;
-            var _resultLabel = ns.t.html(result.info.reason, {player: targetName});
             if (result.status == 'fail')
               _resultLabel = ns.t.html(result.info.reason);
+            else{
+              var fix = result.info.fix + '%';
+              _resultLabel = ns.t.html('action.hackandroid.result.success', {target: targetName, fix: fix})
+            }
 
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
+
             if (result.performer == LB.playerUuid())
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + this.buildLabel(result.payload)));
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + _resultLabel));
             else{
               resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
               resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
             }
-            resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
             return resultLabel;
           },
           run: function(target, slotWidget) {
@@ -375,7 +352,7 @@
             if (result.status == 'fail')
               _resultLabel = ns.t.html(result.info.reason);
 
-            var resultLabel = $(crel('div')).addClass('unpadded col-12')
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
             resultLabel.append($(crel('div')).html(' → ' + _resultLabel));
 
@@ -403,7 +380,7 @@
               else
                 _resultLabel = ns.t.html('action.eat.label') + ns.t.text('action.eat.result.otterstarved')
             }
-            var resultLabel = $(crel('div')).addClass('col-12').html(_resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(_resultLabel).addClass('result-label');
             return resultLabel;
           }
         },
@@ -411,7 +388,7 @@
           showResult: function(result){
             var _winners = [];
             var _candidates = [];
-            var _general = $(crel('div')).html(ns.t.html('action.vote.label')).addClass('unpadded');
+            var _general = $(crel('div')).html(ns.t.html('action.vote.label')).addClass('result-label');
             result.winners.forEach(function(winner){
               _winners.push(stats.players[winner].name);
             });
@@ -451,7 +428,7 @@
               else
                 _resultLabel = ns.t.html('action.eat.label') + ns.t.text('action.eat.result.otterstarved')
             }
-            var resultLabel = $(crel('div')).addClass('col-12').html(_resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(_resultLabel).addClass('result-label');
             return resultLabel;
           }
         },
@@ -464,7 +441,7 @@
             else
               _resultLabel = 'action.inject.result.no'
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.inject.label') + " " + ns.t.text(_resultLabel)).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.inject.label') + " " + ns.t.text(_resultLabel)).addClass('result-label');
             return resultLabel
           }
         },
@@ -482,7 +459,7 @@
               _resultLabel = ns.t.html('action.android.result.informed', {player: stats.players[result.performer].name})
 
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.android.label') + " " + _resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.android.label') + " " + _resultLabel).addClass('result-label');
             return resultLabel
           }
         },
@@ -503,7 +480,7 @@
                 _resultLabel = ns.t.text('action.fusion.result.otterdied')
             }
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.fusion.label') + " " + _resultLabel).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.fusion.label') + " " + _resultLabel).addClass('result-label');
             return resultLabel
           }
         },
@@ -516,7 +493,7 @@
               return false
 
             var slot = LB.SLOTS[(result.slot - 1) % 4]
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html(slot.label) + ': ' + ns.t.text('action.none.label')).addClass('unpadded');
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html(slot.label) + ': ' + ns.t.text('action.none.label')).addClass('result-label');
             return resultLabel;
           }
         },

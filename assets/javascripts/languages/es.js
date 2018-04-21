@@ -216,7 +216,7 @@
         result: {
           no_materials: "No disponías de las :energy: necesarias",
           redundancy: "Esta habitación ya ha sido desbloqueada",
-          success: "Desbloqueada"
+          success: "%{location} Desbloqueado/a"
         }
       },
       vote: {

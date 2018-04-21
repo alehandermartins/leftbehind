@@ -44,7 +44,7 @@ class Information
 
   def add_android_features player
     @players[player.uuid][:condition] = player.condition
-    @players[player.uuid][:fix_left] = player.fix_left
+    @players[player.uuid][:fix] = player.calculate_fix
   end
 
   def for players

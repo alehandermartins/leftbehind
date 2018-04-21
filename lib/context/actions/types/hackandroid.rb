@@ -20,11 +20,7 @@ module LB
           action.add_status :success
           @context.team.inventory.subtract :parts, 1
           @context.players[target].fix
-          action.add_info reason: 'action.hackandroid.result.success'
-          if @context.players[target].condition == :ok
-            action.add_info reason: 'action.hackandroid.result.finally_fixed'
-            log_to_everyone(action.performer, action.information)
-          end
+          log_hack_to_everyone(action.performer, action.information) if @context.players[target].condition == :ok
           return @context
         end
 
@@ -40,6 +36,7 @@ module LB
     def resolve context
       super context
 
+      add_info fix: target_player.calculate_fix
       performer.information.add_action performer.uuid, slot, information
       add_to_log if success?
 
@@ -64,6 +61,13 @@ module LB
     def add_to_log
       return unless @context.players[target].alive?
       @context.players[target].information.add_action performer.uuid, slot, information
+    end
+
+    def log_hack_to_everyone player, hack_info
+      @context.players.each{ |player|
+        knows = player.information.players[target][:traits].include?(:c3po) || player.information.players[target][:traits].include?(:terminator)
+        player.information.add_action player.uuid, slot, hack_info if knows
+      }
     end
   end
 end

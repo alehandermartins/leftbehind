@@ -80,6 +80,12 @@ class Player
     @fix
   end
 
+  def calculate_fix
+    goodType = @traits.include?(:c3po)
+    retun ((4 - @fix) * 100 / 4).ceil if goodType
+    ((6 - @fix) * 100 / 6).ceil
+  end
+
   def kill
     @status = :dead
   end
