@@ -55,13 +55,10 @@
     var _avatar = $(crel('div')).addClass('avatar')
     var _name = $(crel('div')).addClass('name').text(player.name)
     var _status = 'lagging'
-    var _role =player.role
+    var _role = player.role
 
     if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(player.status))
       _status = 'wont-play'
-    else
-      if (player.stage == 'wait' || player.status == 'escaped')
-        _status = 'ahead';
 
     _avatar.addClass(_status)
     _avatar.addClass(_role)
@@ -78,5 +75,28 @@
       }
     }
   }
+
+  ns.Widgets.PlayerAvatarXS = function(player){
+    var _wrapper = $(crel('div')).addClass('avatarWrapper avatar-xs')
+    var _avatar = $(crel('div')).addClass('avatar')
+    var _status = 'lagging'
+    var _role = player.role
+
+    if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(player.status))
+      _status = 'wont-play'
+
+    _avatar.addClass(_status)
+    _avatar.addClass(_role)
+    _avatar.addClass(player)
+
+    _wrapper.append(_avatar)
+
+    return {
+      render: function(){
+        return _wrapper;
+      }
+    }
+  }
+
 
 }(LB || {}))

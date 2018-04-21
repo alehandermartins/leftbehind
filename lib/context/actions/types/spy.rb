@@ -29,8 +29,8 @@ module LB
 
     def add_target_information
       target_information = @context.players[target].information
-      has_info = target_information.players[target].has_key?(slot)
-      performer.information.add_action target, slot, target_information.players[target][slot] if has_info
+      has_info = target_information.players[target][:actions].has_key?(slot)
+      performer.information.add_action target, slot, target_information.players[target][:actions][slot] if has_info
     end
 
     def target_info

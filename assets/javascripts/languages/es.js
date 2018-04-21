@@ -178,7 +178,7 @@
         tutorial: ':search: Search: Encontrarás :parts: o :energy:.',
         result: {
           nothing: 'No encontraste nada. ',
-          bounty: 'Encontraste %{resources}',
+          bounty: 'Encontraste %{resources} (%{location})',
           teamInventory: '(Añadido al inventario del :team:). ',
           itemfound: 'Encontraste un %{item}.',
           itemfounder: '%{founder} encontró un %{item}.'

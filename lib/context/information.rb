@@ -13,7 +13,7 @@ class Information
       name: player_hash['name'],
       role: player_hash['role'],
       actions: {},
-      traits: []
+      traits: [],
     }
   end
 
@@ -38,11 +38,19 @@ class Information
     @locations[location] = info
   end
 
+  def android_trait? player
+    @players[player.uuid][:traits].include?(:c3po) || @players[player.uuid][:traits].include?(:terminator)
+  end
+
+  def add_android_features player
+    @players[player.uuid][:condition] = player.condition
+    @players[player.uuid][:fix_left] = player.fix_left
+  end
+
   def for players
     players.each { |player|
       @players[player.uuid][:status] = player.status
-      @players[player.uuid][:condition] = player.condition
-      @players[player.uuid][:fix_left] = player.fix_left
+      add_android_features(player) if android_trait?(player)
     }
     to_h
   end
