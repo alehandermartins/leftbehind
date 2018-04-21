@@ -267,22 +267,13 @@
           },
           showResult: function(result, players){
             var _resultLabel;
-
             if (result.status == 'fail')
               _resultLabel = result.info.reason;
-            else if (result.info.attackers.length > 0){
-              result.info.attackers.map(function(attacker){
-                var name = players[attacker.performer].name.capitalize();
-                var action = attacker.action.split(':').pop().toLowerCase();
-                if(action == 'spy')
-                  _resultLabel = ns.t.text('action.defend.result.spy_defended', {player: name});
-
-                if(action == 'steal')
-                _resultLabel = ns.t.text('action.defend.result.steal_defended', {player: name});
-              });
-            }
             else{
-              _resultLabel = ns.t.text('action.defend.result.nobody_defended');
+              if (result.info.attackers.length > 0)
+                _resultLabel = ns.t.text('action.defend.result.success');
+              else
+                _resultLabel = ns.t.text('action.defend.result.nobody_defended');
             }
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
@@ -304,10 +295,9 @@
             return ns.t.html('action.escape.label');
           },
           showResult: function(result){
-            var _resultLabel = '';
+            var _resultLabel = ns.t.html('action.escape.result.success');
             if (result.status == 'fail')
-              _resultLabel = result.info.reason;
-            else{_resultLabel = ns.t.html('action.escape.result.success')};
+              _resultLabel = ns.t.html(result.info.reason);
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
@@ -341,6 +331,8 @@
           showResult: function(result){
             var targetName = stats.players[result.payload.target].name;
             var _resultLabel = ns.t.html(result.info.reason, {player: targetName});
+            if (result.status == 'fail')
+              _resultLabel = ns.t.html(result.info.reason);
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));
@@ -365,6 +357,8 @@
             var targetName = stats.players[result.payload.target].name;
             var performer = stats.players[result.performer].name;
             var _resultLabel = ns.t.html('action.disconnectandroid.result.success', {target: targetName, player: performer});
+            if (result.status == 'fail')
+              _resultLabel = ns.t.html(result.info.reason);
 
             var resultLabel = $(crel('div')).addClass('unpadded col-12')
             resultLabel.append($(crel('div')).html(slotLabel(result.slot) + ': '+ this.buildLabel(result.payload)));

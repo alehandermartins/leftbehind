@@ -103,9 +103,8 @@
         tutorial: ':defend: Defending avoids being robbed or spied. You will also know who is after you...',
         label: ':defend: Defend',
         result: {
+          success: 'Success!',
           attack_defended: 'He was defending and kicked your ass!!',
-          spy_defended: '%{player} was spying on you.',
-          steal_defended: '%{player} tried to steal from you.',
           nobody_defended: 'Nobody attacked you'
         }
       },

@@ -7,45 +7,27 @@
     var _createdWidget = $(crel('div')).addClass('header row text-center')
     var avatar = $(crel('div')).addClass('statusbar col-2')
 
-    var _players = stats.players
-    Object.keys(_players).sort(function(a, b){
-      var rolesOrder = ['captain', 'pilot', 'mechanic', 'scientist']
+    var _player = stats.players[ns.playerUuid()]
 
-      if (a == ns.playerUuid())
-        return -1
+    var _playerButton = $(crel('div')).addClass('player')
+    var _wrapper = $(crel('div')).addClass('avatarWrapper')
+    var _avatar = $(crel('div')).addClass('avatar')
+    var _name = $(crel('div')).addClass('name').text(_player.name)
+    var _status = 'ahead'
+    var _role =_player.role
 
-      if (b == ns.playerUuid())
-        return 1
+    if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_player.status))
+      _status = 'wont-play'
 
-      return rolesOrder.indexOf(_players[a].role) - rolesOrder.indexOf(_players[b].role)
+    _avatar.addClass(_status)
+    _avatar.addClass(_role)
+    _avatar.addClass(_player.uuid)
 
-    }).forEach(function(player){
-      if(player != ns.playerUuid())
-        return
+    _wrapper.append(_avatar)
 
-      var _playerButton = $(crel('div')).addClass('player')
-      var _wrapper = $(crel('div')).addClass('avatarWrapper')
-      var _avatar = $(crel('div')).addClass('avatar')
-      var _name = $(crel('div')).addClass('name').text(_players[player].name)
-      var _status = 'lagging'
-      var _role =_players[player].role
-
-      if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(_players[player].status))
-        _status = 'wont-play'
-      else
-        if (_players[player].stage == 'wait' || _players[player].status == 'escaped')
-          _status = 'ahead';
-
-      _avatar.addClass(_status)
-      _avatar.addClass(_role)
-      _avatar.addClass(player)
-
-      _wrapper.append(_avatar)
-
-      _playerButton.append(_wrapper)
-      _playerButton.append(_name)
-      avatar.append(_playerButton)
-    })
+    _playerButton.append(_wrapper)
+    _playerButton.append(_name)
+    avatar.append(_playerButton)
 
     _createdWidget.append(avatar)
 

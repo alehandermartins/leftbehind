@@ -27,6 +27,7 @@
       else{
         if(player.traits.includes('c3po') || player.traits.includes('terminator'))
           addActionButton('hackandroid', player.uuid)
+          addActionButton('defend')
       }
     }
 

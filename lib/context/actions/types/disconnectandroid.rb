@@ -14,6 +14,7 @@ module LB
 
     def resolve context
       super context
+      return @context unless success?
 
       log_to_everyone
       target_action.add_status :fail

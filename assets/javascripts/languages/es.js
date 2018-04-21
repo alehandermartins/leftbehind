@@ -103,9 +103,8 @@
         tutorial: ':defend: Defender evita que te espien o te roben. Además sabrás quién va detras tuya...',
         label: ':defend: Defenderte',
         result: {
+          success: 'Éxito!',
           attack_defended: 'Se defendió y te pateó el culo!!',
-          spy_defended: '%{player} te estaba espiando.',
-          steal_defended: '%{player} intentó robarte.',
           nobody_defended: 'Nadie te atacó'
         }
       },

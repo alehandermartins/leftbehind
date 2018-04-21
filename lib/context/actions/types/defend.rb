@@ -22,7 +22,7 @@ module LB
     private
     def attackers
       @context.slots[slot].actions.map { |the_action|
-        attack_info the_action if targeted_performer? the_action
+        the_action.performer.uuid if targeted_performer? the_action
       }.compact
     end
 
@@ -31,41 +31,17 @@ module LB
         if targeted_performer? the_action
           the_action.add_status :fail
           the_action.add_info reason: 'action.defend.result.attack_defended';
-          the_action.performer.information.add_action performer.uuid, slot, defender_info(the_action)
+          the_action.performer.information.add_action performer.uuid, slot, attacker_info(the_action)
           performer.information.add_action the_action.performer.uuid, slot, attacker_info(the_action)
         end
       end
-    end
-
-    def attack_info the_action
-      {
-        action: the_action.class.name,
-        performer: the_action.performer.uuid,
-        payload: the_action.payload,
-      }
     end
 
     def attacker_info the_action
       {
         action: the_action.class.name,
         payload: the_action.payload,
-        result: the_action.result,
-        inventory: nil
-      }
-    end
-
-    def defender_info attack_action
-      {
-        action: self.class.name,
-        payload: payload,
-        result: {
-          info: {
-            attackers: [
-              attack_info(attack_action)
-            ]
-          }
-        },
-        inventory: nil
+        result: the_action.result
       }
     end
 
