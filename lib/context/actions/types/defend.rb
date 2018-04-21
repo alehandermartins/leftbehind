@@ -31,7 +31,7 @@ module LB
         if targeted_performer? the_action
           the_action.add_status :fail
           the_action.add_info reason: 'action.defend.result.attack_defended';
-          the_action.performer.information.add_action performer.uuid, slot, attacker_info(the_action)
+          the_action.performer.information.add_action the_action.performer.uuid, slot, attacker_info(the_action)
           performer.information.add_action the_action.performer.uuid, slot, attacker_info(the_action)
         end
       end

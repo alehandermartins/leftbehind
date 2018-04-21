@@ -41,8 +41,7 @@ module LB
       super context
 
       performer.information.add_action performer.uuid, slot, information
-      return @context unless success?
-      add_to_log
+      add_to_log if success?
 
       @context
     end
