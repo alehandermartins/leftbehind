@@ -22,7 +22,7 @@ class Context
 
     @random_generator = RandomGenerator.new(game.to_s.delete('-').to_i(16))
 
-    @players = Factories::Players.create(players_hashes, @random_generator)
+    @players = Factories::Players.create(players_hashes)
 
     @team = Team.new(
       @players,

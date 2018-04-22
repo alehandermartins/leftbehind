@@ -3,39 +3,33 @@
 
   ns.Widgets.CurrentPlayers = function(){
     var _createdWidget = $(crel('div'));
-    var _currentPlayers = $(crel('div')).addClass('col-12 players');
+    var _currentPlayers = $(crel('div')).addClass('col-12 start-players');
 
     var _label = $(crel('span')).text(ns.t.html('start.players'));
     _label.css({'font-weight': 'bold'});
 
-    var _seats = [
-      ns.Widgets.Label(ns.t.html('start.roles.captain'), 'empty', 12),
-      ns.Widgets.Label(ns.t.html('start.roles.pilot'), 'empty', 12),
-      ns.Widgets.Label(ns.t.html('start.roles.mechanic'), 'empty', 12),
-      ns.Widgets.Label(ns.t.html('start.roles.scientist'), 'empty', 12)
-    ];
-    // _seats[4] = ns.Widgets.Label('biologist', 'empty', 12);
-    // _seats[5] = ns.Widgets.Label('janitor', 'empty', 12);
+    var _crew = $(crel('div')).addClass('row');
 
     var _refresh = function refresh(){
       ns.Backend.players(function(players){
         if (players.length > 3)
           _inviteButton.attr('disabled', true);
 
-        players.forEach(function(player, index){
-          _seats[index].setValue(player.name);
+        _crew.empty();
+        players.forEach(function(player){
+          var _player = $(crel('div')).addClass('start-player col-12');
+          var _playerName = $(crel('div')).text(player.name).addClass('start-player-name');
+          _player.append(LB.Widgets.PlayerAvatarXS(player).render());
+          _player.append(_playerName);
+          _crew.append(_player);
         });
       });
     };
 
     _currentPlayers.append(_label);
-    _seats.forEach(function(seat){
-      _currentPlayers.append(seat.render());
-    });
+    _currentPlayers.append(_crew);
 
     _createdWidget.append(_currentPlayers);
-    _currentPlayers.css({'border-style':'solid', 'border-width':'5px', 'border-top-width': '15px', 'margin-bottom' : '5px'});
-
 
     var _inviteButton = ns.Widgets.Button(ns.t.html('start.invite'), function(){
       var joinUrl = location.origin + '/games/join/' + ns.currentGame();
@@ -46,7 +40,7 @@
     return {
       render: function(){
         _refresh()
-        setInterval(_refresh, 5000);
+        setInterval(_refresh, 50000);
         return _createdWidget;
       },
       refresh: _refresh

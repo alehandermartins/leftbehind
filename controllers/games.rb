@@ -34,7 +34,7 @@ class GamesController < BaseController
 
   post '/notify_me' do
     scopify uuid: true, player_id: true
-    Repos::Users.update({ uuid: uuid, player_id: player_id }) 
+    Repos::Users.update({ uuid: uuid, player_id: player_id })
   end
 
   post '/available' do
@@ -53,7 +53,7 @@ class GamesController < BaseController
     respond_with_json
     scopify game_uuid: :game
 
-    players(game).to_json
+    Services::Games.players(game).to_json
   end
 
   get '/join/:uuid' do
@@ -123,19 +123,5 @@ class GamesController < BaseController
 
   def ongoing_for player
     Services::Games.ongoing(player)
-  end
-
-  def players game
-    roles = %i(captain pilot mechanic scientist)
-    players = Services::Games.players(game)
-    players.sort_by{ |player|
-      player['_id'].to_s
-    }.zip(roles).map{ |the_player, role|
-      {
-        name: the_player['name'],
-        uuid: the_player['uuid'],
-        role: role
-      }
-    }
   end
 end

@@ -13,11 +13,12 @@ module Repos
         ])
       end
 
-      def add game_uuid, player_uuid, player_name, type = :human
+      def add game_uuid, player_uuid, player_name, player_role, type = :human
         @@players_collection.insert_one({
           game: game_uuid,
           uuid: player_uuid,
           name: player_name,
+          role: player_role,
           type: type
         })
       end

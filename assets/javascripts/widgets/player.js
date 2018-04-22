@@ -54,13 +54,11 @@
     var _wrapper = $(crel('div')).addClass('avatarWrapper')
     var _avatar = $(crel('div')).addClass('avatar')
     var _name = $(crel('div')).addClass('name').text(player.name)
-    var _status = 'lagging'
     var _role = player.role
 
     if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(player.status))
-      _status = 'wont-play'
+      _avatar.addClass('wont-play')
 
-    _avatar.addClass(_status)
     _avatar.addClass(_role)
     _avatar.addClass(player)
 
@@ -79,13 +77,11 @@
   ns.Widgets.PlayerAvatarXS = function(player){
     var _wrapper = $(crel('div')).addClass('avatarWrapper avatar-xs')
     var _avatar = $(crel('div')).addClass('avatar')
-    var _status = 'lagging'
     var _role = player.role
 
     if (['dead', 'crashed', 'trapped', 'exploded', 'radiated'].includes(player.status))
-      _status = 'wont-play'
+      _avatar.addClass('wont-play')
 
-    _avatar.addClass(_status)
     _avatar.addClass(_role)
     _avatar.addClass(player)
 

@@ -54,28 +54,24 @@
       border-color: brown;
     }
 
-    &.lagging {
-      border-color: orange;
-    }
-
-    &.ahead {
-      border-color: limegreen;
-    }
-
     &.captain {
       background-image: asset-url('roles/captain.png');
+      border-color: orange;
     }
 
     &.pilot {
       background-image: asset-url('roles/pilot.png');
+      border-color: forestgreen;
     }
 
     &.mechanic {
       background-image: asset-url('roles/mechanic.png');
+      border-color: dodgerblue;
     }
 
     &.scientist {
       background-image: asset-url('roles/scientist.png');
+      border-color: rebeccapurple;
     }
   }
 }

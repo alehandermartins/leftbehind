@@ -1,6 +1,7 @@
 module Services
   MAXIMUM_PLAYERS = 4
   MINIMUM_NEEDED_PLAYERS = 1
+  ROLES = ['captain', 'pilot', 'mechanic', 'scientist']
 
   class Games
     class << self
@@ -16,7 +17,13 @@ module Services
         raise LB::Invalid::Player if players.any? { |player| player["uuid"] == new_player["uuid"] }
         raise LB::Invalid::Name if players.any? { |player| player["name"] == new_player["name"] }
         Repos::Games.fill game if players.count == (MAXIMUM_PLAYERS - 1)
-        Repos::Players.add game, new_player["uuid"], new_player["name"], type
+        new_player["role"] = get_player_role players
+        Repos::Players.add game, new_player["uuid"], new_player["name"], new_player["role"], type
+      end
+
+      def get_player_role players
+        used_roles = players.map { |player| player["role"] }
+        (ROLES - used_roles).sample
       end
 
       def players game
