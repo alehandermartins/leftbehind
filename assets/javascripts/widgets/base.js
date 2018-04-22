@@ -137,6 +137,7 @@
 
     var _displayActions = function(actions){
       slots.forEach(function(slot){
+        var warning = false;
         var _personalInfos = [];
 
         Object.keys(_players).sort(function(a, b){
@@ -156,6 +157,9 @@
             var name = split[4].toLowerCase();
             var action = actions[name];
             var result = slotInfo.result;
+
+            if(result.info && result.info.warning)
+              warning = true;
 
             result['performer'] = player;
             result['payload'] = slotInfo.payload;
@@ -181,6 +185,9 @@
               'padding': 5
             }
           );
+
+          if(warning)
+            _info.css({'border-color': 'orange'});
 
           _personalInfos.forEach(function(_personalInfo){
             _info.append(_personalInfo)

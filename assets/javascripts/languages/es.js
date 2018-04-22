@@ -79,8 +79,9 @@
         result: {
           success: 'Bien hecho. Sighe así.',
           no_fixing_materials: "No tenías los :parts: necesarios",
-          finally_fixed: 'Arreglado!! %{player} ya no es una amenaza.',
-          already_fixed: 'Ya había sido arreglado.'
+          already_fixed: 'Ya había sido arreglado.',
+          revealed: "Has descubierto que en realidad %{player} es un androide. La IA lo detonará si intenta escapar, matando a todos. Es posible hackear el mecanismo utilizando 6 :parts:. O simplemente puedes desconectar a %{player} y olvidar todo esto.",
+          revealed_safe: "Has descubierto que en realidad %{player} es un androide, pero ya no es una amenaza"
         }
       },
       disconnectandroid: {

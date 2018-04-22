@@ -12,7 +12,6 @@ LB.Game = function(stats){
   }
 
   var _stageWidget = stagesMap[stats.day_status](stats);
-
   var dayContainer = $('.game_container');
   dayContainer.empty();
 

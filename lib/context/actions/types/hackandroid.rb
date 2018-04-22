@@ -36,9 +36,11 @@ module LB
     def resolve context
       super context
 
-      add_info fix: target_player.calculate_fix
+      if success?
+        add_info fix: target_player.calculate_fix
+        add_to_log
+      end
       performer.information.add_action performer.uuid, slot, information
-      add_to_log if success?
 
       @context
     end

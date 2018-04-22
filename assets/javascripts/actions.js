@@ -183,8 +183,16 @@
               var _resources = Object.keys(result.info.target_info.inventory).map(function(resource){
                 return [':', ':'].join(resource) + ' ' + result.info.target_info.inventory[resource];
               }).join(', ');
-              _inventoryLabel = ns.t.text('action.spy.targetInventory', {target: players[result.payload.target].name, resources: _resources});
+              _inventoryLabel = ns.t.html('action.spy.targetInventory', {target: players[result.payload.target].name, resources: _resources});
               _resultLabel = ns.t.html(_inventoryLabel);
+            }
+
+            if(result.info.warning == true){
+              var androidName = players[result.info.android].name
+              if(result.info.threat)
+                _resultLabel += ns.t.html('&nbsp') + ns.t.html('action.hackandroid.result.revealed', {player: androidName});
+              else
+                _resultLabel += ns.t.html('&nbsp') + ns.t.html('action.hackandroid.result.revealed_safe', {player: androidName});
             }
 
             var resultLabel = $(crel('div')).addClass('result-label col-12')

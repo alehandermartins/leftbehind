@@ -79,8 +79,9 @@
         result: {
           success: 'Hack %{target} :robot: <strong>%{fix}</strong>',
           no_fixing_materials: "You didn't have the needed :parts:",
-          finally_fixed: "Fixed!! %{player} is no longer a threat",
-          already_fixed: "Already fixed."
+          already_fixed: "Already fixed.",
+          revealed: "You discover that %{player} is an android. The IA will detonate him/her if he/she tries to escape, killing you all. It is possible to hack the mechanism using 6 :parts:. Or you can just disconnect %{player} and forget all about this.",
+          revealed_safe: "You discover that %{player} is an android, but he/she is no longer a threat."
         }
       },
       disconnectandroid: {
