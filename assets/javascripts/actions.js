@@ -28,15 +28,14 @@
           },
           showResult: function(result, players){
             var _showbounty = function(){
+              var location_label = ns.t.text('locations.' + result.payload.location);
               if (Object.keys(result.bounty).length == 0)
-                return ns.t.html('action.search.result.nothing')
+                return ns.t.html('action.search.result.fail', {location: location_label});
 
               var _resources = Object.keys(result.bounty).map(function(resource){
-                return result.bounty[resource] + ' ' +  [':', ':'].join(resource)
+                return result.bounty[resource] + ' ' +  [':', ':'].join(resource);
               })
-
-              var location_label = ns.t.text('locations.' + result.payload.location);
-              return ns.t.html('action.search.result.bounty', {resources: _resources, location: location_label})
+              return ns.t.html('action.search.result.success', {resources: _resources, location: location_label});
             }
 
             var _resultLabel = _showbounty();
@@ -448,7 +447,7 @@
 
             if (result.info == 'player.status.starved'){
               if (result.performer == LB.playerUuid())
-              resultLabel.append($(crel('div')).html(ns.t.html('action.eat.result.youstarved') + ns.t.html('action.eat.label')));
+                resultLabel.append($(crel('div')).html(ns.t.html('action.eat.result.youstarved') + ns.t.html('action.eat.label')));
               else{
                 resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
                 resultLabel.append($(crel('div')).html('&nbsp' + ns.t.text('action.eat.result.otterstarved') + ns.t.html('action.eat.label')));
@@ -471,41 +470,51 @@
           }
         },
         android: {
-          showResult: function(result){
+          showResult: function(result, players){
             var _decision = result.payload.decision;
             var _resultLabel;
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
 
-            if(_decision == true)
-              _resultLabel = ns.t.html('action.android.result.yes')
-            else
-              _resultLabel = ns.t.html('action.android.result.no')
+            if(result.performer == LB.playerUuid()){
+              if(_decision == true)
+                _resultLabel = ns.t.html('action.android.result.yes')
+              else
+                _resultLabel = ns.t.html('action.android.result.no')
 
-            if (result.performer != LB.playerUuid())
-              _resultLabel = ns.t.html('action.android.result.informed', {player: stats.players[result.performer].name})
-
-
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.android.label') + " " + _resultLabel).addClass('result-label');
+              resultLabel.append($(crel('div')).html(_resultLabel + ns.t.html('action.android.label')));
+            }
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render());
+              resultLabel.append($(crel('div')).html('&nbsp' + ns.t.html('action.android.result.informed', {player: stats.players[result.performer].name}) + ns.t.html('action.android.label')));
+            }
             return resultLabel
           }
         },
         fusion: {
-          showResult: function(result){
-            console.log(result)
-            var _resultLabel
-            if (result.info == 'action.fusion.result.entered'){
-              if (result.performer == LB.playerUuid())
+          showResult: function(result, players){
+            var _resultLabel;
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+
+            if (result.performer == LB.playerUuid()){
+              if (result.info == 'action.fusion.result.entered')
                 _resultLabel = ns.t.html('action.fusion.result.youentered')
-              else
-                _resultLabel = ns.t.text('action.fusion.result.otterentered')
-            }
-            if (result.info == 'player.status.radiated'){
-              if (result.performer == LB.playerUuid())
+
+              if (result.info == 'player.status.radiated')
                 _resultLabel = ns.t.html('action.fusion.result.youdied')
-              else
-                _resultLabel = ns.t.text('action.fusion.result.otterdied')
+
+              resultLabel.append($(crel('div')).html(_resultLabel + ns.t.html('action.fusion.label')));
+            }
+            else{
+              if (result.info == 'action.fusion.result.entered')
+                _resultLabel = ns.t.html('action.fusion.result.otterentered')
+
+              if (result.info == 'player.status.radiated')
+                _resultLabel = ns.t.html('action.fusion.result.otterdied')
+
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render());
+              resultLabel.append($(crel('div')).html('&nbsp' + _resultLabel + ns.t.html('action.fusion.label')));
             }
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.fusion.label') + " " + _resultLabel).addClass('result-label');
             return resultLabel
           }
         },

@@ -68,7 +68,7 @@
       android: {
         label: ':robot:',
         result: {
-          informed: "%{player} os dice que en realidad es un androide. La IA detonará a %{player} si intenta escapar, matando a todos con él/ella. Se puede arreglar cambiando la estructura de %{player}, utilizando 4 :parts:. O puedes simplemente desconectar a %{player} y olvidar todo esto.",
+          informed: "Ha descubierto que en realidad es un androide. La IA lo detonará si intenta escapar, matando a todos. Es posible hackear el mecanismo utilizando 4 :parts:. O simplemente puedes desconectar a %{player} y olvidar todo esto.",
           yes: 'Les cuentas a los demás lo que sucede, esperando ayuda.',
           no: "Decides no contar nada a nadie. Te las arreglarás tú solo."
         }
@@ -177,11 +177,8 @@
         selection: ':search: Buscar: %{location}',
         tutorial: ':search: Search: Encontrarás :parts: o :energy:.',
         result: {
-          nothing: 'No encontraste nada. ',
-          bounty: 'Encontraste %{resources} (%{location})',
-          teamInventory: '(Añadido al inventario del :team:). ',
-          itemfound: 'Encontraste un %{item}.',
-          itemfounder: '%{founder} encontró un %{item}.'
+          success: 'Encontraste %{resources} (%{location})',
+          fail: 'No encontraste nada (%{location})'
         }
       },
       share: {

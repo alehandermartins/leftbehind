@@ -68,7 +68,7 @@
       android: {
         label: ':robot:',
         result: {
-          informed: "%{player} Tells you that he/she is an android. The IA will detonate %{player} if he/she tries to escape, killing you all. It can be fixed by changing %{player}'s structure, using 4 :parts:. Or you can just disconnect %{player} and forget all about this.",
+          informed: "Tells you that he/she is an android. The IA will detonate him/her if he/she tries to escape, killing you all. It is possible to hack the mechanism using 4 :parts:. Or you can just disconnect %{player} and forget all about this.",
           yes: 'You tell the others hoping they will help you',
           no: "You decide it's not worth taking the risk to tell the others. You will fix yourself"
         }
@@ -169,10 +169,8 @@
         selection: ':search: Search: %{location}',
         tutorial: ':search: Search: You will find :parts: or :energy:.',
         result: {
-          nothing: 'You found nothing. ',
-          bounty: 'You found %{resources} (%{location})',
-          itemfound: 'You found a %{item}.',
-          itemfounder: '%{founder} found a %{item}.'
+          success: 'You found %{resources} (%{location})',
+          fail: 'You found nothing (%{location})'
         }
       },
       share: {
