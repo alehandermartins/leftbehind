@@ -6,15 +6,13 @@ LB.startGame = function(game){
   _gameStartContainer.empty();
 
   var _currentPlayersWidget = LB.Widgets.CurrentPlayers();
-  var _playButtonWidget = LB.Widgets.PlayButton(game);
   var _content = $(crel('div')).addClass('content');
 
   $('.game_name').html(game.name);
 
 
   _content.append(
-    _currentPlayersWidget.render(),
-    _playButtonWidget.render()
+    _currentPlayersWidget.render()
   )
 
   _gameStartContainer.append(

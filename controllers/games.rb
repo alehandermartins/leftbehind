@@ -49,11 +49,11 @@ class GamesController < BaseController
     ongoing_for(player).to_json
   end
 
-  post '/players' do
+  post '/lobby' do
     respond_with_json
     scopify game_uuid: :game
 
-    Services::Games.players(game).to_json
+    { players: Services::Games.players(game), game: Repos::Games.game(game) }.to_json
   end
 
   get '/join/:uuid' do

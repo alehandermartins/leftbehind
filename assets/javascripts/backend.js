@@ -151,9 +151,9 @@
       );
     };
 
-    var _players = function(callback){
+    var _lobby = function(callback){
       _send(
-        '/games/players',
+        '/games/lobby',
         {
           game_uuid: LB.currentGame()
         },
@@ -283,7 +283,7 @@
       daySelections: _daySelections,
       send: _send,
       getStats: _getStats,
-      players: _players,
+      lobby: _lobby,
       gameName: _gameName,
       fiutur: _fiutur,
       past: _past,
