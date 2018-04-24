@@ -77,7 +77,7 @@
         label: ' Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
         selection: 'Hack %{target} :robot:',
         result: {
-          success: 'Bien hecho. Sighe así.',
+          success: 'Hackear a %{target} :robot: <strong>%{fix}</strong>',
           no_fixing_materials: "No tenías los :parts: necesarios",
           already_fixed: 'Ya había sido arreglado.',
           revealed: "Has descubierto que en realidad %{player} es un androide. La IA lo detonará si intenta escapar, matando a todos. Es posible hackear el mecanismo utilizando 6 :parts:. O simplemente puedes desconectar a %{player} y olvidar todo esto.",

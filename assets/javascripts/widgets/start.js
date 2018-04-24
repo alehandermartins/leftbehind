@@ -11,17 +11,29 @@
     var _crew = $(crel('div')).addClass('row');
 
     var _refresh = function refresh(){
+      var _roles = ['captain', 'pilot', 'mechanic', 'scientist'];
       ns.Backend.players(function(players){
         if (players.length > 3)
           _inviteButton.attr('disabled', true);
 
         _crew.empty();
         players.forEach(function(player){
+          _roles.splice(_roles.indexOf(player.role), 1);
           var _player = $(crel('div')).addClass('start-player col-12');
           var _playerName = $(crel('div')).text(player.name).addClass('start-player-name');
           _player.append(LB.Widgets.PlayerAvatarXS(player).render());
           _player.append(_playerName);
           _crew.append(_player);
+        });
+
+        _roles.forEach(function(role){
+          var _player = $(crel('div')).addClass('start-player col-12');
+          _player.append(LB.Widgets.PlayerAvatarXS({role: role}).render());
+          var _inviteButton = ns.Widgets.Button(ns.t.html('start.invite'), function(){
+            var joinUrl = location.origin + '/games/join/' + ns.currentGame();
+            ns.Widgets.Invite(joinUrl).render();
+          }, 3).render();
+          _crew.append(_player, _inviteButton);
         });
       });
     };
@@ -31,16 +43,10 @@
 
     _createdWidget.append(_currentPlayers);
 
-    var _inviteButton = ns.Widgets.Button(ns.t.html('start.invite'), function(){
-      var joinUrl = location.origin + '/games/join/' + ns.currentGame();
-      ns.Widgets.Invite(joinUrl).render();
-    }, 12).render();
-    _currentPlayers.append(_inviteButton);
-
     return {
       render: function(){
         _refresh()
-        setInterval(_refresh, 50000);
+        setInterval(_refresh, 5000);
         return _createdWidget;
       },
       refresh: _refresh
@@ -56,8 +62,8 @@
       var messageContainer = $(crel('div'));
       messageContainer.append($(crel('p')).text(ns.t.html('invite.link')).append($(crel('a')).attr('href', joinUrl).text(joinUrl)));
       messageContainer.append($(crel('p')).text(ns.t.html('invite.click'))
-        .append($(crel('a')).attr('href', whatsappHref).append($(crel('i')).addClass('glyphicon glyphicon-earphone wa')))
-        .append($(crel('a')).attr('href', emailHref).append($(crel('i')).addClass('glyphicon glyphicon-envelope mail')))
+        .append($(crel('a')).attr('href', whatsappHref).append($(crel('i')).addClass('fab fa-whatsapp')))
+        .append($(crel('a')).attr('href', emailHref).append($(crel('i')).addClass('fas fa-envelope')))
       );
 
       messageContainer.append($(crel('p')).text(ns.t.html('invite.scan'))).append($(crel('div')).attr('id', 'qr'));
