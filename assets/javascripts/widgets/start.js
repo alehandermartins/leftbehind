@@ -85,6 +85,27 @@
     _currentPlayers.append(_crew, _startWidget);
     _createdWidget.append(_currentPlayers);
 
+
+    var _rules = $(crel('div')).addClass('start-players');
+    _rules.css('padding', '5px');
+    var _intro = $(crel('div')).addClass('intro');
+    _intro.html('Estás a bordo de una nave espacial. Tras meses de viaje os adentráis en una zona prohibida.\
+      Las alarmas empiezan a sonar. La Inteligencia Artificial ' +  LB.t.html(':ia:') + ' de la nave toma el control:');
+
+    var _mainPoints = $(crel('ul')).addClass('col-12');
+    var _autoDestruction = $(crel('li'));
+    var _scapePod = $(crel('li'));
+    var _oxygen = $(crel('li'));
+
+    _autoDestruction.html('Inicia la secuencia de autodrestrucción. Quedan 10h para que la nave estalle.');
+    _scapePod.html('Provoca un cortocircuito en el control de la cápsula de escape ' + LB.t.html(':shuttle:') + '. Necesitarás ' + LB.t.html(':parts:') + ' para repararla y un ' + LB.t.html(':helmet:') + ' para escapar.');
+    _oxygen.html('Suelta una neurotoxina en el aire, que lo hace inrespirable. Necesitarás ' + LB.t.html(':food:') + ' cada hora para sobrevivir.');
+
+    _mainPoints.append(_autoDestruction, _scapePod, _oxygen);
+    _rules.append(_intro, _mainPoints);
+
+    _createdWidget.append(_rules);
+
     return {
       render: function(){
         _refresh();
