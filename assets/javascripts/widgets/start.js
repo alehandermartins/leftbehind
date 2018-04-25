@@ -23,7 +23,7 @@
         players.forEach(function(player){
           _roles.splice(_roles.indexOf(player.role), 1);
           var _player = $(crel('div')).addClass('start-player col-12');
-          var _playerName = $(crel('div')).text(player.name).addClass('start-player-name col-3 text-center');
+          var _playerName = $(crel('div')).text(player.name).addClass('start-player-name col-6 text-center');
           _player.append(LB.Widgets.PlayerAvatarXS(player).render());
           _player.append(_playerName);
           _crew.append(_player);
@@ -35,7 +35,7 @@
           var _inviteButton = ns.Widgets.Button(ns.t.html('start.invite'), function(){
             var joinUrl = location.origin + '/games/join/' + ns.currentGame();
             ns.Widgets.Invite(joinUrl).render();
-          }, 3).render();
+          }, 6).render();
           _player.append(_inviteButton);
           _crew.append(_player);
         });
