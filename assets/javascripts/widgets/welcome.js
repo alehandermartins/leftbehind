@@ -218,16 +218,16 @@
     var _playerInput = $(crel('input')).attr({'type': 'text', placeholder: 'your name', name: 'cg_player_game'}).addClass('col-12');
 
     var _welcomeText = $(crel('span'));
-    ns.Backend.players(function(players){
-      ns.Backend.gameName(function(gameName){
 
-        _welcomeText.html(ns.t.text('welcome.join.recruited', {
-          game: gameName,
-          players: players.map(function(player){
-            return player.name
-          }).join(', ')
-        }))
-      })
+    ns.Backend.lobby(function(data){
+      var players = data.players;
+      var game = data.game;
+      _welcomeText.html(ns.t.text('welcome.join.recruited', {
+        game: game.name,
+        players: players.map(function(player){
+          return player.name
+        }).join(', ')
+      }))
     });
 
     var _sendButton = ns.Widgets.SpinningButton(
