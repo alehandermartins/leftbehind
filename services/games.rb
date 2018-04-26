@@ -49,9 +49,11 @@ module Services
         Repos::Games.end game
       end
 
-      def available
+      def available player
+        game_uuids = Repos::Players.list player
         Repos::Games.list.select { |game|
-          # next false if game['public'] != true
+          #next false if game['public'] != true
+          next false if game_uuids.include? game['uuid']
           game['status'] == 'ready'
         }
       end

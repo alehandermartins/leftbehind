@@ -39,14 +39,15 @@ class GamesController < BaseController
 
   post '/available' do
     respond_with_json
+    scopify player: true
 
-    available.to_json
+    Services::Games.available(player).to_json
   end
 
   post '/ongoing' do
-    scopify player_uuid: :player
+    scopify player: :player
 
-    ongoing_for(player).to_json
+    Services::Games.ongoing(player).to_json
   end
 
   post '/lobby' do
@@ -115,13 +116,5 @@ class GamesController < BaseController
   def check_full game
     game_is_full = Services::Games.full? game
     raise LB::Invalid.new 'game_full' if game_is_full
-  end
-
-  def available
-    Services::Games.available
-  end
-
-  def ongoing_for player
-    Services::Games.ongoing(player)
   end
 end

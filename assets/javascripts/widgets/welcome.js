@@ -102,7 +102,7 @@
     });
 
     var _nameSelect = $(crel('select')).prop({name: 'cg_name_game'}).addClass('col-12');
-    ns.Backend.availableGames(function(data){
+    ns.Backend.availableGames(ns.playerUuid(), function(data){
       if (!data.length) {
         _nameSelect.append($(crel('option')).text(ns.t.text('welcome.no_games')));
         return;

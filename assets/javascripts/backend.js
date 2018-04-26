@@ -117,10 +117,12 @@
       );
     };
 
-    var _availableGames = function(callback){
+    var _availableGames = function(uuid, callback){
       _send(
         '/games/available',
-        {},
+        {
+          player: uuid
+        },
         function(data){
           callback(data);
         }
@@ -131,7 +133,7 @@
       _send(
         '/games/ongoing',
         {
-          player_uuid: uuid
+          player: uuid
         },
         function(data){
           callback(data);
