@@ -15,7 +15,7 @@ LB.welcomePlayer = function(){
   });
 
   _createRow.append(
-    _createButton.render(),
+    _createButton.render()
   );
 
   var _joinRow = $(crel('div')).addClass('row welcome');
@@ -28,7 +28,7 @@ LB.welcomePlayer = function(){
   });
 
   _joinRow.append(
-    _joinButton.render(),
+    _joinButton.render()
   );
 
   var _resumeRow = $(crel('div')).addClass('row welcome');
@@ -41,7 +41,7 @@ LB.welcomePlayer = function(){
   });
 
   _resumeRow.append(
-    _resumeButton.render(),
+    _resumeButton.render()
   );
 
   var _gameFooter = $('.game_footer').addClass('col-12');
