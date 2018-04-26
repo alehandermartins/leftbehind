@@ -6,8 +6,27 @@
   ns.Widgets.CreateGame = function(){
     var _createdWidget = $(crel('div')).addClass('create').addClass('form well');
     var _textRow = $(crel('div')).addClass('row');
-    var _text = $(crel('div')).addClass('col-12').append($(crel('span')).text(ns.t.html('welcome.create.label')));
-    var _row = $(crel('div')).addClass('row col-12');
+    var _text = $(crel('div')).addClass('col-8').append($(crel('span')).text(ns.t.html('welcome.create.label')));
+
+    var _back = $(crel('div')).addClass('col-4');
+    var _backLabel = $(crel('span')).text('Back ');
+    var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
+    _backLabel.append(_arrow);
+    _back.append(_backLabel);
+    _back.css('text-align','right');
+    _backLabel.css('cursor', 'pointer');
+
+    _textRow.append(_text, _back);
+
+    _back.click(function(){
+      $('.welcome-create').animateCss("fadeOutRight", function(){
+        $('.welcome-create').css('display', 'none');
+        $('.welcome-selector').css('display', 'block');
+        $('.welcome-selector').animateCss("fadeInRight");
+      });
+    });
+
+    var _row = $(crel('div')).addClass('col-12');
     var _nameInput = $(crel('input')).prop({'type': 'text', placeholder: ns.t.html('welcome.game_name'), name: 'cg_name_game', autocomplete: 'on'}).addClass('col-12');
     var _playerInput = $(crel('input')).attr({'type': 'text', placeholder: ns.t.html('welcome.player_name'), name: 'cg_player_game', autocomplete: 'on'}).addClass('col-12');
     var _typeSelect = $(crel('select')).prop({name: 'cg_type_game'}).addClass('col-12').css('background-color', '#303030');
@@ -42,10 +61,9 @@
     );
 
     _row.append(
-      _textRow.append(_text),
+      _textRow,
       _nameInput,
       _playerInput,
-      //_typeSelect,
       _password,
       _sendButton.render()
     );
@@ -61,9 +79,27 @@
   ns.Widgets.JoinGame = function(){
     var _createdWidget = $(crel('div')).addClass('join').addClass('form well');
     var _textRow = $(crel('div')).addClass('row');
-    var _text = $(crel('div')).addClass('col-12').append($(crel('span')).text(ns.t.html('welcome.join.label')));
-    var _row = $(crel('div')).addClass('row col-12');
+    var _text = $(crel('div')).addClass('col-8').append($(crel('span')).text(ns.t.html('welcome.join.label')));
+    var _row = $(crel('div')).addClass('col-12');
     var _playerInput = $(crel('input')).attr({'type': 'text', placeholder: ns.t.html('welcome.player_name'), name: 'cg_player_game'}).addClass('col-12');
+
+    var _back = $(crel('div')).addClass('col-4');
+    var _backLabel = $(crel('span')).text('Back ');
+    var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
+    _backLabel.append(_arrow);
+    _back.append(_backLabel);
+    _back.css('text-align','right');
+    _backLabel.css('cursor', 'pointer');
+
+    _textRow.append(_text, _back);
+
+    _back.click(function(){
+      $('.welcome-join').animateCss("fadeOutRight", function(){
+        $('.welcome-join').css('display', 'none');
+        $('.welcome-selector').css('display', 'block');
+        $('.welcome-selector').animateCss("fadeInRight");
+      });
+    });
 
     var _nameSelect = $(crel('select')).prop({name: 'cg_name_game'}).addClass('col-12');
     ns.Backend.availableGames(function(data){
@@ -94,7 +130,7 @@
     );
 
     _row.append(
-      _textRow.append(_text),
+      _textRow,
       _nameSelect,
       _playerInput,
       _sendButton.render()
@@ -111,9 +147,27 @@
   ns.Widgets.ResumeGame = function(){
     var _createdWidget = $(crel('div')).addClass('join').addClass('form well');
     var _textRow = $(crel('div')).addClass('row');
-    var _text = $(crel('div')).addClass('col-12').append($(crel('span')).text(ns.t.html('welcome.resume.label')));
-    var _row = $(crel('div')).addClass('row col-12');
+    var _text = $(crel('div')).addClass('col-8').append($(crel('span')).text(ns.t.html('welcome.resume.label')));
+    var _row = $(crel('div')).addClass('col-12');
     var _playerInput = $(crel('input')).attr({'type': 'text', placeholder: 'your name', name: 'cg_player_game'}).addClass('col-12');
+
+    var _back = $(crel('div')).addClass('col-4');
+    var _backLabel = $(crel('span')).text('Back ');
+    var _arrow = $(crel('i')).addClass('fa fa-arrow-right');
+    _backLabel.append(_arrow);
+    _back.append(_backLabel);
+    _back.css('text-align','right');
+    _backLabel.css('cursor', 'pointer');
+
+    _textRow.append(_text, _back);
+
+    _back.click(function(){
+      $('.welcome-resume').animateCss("fadeOutRight", function(){
+        $('.welcome-resume').css('display', 'none');
+        $('.welcome-selector').css('display', 'block');
+        $('.welcome-selector').animateCss("fadeInRight");
+      });
+    });
 
     var _sendButton = ns.Widgets.SpinningButton('GO',function(){
       ns.Events.Play(_nameSelect.val());
@@ -144,7 +198,7 @@
     });
 
     _row.append(
-      _textRow.append(_text),
+      _textRow,
       _nameSelect,
       _sendButton
     );

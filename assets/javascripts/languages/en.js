@@ -30,7 +30,7 @@
         label:'New game'
       },
       join: {
-        label: 'Join a game',
+        label: 'Join game',
         recruited: 'You have been recruited along %{players} as a crew member on %{game} do you want to join in?'
       },
       resume: {
