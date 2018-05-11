@@ -19,7 +19,7 @@ class Slot
 
   def resolve_for context
     actions.sort_by{ |the_action|
-      LB.actions_map.keys.index the_action.class.name
+      LB.actions_map.values.index the_action.class
     }.each do |the_action|
       the_action.resolve context
     end
