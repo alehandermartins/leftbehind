@@ -18,11 +18,14 @@ require_relative '../services/status'
 require_relative '../services/http'
 
 require_relative '../lib/context'
+require_relative "../lib/context/actions/base"
 
 require_relative '../lib/default/actions'
 
-
 class BaseController < Sinatra::Base
+  Dir[File.join(File.dirname(__FILE__), '../lib/context/actions/traits/', '*.rb')].each { |file| require_relative file }
+  Dir[File.join(File.dirname(__FILE__), '../lib/context/actions/types/', '*.rb')].each { |file| require_relative file }
+
   set :environment, (ENV['RACK_ENV'].to_sym || :production) rescue :production
 
   register Sinatra::ConfigFile
@@ -87,11 +90,9 @@ class BaseController < Sinatra::Base
     end
   end
 
-  # :nocov:
   configure :production, :deployment do
     puts 'configured for pdd'
   end
-  # :nocov:
 
   configure do |x|
     Mongo::Logger.logger.level = ::Logger::FATAL
@@ -125,7 +126,6 @@ class BaseController < Sinatra::Base
       p "Cannot parse request body."
     end
   end
-
 
   helpers do
     def emojione_tags

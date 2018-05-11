@@ -104,6 +104,14 @@ module LB
                 }
               }
             },
+            betray: {
+              'events' => {
+                name: 'betray',
+                payload: {
+                  selection: 'false'
+                }
+              }
+            },
             defaultEvent: {
               'events' => {
                 name: 'none',

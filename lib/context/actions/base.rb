@@ -1,4 +1,32 @@
 module LB
+
+  def self.actions_map
+    #order priorizes action
+    {
+      'playdead' => LB::Action::PlayDead,
+      'none' => LB::Action::None,
+      'defend' => LB::Action::Defend,
+      'escape' => LB::Action::Escape,
+      'disconnectandroid' => LB::Action::DisconnectAndroid,
+      'hackandroid' => LB::Action::HackAndroid,
+      'work' => LB::Action::Work,
+      'craft' => LB::Action::Craft,
+      'search' => LB::Action::Search,
+      'oxygen' => LB::Action::Oxygen,
+      'hack' => LB::Action::Hack,
+      'share' => LB::Action::Share,
+      'unlock' => LB::Action::Unlock,
+      'steal' => LB::Action::Steal,
+      'spy' => LB::Action::Spy,
+      'eat' => LB::Action::Eat,
+      'vote' => LB::Action::Vote,
+      'fusion' => LB::Action::Fusion,
+      'inject' => LB::Action::Inject,
+      'android' => LB::Action::Android,
+      'betray' => LB::Action::Betray
+    }
+  end
+
   module Action
     class Base < Struct.new 'Action', :performer, :slot, :payload
 
