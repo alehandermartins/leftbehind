@@ -44,7 +44,7 @@ LB.welcomePlayer = function(){
     _resumeButton.render()
   );
 
-  var _gameFooter = $('.game_footer').addClass('col-12');
+  var _gameFooter = $('.game_footer');
   _gameFooter.append($(crel('h3')).html('Cooperate, betray... survive.&nbsp;&nbsp;'));
 
   _welcome.append(

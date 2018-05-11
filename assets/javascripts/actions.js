@@ -477,6 +477,19 @@
             return resultLabel
           }
         },
+        betray: {
+          showResult: function(result){
+            var _decision = result.payload.decision;
+            var _resultLabel;
+            if(_decision == true)
+              _resultLabel = result.info.reason
+            else
+              _resultLabel = 'action.betray.result.no'
+
+            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.betray.label') + " " + ns.t.text(_resultLabel)).addClass('result-label');
+            return resultLabel
+          }
+        },
         android: {
           showResult: function(result, players){
             var _decision = result.payload.decision;

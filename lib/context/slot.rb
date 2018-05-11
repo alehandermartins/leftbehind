@@ -20,6 +20,7 @@ class Slot
     'LB::Action::Vote',
     'LB::Action::Fusion',
     'LB::Action::Inject',
+    'LB::Action::Betray',
     'LB::Action::Android'
   ]
 

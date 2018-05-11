@@ -6,6 +6,7 @@
 // = require ./fusion
 // = require ./inject
 // = require ./android
+// = require ./betray
 // = require ./default_event
 // = require ./end_game
 // = require ./game

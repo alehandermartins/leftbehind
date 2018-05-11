@@ -132,10 +132,12 @@ module Services
     end
 
     def run_events
-      random_player = context.players.to_a.sample(random: context.random_generator)
+      random_players = context.players.to_a.shuffle(random: context.random_generator)
+      android = random_players.first
+      betrayer = random_players.last if random_players.size > 1
       context.players.each{ |player|
         player.crash if (current_slot >= 58 && player.alive?)
-        @events[player.uuid] = event_for player, random_player
+        @events[player.uuid] = event_for player, android, betrayer
       }
     end
 
@@ -155,10 +157,11 @@ module Services
       }
     end
 
-    def event_for player, random_player
+    def event_for player, android, betrayer
       return :defaultEvent unless player_stage(player) == :events
       return :fusion if !player.events.include?(:fusion)
-      return :inject if !player.events.include?(:inject) && player == random_player
+      return :inject if !player.events.include?(:inject) && player == android
+      return :betray if !player.events.include?(:betray) && player == betrayer
       return :android if !player.events.include?(:android) && player.traits.include?(:android)
       :defaultEvent
     end

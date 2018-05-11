@@ -73,6 +73,13 @@
           no: "You decide it's not worth taking the risk to tell the others. You will fix yourself"
         }
       },
+      betray: {
+        label: ':dagger:',
+        result: {
+          yes: 'You decide to betray your colleagues and cooperate with the Alliance. You await orders.',
+          no: "You are not betraying your colleagues."
+        }
+      },
       hackandroid: {
         label: 'Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
         selection: 'Hack %{target} :robot:',
@@ -273,6 +280,11 @@
         intro: 'You fond a syringe with what appears to be an antidote for the neurotoxin. If you inject yourself you will no need :food: anymore. But... is this safe?',
         yes: 'Inject',
         no: 'Nevermind'
+      },
+      betray: {
+        intro: 'A transmission begins to sound on your intercom: "You have entered an area forbidden by the Alliance. This act of rebellion is punishable by jail, but if you cooperate we guarantee your freedom. We can not assure the same thing for your colleagues..."',
+        yes: 'Cooperate',
+        no: 'Refuse'
       },
       android: {
         intro: 'There can only be one reason for you not bleeding after the injection... you are not human. You are an android. Ooohh this is not good... you realize that the IA hidden move is to detonate you once you all are in the escape pod. If you try to escape it is sure that you all will die. But you can avoid this by making some changes in your structure. However this will cost you 6 :parts:. If you ask for help, then you can be fixed with only 4 :parts:, but maybe they will get scared and disconnect you...',

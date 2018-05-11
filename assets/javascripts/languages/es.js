@@ -73,6 +73,13 @@
           no: "Decides no contar nada a nadie. Te las arreglarás tú solo."
         }
       },
+      betray: {
+        label: ':dagger:',
+        result: {
+          yes: 'Decides traicionar a tus colegas y cooperar con la Alianza. Esperas órdenes.',
+          no: "No vas a traicionar a tus colegas."
+        }
+      },
       hackandroid: {
         label: ' Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
         selection: 'Hack %{target} :robot:',
@@ -274,6 +281,11 @@
         intro: 'Encuentras una jeringuilla con lo que parece un antídoto para la neurotoxina. Si te lo inyectas no necesitarás más :food:. Pero... es seguro?',
         yes: 'Inyectarte',
         no: 'Da igual'
+      },
+      betray: {
+        intro: 'Una transmisión empieza a sonar en tu intercomunicador: "Han entrado en una zona prohibida por la Alianza. Este acto de rebeldía está penado con cárcel. Si coopera con nosotros garantizamos su libertad. No podemos asegurar lo mismo para sus compañeros..."',
+        yes: 'Cooperar',
+        no: 'Negarse'
       },
       android: {
         intro: 'Solamente puede haber una razón por la cual no has sangrado después de la inyección... no eres humano. Eres un androide. Ufff vaya desastre... te das cuenta de que el as en la manga de la IA es detonarte una vez estéis todos en la cápsula de escape. Si intentas escapar con los demás todos moriréis. Puedes evitarlo haciendo algunos cambios en tu estructura. Sin embargo te costará 6 :parts:. Si pides ayuda a tus compañeros sólo necesotarás 4 :parts:, pero es posible que se asusten y decidan desconectarte...',
