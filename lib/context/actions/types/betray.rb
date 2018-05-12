@@ -14,7 +14,7 @@ module LB
       super context
       return @context if resolved?
 
-      performer.add_trait :traitor if payload[:decision] == true
+      betray if payload[:decision] == true
       add_info reason: 'action.betray.result.yes'
       add_event_to_everyone
       performer.information.add_action(performer.uuid, slot, information)
@@ -23,6 +23,11 @@ module LB
     end
 
     private
+
+    def betray
+      @context.ia.deploy
+      performer.add_trait :betrayer
+    end
 
     def add_event_to_everyone
       @context.players.each{ |the_player|

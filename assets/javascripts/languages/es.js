@@ -283,8 +283,8 @@
         no: 'Da igual'
       },
       betray: {
-        intro: 'Una transmisión empieza a sonar en tu intercomunicador: "Han entrado en una zona prohibida por la Alianza. Este acto de rebeldía está penado con cárcel. Si coopera con nosotros garantizamos su libertad. No podemos asegurar lo mismo para sus compañeros..."',
-        yes: 'Cooperar',
+        intro: 'Una transmisión empieza a sonar en tu intercomunicador: "Han entrado en una zona prohibida por la Alianza. Este acto de rebeldía está penado con cárcel. Si coopera con nosotros garantizamos su libertad. No podemos asegurar lo mismo para sus compañeros... Para empezar, queremos que active el sistema de defensa de la IA."',
+        yes: 'Activar defensas',
         no: 'Negarse'
       },
       android: {

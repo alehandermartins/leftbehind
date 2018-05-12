@@ -282,8 +282,8 @@
         no: 'Nevermind'
       },
       betray: {
-        intro: 'A transmission begins to sound on your intercom: "You have entered an area forbidden by the Alliance. This act of rebellion is punishable by jail, but if you cooperate we guarantee your freedom. We can not assure the same thing for your colleagues..."',
-        yes: 'Cooperate',
+        intro: 'A transmission begins to sound on your intercom: "You have entered an area forbidden by the Alliance. This act of rebellion is punishable by jail, but if you cooperate we guarantee your freedom. We can not assure the same thing for your colleagues. To begin with, we want you to activate the IA ​​defense system."',
+        yes: 'Activate defenses',
         no: 'Refuse'
       },
       android: {

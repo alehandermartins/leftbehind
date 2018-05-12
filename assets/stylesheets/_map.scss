@@ -1,14 +1,19 @@
-.ia {
-  position: absolute;
-  background-image: asset-url('map/ia.png');
-  background-repeat: no-repeat;
-  background-size:contain;
-  height: 50px;
-  width: 100px;
-  top: 20%;
-  left: 75%;
-  z-index: 1;
+.room-img {
+  position: relative;
+
+  .ia {
+    position: absolute;
+    background-image: asset-url('map/ia.png');
+    background-repeat: no-repeat;
+    background-size:contain;
+    height: 50px;
+    width: 100px;
+    top: 15px;
+    right: 0;
+    z-index: 1;
+  }
 }
+
 
 .img-responsive {
   display: inline-block;
