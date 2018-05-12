@@ -41,31 +41,35 @@
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('food'))),
       $(crel('span')).addClass('value').text(stats.personal['food'] + " / 2")
     )
+
+    var _parts = $(crel('div')).addClass('stat parts col-4').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('parts'))),
+      $(crel('span')).addClass('value').text(stats.personal['parts'])
+    )
+    var _energy = $(crel('div')).addClass('stat energy col-4').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('energy'))),
+      $(crel('span')).addClass('value').text(stats.personal['energy'])
+    )
+
     var _helmet = $(crel('div')).addClass('stat helmet col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('helmet'))),
       $(crel('span')).addClass('value').text(stats.personal['helmet'])
     )
-    var _time = $(crel('div')).addClass('stat day col-4').append(
-      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('day'))),
-      $(crel('span')).addClass('value').text(stats.status['day'])
-    )
+
     var _shuttle = $(crel('div')).addClass('stat shuttle col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('shuttle'))),
       $(crel('span')).addClass('value').text(stats.status['shuttle'])
     )
-    var _parts = $(crel('div')).addClass('stat parts col-4').append(
-      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('parts'))),
-      $(crel('span')).addClass('value').text(stats.team['parts'])
-    )
-    var _energy = $(crel('div')).addClass('stat energy col-4').append(
-      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('energy'))),
-      $(crel('span')).addClass('value').text(stats.team['energy'])
+
+    var _time = $(crel('div')).addClass('stat day col-4').append(
+      $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('day'))),
+      $(crel('span')).addClass('value').text(stats.status['day'])
     )
 
-    _personal.append(_oxygen, _helmet, _time)
-    _team.append(_shuttle, _energy, _parts)
+    _team.append(_helmet, _shuttle, _time)
+    _personal.append(_oxygen, _parts, _energy)
 
-    _info.append(_personal, _team)
+    _info.append(_team, _personal)
 
     return {
       render: function(){

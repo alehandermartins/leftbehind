@@ -16,9 +16,9 @@ module LB
           return @context
         end
 
-        if team_able?
+        if able?
           action.add_status :success
-          @context.team.inventory.subtract :parts, 1
+          performer.inventory.subtract :parts, 1
           @context.players[target].fix
           log_hack_to_everyone(action.performer, action.information) if @context.players[target].condition == :ok
           return @context
@@ -56,8 +56,8 @@ module LB
       @context
     end
 
-    def team_able?
-      @context.team.inventory[:parts] > 0
+    def able?
+      performer.inventory[:parts] > 0
     end
 
     def add_to_log

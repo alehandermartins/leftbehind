@@ -54,11 +54,11 @@ module LB
     end
 
     def able?
-      @context.team.inventory[:energy] >= UNLOCK_PRICE
+      performer.inventory[:energy] >= UNLOCK_PRICE
     end
 
     def spend_material
-      @context.team.inventory.subtract :energy, UNLOCK_PRICE
+      performer.inventory.subtract :energy, UNLOCK_PRICE
     end
   end
 end

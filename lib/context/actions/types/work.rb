@@ -20,9 +20,9 @@ module LB
           return @context
         end
 
-        if team_able?
+        if able?
           action.add_status :success
-          @context.team.inventory.subtract :parts, 1
+          performer.inventory.subtract :parts, 1
           return @context
         end
 
@@ -55,8 +55,8 @@ module LB
       @context
     end
 
-    def team_able?
-      @context.team.inventory[:parts] > 0
+    def able?
+      performer.inventory[:parts] > 0
     end
   end
 end

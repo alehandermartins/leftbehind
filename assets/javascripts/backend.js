@@ -236,11 +236,7 @@
             players: stats.personal.information.players,
             player_status: stats.personal.information.players[ns.playerUuid()].status,
             personal: stats.personal.inventory,
-            personal_info: stats.personal.information,
-            team: {
-              parts: stats.team.inventory.parts,
-              energy: stats.team.inventory.energy
-            }
+            personal_info: stats.personal.information
           }
           );
         }

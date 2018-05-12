@@ -1,11 +1,9 @@
-require_relative './context/team'
 require_relative './context/players'
 require_relative './context/locations'
 require_relative './context/items'
 require_relative './context/ia'
 require_relative './context/slots'
 require_relative './context/inventory'
-require_relative './context/team_inventory'
 require_relative './context/information'
 require_relative './context/random_generator'
 require_relative './context/winner_selection'
@@ -23,11 +21,6 @@ class Context
     @random_generator = RandomGenerator.new(game.to_s.delete('-').to_i(16))
 
     @players = Factories::Players.create(players_hashes)
-
-    @team = Team.new(
-      @players,
-      WinnerSelection.new(RandomTieBreaker.new(@random_generator))
-    )
 
     @locations = Locations.new(@random_generator)
 

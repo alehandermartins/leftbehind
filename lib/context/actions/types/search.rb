@@ -40,8 +40,8 @@ module LB
       return @context unless success?
 
       performer.inventory.add :helmet, bounty[:helmet] if bounty.has_key? :helmet
-      @context.team.inventory.add :energy, bounty[:energy] if bounty.has_key? :energy
-      @context.team.inventory.add :parts, bounty[:parts] if bounty.has_key? :parts
+      performer.inventory.add :energy, bounty[:energy] if bounty.has_key? :energy
+      performer.inventory.add :parts, bounty[:parts] if bounty.has_key? :parts
 
       performer.information.add_action(performer.uuid, slot, information)
       @context

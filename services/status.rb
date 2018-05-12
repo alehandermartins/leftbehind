@@ -121,9 +121,6 @@ module Services
           escape_shuttle: context.items['escape shuttle'][:fix],
           locations: locations
         },
-        team:{
-          inventory: context.team.inventory.to_h,
-        },
         personal: {
           inventory: player.inventory.to_h,
           information: player.information.for(context.players)

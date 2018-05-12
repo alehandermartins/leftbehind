@@ -48,14 +48,18 @@ class Inventory
   def initial_inventory
     {
       food: 2,
-      helmet: 1
+      helmet: 1,
+      parts: 0,
+      energy: 0
     }
   end
 
   def an_empty_inventory
     {
       food: 0,
-      helmet: 0
+      helmet: 0,
+      parts: 0,
+      energy: 0
     }
   end
 end

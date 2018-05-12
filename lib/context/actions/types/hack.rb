@@ -57,18 +57,11 @@ module LB
     end
 
     def able?
-      performer.inventory[:energy] + @context.team.inventory[:energy] >= HACK_PRICE
+      performer.inventory[:energy] >= HACK_PRICE
     end
 
     def spend_material
-      return with_help if HACK_PRICE > performer.inventory[:energy]
       performer.inventory.subtract :energy, HACK_PRICE
-    end
-
-    def with_help
-      team_price = HACK_PRICE - performer.inventory[:energy]
-      performer.inventory.subtract_all :energy
-      @context.team.inventory.subtract :energy, team_price
     end
 
     def add_to_everyone_else_log target
