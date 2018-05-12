@@ -27,6 +27,7 @@ module LB
     def betray
       @context.ia.deploy
       performer.add_trait :betrayer
+      log_to_everyone
     end
 
     def add_event_to_everyone

@@ -5,6 +5,7 @@ module LB
 
     def run context
       super context
+      payload[:location] = '7'
 
       return @context if computed?
       return @context if killed?

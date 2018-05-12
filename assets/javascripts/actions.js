@@ -479,14 +479,14 @@
         },
         betray: {
           showResult: function(result){
-            var _decision = result.payload.decision;
-            var _resultLabel;
-            if(_decision == true)
-              _resultLabel = result.info.reason
-            else
-              _resultLabel = 'action.betray.result.no'
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+            if(result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(ns.t.html('action.betray.label') + " " + ns.t.html('action.betray.result.' + result.payload.decision)));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarUnknown().render());
+              resultLabel.append($(crel('div')).html('&nbsp' + ns.t.html('action.betray.label') + " " + ns.t.html('action.betray.result.alert')));
+            }
 
-            var resultLabel = $(crel('div')).addClass('col-12').html(ns.t.html('action.betray.label') + " " + ns.t.text(_resultLabel)).addClass('result-label');
             return resultLabel
           }
         },

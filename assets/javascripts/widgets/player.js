@@ -94,5 +94,18 @@
     }
   }
 
+  ns.Widgets.PlayerAvatarUnknown = function(){
+    var _wrapper = $(crel('div')).addClass('avatarWrapper avatar-xs')
+    var _avatar = $(crel('div')).addClass('avatar')
+
+    _wrapper.append(_avatar)
+
+    return {
+      render: function(){
+        return _wrapper;
+      }
+    }
+  }
+
 
 }(LB || {}))
