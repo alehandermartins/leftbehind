@@ -17,15 +17,20 @@ module LB
         action.add_status :success
 
         if flattened_inventory.empty?
-          action.add_bounty
-
+          action.add_status :fail
           (cowork_actions).each {|coworker_action|
             coworker_action.performer.information.add_location location, slot
           }
-
           return @context
         end
-        found = flattened_inventory.sample(random: @context.random_generator)
+
+        found = foundable_items_for(action.performer).sample(random: @context.random_generator)
+
+        if found.nil?
+          action.add_status :fail
+          action.add_bounty Hash[flattened_inventory.first, 1]
+          return @context
+        end
 
         location_inventory[found] -= 1
         action.add_bounty Hash[found, 1]
@@ -37,16 +42,17 @@ module LB
 
     def resolve context
       super context
+      performer.information.add_action(performer.uuid, slot, information)
       return @context unless success?
 
       performer.inventory.add :helmet, bounty[:helmet] if bounty.has_key? :helmet
       performer.inventory.add :energy, bounty[:energy] if bounty.has_key? :energy
       performer.inventory.add :parts, bounty[:parts] if bounty.has_key? :parts
 
-      performer.information.add_action(performer.uuid, slot, information)
       @context
     end
 
+    private
     def run_multiple action_block
       cowork_actions.sort_by{ @context.random_generator.random_number }.each do |the_action|
         next escaped_action(the_action) if the_action.performer.escaped?
@@ -54,6 +60,21 @@ module LB
       end
 
       @context
+    end
+
+    def foundable_items_for player
+      max_capacity = {
+        energy: 2,
+        parts: 2,
+        helmet: 2
+      }
+
+      unable_items = max_capacity.keys.select {|res| unable?(player, res, max_capacity[res])}
+      flattened_inventory.select { |res| !unable_items.include?(res) }
+    end
+
+    def unable? player, res, max
+      player.inventory[res] >= max
     end
   end
 end

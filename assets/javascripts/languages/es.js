@@ -187,7 +187,8 @@
         tutorial: ':search: Search: Encontrarás :parts: o :energy:.',
         result: {
           success: 'Encontraste %{resources} (%{location})',
-          fail: 'No encontraste nada (%{location})'
+          fail: 'No encontraste nada (%{location})',
+          full: "No puedes llevar más %{resources} (%{location})"
         }
       },
       share: {

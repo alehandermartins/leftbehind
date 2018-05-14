@@ -179,7 +179,8 @@
         tutorial: ':search: Search: You will find :parts: or :energy:.',
         result: {
           success: 'You found %{resources} (%{location})',
-          fail: 'You found nothing (%{location})'
+          fail: 'You found nothing (%{location})',
+          full: "You can't carry more %{resources} (%{location})"
         }
       },
       share: {

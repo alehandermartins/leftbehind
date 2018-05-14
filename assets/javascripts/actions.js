@@ -29,12 +29,16 @@
           showResult: function(result, players){
             var _showbounty = function(){
               var location_label = ns.t.text('locations.' + result.payload.location);
-              if (Object.keys(result.bounty).length == 0)
+              if (!result.bounty)
                 return ns.t.html('action.search.result.fail', {location: location_label});
+
+              if(result.status == 'fail')
+                return ns.t.html('action.search.result.full', {resources: [':', ':'].join(Object.keys(result.bounty)[0]), location: location_label});
 
               var _resources = Object.keys(result.bounty).map(function(resource){
                 return result.bounty[resource] + ' ' +  [':', ':'].join(resource);
               })
+
               return ns.t.html('action.search.result.success', {resources: _resources, location: location_label});
             }
 

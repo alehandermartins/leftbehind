@@ -44,11 +44,11 @@
 
     var _parts = $(crel('div')).addClass('stat parts col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('parts'))),
-      $(crel('span')).addClass('value').text(stats.personal['parts'])
+      $(crel('span')).addClass('value').text(stats.personal['parts'] + " / 2")
     )
     var _energy = $(crel('div')).addClass('stat energy col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('energy'))),
-      $(crel('span')).addClass('value').text(stats.personal['energy'])
+      $(crel('span')).addClass('value').text(stats.personal['energy'] + " / 2")
     )
 
     var _helmet = $(crel('div')).addClass('stat helmet col-4').append(
