@@ -2,7 +2,7 @@ module LB
   module IA
 
     def killed?
-      return false unless ia_found_player? || betrayer?
+      return false if !ia_found_player? || betrayer?
       kill
       true
     end
