@@ -4,6 +4,7 @@ module LB
     include Cooperative
     include IA
     include EndGame
+    include WithResource
 
     def run context
       super context
@@ -64,12 +65,12 @@ module LB
 
     def foundable_items_for player
       max_capacity = {
-        energy: 2,
-        parts: 2,
+        energy: 3,
+        parts: 3,
         helmet: 2
       }
 
-      unable_items = max_capacity.keys.select {|res| unable?(player, res, max_capacity[res])}
+      unable_items = max_capacity.keys.select {|res| unable?(player, res, resource_capacity(res))}
       flattened_inventory.select { |res| !unable_items.include?(res) }
     end
 

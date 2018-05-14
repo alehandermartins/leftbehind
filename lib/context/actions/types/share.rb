@@ -32,7 +32,7 @@ module LB
 
     private
     def able?
-      performer.inventory[resource] > 0
+      performer.inventory[resource] > 0 && target_inventory[resource] < resource_capacity(resource)
     end
 
     def add_to_log
