@@ -64,12 +64,6 @@ module LB
     end
 
     def foundable_items_for player
-      max_capacity = {
-        energy: 3,
-        parts: 3,
-        helmet: 2
-      }
-
       unable_items = max_capacity.keys.select {|res| unable?(player, res, resource_capacity(res))}
       flattened_inventory.select { |res| !unable_items.include?(res) }
     end
