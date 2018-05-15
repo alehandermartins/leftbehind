@@ -76,7 +76,7 @@
       betray: {
         label: ':dagger:',
         result: {
-          true: 'Decides traicionar a tus colegas y cooperar con la Alianza. Activas las defensas de la IA. Si alguien entra en una habitación vigilada por la :ia: será aniquilado al instante. La IA te reconoce y no te atacará. Puedes moverte por la nave libremente.',
+          true: 'Decides traicionar a tus colegas y cooperar con la Alianza. Activas las defensas de la IA. Si alguien entra en una habitación vigilada por la :ia: será aniquilado al instante.',
           false: "No vas a traicionar a tus colegas.",
           alert: "Alguien ha activdo las defensas de la IA. Si alguien entra en una habitación vigilada por la :ia: será aniquilado al instante."
         }

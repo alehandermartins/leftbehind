@@ -2,13 +2,9 @@ module LB
   module IA
 
     def killed?
-      return false if !ia_found_player? || betrayer?
+      return false unless ia_found_player?
       kill
       true
-    end
-
-    def betrayer?
-      performer.traits.include?(:betrayer)
     end
 
     def ia_found_player?

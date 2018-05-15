@@ -76,7 +76,7 @@
       betray: {
         label: ':dagger:',
         result: {
-          true: 'You decide to betray your colleagues and cooperate with the Alliance. You activate the IA defenses. If someone enters a room guarded by the :ia: he/she will be annihilated instantly. The IA ​recognizes you as non-threatening. You can move freely around the ship.',
+          true: 'You decide to betray your colleagues and cooperate with the Alliance. You activate the IA defenses. If someone enters a room guarded by the :ia: he/she will be annihilated instantly.',
           false: "You are not betraying your colleagues.",
           alert: "Someone activated the IA defenses. If someone enters a room guarded by the :ia: he/she will be annihilated instantly"
         }
