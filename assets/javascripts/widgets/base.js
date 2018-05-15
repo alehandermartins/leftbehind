@@ -157,6 +157,7 @@
             var name = split[4].toLowerCase();
             var action = actions[name];
             var result = slotInfo.result;
+            console.log(name)
 
             if(result.info && result.info.warning)
               warning = true;

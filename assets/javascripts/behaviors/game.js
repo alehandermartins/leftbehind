@@ -62,7 +62,7 @@ LB.gameEvents = function(stats){
     inject: LB.Inject,
     android: LB.Android,
     betray: LB.Betray,
-    gun_craft: LB.GunCraft,
+    gunsmith: LB.Gunsmith,
     voting: LB.Voting
   };
 

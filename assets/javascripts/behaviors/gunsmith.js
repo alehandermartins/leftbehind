@@ -1,6 +1,6 @@
 'use strict';
 
-LB.GunCraft = function(stats){
+LB.Gunsmith = function(stats){
   var _createdWidget = $(crel('div')).addClass('dayPlanner col-12');
   var _instructions = LB.Widgets.Label(LB.t.html('events.gun_craft.intro'),'', 12);
 
@@ -19,7 +19,7 @@ LB.GunCraft = function(stats){
   );
 
   var _sendSelections = function(selection){
-    var _builtAction = {'events': {name: 'gun_craft', payload: {decision: selection}}}
+    var _builtAction = {'events': {name: 'gunsmith', payload: {decision: selection}}}
     LB.Backend.daySelections(
       {
         game_uuid: LB.currentGame(),

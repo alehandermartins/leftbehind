@@ -288,7 +288,7 @@
         yes: 'Activate defenses',
         no: 'Refuse'
       },
-      gun_craft: {
+      gunsmith: {
         intro: '"This is the Alliance. Good job on activating the defenses. Now we need you to enable the remote controlling of the ship, so we can tow it to our station. The problem is that only player has the code to enable this function. We are transmitting the blueprints of a gun :gun: to you. You can craft one at the supplies room. Do what you have to do."',
         yes: 'Accept',
         no: 'Refuse'

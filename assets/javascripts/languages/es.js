@@ -81,6 +81,13 @@
           alert: "Alguien ha activdo las defensas de la IA. Si alguien entra en una habitación vigilada por la :ia: será aniquilado al instante."
         }
       },
+      gunsmith: {
+        label: ':gun:',
+        result: {
+          true: "Aceptas. Recibes el prototipo de la pistola. Recuerda que puedes fabricarla en el almacén.",
+          false: "Esto ya es demasiado. Te niegas a asesinar a tus compañeros."
+        }
+      },
       hackandroid: {
         label: ' Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
         selection: 'Hack %{target} :robot:',
@@ -289,7 +296,7 @@
         yes: 'Activar defensas',
         no: 'Negarse'
       },
-      gun_craft: {
+      gunsmith: {
         intro: '"Aquí la Alianza. Buen trabajo activando las defensas. Ahora necesitamos que actives el control remoto de la nave para que podamos remolcarla a nuestra estación. El problema es que únicamente player tiene el código que activa esta función. Estamos transmitiéndote el prototipo de una pistola :gun:. Podrás fabricar una en el almacén. Haz lo que tengas que hacer."',
         yes: 'Aceptar',
         no: 'Negarse'

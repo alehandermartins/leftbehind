@@ -494,6 +494,14 @@
             return resultLabel
           }
         },
+        gunsmith: {
+          showResult: function(result){
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+            resultLabel.append($(crel('div')).html(ns.t.html('action.gunsmith.label') + " " + ns.t.html('action.gunsmith.result.' + result.payload.decision)));
+
+            return resultLabel
+          }
+        },
         android: {
           showResult: function(result, players){
             var _decision = result.payload.decision;
