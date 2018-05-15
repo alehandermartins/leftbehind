@@ -189,7 +189,7 @@
         if(emptyLocations)
           location.empty = emptyLocations.includes(location.uuid)
 
-        var _room = ns.Widgets.Room(location, actions, _slotWidget).render()
+        var _room = ns.Widgets.Room(location, actions, _slotWidget, stats.players[LB.playerUuid()]).render()
         _actionSelector.append(_room)
 
 

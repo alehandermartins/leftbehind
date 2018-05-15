@@ -100,12 +100,11 @@
         }
       },
       craft: {
-        modalTitle: 'Choose what you need to craft',
-        list: ':pick: ( 3 :parts:)',
-        label: 'Craft a :pick:',
+        label: 'Craft %{resource} (3 :parts: 3 :energy:)',
+        selection: 'Craft %{resource}',
         result:{
-          success: 'Added to your inventory',
-          fail: "You didn't have the needed :parts:"
+          success: '%{resource} Added to your inventory',
+          fail: "You didn't have the needed materials"
         }
       },
       defend:{

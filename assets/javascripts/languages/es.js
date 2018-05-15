@@ -107,12 +107,11 @@
         }
       },
       craft: {
-        modalTitle: 'Elige lo que necesitas fabricar',
-        list: ':pick: ( 3 :parts:)',
-        label: 'Fabricar un :pick:',
+        label: 'Fabricar %{resource} (3 :parts: 3 :energy:)',
+        selection: 'Fabricar %{resource}',
         result:{
-          success: 'Añadido a tu inventario',
-          fail: "No tenías las :parts: necesarias"
+          success: '%{resource} Añadido a tu invantario',
+          fail: "No tenías los materiles necesarios"
         }
       },
       defend:{

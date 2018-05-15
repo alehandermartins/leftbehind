@@ -18,6 +18,28 @@
       }
 
       var _actions = {
+        craft: {
+          label: function(resource){
+            return ns.t.html('action.craft.label', {resource: [':', ':'].join(resource)});
+          },
+          buildLabel: function(payload){
+            return ns.t.html('action.craft.selection', {resource: [':', ':'].join(payload.item)});
+          },
+          showResult: function(result, players){
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + this.buildLabel(result.payload)));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
+            return resultLabel;
+          },
+          run: function(location, slotWidget, resource) {
+            var _builtAction = {name: 'craft', payload: {item: resource}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
         search: {
           label: function(){
             return ns.t.html('action.search.label')

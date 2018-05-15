@@ -30,18 +30,11 @@ module LB
 
     private
     def able?
-      performer.inventory[:parts] + @context.team.inventory[:parts] >= price
+      performer.inventory[:parts] >= price
     end
 
     def spend_material
-      return with_help if price > performer.inventory[:parts]
       performer.inventory.subtract :parts, price
-    end
-
-    def with_help
-      team_price = price - performer.inventory[:parts]
-      performer.inventory.subtract_all :parts
-      @context.team.inventory.subtract :parts, team_price
     end
   end
 end

@@ -41,9 +41,11 @@
     }
   }
 
-  ns.Widgets.Room = function(location, actions, slotWidget){
+  ns.Widgets.Room = function(location, actions, slotWidget, player){
     if(location.status == 'locked')
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
+
+    console.log()
 
     var _createdWidget = $(crel('div'))
     var _roomName = $(crel('div')).addClass('text-center')
@@ -62,11 +64,11 @@
       _background.append(_ia)
     }
 
-    var addActionButton = function(action){
+    var addActionButton = function(action, resource){
       var action = actions[action];
-      var currentActionLabel = action.label();
+      var currentActionLabel = action.label(resource);
       var _actionButton = ns.Widgets.Button(currentActionLabel, function(){
-        action.run(location, slotWidget)
+        action.run(location, slotWidget, resource)
       }, 12).render()
 
       _createdWidget.append(_actionButton)
@@ -77,6 +79,10 @@
 
     // if(location.status != 'hacked')
     //   addActionButton('hack')
+
+    if(location.uuid == 6 && player.traits.includes('gunsmith')){
+      addActionButton('craft', 'gun')
+    }
 
     if(location.uuid == 7){
       addActionButton('oxygen')
