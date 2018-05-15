@@ -60,12 +60,11 @@ LB.gameEvents = function(stats){
     defaultEvent: LB.DefaultEvent,
     fusion: LB.Fusion,
     inject: LB.Inject,
-    betray: LB.Betray,
     android: LB.Android,
+    betray: LB.Betray,
+    gun_craft: LB.GunCraft,
     voting: LB.Voting
   };
-
-  console.log(stats.context['event']);
 
   return eventsMap[stats.context['event']](stats);
 };

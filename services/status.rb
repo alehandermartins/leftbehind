@@ -158,8 +158,9 @@ module Services
       return :defaultEvent unless player_stage(player) == :events
       return :fusion if !player.events.include?(:fusion)
       return :inject if !player.events.include?(:inject) && player == android
-      return :betray if !player.events.include?(:betray) && player == betrayer
       return :android if !player.events.include?(:android) && player.traits.include?(:android)
+      return :betray if !player.events.include?(:betray) && player == betrayer
+      return :gun_craft if !player.events.include?(:gun_craft) && player.traits.include?(:betrayer)
       :defaultEvent
     end
 

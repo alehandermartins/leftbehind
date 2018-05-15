@@ -7,6 +7,7 @@
 // = require ./inject
 // = require ./android
 // = require ./betray
+// = require ./gun_craft
 // = require ./default_event
 // = require ./end_game
 // = require ./game

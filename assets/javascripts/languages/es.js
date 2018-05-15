@@ -289,6 +289,11 @@
         yes: 'Activar defensas',
         no: 'Negarse'
       },
+      gun_craft: {
+        intro: '"Aquí la Alianza. Buen trabajo activando las defensas. Ahora necesitamos que actives el control remoto de la nave para que podamos remolcarla a nuestra estación. El problema es que únicamente player tiene el código que activa esta función. Estamos transmitiéndote el prototipo de una pistola :gun:. Podrás fabricar una en el almacén. Haz lo que tengas que hacer."',
+        yes: 'Aceptar',
+        no: 'Negarse'
+      },
       android: {
         intro: 'Solamente puede haber una razón por la cual no has sangrado después de la inyección... no eres humano. Eres un androide. Ufff vaya desastre... te das cuenta de que el as en la manga de la IA es detonarte una vez estéis todos en la cápsula de escape. Si intentas escapar con los demás todos moriréis. Puedes evitarlo haciendo algunos cambios en tu estructura. Sin embargo te costará 6 :parts:. Si pides ayuda a tus compañeros sólo necesotarás 4 :parts:, pero es posible que se asusten y decidan desconectarte...',
         yes: 'Pedir ayuda',
@@ -298,32 +303,6 @@
     buttons: {
       start: 'Empezar',
       send: 'Enviar'
-    },
-    results: {
-      label: 'Resultados %{day}:',
-      general: 'INFO GENERAL'
-    },
-    logs: {
-      day: 'Hora %{day}:',
-      empty: 'Registro vacío.'
-    },
-    tutorial:{
-      actions: {
-        title: 'Tutorial: Seleccionar acciones',
-        message: 'Cada :day: tienes la posibilidad de realizar 4 acciones. Estas acciones se resuelven en orden cronológico una vez todos los jugadores han enviado las suyas. Para escapar necesitarás encontrar varios recursos. GASTARÁS 1 :food: AL FINAL DE CADA :day:. Asegúrate de tener al menos 1 :food: o morirás. Escoge sabiamente.'
-      },
-      sharing: {
-        title: 'Tutorial: Compartir',
-        message: 'Es el momento de ver como ha ido... Ahora puedes compartir tus recursos con el equipo o el resto de los jugadores. MÁS TARDE UTILIZARÉIS 1 :food: DE LOS RECURSOS DEL :team:. Si no hay para todos habrá una votación.'
-      },
-      events:{
-        title: 'Tutorial: Eventos',
-        message: 'Movidas varias...'
-      },
-      wait:{
-        title: 'Tutorial: Espera',
-        message: 'El :team: está tomando decisiones, espera pacientemente hasta que comience la siguiente fase.'
-      }
     }
   }
 }(LB || {}))

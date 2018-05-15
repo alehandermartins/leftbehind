@@ -23,7 +23,8 @@ module LB
       'fusion' => LB::Action::Fusion,
       'inject' => LB::Action::Inject,
       'android' => LB::Action::Android,
-      'betray' => LB::Action::Betray
+      'betray' => LB::Action::Betray,
+      'gun_craft' => LB::Action::GunCraft
     }
   end
 
@@ -96,6 +97,12 @@ module LB
         @context.players.each{ |the_player|
           next unless the_player.alive?
           the_player.information.add_trait performer.uuid, trait
+        }
+      end
+
+      def add_event_to_everyone event
+        @context.players.each{ |the_player|
+          the_player.add_event event
         }
       end
 

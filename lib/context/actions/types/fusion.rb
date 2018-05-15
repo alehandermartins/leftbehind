@@ -21,9 +21,10 @@ module LB
       remove_damaged_helmets
       place_backup_helmets
 
+      add_event_to_everyone :fusion
+
       (same_actions).each {|same_action|
         same_action.add_status :resolved
-        same_action.performer.add_event :fusion
       }
 
       @context

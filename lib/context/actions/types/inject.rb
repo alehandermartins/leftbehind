@@ -16,18 +16,10 @@ module LB
 
       performer.add_trait :android if payload[:decision] == true
       add_info reason: 'action.inject.result.android'
-      add_event_to_everyone
+      add_event_to_everyone :inject
       performer.information.add_action(performer.uuid, slot, information)
 
       @context
-    end
-
-    private
-
-    def add_event_to_everyone
-      @context.players.each{ |the_player|
-        the_player.add_event :inject
-      }
     end
   end
 end

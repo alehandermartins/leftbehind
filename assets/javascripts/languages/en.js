@@ -223,7 +223,7 @@
         result: {
           no_materials: "You didn't have the needed :energy:",
           redundancy: "Already unlocked",
-          success: "Unlocked"
+          success: "%{location} unlocked"
         }
       },
       vote: {
@@ -288,6 +288,11 @@
         yes: 'Activate defenses',
         no: 'Refuse'
       },
+      gun_craft: {
+        intro: '"This is the Alliance. Good job on activating the defenses. Now we need you to enable the remote controlling of the ship, so we can tow it to our station. The problem is that only player has the code to enable this function. We are transmitting the blueprints of a gun :gun: to you. You can craft one at the supplies room. Do what you have to do."',
+        yes: 'Accept',
+        no: 'Refuse'
+      },
       android: {
         intro: 'There can only be one reason for you not bleeding after the injection... you are not human. You are an android. Ooohh this is not good... you realize that the IA hidden move is to detonate you once you all are in the escape pod. If you try to escape it is sure that you all will die. But you can avoid this by making some changes in your structure. However this will cost you 6 :parts:. If you ask for help, then you can be fixed with only 4 :parts:, but maybe they will get scared and disconnect you...',
         yes: 'Ask for help',
@@ -297,32 +302,6 @@
     buttons: {
       start: 'Start',
       send: 'Send',
-    },
-    results: {
-      label: 'Results %{day}:',
-      general: 'GENERAL INFO'
-    },
-    logs: {
-      day: 'Hour %{day}:',
-      empty: 'Your logs are empty.'
-    },
-    tutorial:{
-      actions: {
-        title: 'Tutorial: Selecting actions',
-        message: 'Each :day: you are allowed to perform 4 actions. Actions are resolved in chronological order once every player has chosen how to spend the :day:. In order to escape you will need to gather different resources. YOU WILL CONSUME 1 :food: AT THE END OF EACH :day:. Be sure to have at least one piece of :food: by the end of the :day: or you will die. Choose wisely.'
-      },
-      sharing: {
-        title: 'Tutorial: Sharing',
-        message: 'Now it is time to see how well you performed through the :day:. Now you can share some of your resources. YOU WILL ALL CONSUME 1 :food: FROM THE :team: resources. If there were not enough :food: for everybody you will have to decide who eats and who starves to death in the next phase.'
-      },
-      events:{
-        title: 'Tutorial: Events',
-        message: 'Things happen...'
-      },
-      wait:{
-        title: 'Tutorial: Wait',
-        message: 'The :team: is still taking their decisions, wait patiently until the next phase.'
-      }
     }
   }
 }(LB || {}))
