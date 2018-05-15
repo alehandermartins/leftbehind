@@ -5,7 +5,7 @@ module LB
     end
 
     def price
-      @context.items[item][:parts]
+      @context.items[item]
     end
 
     def selections

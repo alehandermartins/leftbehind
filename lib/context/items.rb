@@ -5,8 +5,9 @@ class Items
         countdown: 20,
         fix: 10
       },
-      'pick' => {
-        parts: 3
+      'gun' => {
+        parts: 3,
+        energy: 3
       }
     }
   end

@@ -30,11 +30,15 @@ module LB
 
     private
     def able?
-      performer.inventory[:parts] >= price
+      price.keys.all? { |res|
+        performer.inventory[res] >= price[res]
+      }
     end
 
     def spend_material
-      performer.inventory.subtract :parts, price
+      price.keys.each { |res|
+        performer.inventory.subtract res, price[res]
+      }
     end
   end
 end
