@@ -6,7 +6,7 @@ LB.Game = function(stats){
 
   var stagesMap = {
     actions: LB.DayPlanning,
-    events: LB.gameEvents,
+    events: LB.Event,
     wait: LB.Wait,
     dead: LB.EndGame
   }
@@ -53,19 +53,3 @@ LB.Game = function(stats){
 
   scalePlayground()
 }
-
-LB.gameEvents = function(stats){
-
-  var eventsMap = {
-    defaultEvent: LB.DefaultEvent,
-    fusion: LB.Fusion,
-    inject: LB.Inject,
-    android: LB.Android,
-    betray: LB.Betray,
-    gunsmith: LB.Gunsmith,
-    voting: LB.Voting
-  };
-
-  console.log(stats.context['event'])
-  return eventsMap[stats.context['event']](stats);
-};

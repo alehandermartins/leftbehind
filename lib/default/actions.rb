@@ -84,7 +84,7 @@ module LB
               'events' => {
                 name: 'fusion',
                 payload: {
-                  enter: 'false'
+                  decision: 'false'
                 }
               }
             },
@@ -92,7 +92,7 @@ module LB
               'events' => {
                 name: 'inject',
                 payload: {
-                  selection: 'false'
+                  decision: 'false'
                 }
               }
             },
@@ -100,7 +100,7 @@ module LB
               'events' => {
                 name: 'android',
                 payload: {
-                  selection: 'false'
+                  decision: 'false'
                 }
               }
             },
@@ -108,7 +108,7 @@ module LB
               'events' => {
                 name: 'betray',
                 payload: {
-                  selection: 'false'
+                  decision: 'false'
                 }
               }
             },

@@ -114,37 +114,4 @@
     };
   };
 
-  ns.Widgets.SendVotesButton = function(builtAction, number_of_votes){
-    var _createdButton = ns.Widgets.SpinningButton(ns.t.html('buttons.send'), function(){
-      console.log(builtAction);
-
-      if (builtAction['events']['payload']['target'].length == number_of_votes){
-        ns.Backend.daySelections(
-          {
-            game_uuid: ns.currentGame(),
-            player_uuid: ns.playerUuid(),
-            actions: builtAction,
-          },
-          ns.Events.SentSelections
-        );
-      }
-      else {
-        bootbox.alert({
-          title: ns.t.html('events.voting.title'),
-          message: ns.t.text('events.voting.message', {votes: number_of_votes}),
-          callback: function(){
-            _createdButton.enable()
-          }
-        });
-      }
-    }, 12);
-
-    return {
-      render: function(){
-        return _createdButton.render();
-      }
-    };
-  };
-
-
 }(LB || {}));

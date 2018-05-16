@@ -265,12 +265,6 @@
         title: 'Ooops!',
         message: "You didn't select enough actions, you must schedule your whole :day: planning before sending"
       },
-      voting: {
-        intro:'There are %{alive} people alive, but only %{food} ' +
-          ':food: left. Chose %{votes} who will not eat from :team:\'s :food:',
-        title: 'Ooops!',
-        message: "The numbers don't add up, you shoud vote %{votes} people"
-      },
       fusion: {
         intro: 'The core of the nucleus is melting... someone has to enter to the control chamber and stop it manually. ' +
         'Only with one person entering will be enough, but the radiation is so high it will render the :helmet: of those who enter useless. If nobody enters the ship will explode',

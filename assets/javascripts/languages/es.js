@@ -273,12 +273,6 @@
         title: 'Ups!',
         message: 'No has seleccionado suficientes acciones...',
       },
-      voting: {
-        intro:'Hay %{alive} personas con vida, pero sólo queda %{food} ' +
-          ':food:. Elige a %{votes} personas que no utilizaran el :food: del :team:',
-        title: 'Ups!',
-        message: "Los números no cuadran, deberías votar a %{votes} personas"
-      },
       fusion: {
         intro: 'El núcleo se está sobrecalentando... alguien debe entrar en la cámara de control y detener el proceso manualmente. ' +
         'Con que entre una persona será suficiente, pero la radiación es tan alta que inutilizará el :helmet: de aquellos que entren. Si nadie entra la nave estallará',

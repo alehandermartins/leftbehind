@@ -62,7 +62,7 @@ module LB
     end
 
     def safely_entered? action
-      action.payload[:enter] == true && action.performer.inventory[:helmet] > 0
+      action.payload[:decision] == true && action.performer.inventory[:helmet] > 0
     end
 
     def kill_heroes
@@ -72,7 +72,7 @@ module LB
     end
 
     def hero? action
-      action.payload[:enter] == true && action.performer.inventory[:helmet] == 0
+      action.payload[:decision] == true && action.performer.inventory[:helmet] == 0
     end
 
     def kill player
@@ -89,7 +89,7 @@ module LB
 
     def someone_entered?
       (same_actions).any? {|same_action|
-        same_action.payload[:enter] == true
+        same_action.payload[:decision] == true
       }
     end
 
