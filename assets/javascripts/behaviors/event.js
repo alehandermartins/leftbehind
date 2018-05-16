@@ -6,13 +6,13 @@ LB.Event = function(stats){
     return LB.DefaultEvent(stats);
 
   var _createdWidget = $(crel('div')).addClass('dayPlanner col-12');
-  var _instructions = LB.Widgets.Label(LB.t.html(`events.${event}.intro`),'', 12);
+  var _instructions = LB.Widgets.Label(LB.t.html('events.' + event + '.intro'),'', 12);
 
-  var _yesButton = LB.Widgets.Button(LB.t.html(`events.${event}.yes`), function(){
+  var _yesButton = LB.Widgets.Button(LB.t.html('events.' + event + '.yes'), function(){
     _sendSelections(true);
   }, 6);
 
-  var _noButton = LB.Widgets.Button(LB.t.html(`events.${event}.no`), function(){
+  var _noButton = LB.Widgets.Button(LB.t.html('events.' + event + '.no'), function(){
     _sendSelections(false);
   }, 6);
 
@@ -53,4 +53,3 @@ LB.DefaultEvent = function(stats){
     }
   }
 }
-

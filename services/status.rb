@@ -161,6 +161,7 @@ module Services
       return :android if !player.events.include?(:android) && player.traits.include?(:android)
       return :betray if !player.events.include?(:betray) && player == betrayer
       return :gunsmith if !player.events.include?(:gunsmith) && player.traits.include?(:betrayer)
+      return :hitman if !player.events.include?(:hitman) && player.inventory.has_key?(:gun)
       :defaultEvent
     end
 
