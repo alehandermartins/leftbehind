@@ -67,6 +67,11 @@
     action: {
       android: {
         label: ':robot:',
+        intro: 'Solamente puede haber una razón por la cual no has sangrado después de la inyección... no eres humano. Eres un androide. Ufff vaya desastre... te das cuenta de que el as en la manga de la IA es detonarte una vez estéis todos en la cápsula de escape. Si intentas escapar con los demás todos moriréis. Puedes evitarlo haciendo algunos cambios en tu estructura. Sin embargo te costará 6 :parts:. Si pides ayuda a tus compañeros sólo necesotarás 4 :parts:, pero es posible que se asusten y decidan desconectarte...',
+        selection: {
+          yes: 'Pedir ayuda',
+          no: 'No decir nada'
+        },
         result: {
           informed: "Ha descubierto que en realidad es un androide. La IA lo detonará si intenta escapar, matando a todos. Es posible hackear el mecanismo utilizando 4 :parts:. O simplemente puedes desconectar a %{player} y olvidar todo esto.",
           yes: 'Les cuentas a los demás lo que sucede, esperando ayuda.',
@@ -75,35 +80,15 @@
       },
       betray: {
         label: ':dagger:',
+        intro: 'Una transmisión empieza a sonar en tu intercomunicador: "Han entrado en una zona prohibida por la Alianza. Este acto de rebeldía está penado con cárcel. Si coopera con nosotros garantizamos su libertad. No podemos asegurar lo mismo para sus compañeros... Para empezar, queremos que active el sistema de defensa de la IA."',
+        selection: {
+          yes: 'Activar defensas',
+          no: 'Negarse'          
+        },
         result: {
           true: 'Decides traicionar a tus colegas y cooperar con la Alianza. Activas las defensas de la IA. Si alguien entra en una habitación vigilada por la :ia: será aniquilado al instante.',
           false: "No vas a traicionar a tus colegas.",
           alert: "Alguien ha activdo las defensas de la IA. Si alguien entra en una habitación vigilada por la :ia: será aniquilado al instante."
-        }
-      },
-      gunsmith: {
-        label: ':gun:',
-        result: {
-          true: "Aceptas. Recibes el prototipo de la pistola. Recuerda que puedes fabricarla en el almacén.",
-          false: "Esto ya es demasiado. Te niegas a asesinar a tus compañeros."
-        }
-      },
-      hackandroid: {
-        label: ' Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
-        selection: 'Hack %{target} :robot:',
-        result: {
-          success: 'Hackear a %{target} :robot: <strong>%{fix}</strong>',
-          no_fixing_materials: "No tenías los :parts: necesarios",
-          already_fixed: 'Ya había sido arreglado.',
-          revealed: "Has descubierto que en realidad %{player} es un androide. La IA lo detonará si intenta escapar, matando a todos. Es posible hackear el mecanismo utilizando 6 :parts:. O simplemente puedes desconectar a %{player} y olvidar todo esto.",
-          revealed_safe: "Has descubierto que en realidad %{player} es un androide, pero ya no es una amenaza"
-        }
-      },
-      disconnectandroid: {
-        label: ' Disconnect :robot:',
-        selection: 'Disconnect %{target} :robot:',
-        result: {
-          success: '%{player} ha desconectado a %{target}.'
         }
       },
       craft: {
@@ -121,6 +106,13 @@
           success: 'Éxito!',
           attack_defended: 'Se defendió y te pateó el culo!!',
           nobody_defended: 'Nadie te atacó'
+        }
+      },
+      disconnectandroid: {
+        label: ' Disconnect :robot:',
+        selection: 'Disconnect %{target} :robot:',
+        result: {
+          success: '%{player} ha desconectado a %{target}.'
         }
       },
       eat: {
@@ -143,6 +135,12 @@
       },
       fusion: {
         label: ':radioactive:',
+        intro: 'El núcleo se está sobrecalentando... alguien debe entrar en la cámara de control y detener el proceso manualmente. ' +
+        'Con que entre una persona será suficiente, pero la radiación es tan alta que inutilizará el :helmet: de aquellos que entren. Si nadie entra la nave estallará',
+        selection: {
+          yes: 'Entrar',
+          no: 'Quedarse'
+        },
         result: {
           youdied: 'Moriste por sobredosis de radiación',
           otterdied: 'Murió por sobredosis de radiación',
@@ -150,8 +148,19 @@
           otterentered: 'Entró en la cámara'
         }
       },
+      gunsmith: {
+        label: ':gun:',
+        intro: '"Aquí la Alianza. Buen trabajo activando las defensas. Ahora necesitamos que actives el control remoto de la nave para que podamos remolcarla a nuestra estación. El problema es que únicamente player tiene el código que activa esta función. Estamos transmitiéndote el prototipo de una pistola :gun:. Podrás fabricar una en el almacén. Haz lo que tengas que hacer."',
+        selection: {
+          yes: 'Aceptar',
+          no: 'Negarse'
+        },
+        result: {
+          true: "Aceptas. Recibes el prototipo de la pistola. Recuerda que puedes fabricarla en el almacén.",
+          false: "Esto ya es demasiado. Te niegas a asesinar a tus compañeros."
+        }
+      },
       hack: {
-        tutorial: ':computer: Hackear: La IA no será capaz de atacar esta habitación.',
         label: 'Hackear (:energy: 2)',
         selection: 'Hackear: %{location}',
         result: {
@@ -160,8 +169,31 @@
           success: "Esta habitación es segura ahora"
         }
       },
+      hackandroid: {
+        label: ' Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
+        selection: 'Hack %{target} :robot:',
+        result: {
+          success: 'Hackear a %{target} :robot: <strong>%{fix}</strong>',
+          no_fixing_materials: "No tenías los :parts: necesarios",
+          already_fixed: 'Ya había sido arreglado.',
+          revealed: "Has descubierto que en realidad %{player} es un androide. La IA lo detonará si intenta escapar, matando a todos. Es posible hackear el mecanismo utilizando 6 :parts:. O simplemente puedes desconectar a %{player} y olvidar todo esto.",
+          revealed_safe: "Has descubierto que en realidad %{player} es un androide, pero ya no es una amenaza"
+        }
+      },
+      hitman: {
+        intro: "Al fin. Apuntas a %{player} con tu pistole y le pides el código... pero, y si se niega?",
+        selection: {
+          yes: "Disparar",
+          no: "No disparar"  
+        }
+      },
       inject: {
         label: ':syringe:',
+        intro: 'Encuentras una jeringuilla con lo que parece un antídoto para la neurotoxina. Si te lo inyectas no necesitarás más :food:. Pero... es seguro?',
+        selection: {
+          yes: 'Inyectarte',
+          no: 'Da igual'
+        },
         result: {
           injected: 'Te inyectas. Ahora puedes respirar aire tóxico',
           android: 'Te inyectas. Ahora puedes respirar aire tóxico. Pero pasa algo raro... no has sangrado después de la inyección.',
@@ -266,38 +298,6 @@
         disconnected: 'Has sido desconectado',
         blown: '%{player} was an android. The IA detonates %{player} as soon as you start the escape pod engines.',
         detonated: 'LA IA te detona en cuanto enciendes los motores de la cápsula de escape. Nadie sobrevive.'
-      }
-    },
-    events: {
-      actions: {
-        title: 'Ups!',
-        message: 'No has seleccionado suficientes acciones...',
-      },
-      fusion: {
-        intro: 'El núcleo se está sobrecalentando... alguien debe entrar en la cámara de control y detener el proceso manualmente. ' +
-        'Con que entre una persona será suficiente, pero la radiación es tan alta que inutilizará el :helmet: de aquellos que entren. Si nadie entra la nave estallará',
-        yes: 'Entrar',
-        no: 'Quedarse'
-      },
-      inject: {
-        intro: 'Encuentras una jeringuilla con lo que parece un antídoto para la neurotoxina. Si te lo inyectas no necesitarás más :food:. Pero... es seguro?',
-        yes: 'Inyectarte',
-        no: 'Da igual'
-      },
-      betray: {
-        intro: 'Una transmisión empieza a sonar en tu intercomunicador: "Han entrado en una zona prohibida por la Alianza. Este acto de rebeldía está penado con cárcel. Si coopera con nosotros garantizamos su libertad. No podemos asegurar lo mismo para sus compañeros... Para empezar, queremos que active el sistema de defensa de la IA."',
-        yes: 'Activar defensas',
-        no: 'Negarse'
-      },
-      gunsmith: {
-        intro: '"Aquí la Alianza. Buen trabajo activando las defensas. Ahora necesitamos que actives el control remoto de la nave para que podamos remolcarla a nuestra estación. El problema es que únicamente player tiene el código que activa esta función. Estamos transmitiéndote el prototipo de una pistola :gun:. Podrás fabricar una en el almacén. Haz lo que tengas que hacer."',
-        yes: 'Aceptar',
-        no: 'Negarse'
-      },
-      android: {
-        intro: 'Solamente puede haber una razón por la cual no has sangrado después de la inyección... no eres humano. Eres un androide. Ufff vaya desastre... te das cuenta de que el as en la manga de la IA es detonarte una vez estéis todos en la cápsula de escape. Si intentas escapar con los demás todos moriréis. Puedes evitarlo haciendo algunos cambios en tu estructura. Sin embargo te costará 6 :parts:. Si pides ayuda a tus compañeros sólo necesotarás 4 :parts:, pero es posible que se asusten y decidan desconectarte...',
-        yes: 'Pedir ayuda',
-        no: 'No decir nada'
       }
     },
     buttons: {

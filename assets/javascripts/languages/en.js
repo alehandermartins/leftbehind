@@ -67,6 +67,11 @@
     action: {
       android: {
         label: ':robot:',
+        intro: 'There can only be one reason for you not bleeding after the injection... you are not human. You are an android. Ooohh this is not good... you realize that the IA hidden move is to detonate you once you all are in the escape pod. If you try to escape it is sure that you all will die. But you can avoid this by making some changes in your structure. However this will cost you 6 :parts:. If you ask for help, then you can be fixed with only 4 :parts:, but maybe they will get scared and disconnect you...',
+        selection: {
+          yes: 'Ask for help',
+          no: 'Say nothing'
+        },
         result: {
           informed: "Tells you that he/she is an android. The IA will detonate him/her if he/she tries to escape, killing you all. It is possible to hack the mechanism using 4 :parts:. Or you can just disconnect %{player} and forget all about this.",
           yes: 'You tell the others hoping they will help you',
@@ -75,28 +80,15 @@
       },
       betray: {
         label: ':dagger:',
+        intro: 'A transmission begins to sound on your intercom: "You have entered an area forbidden by the Alliance. This act of rebellion is punishable by jail, but if you cooperate we guarantee your freedom. We can not assure the same thing for your colleagues. To begin with, we want you to activate the IA ​​defense system."',
+        selection: {
+          yes: 'Activate defenses',
+          no: 'Refuse'
+        },
         result: {
           true: 'You decide to betray your colleagues and cooperate with the Alliance. You activate the IA defenses. If someone enters a room guarded by the :ia: he/she will be annihilated instantly.',
           false: "You are not betraying your colleagues.",
           alert: "Someone activated the IA defenses. If someone enters a room guarded by the :ia: he/she will be annihilated instantly"
-        }
-      },
-      hackandroid: {
-        label: 'Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
-        selection: 'Hack %{target} :robot:',
-        result: {
-          success: 'Hack %{target} :robot: <strong>%{fix}</strong>',
-          no_fixing_materials: "You didn't have the needed :parts:",
-          already_fixed: "Already fixed.",
-          revealed: "You discover that %{player} is an android. The IA will detonate him/her if he/she tries to escape, killing you all. It is possible to hack the mechanism using 6 :parts:. Or you can just disconnect %{player} and forget all about this.",
-          revealed_safe: "You discover that %{player} is an android, but he/she is no longer a threat."
-        }
-      },
-      disconnectandroid: {
-        label: ' Disconnect :robot:',
-        selection: 'Disconnect %{target} :robot:',
-        result: {
-          success: '%{player} has disconnected %{target}.'
         }
       },
       craft: {
@@ -114,6 +106,13 @@
           success: 'Success!',
           attack_defended: 'He was defending and kicked your ass!!',
           nobody_defended: 'Nobody attacked you'
+        }
+      },
+      disconnectandroid: {
+        label: ' Disconnect :robot:',
+        selection: 'Disconnect %{target} :robot:',
+        result: {
+          success: '%{player} has disconnected %{target}.'
         }
       },
       eat: {
@@ -136,11 +135,29 @@
       },
       fusion: {
         label: ':radioactive:',
+        intro: 'The core of the nucleus is melting... someone has to enter to the control chamber and stop it manually. ' +
+        'Only with one person entering will be enough, but the radiation is so high it will render the :helmet: of those who enter useless. If nobody enters the ship will explode',
+        selection: {
+          yes: 'Enter',
+          no: 'Stay'
+        },
         result: {
           youdied: 'You died from radiation overdose',
           otterdied: 'Died from radiation overdose',
           youentered: 'You entered the chamber',
           otterentered: 'Entered the chamber'
+        }
+      },
+      gunsmith: {
+        label: ':gun:',
+        intro: '"This is the Alliance. Good job on activating the defenses. Now we need you to enable the remote controlling of the ship, so we can tow it to our station. The problem is that only player has the code to enable this function. We are transmitting the blueprints of a gun :gun: to you. You can craft one at the supplies room. Do what you have to do."',
+        selection: {
+          yes: 'Accept',
+          no: 'Refuse'  
+        },
+        result: {
+          true: "Ypu accept. You recive the gun blueprints. Don't forget you can craft one at the supplies room.",
+          false: "This is too much. You refuse to assassinate your colleagues."
         }
       },
       hack: {
@@ -153,8 +170,31 @@
           success: "This room is safe now"
         }
       },
+      hackandroid: {
+        label: 'Hack :robot: (1 :parts:) <strong>%{fix}</strong>',
+        selection: 'Hack %{target} :robot:',
+        result: {
+          success: 'Hack %{target} :robot: <strong>%{fix}</strong>',
+          no_fixing_materials: "You didn't have the needed :parts:",
+          already_fixed: "Already fixed.",
+          revealed: "You discover that %{player} is an android. The IA will detonate him/her if he/she tries to escape, killing you all. It is possible to hack the mechanism using 6 :parts:. Or you can just disconnect %{player} and forget all about this.",
+          revealed_safe: "You discover that %{player} is an android, but he/she is no longer a threat."
+        }
+      },
+      hitman: {
+        intro: "This is it. You point your gun to %{player} and ask him for the code... but what if he/she refuses?",
+        selection: {
+          yes: "Shoot anyway",
+          no: "Don't shoot"  
+        }
+      },
       inject: {
         label: ':syringe:',
+        intro: 'You fond a syringe with what appears to be an antidote for the neurotoxin. If you inject yourself you will no need :food: anymore. But... is this safe?',
+        selection: {
+          yes: 'Inject',
+          no: 'Nevermind'
+        },
         result: {
           injected: 'You injected yourself. You can now breath toxic air',
           android: 'You injected yourself. You can now breath toxic air. But something is odd... you did not bleed after the injection.',
@@ -258,38 +298,6 @@
         disconnected: 'You have been disconnected',
         blown: '%{player} was an android. The IA detonates %{player} as soon as you start the escape pod engines.',
         detonated: 'The IA detonates you as soon as you start the escape pod engines. No one survives.'
-      }
-    },
-    events: {
-      actions: {
-        title: 'Ooops!',
-        message: "You didn't select enough actions, you must schedule your whole :day: planning before sending"
-      },
-      fusion: {
-        intro: 'The core of the nucleus is melting... someone has to enter to the control chamber and stop it manually. ' +
-        'Only with one person entering will be enough, but the radiation is so high it will render the :helmet: of those who enter useless. If nobody enters the ship will explode',
-        yes: 'Enter',
-        no: 'Stay'
-      },
-      inject: {
-        intro: 'You fond a syringe with what appears to be an antidote for the neurotoxin. If you inject yourself you will no need :food: anymore. But... is this safe?',
-        yes: 'Inject',
-        no: 'Nevermind'
-      },
-      betray: {
-        intro: 'A transmission begins to sound on your intercom: "You have entered an area forbidden by the Alliance. This act of rebellion is punishable by jail, but if you cooperate we guarantee your freedom. We can not assure the same thing for your colleagues. To begin with, we want you to activate the IA ​​defense system."',
-        yes: 'Activate defenses',
-        no: 'Refuse'
-      },
-      gunsmith: {
-        intro: '"This is the Alliance. Good job on activating the defenses. Now we need you to enable the remote controlling of the ship, so we can tow it to our station. The problem is that only player has the code to enable this function. We are transmitting the blueprints of a gun :gun: to you. You can craft one at the supplies room. Do what you have to do."',
-        yes: 'Accept',
-        no: 'Refuse'
-      },
-      android: {
-        intro: 'There can only be one reason for you not bleeding after the injection... you are not human. You are an android. Ooohh this is not good... you realize that the IA hidden move is to detonate you once you all are in the escape pod. If you try to escape it is sure that you all will die. But you can avoid this by making some changes in your structure. However this will cost you 6 :parts:. If you ask for help, then you can be fixed with only 4 :parts:, but maybe they will get scared and disconnect you...',
-        yes: 'Ask for help',
-        no: 'Say nothing'
       }
     },
     buttons: {
