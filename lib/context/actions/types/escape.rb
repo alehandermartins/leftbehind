@@ -69,8 +69,8 @@ module LB
         trap_everybody
         if trojan_player?
           escaped_players.each{ |player|
-            player.set_status :blown unless player.condition == :broken
-            player.set_status :detonated if player.condition == :broken
+            player.status = :blown unless player.condition == :broken
+            player.status = :detonated if player.condition == :broken
           }
         end
       end

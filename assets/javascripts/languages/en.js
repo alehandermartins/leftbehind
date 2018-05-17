@@ -150,7 +150,7 @@
       },
       gunsmith: {
         label: ':gun:',
-        intro: '"This is the Alliance. Good job on activating the defenses. Now we need you to enable the remote controlling of the ship, so we can tow it to our station. The problem is that only player has the code to enable this function. We are transmitting the blueprints of a gun :gun: to you. You can craft one at the supplies room. Do what you have to do."',
+        intro: '"This is the Alliance. Good job on activating the defenses. Now we need you to enable the remote controlling of the ship, so we can tow it to our station. The problem is that only %{target} has the code to enable this function. We are transmitting the blueprints of a gun :gun: to you. You can craft one at the supplies room. Do what you have to do."',
         selection: {
           yes: 'Accept',
           no: 'Refuse'  
@@ -182,7 +182,7 @@
         }
       },
       hitman: {
-        intro: "This is it. You point your gun to %{player} and ask him for the code... but what if he/she refuses?",
+        intro: "This is it. You point your gun to %{target} and ask him for the code... but what if he/she refuses?",
         selection: {
           yes: "Shoot anyway",
           no: "Don't shoot"  

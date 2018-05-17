@@ -39,21 +39,21 @@
 
     var _oxygen =  $(crel('div')).addClass('stat food col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('food'))),
-      $(crel('span')).addClass('value').text(stats.personal['food'] + " / 2")
+      $(crel('span')).addClass('value').text(stats.inventory['food'] + " / 2")
     )
 
     var _parts = $(crel('div')).addClass('stat parts col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('parts'))),
-      $(crel('span')).addClass('value').text(stats.personal['parts'] + " / 3")
+      $(crel('span')).addClass('value').text(stats.inventory['parts'] + " / 3")
     )
     var _energy = $(crel('div')).addClass('stat energy col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('energy'))),
-      $(crel('span')).addClass('value').text(stats.personal['energy'] + " / 3")
+      $(crel('span')).addClass('value').text(stats.inventory['energy'] + " / 3")
     )
 
     var _helmet = $(crel('div')).addClass('stat helmet col-4').append(
       $(crel('span')).addClass('_label').html(ns.t.html([':', ':'].join('helmet'))),
-      $(crel('span')).addClass('value').text(stats.personal['helmet'])
+      $(crel('span')).addClass('value').text(stats.inventory['helmet'])
     )
 
     var _shuttle = $(crel('div')).addClass('stat shuttle col-4').append(

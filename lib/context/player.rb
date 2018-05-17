@@ -1,5 +1,8 @@
 class Player
 
+  attr_reader :uuid, :name, :role, :inventory, :information, :events, :traits
+  attr_accessor :status, :target
+
   def initialize uuid, name, role, information
     @uuid = uuid
     @name = name
@@ -10,42 +13,15 @@ class Player
     @events = []
     @traits = []
     @fix = 6
-  end
-
-  def uuid
-    @uuid
-  end
-
-  def name
-    @name
-  end
-
-  def role
-    @role
-  end
-
-  def inventory
-    @inventory
-  end
-
-  def information
-    @information
+    @target
   end
 
   def information_for players
     @information.for players
   end
 
-  def events
-    @events
-  end
-
   def add_event event
     @events.push event
-  end
-
-  def traits
-    @traits
   end
 
   def add_trait trait
@@ -53,21 +29,17 @@ class Player
     @information.add_trait uuid, trait
   end
 
-  def status
-    @status
-  end
-
-  def set_status new_status
-    @status = new_status
-  end
-
   def alive?
     @status == :alive
   end
 
+  def android?
+    @traits.include?(:c3po) || @traits.include?(:terminator)
+  end
+
   def condition
     return :dead unless alive? || escaped?
-    return :ok unless @traits.include?(:c3po) || @traits.include?(:terminator)
+    return :ok unless android?
     return :ok if @fix == 0
     :broken
   end

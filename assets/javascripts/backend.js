@@ -233,10 +233,10 @@
               day: parseInt(10 - (stats.game.current_slot / 6)) + 'h',
               shuttle: (10 - stats.game.escape_shuttle) * 10 + '%'
             },
-            players: stats.personal.information.players,
             player_status: stats.personal.information.players[ns.playerUuid()].status,
-            personal: stats.personal.inventory,
-            personal_info: stats.personal.information
+            inventory: stats.personal.inventory,
+            players: stats.personal.information.players,
+            locationsInfo: stats.personal.information.locations
           }
           );
         }

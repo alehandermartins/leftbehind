@@ -5,8 +5,12 @@ LB.Event = function(stats){
   if(event == 'defaultEvent')
     return LB.DefaultEvent(stats);
 
+  var target;
+  if(stats.players[LB.playerUuid()].target)
+    target = stats.players[stats.players[LB.playerUuid()].target].name;
+
   var _createdWidget = $(crel('div')).addClass('dayPlanner col-12');
-  var _instructions = LB.Widgets.Label(LB.t.html('action.' + event + '.intro'),'', 12);
+  var _instructions = LB.Widgets.Label(LB.t.html('action.' + event + '.intro', {target: target}),'', 12);
 
   var _yesButton = LB.Widgets.Button(LB.t.html('action.' + event + '.selection.yes'), function(){
     _sendSelections(true);

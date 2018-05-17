@@ -1,10 +1,11 @@
 'use strict';
 LB.EndGame = function(stats){
   var blown;
+  var _players = stats.players;
 
-  Object.keys(stats.players).forEach(function(player){
-    if(stats.players[player].status == 'blown')
-      blown = stats.players[player].name;
+  Object.keys(_players).forEach(function(player){
+    if(_players[player].status == 'blown')
+      blown = _players[player].name;
   });
 
   var _createdWidget = $(crel('div')).addClass('dayPlanner active col-12');

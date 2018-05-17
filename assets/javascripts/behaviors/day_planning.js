@@ -123,7 +123,7 @@
       });
 
       var _players = stats.players;
-      var _broken = stats.players[LB.playerUuid()].condition == 'broken';
+      var _broken = _players[LB.playerUuid()].condition == 'broken';
 
       if(Object.keys(_players).length > 1 || _broken){
 
@@ -180,7 +180,7 @@
       _targetSelector.append(_selectRoom);
 
 
-      var locationsInfo = stats.personal_info.locations
+      var locationsInfo = stats.locationsInfo;
       if(locationsInfo)
         var emptyLocations = Object.keys(locationsInfo)
 
@@ -189,7 +189,7 @@
         if(emptyLocations)
           location.empty = emptyLocations.includes(location.uuid)
 
-        var _room = ns.Widgets.Room(location, actions, _slotWidget, stats.players[LB.playerUuid()]).render()
+        var _room = ns.Widgets.Room(location, actions, _slotWidget, _players[LB.playerUuid()]).render()
         _actionSelector.append(_room)
 
 

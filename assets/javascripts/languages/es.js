@@ -150,7 +150,7 @@
       },
       gunsmith: {
         label: ':gun:',
-        intro: '"Aquí la Alianza. Buen trabajo activando las defensas. Ahora necesitamos que actives el control remoto de la nave para que podamos remolcarla a nuestra estación. El problema es que únicamente player tiene el código que activa esta función. Estamos transmitiéndote el prototipo de una pistola :gun:. Podrás fabricar una en el almacén. Haz lo que tengas que hacer."',
+        intro: '"Aquí la Alianza. Buen trabajo activando las defensas. Ahora necesitamos que actives el control remoto de la nave para que podamos remolcarla a nuestra estación. El problema es que únicamente %{target} tiene el código que activa esta función. Estamos transmitiéndote el prototipo de una pistola :gun:. Podrás fabricar una en el almacén. Haz lo que tengas que hacer."',
         selection: {
           yes: 'Aceptar',
           no: 'Negarse'
@@ -181,7 +181,7 @@
         }
       },
       hitman: {
-        intro: "Al fin. Apuntas a %{player} con tu pistole y le pides el código... pero, y si se niega?",
+        intro: "Al fin. Apuntas a %{target} con tu pistola y le pides el código... pero, y si se niega?",
         selection: {
           yes: "Disparar",
           no: "No disparar"  
