@@ -55,6 +55,8 @@ module Services
       stage_slots = remaining_slots.take(stage_actions[stage])
 
       compute_stage stage_slots
+
+      run_sidequests if stage == :actions
       context.ia.activate if stage == :events
 
       @current_slot = stage_slots.last || 0
@@ -125,6 +127,31 @@ module Services
           inventory: player.inventory.to_h,
           information: player.information.for(context.players)
         }
+      }
+    end
+
+    def run_sidequests
+      run_defaultEvent
+      run_androidEvent
+    end
+
+    def run_defaultEvent
+      context.players.each{ |player|
+        @events[player.uuid] = :defaultEvent unless player_stage(player) == :events
+      }
+    end
+
+    def run_fusionEvent
+      context.players.each{ |player|
+        next if @events.has_key?(player.uuid)
+        @events[player.uuid] = :fusion unless player.events.include?(:fusion)
+      }
+    end
+
+    def run_androidEvent
+      context.players.each{ |player|
+        next if @events.has_key?(player.uuid)
+        @events[player.uuid] = :defaultEvent unless player_stage(player) == :events
       }
     end
 
