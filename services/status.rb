@@ -130,31 +130,6 @@ module Services
       }
     end
 
-    def run_sidequests
-      run_defaultEvent
-      run_androidEvent
-    end
-
-    def run_defaultEvent
-      context.players.each{ |player|
-        @events[player.uuid] = :defaultEvent unless player_stage(player) == :events
-      }
-    end
-
-    def run_fusionEvent
-      context.players.each{ |player|
-        next if @events.has_key?(player.uuid)
-        @events[player.uuid] = :fusion unless player.events.include?(:fusion)
-      }
-    end
-
-    def run_androidEvent
-      context.players.each{ |player|
-        next if @events.has_key?(player.uuid)
-        @events[player.uuid] = :defaultEvent unless player_stage(player) == :events
-      }
-    end
-
     def run_events
       random_players = context.players.to_a.shuffle(random: context.random_generator)
       android = random_players.first

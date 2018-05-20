@@ -3,14 +3,14 @@ class Player
   attr_reader :uuid, :name, :role, :inventory, :information, :sidequest, :events, :traits
   attr_accessor :status, :target
 
-  def initialize uuid, name, role, sidequest, information
+  def initialize uuid, name, role, information
     @uuid = uuid
     @name = name
     @role = role
-    @sidequest = sidequest
     @information = information
     @inventory = Inventory.new
     @status = :alive
+    @sidequest = sidequest
     @events = []
     @traits = []
     @fix = 6
