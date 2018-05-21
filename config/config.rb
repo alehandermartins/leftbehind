@@ -15,7 +15,7 @@ require_relative '../repos/actions_in_memory'
 require_relative '../services/games'
 require_relative '../services/actions'
 require_relative '../services/status'
-require_relative '../services/sidequests'
+require_relative '../services/events'
 require_relative '../services/http'
 
 require_relative '../lib/context'

@@ -5,18 +5,34 @@ LB.Event = function(stats){
   if(event == 'defaultEvent')
     return LB.DefaultEvent(stats);
 
+  var introText = LB.t.html('action.' + event + '.intro', {target: target});
+  var yesText = LB.t.html('action.' + event + '.selection.yes');
+  var noText = LB.t.html('action.' + event + '.selection.no');
+
   var target;
-  if(stats.players[LB.playerUuid()].target)
-    target = stats.players[stats.players[LB.playerUuid()].target].name;
+  var attacker = Object.keys(stats.players).filter(function(player){
+    return stats.players[player].target;
+  })[0];
+
+  if(attacker){
+    if(attacker == LB.playerUuid())
+      target = stats.players[stats.players[attacker].target].name;
+    else{
+      target = stats.players[attacker].name;
+      introText = LB.t.html('action.' + event + '.intro2', {target: target});
+      yesText = LB.t.html('action.' + event + '.selection.yes2');
+      noText = LB.t.html('action.' + event + '.selection.no2');
+    }
+  }
 
   var _createdWidget = $(crel('div')).addClass('dayPlanner col-12');
-  var _instructions = LB.Widgets.Label(LB.t.html('action.' + event + '.intro', {target: target}),'', 12);
+  var _instructions = LB.Widgets.Label(introText,'', 12);
 
-  var _yesButton = LB.Widgets.Button(LB.t.html('action.' + event + '.selection.yes'), function(){
+  var _yesButton = LB.Widgets.Button(yesText, function(){
     _sendSelections(true);
   }, 6);
 
-  var _noButton = LB.Widgets.Button(LB.t.html('action.' + event + '.selection.no'), function(){
+  var _noButton = LB.Widgets.Button(noText, function(){
     _sendSelections(false);
   }, 6);
 

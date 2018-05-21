@@ -1,7 +1,7 @@
 class Player
 
-  attr_reader :uuid, :name, :role, :inventory, :information, :sidequest, :events, :traits
-  attr_accessor :status, :target
+  attr_reader :uuid, :name, :role, :inventory, :information, :events, :traits
+  attr_accessor :status, :sidequest, :target
 
   def initialize uuid, name, role, information
     @uuid = uuid
@@ -10,7 +10,7 @@ class Player
     @information = information
     @inventory = Inventory.new
     @status = :alive
-    @sidequest = sidequest
+    @sidequest
     @events = []
     @traits = []
     @fix = 6

@@ -49,12 +49,12 @@ class Information
   end
 
   private
-   def android? player
+  def android? player
     @players[player.uuid][:traits].include?(:c3po) || @players[player.uuid][:traits].include?(:terminator)
   end
 
   def betrayer? player
-    @players[player.uuid][:traits].include?(:betrayer) || @players[player.uuid][:traits].include?(:betrayer)
+    @players[player.uuid][:traits].include?(:betrayer)
   end
 
   def add_android_features player

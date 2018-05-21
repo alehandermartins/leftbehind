@@ -55,12 +55,11 @@ module Services
       stage_slots = remaining_slots.take(stage_actions[stage])
 
       compute_stage stage_slots
+      @current_slot = stage_slots.last || 0
 
-      run_sidequests if stage == :actions
+      @events = Events.run(context, current_slot) if stage == :actions
       context.ia.activate if stage == :events
 
-      @current_slot = stage_slots.last || 0
-      run_events
       store_stats
       game_over?
 
@@ -127,16 +126,6 @@ module Services
           inventory: player.inventory.to_h,
           information: player.information.for(context.players)
         }
-      }
-    end
-
-    def run_events
-      random_players = context.players.to_a.shuffle(random: context.random_generator)
-      android = random_players.first
-      betrayer = random_players.last if random_players.size > 1
-      context.players.each{ |player|
-        player.crash if (current_slot >= 58 && player.alive?)
-        @events[player.uuid] = event_for player, android, betrayer
       }
     end
 

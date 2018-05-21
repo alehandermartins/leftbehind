@@ -182,9 +182,12 @@
       },
       hitman: {
         intro: "Al fin. Apuntas a %{target} con tu pistola y le pides el código... pero, y si se niega?",
+        intro2: "%{target} te apunta con una pistola: \"Dame el código de activación del control remoto de la nave\". %{target} te ha tricionado. Ha sido él/ella quien ha activado las defensas de la IA, y ahora quiere el código de activación del control remoto de la nave para entregaros como criminales a la Alianza. Sólo tú tienes el código. Si se lo das, la Alianza llegará antes de una hora de la autodestrucción. Si no se lo das, quien sabe lo que es capaz de hacer... ",
         selection: {
           yes: "Disparar",
-          no: "No disparar"  
+          no: "No disparar",
+          yes2: "Dar código",
+          no2: "Negarse"  
         }
       },
       inject: {
