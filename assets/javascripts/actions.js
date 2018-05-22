@@ -527,11 +527,16 @@
           }
         },
         hitman: {
-          showResult: function(result){
+          showResult: function(result, players){
             var resultLabel = $(crel('div')).addClass('result-label col-12');
-            resultLabel.append($(crel('div')).html(ns.t.html('action.hitman.label') + " " + ns.t.html(result.info.reason)));
 
-            return resultLabel
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(ns.t.html('action.hitman.label') + " " + ns.t.html(result.info.reason, { target: players[result.info.target].name })));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + ns.t.html(result.info.reason, { target: players[result.performer].name })));
+            }
+            return resultLabel;
           }
         },
         android: {

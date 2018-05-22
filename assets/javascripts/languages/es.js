@@ -181,6 +181,7 @@
         }
       },
       hitman: {
+        label: ":gun:",
         intro: "Al fin. Apuntas a %{target} con tu pistola y le pides el código... pero, y si se niega?",
         intro2: "%{target} te apunta con una pistola: \"Dame el código de activación del control remoto de la nave\". %{target} te ha tricionado. Ha sido él/ella quien ha activado las defensas de la IA, y ahora quiere el código de activación del control remoto de la nave para entregaros como criminales a la Alianza. Sólo tú tienes el código. Si se lo das, la Alianza llegará antes de una hora de la autodestrucción. Si no se lo das, quien sabe lo que es capaz de hacer... ",
         selection: {
@@ -188,6 +189,13 @@
           no: "No disparar",
           yes2: "Dar código",
           no2: "Negarse"
+        },
+        result: {
+          peace: "%{target} se niega a darte el código. No quieres seguir con esta locura. Tendrás que escapar de la nave con los demás, si te dejan...",
+          peace2: "Te niegas a dar el código. %{target} baja el arma. Después de todo parece que no ha perdido la razón",
+          giveaway: "%{target} te entrega el código. Menos mal... activas el control remoto de la nave. La Alianza llegará una hora antes de la autodestrucción de la nave.",
+          giveaway2: "Le entregas el código a %{target}. Mejor sobrevivir ahora e intentar escapar",
+          warning: "%{target} es un traidor. Ha contactado con la Alianza para entregaros a todos. La nave está ahora bajo control de la Alianza, que llegará una hora antes de la autodestrucción para apresaros."
         }
       },
       inject: {

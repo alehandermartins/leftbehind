@@ -182,13 +182,21 @@
         }
       },
       hitman: {
+        label: ":gun:",
         intro: "This is it. You point your gun to %{target} and ask him for the code... but what if he/she refuses?",
-        intro2: "%{target} points a gun at you: \"Give me the activation code for the ship's remote control\". %{target} has betrayed you. He/She has been the one who activated the IA defenses, and now he/she wants the activation code for the remote control of the ship, in order to deliver you as criminals to the Alliance. Only you have the code. If you give it to him/she, the Alliance will arrive one hour before the ship self-destruction. If you do not give it, who knows what %{target} is capable of doing...",
+        intro2: "%{target} points a gun at you: \"Give me the activation code for the ship's remote control\". %{target} has betrayed you. He/She has been the one who activated the IA defenses, and now he/she wants the activation code for the remote control of the ship, in order to deliver you as criminals to the Alliance. Only you have the code. If you give it to him/she, the Alliance will arrive one hour prior to the ship self-destruction. If you do not give it, who knows what %{target} is capable of doing...",
         selection: {
           yes: "Shoot anyway",
-          no: "Don't shoot"
+          no: "Don't shoot",
           yes2: "Give code",
           no2: "Refuse"
+        },
+        result: {
+          peace: "%{target} refuses to give you the code. You don't want to keep this madness going on. You will have to escape the ship, if the others let you...",
+          peace2: "You refuse to give the code away. %{target} lowers the gun. He/She has a heart after all",
+          giveaway: "%{target} gives you the code. Thank goodness... yout activate the ship remote controlling. The Alliance will arrive one hour prior to the ship self-destruction",
+          giveaway2: "You give the code to %{target}. Better to survive now and try to escape. The Alliance will arrive one our prior to the ship self-destruction",
+          warning: "%{target} is a traitor. He/She has contacted the Alliance in order to deliver everyone to them. The ship is now under the control of the Alliance, which will arrive an hour before self-destruction to seize you."
         }
       },
       inject: {
