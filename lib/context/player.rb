@@ -1,7 +1,7 @@
 class Player
 
   attr_reader :uuid, :name, :role, :inventory, :information, :events, :traits
-  attr_accessor :status, :sidequest, :target
+  attr_accessor :status, :sidequest, :target, :code
 
   def initialize uuid, name, role, information
     @uuid = uuid
@@ -15,6 +15,7 @@ class Player
     @traits = []
     @fix = 6
     @target
+    @code
   end
 
   def information_for players
@@ -81,14 +82,6 @@ class Player
 
   def trap
     @status = :trapped
-  end
-
-  def radiate
-    @status = :radiated
-  end
-
-  def explode
-    @status = :exploded
   end
 
   def escaped?

@@ -526,6 +526,14 @@
             return resultLabel
           }
         },
+        hitman: {
+          showResult: function(result){
+            var resultLabel = $(crel('div')).addClass('result-label col-12');
+            resultLabel.append($(crel('div')).html(ns.t.html('action.hitman.label') + " " + ns.t.html(result.info.reason)));
+
+            return resultLabel
+          }
+        },
         android: {
           showResult: function(result, players){
             var _decision = result.payload.decision;

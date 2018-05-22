@@ -76,13 +76,13 @@ module LB
     end
 
     def kill player
-      player.radiate
+      player.status = :radiated
       log_to_everyone player, info('player.status.radiated')
     end
 
     def kill_everyone
       @context.players.each{|player|
-        player.explode
+        player.status = :exploded
         log_to_everyone player, info('player.status.exploded')
       }
     end
@@ -96,8 +96,7 @@ module LB
     def info _info
       {
         action: self.class.name,
-        result: {info: _info},
-        inventory: ''
+        result: {info: _info}
       }
     end
   end

@@ -187,7 +187,7 @@
           yes: "Disparar",
           no: "No disparar",
           yes2: "Dar código",
-          no2: "Negarse"  
+          no2: "Negarse"
         }
       },
       inject: {

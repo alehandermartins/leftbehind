@@ -183,9 +183,12 @@
       },
       hitman: {
         intro: "This is it. You point your gun to %{target} and ask him for the code... but what if he/she refuses?",
+        intro2: "%{target} points a gun at you: \"Give me the activation code for the ship's remote control\". %{target} has betrayed you. He/She has been the one who activated the IA defenses, and now he/she wants the activation code for the remote control of the ship, in order to deliver you as criminals to the Alliance. Only you have the code. If you give it to him/she, the Alliance will arrive one hour before the ship self-destruction. If you do not give it, who knows what %{target} is capable of doing...",
         selection: {
           yes: "Shoot anyway",
-          no: "Don't shoot"  
+          no: "Don't shoot"
+          yes2: "Give code",
+          no2: "Refuse"
         }
       },
       inject: {

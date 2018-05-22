@@ -24,7 +24,8 @@ module LB
       'inject' => LB::Action::Inject,
       'android' => LB::Action::Android,
       'betray' => LB::Action::Betray,
-      'gunsmith' => LB::Action::Gunsmith
+      'gunsmith' => LB::Action::Gunsmith,
+      'hitman' => LB::Action::Hitman
     }
   end
 
