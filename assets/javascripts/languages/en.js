@@ -91,6 +91,9 @@
           alert: "Someone activated the IA defenses. If someone enters a room guarded by the :ia: he/she will be annihilated instantly"
         }
       },
+      brainscan: {
+        label: "Scan %{target}'s brain"
+      },
       craft: {
         label: 'Craft %{resource} (3 :parts: 3 :energy:)',
         selection: 'Craft %{resource}',
@@ -194,9 +197,14 @@
         result: {
           peace: "%{target} refuses to give you the code. You don't want to keep this madness going on. You will have to escape the ship, if the others let you...",
           peace2: "You refuse to give the code away. %{target} lowers the gun. He/She has a heart after all",
-          giveaway: "%{target} gives you the code. Thank goodness... yout activate the ship remote controlling. The Alliance will arrive one hour prior to the ship self-destruction",
-          giveaway2: "You give the code to %{target}. Better to survive now and try to escape. The Alliance will arrive one our prior to the ship self-destruction",
-          warning: "%{target} is a traitor. He/She has contacted the Alliance in order to deliver everyone to them. The ship is now under the control of the Alliance, which will arrive an hour before self-destruction to seize you."
+          surrender: "%{target} gives you the code. Thank goodness... you won't have to kill him/she. You activate the ship remote controlling. The Alliance will arrive one hour prior to the ship self-destruction.",
+          surrender2: "You give the code to %{target}. Better to survive now and try to escape.",
+          killing: "%{target} refuses to give you the code. You pull the trigger... Now there is only one way to get the code... bring the body to the infirmary and scan %{target} brain.",
+          killing2: "You refuse to give the code away. %{target} pulls the trigger...",
+          giveaway: "%{target} gives you the code. Thank goodness... you activate the ship remote controlling. The Alliance will arrive one hour prior to the ship self-destruction",
+          giveaway2: "You give the code to %{target}. Better to survive now and try to escape.",
+          warning: "%{target} is a traitor. He/She has contacted the Alliance in order to deliver everyone to them. The ship is now under the control of the Alliance, which will arrive an hour before self-destruction to seize you.",
+          warning2: "%{target} is a traitor. He/She has killed %{target} in order to contact the Alliance and deliver everyone to them. The ship is now under the control of the Alliance, which will arrive an hour before self-destruction to seize you."
         }
       },
       inject: {
@@ -308,7 +316,8 @@
         radiated: 'Too much radiation fries your brain',
         disconnected: 'You have been disconnected',
         blown: '%{player} was an android. The IA detonates %{player} as soon as you start the escape pod engines.',
-        detonated: 'The IA detonates you as soon as you start the escape pod engines. No one survives.'
+        detonated: 'The IA detonates you as soon as you start the escape pod engines. No one survives.',
+        murdered: 'You have been murdered.'
       }
     },
     buttons: {

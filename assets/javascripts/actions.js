@@ -18,6 +18,30 @@
       }
 
       var _actions = {
+        brainscan: {
+          label: function(target){
+            return ns.t.html('action.brainscan.label', {target: stats.players[target].name});
+          },
+          buildLabel: function(payload){
+            return ns.t.html('action.brainscan.label');
+          },
+          showResult: function(result, players){
+            var resultLabel = $(crel('div')).addClass('result-label col-12')
+            console.log(result.payload.item)
+
+            if (result.performer == LB.playerUuid())
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + ns.t.html('action.brainscan.result.' + result.status, {resource: [':', ':'].join(result.payload.item)})));
+            else{
+              resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
+              resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
+            }
+            return resultLabel;
+          },
+          run: function(location, slotWidget, target) {
+            var _builtAction = {name: 'brainscan', payload: {target: target}}
+            slotWidget.selectActionForCurrentSlot(_builtAction)
+          }
+        },
         craft: {
           label: function(resource){
             return ns.t.html('action.craft.label', {resource: [':', ':'].join(resource)});

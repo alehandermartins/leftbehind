@@ -1,5 +1,3 @@
-'use strict';
-
 (function(ns){
 
   ns.Translator = function(language){
@@ -31,7 +29,6 @@
 
     var _html = function(key, interpolations){
       var translated = _text(key, interpolations)
-
       return emojione.shortnameToImage(imager.replace(translated))
     }
 

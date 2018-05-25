@@ -153,7 +153,6 @@
         }).forEach(function(player){
           if(_players[player].actions[slot]){
             var slotInfo = _players[player].actions[slot]
-            console.log(slotInfo)
             var split = slotInfo.action.split(':');
             var name = split[4].toLowerCase();
             var action = actions[name];

@@ -45,8 +45,6 @@
     if(location.status == 'locked')
       return LB.Widgets.LockedRoom(location, actions, slotWidget)
 
-    console.log()
-
     var _createdWidget = $(crel('div'))
     var _roomName = $(crel('div')).addClass('text-center')
     var _roomNameLabel = $(crel('h4')).html(ns.t.text('locations.' + location.uuid))
@@ -79,6 +77,10 @@
 
     // if(location.status != 'hacked')
     //   addActionButton('hack')
+
+    if(location.uuid == 4 && player.traits.includes('murderer')){
+      addActionButton('brainscan', player.target)
+    }
 
     if(location.uuid == 6 && player.traits.includes('gunsmith')){
       addActionButton('craft', 'gun')

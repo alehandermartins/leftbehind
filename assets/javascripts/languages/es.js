@@ -91,6 +91,9 @@
           alert: "Alguien ha activdo las defensas de la IA. Si alguien entra en una habitación vigilada por la :ia: será aniquilado al instante."
         }
       },
+      brainscan: {
+        label: 'Escanear cerebro de %{target}'
+      },
       craft: {
         label: 'Fabricar %{resource} (3 :parts: 3 :energy:)',
         selection: 'Fabricar %{resource}',
@@ -183,7 +186,7 @@
       hitman: {
         label: ":gun:",
         intro: "Al fin. Apuntas a %{target} con tu pistola y le pides el código... pero, y si se niega?",
-        intro2: "%{target} te apunta con una pistola: \"Dame el código de activación del control remoto de la nave\". %{target} te ha tricionado. Ha sido él/ella quien ha activado las defensas de la IA, y ahora quiere el código de activación del control remoto de la nave para entregaros como criminales a la Alianza. Sólo tú tienes el código. Si se lo das, la Alianza llegará antes de una hora de la autodestrucción. Si no se lo das, quien sabe lo que es capaz de hacer... ",
+        intro2: "%{target} te apunta con una pistola: \"Dame el código de activación del control remoto de la nave\". %{target} te ha tricionado. Ha sido él/ella quien ha activado las defensas de la IA, y ahora quiere el código de activación del control remoto de la nave para entregaros como criminales a la Alianza. Sólo tú tienes el código. Si se lo das, la Alianza llegará antes de una hora de la autodestrucción. Si no se lo das, quien sabe lo que es capaz de hacer...",
         selection: {
           yes: "Disparar",
           no: "No disparar",
@@ -192,9 +195,13 @@
         },
         result: {
           peace: "%{target} se niega a darte el código. No quieres seguir con esta locura. Tendrás que escapar de la nave con los demás, si te dejan...",
-          peace2: "Te niegas a dar el código. %{target} baja el arma. Después de todo parece que no ha perdido la razón",
+          peace2: "Te niegas a dar el código. %{target} baja el arma. Después de todo parece que no ha perdido la razón.",
+          surrender: "%{target} te entrega el código. Menos mal... no será necesario matarlo/a. Activas el control remoto de la nave. La Alianza llegará una hora antes de la autodestrucción de la nave.",
+          surrender2: "Le entregas el código a %{target}. Mejor sobrevivir ahora e intentar escapar.",
+          killing: "%{target} se niega a darte el código. Aprietas el gatillo... Ahora sólo hay una forma de obtener el código... lleva el cadáver de %{target} a la enfermería y escanea su cerebro.",
+          killing2: "Te niegas a dar el código. %{target} aprieta el gatillo...",
           giveaway: "%{target} te entrega el código. Menos mal... activas el control remoto de la nave. La Alianza llegará una hora antes de la autodestrucción de la nave.",
-          giveaway2: "Le entregas el código a %{target}. Mejor sobrevivir ahora e intentar escapar",
+          giveaway2: "Le entregas el código a %{target}. Mejor sobrevivir ahora e intentar escapar.",
           warning: "%{target} es un traidor. Ha contactado con la Alianza para entregaros a todos. La nave está ahora bajo control de la Alianza, que llegará una hora antes de la autodestrucción para apresaros."
         }
       },
@@ -308,7 +315,8 @@
         radiated: 'Demasiada radiación te fríe el cerebro',
         disconnected: 'Has sido desconectado',
         blown: '%{player} was an android. The IA detonates %{player} as soon as you start the escape pod engines.',
-        detonated: 'LA IA te detona en cuanto enciendes los motores de la cápsula de escape. Nadie sobrevive.'
+        detonated: 'LA IA te detona en cuanto enciendes los motores de la cápsula de escape. Nadie sobrevive.',
+        murdered: 'Has sido asesinado.'
       }
     },
     buttons: {
