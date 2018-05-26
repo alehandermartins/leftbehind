@@ -325,7 +325,10 @@
         disconnected: 'Has sido desconectado',
         blown: '%{player} was an android. The IA detonates %{player} as soon as you start the escape pod engines.',
         detonated: 'LA IA te detona en cuanto enciendes los motores de la cápsula de escape. Nadie sobrevive.',
-        murdered: 'Has sido asesinado.'
+        murdered: 'Has sido asesinado.',
+        arrested: 'La Alianza toma la nave. Eres arrestado.',
+        indulged: 'La Alianza toma la nave. Tu tración te vale un puesto de comisario.'
+
       }
     },
     buttons: {

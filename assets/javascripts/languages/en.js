@@ -325,7 +325,9 @@
         disconnected: 'You have been disconnected',
         blown: '%{player} was an android. The IA detonates %{player} as soon as you start the escape pod engines.',
         detonated: 'The IA detonates you as soon as you start the escape pod engines. No one survives.',
-        murdered: 'You have been murdered.'
+        murdered: 'You have been murdered.',
+        arrested: 'The Alliance takes over the ship, you are arrested.',
+        indulged: "The Alliance takes the ship. Your trait is worth a commissioner's position."
       }
     },
     buttons: {

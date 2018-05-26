@@ -15,7 +15,7 @@ LB.EndGame = function(stats){
   var _background = $(crel('img')).addClass('img-responsive')
   _background.attr('src', '/images/endings/' + stats.player_status + '.jpg')
 
-  if(stats.player_status != 'escaped' || stats.player_status != 'indulged')
+  if(stats.player_status != 'escaped' && stats.player_status != 'indulged')
      _result.css('color', 'red')
 
    _createdWidget.append(_result, _background);
