@@ -179,19 +179,12 @@
       _selectRoom.append(_selectRoomLabel);
       _targetSelector.append(_selectRoom);
 
-
-      var locationsInfo = stats.locationsInfo;
-      if(locationsInfo)
-        var emptyLocations = Object.keys(locationsInfo)
-
-      stats.locations.forEach(function(location){
-
-        if(emptyLocations)
-          location.empty = emptyLocations.includes(location.uuid)
+      Object.keys(stats.locations).forEach(function(location_uuid){
+        var location = stats.locations[location_uuid];
+        location.uuid = location_uuid;
 
         var _room = ns.Widgets.Room(location, actions, _slotWidget, _players[LB.playerUuid()]).render()
         _actionSelector.append(_room)
-
 
         var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
           _targetSelector.animateCss("fadeOutRight", function(){

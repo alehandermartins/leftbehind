@@ -227,16 +227,15 @@
             game: stats.game,
             stage: stats.stage,
             event: stats.event,
-            locations: stats.locations,
             current_slot: parseInt(stats.current_slot),
             status: {
               day: parseInt(10 - (stats.current_slot / 6)) + 'h',
               shuttle: (10 - stats.escape_shuttle) * 10 + '%'
             },
-            player_status: stats.information.players[ns.playerUuid()].status,
+            player_status: stats.players[ns.playerUuid()].status,
             inventory: stats.inventory,
-            players: stats.information.players,
-            locationsInfo: stats.information.locations
+            players: stats.players,
+            locations: stats.locations
           }
           );
         }

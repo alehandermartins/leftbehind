@@ -5,7 +5,8 @@ module Events
 			players = context.players.to_a
 			deliver_sidequests players, context.random_generator
 
-      crash players, current_slot
+      crash players if current_slot >= 58
+      arrest players if current_slot >= 52
       androidQuest players, events
       betrayerQuest players, events
       noQuest players, events
@@ -24,7 +25,15 @@ module Events
 
     def crash players, current_slot
       players.each{ |player|
-        player.crash if (current_slot >= 58 && player.alive?)
+        player.status = :crash if player.alive?
+      }
+    end
+
+    def arrest players, current_slot
+      return unless players.any? { |player| player.code }
+      players.each{ |player|
+        player.status = :arrested if player.alive? && !player.code
+        player.status = :indulged if player.alive? && player.code
       }
     end
 

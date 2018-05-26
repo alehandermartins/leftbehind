@@ -6,7 +6,7 @@ class Information
     @players = players_hashes.map do |player_hash|
       [player_hash['uuid'], basic_info(player_hash)]
     end.to_h
-    @locations = Hash.new
+    @locations = Hash.new{|locations, key| locations[key] = {status: :unlocked, empty: false} }
   end
 
   def basic_info player_hash
@@ -28,24 +28,24 @@ class Information
     @players[performer][:traits].push(trait)
   end
 
-  def add_location location, info
-    @locations[location] = info
+  def empty_location location
+    @locations[location][:empty] = true
   end
 
-  def for players
+  def for_players players
     players.each { |player|
       @players[player.uuid][:status] = player.status
       add_android_features(player) if android?(player)
       add_betrayer_features(player) if betrayer?(player)
     }
-    to_h
+    @players
   end
 
-  def to_h
-    {
-      players: @players,
-      locations: @locations
+  def for_locations locations
+    locations.each { |location, info|
+      @locations[location][:status] = info[:status]
     }
+    @locations
   end
 
   private

@@ -20,7 +20,7 @@ module LB
         if flattened_inventory.empty?
           action.add_status :fail
           (cowork_actions).each {|coworker_action|
-            coworker_action.performer.information.add_location location, slot
+            coworker_action.performer.information.empty_location location
           }
           return @context
         end

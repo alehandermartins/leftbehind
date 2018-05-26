@@ -8,7 +8,7 @@ class Locations
 
     @locations = initial_inventories(uuids, desired_supplies, random_generator)
     @generator = random_generator
-    lock_random 3
+    initial_lock
   end
 
   def initial_inventories uuids, amounts, generator
@@ -77,11 +77,10 @@ class Locations
     @locations[uuid][:status] = :unlocked
   end
 
-  def lock_random amount
-    lock '8'
-    lockable = uuids.reject{ |place| place == '7' || place == '8' }
-    locked = lockable.sample(amount ,random: @generator)
-    locked.each{ |place| lock place }
+  def initial_lock
+    ['2', '4', '6', '8'].each { |location|
+      lock location
+    }
   end
 
   def mark_random amount
@@ -93,5 +92,9 @@ class Locations
     places.sample(amount, random: @generator).each{ |place|
       mark place
     }
+  end
+
+  def each &block
+    @locations.each &block
   end
 end

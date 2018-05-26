@@ -119,9 +119,9 @@ module Services
         stage: player_stage(player),
         event: @events[player.uuid],
         escape_shuttle: context.items['escape shuttle'][:fix],
-        locations: locations,
         inventory: player.inventory.to_h,
-        information: player.information.for(context.players)
+        players: player.information.for_players(context.players),
+        locations: player.information.for_locations(context.locations)
       }
     end
 
@@ -138,15 +138,6 @@ module Services
       stage_actions.each{ |stage, actions|
         return stage if slots < actions
         slots = slots - actions
-      }
-    end
-
-    def locations
-      context.locations.to_h.map { |uuid, location|
-        {
-          uuid: uuid,
-          status: location[:status]
-        }
       }
     end
 

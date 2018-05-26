@@ -69,10 +69,6 @@ class Player
     @status = :dead
   end
 
-  def crash
-    @status = :crashed
-  end
-
   def ia_kill
     @status = :killed
   end
