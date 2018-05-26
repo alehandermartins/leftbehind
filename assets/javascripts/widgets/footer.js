@@ -46,9 +46,9 @@
     _resultsToggler.append(_resultsLabel);
     _tutorialToggler.html(LB.t.html(':gear:'));
 
-    if(stats.current_slot == 0 || stats.day_status == 'wait' || stats.player_status !== 'alive'){
+    if(stats.current_slot == 0 || stats.stage == 'wait' || stats.player_status !== 'alive'){
       _dayPlannerToggler.addClass('active');
-      if(stats.current_slot == 0 || stats.day_status === 'wait')
+      if(stats.current_slot == 0 || stats.stage === 'wait')
         _resultsToggler.css('display', 'none');
     }
     else

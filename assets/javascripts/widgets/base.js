@@ -106,7 +106,7 @@
   ns.Widgets.Results = function(stats){
     var _createdWidget = $(crel('div')).addClass('results col-12');
 
-    if(stats.current_slot != 0 && stats.player_status === 'alive' && stats.day_status != 'wait')
+    if(stats.current_slot != 0 && stats.player_status === 'alive' && stats.stage != 'wait')
       _createdWidget.addClass('active');
 
     var _players = stats.players;

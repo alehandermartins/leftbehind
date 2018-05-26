@@ -11,7 +11,7 @@ LB.Game = function(stats){
     dead: LB.EndGame
   }
 
-  var _stageWidget = stagesMap[stats.day_status](stats);
+  var _stageWidget = stagesMap[stats.stage](stats);
   var dayContainer = $('.game_container');
   dayContainer.empty();
 

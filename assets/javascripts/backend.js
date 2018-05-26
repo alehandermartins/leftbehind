@@ -224,19 +224,19 @@
           var stats = data.stats;
           callback({
             response: data.status,
-            day_status: stats.game.stage,
-            game: stats.game.data,
-            context: stats.game,
-            locations: stats.game.locations,
-            current_slot: parseInt(stats.game.current_slot),
+            game: stats.game,
+            stage: stats.stage,
+            event: stats.event,
+            locations: stats.locations,
+            current_slot: parseInt(stats.current_slot),
             status: {
-              day: parseInt(10 - (stats.game.current_slot / 6)) + 'h',
-              shuttle: (10 - stats.game.escape_shuttle) * 10 + '%'
+              day: parseInt(10 - (stats.current_slot / 6)) + 'h',
+              shuttle: (10 - stats.escape_shuttle) * 10 + '%'
             },
-            player_status: stats.personal.information.players[ns.playerUuid()].status,
-            inventory: stats.personal.inventory,
-            players: stats.personal.information.players,
-            locationsInfo: stats.personal.information.locations
+            player_status: stats.information.players[ns.playerUuid()].status,
+            inventory: stats.inventory,
+            players: stats.information.players,
+            locationsInfo: stats.information.locations
           }
           );
         }

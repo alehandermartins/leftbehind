@@ -25,7 +25,8 @@ module LB
       'android' => LB::Action::Android,
       'betray' => LB::Action::Betray,
       'gunsmith' => LB::Action::Gunsmith,
-      'hitman' => LB::Action::Hitman
+      'hitman' => LB::Action::Hitman,
+      'brainscan' => LB::Action::BrainScan
     }
   end
 

@@ -92,7 +92,15 @@
         }
       },
       brainscan: {
-        label: "Scan %{target}'s brain"
+        label: "Scan %{target}'s brain (1 :energy:) <strong>%{scan}</strong>",
+        selection: "Scan %{target}'s brain",
+        result: {
+          success: "Scan %{target}'s brain <strong>%{scan}</strong>",
+          already_fixed: "Scan %{target}'s brain <strong>%{scan}</strong>",
+          no_fixing_materials: "You didn't have :energy: for the scan.", 
+          code: "You obtain the code and activate the ship remote controlling. The Alliance will arrive one hour prior to the ship self-destruction",
+          warning: "is a traitor. He/She has contacted the Alliance in order to deliver everyone to them. The Alliance will arrive an hour before self-destruction to seize you."
+        }
       },
       craft: {
         label: 'Craft %{resource} (3 :parts: 3 :energy:)',
@@ -203,8 +211,8 @@
           killing2: "You refuse to give the code away. %{target} pulls the trigger...",
           giveaway: "%{target} gives you the code. Thank goodness... you activate the ship remote controlling. The Alliance will arrive one hour prior to the ship self-destruction",
           giveaway2: "You give the code to %{target}. Better to survive now and try to escape.",
-          warning: "%{target} is a traitor. He/She has contacted the Alliance in order to deliver everyone to them. The ship is now under the control of the Alliance, which will arrive an hour before self-destruction to seize you.",
-          warning2: "%{target} is a traitor. He/She has killed %{target} in order to contact the Alliance and deliver everyone to them. The ship is now under the control of the Alliance, which will arrive an hour before self-destruction to seize you."
+          warning: "is a traitor. He/She has contacted the Alliance in order to deliver everyone to them. The Alliance will arrive an hour before self-destruction to seize you.",
+          warning2: "is a traitor. He/She has killed %{target} for a code."
         }
       },
       inject: {

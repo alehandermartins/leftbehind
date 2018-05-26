@@ -1,7 +1,7 @@
 'use strict';
 
 LB.Event = function(stats){
-  var event = stats.context['event'];
+  var event = stats.event;
   if(event == 'defaultEvent')
     return LB.DefaultEvent(stats);
 

@@ -19,6 +19,8 @@ module LB
       killing_result betrayer_action, betrayed_action
       giveaway_result betrayer_action, betrayed_action
 
+      add_event_to_everyone :hitman
+
       @context
     end
 
@@ -65,7 +67,7 @@ module LB
       betrayed_action.performer.status = :murdered
       betrayer_action.performer.add_trait :murderer
       add_outcome betrayer_action, betrayed_action, 'killing'
-      log_to_everyone betrayer_action.performer, { action: self.class.name, result: { info: { reason: 'action.hitman.result.warning2' } } }
+      log_to_everyone betrayer_action.performer, { action: self.class.name, result: { info: { reason: 'action.hitman.result.warning2', target: betrayed_action.performer.uuid } } }
     end
 
     def giveaway? betrayer_action, betrayed_action

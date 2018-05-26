@@ -20,17 +20,22 @@
       var _actions = {
         brainscan: {
           label: function(target){
-            return ns.t.html('action.brainscan.label', {target: stats.players[target].name});
+            var scan = stats.players[target].brainscan + '%';
+            return ns.t.html('action.brainscan.label', {target: stats.players[target].name, scan: scan});
           },
           buildLabel: function(payload){
-            return ns.t.html('action.brainscan.label');
+            return ns.t.html('action.brainscan.selection', {target: stats.players[payload.target].name});
           },
           showResult: function(result, players){
             var resultLabel = $(crel('div')).addClass('result-label col-12')
-            console.log(result.payload.item)
 
-            if (result.performer == LB.playerUuid())
-              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + ns.t.html('action.brainscan.result.' + result.status, {resource: [':', ':'].join(result.payload.item)})));
+            console.log(result)
+
+            if (result.performer == LB.playerUuid()){
+              var targetName = stats.players[result.payload.target].name;
+              var scan = result.info.brainscan + '%';
+              resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + ns.t.html(result.info.reason, {target: targetName, scan: scan})));
+            }
             else{
               resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
               resultLabel.append($(crel('div')).html('&nbsp' + this.buildLabel(result.payload)));
@@ -51,7 +56,6 @@
           },
           showResult: function(result, players){
             var resultLabel = $(crel('div')).addClass('result-label col-12')
-            console.log(result.payload.item)
 
             if (result.performer == LB.playerUuid())
               resultLabel.append($(crel('div')).html(slotLabel(result.slot) + '&nbsp' + ns.t.html('action.craft.result.' + result.status, {resource: [':', ':'].join(result.payload.item)})));
@@ -558,7 +562,7 @@
               resultLabel.append($(crel('div')).html(ns.t.html('action.hitman.label') + " " + ns.t.html(result.info.reason, { target: players[result.info.target].name })));
             else{
               resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
-              resultLabel.append($(crel('div')).html('&nbsp' + ns.t.html(result.info.reason, { target: players[result.performer].name })));
+              resultLabel.append($(crel('div')).html('&nbsp' + ns.t.html(result.info.reason, { target: players[result.info.target].name })));
             }
             return resultLabel;
           }

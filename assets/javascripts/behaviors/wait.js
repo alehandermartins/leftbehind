@@ -4,7 +4,7 @@ LB.Wait = function(stats){
 
   var checkStatus = function(){
     LB.Backend.getStats(function(data){
-      if(data.day_status == 'wait'){
+      if(data.stage == 'wait'){
         setTimeout(function() {
           checkStatus();
         }, 5000);

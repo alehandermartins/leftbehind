@@ -64,5 +64,6 @@ class Information
 
   def add_betrayer_features player
     @players[player.uuid][:target] = player.target
+    @players[player.target][:brainscan] = player.brainscan * 100 / 4 if player.target
   end
 end

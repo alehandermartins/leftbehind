@@ -39,7 +39,7 @@
         return;
       }
 
-      var stage = data.day_status;
+      var stage = data.game.stage;
       clearAllTimeouts();
 
       $('.game_name').html(data.game.name);

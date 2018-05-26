@@ -114,18 +114,14 @@ module Services
 
     def store_stats_for player
       @stats[player.uuid] = {
-        game: {
-          data: @game,
-          current_slot: @max_slots,
-          stage: player_stage(player),
-          event: @events[player.uuid],
-          escape_shuttle: context.items['escape shuttle'][:fix],
-          locations: locations
-        },
-        personal: {
-          inventory: player.inventory.to_h,
-          information: player.information.for(context.players)
-        }
+        game: @game,
+        current_slot: @max_slots,
+        stage: player_stage(player),
+        event: @events[player.uuid],
+        escape_shuttle: context.items['escape shuttle'][:fix],
+        locations: locations,
+        inventory: player.inventory.to_h,
+        information: player.information.for(context.players)
       }
     end
 
@@ -143,17 +139,6 @@ module Services
         return stage if slots < actions
         slots = slots - actions
       }
-    end
-
-    def event_for player, android, betrayer
-      return :defaultEvent unless player_stage(player) == :events
-      return :fusion if !player.events.include?(:fusion)
-      return :inject if !player.events.include?(:inject) && player == android
-      return :android if !player.events.include?(:android) && player.traits.include?(:android)
-      return :betray if !player.events.include?(:betray) && player == betrayer
-      return :gunsmith if !player.events.include?(:gunsmith) && player.traits.include?(:betrayer)
-      return :hitman if !player.events.include?(:hitman) && player.inventory.has_key?(:gun)
-      :defaultEvent
     end
 
     def locations

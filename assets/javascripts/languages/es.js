@@ -92,7 +92,15 @@
         }
       },
       brainscan: {
-        label: 'Escanear cerebro de %{target}'
+        label: 'Escanear cerebro de %{target} (1 :energy:) <strong>%{scan}</strong>',
+        selection: 'Escanear cerebro de %{target}',
+        result: {
+          success: 'Escanear cerebro de %{target} <strong>%{scan}</strong>',
+          already_fixed: 'Escanear cerebro de %{target} <strong>%{scan}</strong>',
+          no_fixing_materials: "No tenías :energy: para escanear.", 
+          code: "Obtienes el código y activas el control remoto de la nave. La Alianza llegará una hora antes de la autodestrucción de la nave.",
+          warning: "es un traidor. Ha contactado con la Alianza para entregaros a todos. La Alianza llegará una hora antes de la autodestrucción para apresaros."
+        }
       },
       craft: {
         label: 'Fabricar %{resource} (3 :parts: 3 :energy:)',
@@ -202,7 +210,8 @@
           killing2: "Te niegas a dar el código. %{target} aprieta el gatillo...",
           giveaway: "%{target} te entrega el código. Menos mal... activas el control remoto de la nave. La Alianza llegará una hora antes de la autodestrucción de la nave.",
           giveaway2: "Le entregas el código a %{target}. Mejor sobrevivir ahora e intentar escapar.",
-          warning: "%{target} es un traidor. Ha contactado con la Alianza para entregaros a todos. La nave está ahora bajo control de la Alianza, que llegará una hora antes de la autodestrucción para apresaros."
+          warning: "es un traidor. Ha contactado con la Alianza para entregaros a todos. La Alianza llegará una hora antes de la autodestrucción para apresaros.",
+          warning2: "es un traidor. Ha matado a %{target} por un código."
         }
       },
       inject: {
