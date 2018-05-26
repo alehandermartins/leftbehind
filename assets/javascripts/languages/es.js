@@ -283,7 +283,7 @@
         }
       },
       unlock: {
-        label: 'Desbloquear (:energy: 2)',
+        label: 'Desbloquear %{location} (:energy: 2)',
         selection: 'Desbloquear: %{location}',
         tutorial: ':lock: Desbloquear: Abre una habitación bloqueada.',
         result: {

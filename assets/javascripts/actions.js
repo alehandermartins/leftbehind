@@ -105,7 +105,7 @@
             return resultLabel;
           },
           run: function(location, slotWidget) {
-            var _builtAction = {name: 'search', payload: {location: location.uuid}}
+            var _builtAction = {name: 'search', payload: {location: location}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
@@ -135,7 +135,7 @@
             return resultLabel;
           },
           run: function(location, slotWidget){
-            var _builtAction = {name: 'oxygen', payload: {location: location.uuid}}
+            var _builtAction = {name: 'oxygen', payload: {location: location}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
@@ -164,11 +164,11 @@
         //   }
         // },
         unlock: {
-          label: function(){
-            return ns.t.html('action.unlock.label')
+          label: function(location){
+            return ns.t.html('action.unlock.label', {location: ns.t.html('locations.' + location)})
           },
           buildLabel: function(payload){
-            return ns.t.html('action.unlock.selection', {location: ns.t.html('locations.' + payload.location)})
+            return ns.t.html('action.unlock.selection', {location: ns.t.html('locations.' + payload.target)})
           },
           showResult: function(result, players){
             var _resultLabel;
@@ -187,8 +187,8 @@
 
             return resultLabel;
           },
-          run: function(location, slotWidget) {
-            var _builtAction = {name: 'unlock', payload: {location: location.uuid}}
+          run: function(location, slotWidget, target) {
+            var _builtAction = {name: 'unlock', payload: {location: location, target: target}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
@@ -216,7 +216,7 @@
             return resultLabel;
           },
           run: function(location, slotWidget) {
-            var _builtAction = {name: 'work', payload: {item: 'escape shuttle', location: location.uuid}}
+            var _builtAction = {name: 'work', payload: {item: 'escape shuttle', location: location}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },
@@ -380,7 +380,7 @@
             return resultLabel;
           },
           run: function(location, slotWidget) {
-            var _builtAction = {name: 'escape', payload: {location: location.uuid}}
+            var _builtAction = {name: 'escape', payload: {location: location}}
             slotWidget.selectActionForCurrentSlot(_builtAction)
           }
         },

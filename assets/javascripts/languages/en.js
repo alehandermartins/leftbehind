@@ -283,7 +283,7 @@
         }
       },
       unlock: {
-        label: 'Unlock (:energy: 2)',
+        label: 'Unlock %{location} (:energy: 2)',
         selection: 'Unlock: %{location}',
         tutorial: ':lock: Unlock: Opens a locked room.',
         result: {

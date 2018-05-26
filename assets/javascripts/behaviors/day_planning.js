@@ -180,13 +180,11 @@
       _targetSelector.append(_selectRoom);
 
       Object.keys(stats.locations).forEach(function(location_uuid){
-        var location = stats.locations[location_uuid];
-        location.uuid = location_uuid;
 
-        var _room = ns.Widgets.Room(location, actions, _slotWidget, _players[LB.playerUuid()]).render()
+        var _room = ns.Widgets.Room(stats.locations, location_uuid, actions, _slotWidget, _players[LB.playerUuid()]).render()
         _actionSelector.append(_room)
 
-        var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location.uuid), function(){
+        var _locationButton = ns.Widgets.Button(ns.t.text('locations.' + location_uuid), function(){
           _targetSelector.animateCss("fadeOutRight", function(){
             _targetSelector.removeClass('active');
             _actionSelector.addClass('active');
@@ -196,7 +194,7 @@
           });
         }).render();
 
-        if(location.status == 'locked'){
+        if(stats.locations[location_uuid].status == 'locked'){
           var _iconLock = $(crel('i')).addClass('fa fa-lock');
           _iconLock.css({'padding-left':'5px', 'font-size': '20px', 'padding-top': '2px'});
           _locationButton.append(_iconLock);

@@ -1,17 +1,21 @@
 module LB
   class Action::Unlock < Action::Base
     include Located
+    include WithTarget
+    include IA
     include Cooperative
     include EndGame
     UNLOCK_PRICE = 2
 
     def run context
       super context
+      payload[:location] = '1'
 
       return @context if computed?
+      return @context if killed?
 
       unlock = lambda do |action|
-        unless @context.locations[location][:status] == :locked
+        unless @context.locations[target][:status] == :locked
           action.add_status :fail
           action.add_info reason: 'action.unlock.result.redundancy'
           return @context
@@ -25,7 +29,7 @@ module LB
 
         spend_material
         action.add_status :success
-        @context.locations.unlock location
+        @context.locations.unlock target
       end
 
       run_multiple unlock
