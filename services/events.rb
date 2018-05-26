@@ -23,13 +23,13 @@ module Events
       }
     end
 
-    def crash players, current_slot
+    def crash players
       players.each{ |player|
         player.status = :crash if player.alive?
       }
     end
 
-    def arrest players, current_slot
+    def arrest players
       return unless players.any? { |player| player.code }
       players.each{ |player|
         player.status = :arrested if player.alive? && !player.code
