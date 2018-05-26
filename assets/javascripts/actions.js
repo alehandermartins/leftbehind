@@ -561,6 +561,7 @@
             if (result.performer == LB.playerUuid())
               resultLabel.append($(crel('div')).html(ns.t.html('action.hitman.label') + " " + ns.t.html(result.info.reason, { target: players[result.info.target].name })));
             else{
+              console.log(result)
               resultLabel.append(LB.Widgets.PlayerAvatarXS(players[result.performer]).render())
               resultLabel.append($(crel('div')).html('&nbsp' + ns.t.html(result.info.reason, { target: players[result.info.target].name })));
             }

@@ -22,6 +22,7 @@ module LB
       end
 
       add_status :success
+      performer.inventory.add :food, 1
       @context
     end
 
@@ -29,8 +30,6 @@ module LB
       super context
 
       performer.information.add_action(performer.uuid, slot, information)
-      return @context unless success?
-      performer.inventory.add :food, 1
       @context
     end
 

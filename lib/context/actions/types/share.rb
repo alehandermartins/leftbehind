@@ -14,6 +14,8 @@ module LB
       end
 
       performer.inventory.subtract resource, 1
+      @context.players[target].inventory.add resource, 1
+
       add_status :success
       @context
     end
@@ -22,7 +24,6 @@ module LB
       super context
 
       if success?
-        @context.players[target].inventory.add resource, 1
         add_to_log
       end
 

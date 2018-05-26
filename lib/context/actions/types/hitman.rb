@@ -53,7 +53,7 @@ module LB
       betrayed_action.add_status :fail
       betrayer_action.performer.code = true
       add_outcome betrayer_action, betrayed_action, 'surrender'
-      log_to_everyone betrayer_action.performer, { action: self.class.name, result: { info: { reason: 'action.hitman.result.warning' } } }
+      log_to_everyone betrayer_action.performer, { action: self.class.name, result: { info: { reason: 'action.hitman.result.warning', target: betrayed_action.performer.uuid } } }
     end
 
     def killing? betrayer_action, betrayed_action
@@ -80,7 +80,7 @@ module LB
       betrayed_action.add_status :fail
       betrayer_action.performer.code = true
       add_outcome betrayer_action, betrayed_action, 'giveaway'
-      log_to_everyone betrayer_action.performer, { action: self.class.name, result: { info: { reason: 'action.hitman.result.warning' } } }
+      log_to_everyone betrayer_action.performer, { action: self.class.name, result: { info: { reason: 'action.hitman.result.warning', target: betrayed_action.performer.uuid } } }
     end
 
     def add_outcome betrayer_action, betrayed_action, outcome
